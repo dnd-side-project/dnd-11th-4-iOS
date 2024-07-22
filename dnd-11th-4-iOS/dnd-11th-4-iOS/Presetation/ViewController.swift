@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import CoreLocation
+import SnapKit
 
 class ViewController: UIViewController {
     
@@ -16,16 +16,27 @@ class ViewController: UIViewController {
     }
     
     func drawMap() {
-        let mapView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 800, height: 812))
-        mapView.contentSize = CGSize(width: 800, height: 812)
+        let ScrollerView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 800, height: 812))
+        ScrollerView.contentSize = CGSize(width: 800, height: 812)
         let targetRect = CGRect(x: 0, y: 0, width: 0, height: 0)
-        mapView.scrollRectToVisible(targetRect, animated: true)
+        ScrollerView.scrollRectToVisible(targetRect, animated: true)
+        ScrollerView.backgroundColor = .systemPink
+        view.addSubview(ScrollerView)
+
+        let mapView = UIView()
         mapView.backgroundColor = .systemPink
-        view.addSubview(mapView)
-//
-//        let mapView = UIView()
-//        mapView.backgroundColor = .brown
-//        scrollerView.addSubview(mapView)
+        
+        기기대응메서드()
+        
+        func 기기대응메서드() {
+            if UIScreen.main.bounds.size.width == 375 {
+                mapView.frame = CGRect(x: 0, y: 0, width: 800, height: 812)
+            } else if UIScreen.main.bounds.size.width == 430 {
+                mapView.frame = CGRect(x: 25, y: 25, width: 800, height: 812)
+            }
+        }
+    
+        ScrollerView.addSubview(mapView)
         
         mapView.layer.addSublayer(경기도179())
         mapView.layer.addSublayer(인천95())
