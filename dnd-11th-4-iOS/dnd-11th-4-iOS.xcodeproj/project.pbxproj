@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A5FFDA62C4FAA6A002F5A77 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */; };
 		4AAFDB6D2C494CFF008C6DAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFDB6C2C494CFF008C6DAF /* AppDelegate.swift */; };
 		4AAFDB6F2C494CFF008C6DAF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFDB6E2C494CFF008C6DAF /* SceneDelegate.swift */; };
 		4AAFDB712C494CFF008C6DAF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFDB702C494CFF008C6DAF /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		4AAFDB692C494CFF008C6DAF /* dnd-11th-4-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dnd-11th-4-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AAFDB6C2C494CFF008C6DAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AAFDB6E2C494CFF008C6DAF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +69,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A5FFDA42C4FAA60002F5A77 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
 		4AAFDB602C494CFF008C6DAF = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +135,7 @@
 		4AAFDBAB2C49538D008C6DAF /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				4A5FFDA42C4FAA60002F5A77 /* Constant */,
 				4AAFDBAC2C495392008C6DAF /* DesignSystem */,
 			);
 			path = Global;
@@ -251,6 +262,7 @@
 				4AAFDBB22C4953C9008C6DAF /* Application.swift in Sources */,
 				4AAFDB712C494CFF008C6DAF /* ViewController.swift in Sources */,
 				4AAFDBB62C4953D2008C6DAF /* Font.swift in Sources */,
+				4A5FFDA62C4FAA6A002F5A77 /* Constant.swift in Sources */,
 				4AAFDB6D2C494CFF008C6DAF /* AppDelegate.swift in Sources */,
 				4AAFDBB02C4953C0008C6DAF /* Network.swift in Sources */,
 				4AAFDB6F2C494CFF008C6DAF /* SceneDelegate.swift in Sources */,
