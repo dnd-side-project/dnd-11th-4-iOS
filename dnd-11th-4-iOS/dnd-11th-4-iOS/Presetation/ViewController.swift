@@ -38,31 +38,29 @@ class ViewController: UIViewController {
     
         ScrollerView.addSubview(mapView)
         
-        mapView.layer.addSublayer(경기도179())
-        mapView.layer.addSublayer(인천95())
-        mapView.layer.addSublayer(충청남도172())
-        mapView.layer.addSublayer(강원도354())
-        mapView.layer.addSublayer(대전163())
-        mapView.layer.addSublayer(세종158())
-        mapView.layer.addSublayer(전북193())
-        mapView.layer.addSublayer(경북344())
-        mapView.layer.addSublayer(map314())
-        mapView.layer.addSublayer(map174())
-        mapView.layer.addSublayer(map324())
-        mapView.layer.addSublayer(map335_())
-        mapView.layer.addSublayer(map68())
-        mapView.layer.addSublayer(map103())
-        mapView.layer.addSublayer(map156())
-        mapView.layer.addSublayer(map269())
-        mapView.layer.addSublayer(map268())
-        mapView.layer.addSublayer(map113())
-        mapView.layer.addSublayer(map134())
-        mapView.layer.addSublayer(map103())
-        mapView.layer.addSublayer(map103_())
-        
+        mapView.layer.addSublayer(경기())
+        mapView.layer.addSublayer(인천())
+        mapView.layer.addSublayer(충남())
+        mapView.layer.addSublayer(강원())
+        mapView.layer.addSublayer(대전())
+        mapView.layer.addSublayer(세종())
+        mapView.layer.addSublayer(전북())
+        mapView.layer.addSublayer(경북())
+        mapView.layer.addSublayer(경남())
+        mapView.layer.addSublayer(전남())
+        mapView.layer.addSublayer(부산())
+        mapView.layer.addSublayer(울산())
+        mapView.layer.addSublayer(영종도())
+        mapView.layer.addSublayer(제주())
+        mapView.layer.addSublayer(고흥())
+        mapView.layer.addSublayer(충북())
+        mapView.layer.addSublayer(대구())
+        mapView.layer.addSublayer(광주())
+        mapView.layer.addSublayer(서울())
+        mapView.layer.addSublayer(진도())
     }
     
-    func 경기도179() -> CAShapeLayer {
+    func 경기() -> CAShapeLayer {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 179.26, y: 249.88))
         shape.addCurve(to: CGPoint(x: 166.66, y: 244.61), controlPoint1: CGPoint(x: 170.47, y: 249.88), controlPoint2: CGPoint(x: 167.59, y: 247.74))
@@ -129,7 +127,7 @@ class ViewController: UIViewController {
         return shapeLayer
     }
     
-    func 인천95() -> CAShapeLayer {
+    func 인천() -> CAShapeLayer {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 95.92, y: 238.96))
         shape.addLine(to: CGPoint(x: 93.46, y: 258.35))
@@ -155,7 +153,7 @@ class ViewController: UIViewController {
         return shapeLayer
     }
     
-    func 충청남도172() -> CAShapeLayer {
+    func 충남() -> CAShapeLayer {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 172.81, y: 412.34))
         shape.addCurve(to: CGPoint(x: 156.53, y: 415.2), controlPoint1: CGPoint(x: 168.78, y: 416.58), controlPoint2: CGPoint(x: 161.44, y: 418.4))
@@ -202,7 +200,7 @@ class ViewController: UIViewController {
         return shapeLayer
     }
     
-    func 강원도354() -> CAShapeLayer {
+    func 강원() -> CAShapeLayer {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 335.6, y: 290.54))
         shape.addLine(to: CGPoint(x: 282.49, y: 293.91))
@@ -243,7 +241,7 @@ class ViewController: UIViewController {
         return shapeLayer
     }
     
-    func 대전163() -> CAShapeLayer {
+    func 대전() -> CAShapeLayer {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 163.13, y: 366.06))
         shape.addLine(to: CGPoint(x: 158.98, y: 385.83))
@@ -268,7 +266,7 @@ class ViewController: UIViewController {
         return shapeLayer
     }
     
-    func 세종158() -> CAShapeLayer {
+    func 세종() -> CAShapeLayer {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 158.37, y: 357.75))
         shape.addLine(to: CGPoint(x: 141.03, y: 365.1))
@@ -291,7 +289,7 @@ class ViewController: UIViewController {
         return shapeLayer
     }
     
-    func 전북193() -> CAShapeLayer {
+    func 전북() -> CAShapeLayer {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 193.28, y: 428.07))
         shape.addCurve(to: CGPoint(x: 189.67, y: 429.88), controlPoint1: CGPoint(x: 191.95, y: 428.29), controlPoint2: CGPoint(x: 190.69, y: 428.9))
@@ -329,63 +327,7 @@ class ViewController: UIViewController {
         return shapeLayer
     }
     
-    func map354() -> CAShapeLayer {
-        let shape = UIBezierPath()
-        shape.move(to: CGPoint(x: 339.5, y: 418.23))
-        shape.addLine(to: CGPoint(x: 330.68, y: 450.18))
-        shape.addCurve(to: CGPoint(x: 303.04, y: 452.71), controlPoint1: CGPoint(x: 323.82, y: 450.18), controlPoint2: CGPoint(x: 305.73, y: 451.06))
-        shape.addLine(to: CGPoint(x: 288.48, y: 462.48))
-        shape.addCurve(to: CGPoint(x: 284.73, y: 461.67), controlPoint1: CGPoint(x: 302.36, y: 461.86), controlPoint2: CGPoint(x: 301.05, y: 461.57))
-        shape.addLine(to: CGPoint(x: 261.36, y: 464.53))
-        shape.addLine(to: CGPoint(x: 266.02, y: 453.62))
-        shape.addCurve(to: CGPoint(x: 270.09, y: 450.51), controlPoint1: CGPoint(x: 266.72, y: 451.92), controlPoint2: CGPoint(x: 268.28, y: 450.74))
-        shape.addLine(to: CGPoint(x: 278.68, y: 449.43))
-        shape.addCurve(to: CGPoint(x: 283.09, y: 443.68), controlPoint1: CGPoint(x: 281.5, y: 449.08), controlPoint2: CGPoint(x: 283.48, y: 446.5))
-        shape.addLine(to: CGPoint(x: 280.53, y: 424.93))
-        shape.addCurve(to: CGPoint(x: 272.23, y: 421.69), controlPoint1: CGPoint(x: 279.99, y: 420.97), controlPoint2: CGPoint(x: 275.31, y: 419.14))
-        shape.addLine(to: CGPoint(x: 252.35, y: 438.19))
-        shape.addCurve(to: CGPoint(x: 250.51, y: 442.12), controlPoint1: CGPoint(x: 251.19, y: 439.17), controlPoint2: CGPoint(x: 250.51, y: 440.6))
-        shape.addLine(to: CGPoint(x: 250.75, y: 465.32))
-        shape.addLine(to: CGPoint(x: 244.1, y: 465.81))
-        shape.addCurve(to: CGPoint(x: 237.05, y: 460.75), controlPoint1: CGPoint(x: 240.84, y: 466.05), controlPoint2: CGPoint(x: 237.87, y: 463.92))
-        shape.addLine(to: CGPoint(x: 233.68, y: 447.7))
-        shape.addCurve(to: CGPoint(x: 229.99, y: 443.26), controlPoint1: CGPoint(x: 233.18, y: 445.74), controlPoint2: CGPoint(x: 231.82, y: 444.11))
-        shape.addLine(to: CGPoint(x: 207.23, y: 432.62))
-        shape.addCurve(to: CGPoint(x: 203.28, y: 432.07), controlPoint1: CGPoint(x: 205.97, y: 432.03), controlPoint2: CGPoint(x: 204.59, y: 431.86))
-        shape.addLine(to: CGPoint(x: 200.1, y: 414.52))
-        shape.addLine(to: CGPoint(x: 208.92, y: 413.12))
-        shape.addCurve(to: CGPoint(x: 213.58, y: 408.86), controlPoint1: CGPoint(x: 211.19, y: 412.76), controlPoint2: CGPoint(x: 213.02, y: 411.08))
-        shape.addLine(to: CGPoint(x: 217.51, y: 393.12))
-        shape.addCurve(to: CGPoint(x: 214.15, y: 386.46), controlPoint1: CGPoint(x: 218.19, y: 390.38), controlPoint2: CGPoint(x: 216.77, y: 387.54))
-        shape.addLine(to: CGPoint(x: 208.07, y: 383.92))
-        shape.addCurve(to: CGPoint(x: 204.88, y: 376.7), controlPoint1: CGPoint(x: 205.24, y: 382.76), controlPoint2: CGPoint(x: 203.84, y: 379.57))
-        shape.addLine(to: CGPoint(x: 212.56, y: 355.46))
-        shape.addCurve(to: CGPoint(x: 212.36, y: 351.1), controlPoint1: CGPoint(x: 213.07, y: 354.04), controlPoint2: CGPoint(x: 213, y: 352.47))
-        shape.addLine(to: CGPoint(x: 210.84, y: 347.86))
-        shape.addCurve(to: CGPoint(x: 213.5, y: 340.31), controlPoint1: CGPoint(x: 209.52, y: 345.04), controlPoint2: CGPoint(x: 210.71, y: 341.69))
-        shape.addLine(to: CGPoint(x: 254.23, y: 320.24))
-        shape.addCurve(to: CGPoint(x: 255.93, y: 318.96), controlPoint1: CGPoint(x: 254.87, y: 319.92), controlPoint2: CGPoint(x: 255.45, y: 319.5))
-        shape.addLine(to: CGPoint(x: 279.29, y: 293.24))
-        shape.addLine(to: CGPoint(x: 285.29, y: 296.38))
-        shape.addCurve(to: CGPoint(x: 292.49, y: 297.91), controlPoint1: CGPoint(x: 287.51, y: 297.53), controlPoint2: CGPoint(x: 289.99, y: 298.06))
-        shape.addLine(to: CGPoint(x: 345.6, y: 294.54))
-        shape.addLine(to: CGPoint(x: 342.98, y: 409.1))
-        shape.addCurve(to: CGPoint(x: 347.23, y: 413.46), controlPoint1: CGPoint(x: 342.93, y: 411.6), controlPoint2: CGPoint(x: 344.96, y: 413.46))
-        shape.addCurve(to: CGPoint(x: 348.82, y: 413.15), controlPoint1: CGPoint(x: 347.75, y: 413.46), controlPoint2: CGPoint(x: 348.29, y: 413.36))
-        shape.addCurve(to: CGPoint(x: 354.5, y: 418.23), controlPoint1: CGPoint(x: 352.09, y: 411.84), controlPoint2: CGPoint(x: 355.44, y: 414.85))
-        shape.close()
-        shape.stroke()
-        
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.path = shape.cgPath
-        shapeLayer.strokeColor = UIColor.lightGray.cgColor
-        shapeLayer.fillColor = UIColor.blue.cgColor
-        shapeLayer.lineWidth = 2.0
-        
-        return shapeLayer
-    }
-    
-    func 경북344() -> CAShapeLayer {
+    func 경북() -> CAShapeLayer {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 344.5, y: 414.23))
         shape.addLine(to: CGPoint(x: 335.68, y: 446.18))
@@ -441,7 +383,7 @@ class ViewController: UIViewController {
         return shapeLayer
     }
     
-    func map314() -> CAShapeLayer {
+    func 경남() -> CAShapeLayer {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 314.85, y: 478.24))
         shape.addLine(to: CGPoint(x: 288.38, y: 501.03))
@@ -487,7 +429,7 @@ class ViewController: UIViewController {
         return shapeLayer
     }
     
-    func map174() -> CAShapeLayer {
+    func 전남() -> CAShapeLayer {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 174.87, y: 520.57))
         shape.addCurve(to: CGPoint(x: 171.47, y: 514.2), controlPoint1: CGPoint(x: 173, y: 518.93), controlPoint2: CGPoint(x: 171.8, y: 516.66))
@@ -543,7 +485,7 @@ class ViewController: UIViewController {
         return shapeLayer
     }
     
-    func map324() -> CAShapeLayer {
+    func 부산() -> CAShapeLayer {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 324.95, y: 485))
         shape.addLine(to: CGPoint(x: 318.25, y: 509.26))
@@ -568,7 +510,7 @@ class ViewController: UIViewController {
         return shapeLayer
     }
     
-    func map335_() -> CAShapeLayer {
+    func 울산() -> CAShapeLayer {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 335.68, y: 446.18))
         shape.addLine(to: CGPoint(x: 324.95, y: 485))
@@ -591,7 +533,7 @@ class ViewController: UIViewController {
         return shapeLayer
     }
     
-    func map68() -> CAShapeLayer {
+    func 영종도() -> CAShapeLayer {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 68.35, y: 252.12))
         shape.addLine(to: CGPoint(x: 61.8, y: 255.51))
@@ -614,7 +556,7 @@ class ViewController: UIViewController {
         return shapeLayer
     }
     
-    func map103() -> CAShapeLayer {
+    func 제주() -> CAShapeLayer {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 103.95, y: 650.71))
         shape.addLine(to: CGPoint(x: 93.51, y: 660.4))
@@ -641,7 +583,7 @@ class ViewController: UIViewController {
         return shapeLayer
     }
     
-    func map156() -> CAShapeLayer {
+    func 고흥() -> CAShapeLayer {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 156.99, y: 575.31))
         shape.addLine(to: CGPoint(x: 145.74, y: 584.13))
@@ -666,7 +608,7 @@ class ViewController: UIViewController {
         return shapeLayer
     }
     
-    func map51() -> CAShapeLayer {
+    func 진도() -> CAShapeLayer {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 51.95, y: 586.78))
         shape.addLine(to: CGPoint(x: 50.35, y: 593.26))
@@ -691,7 +633,7 @@ class ViewController: UIViewController {
         return shapeLayer
     }
     
-    func map269() -> CAShapeLayer {
+    func 충북() -> CAShapeLayer {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 269.29, y: 289.24))
         shape.addLine(to: CGPoint(x: 245.93, y: 314.96))
@@ -741,7 +683,7 @@ class ViewController: UIViewController {
         return shapeLayer
     }
     
-    func map268() -> CAShapeLayer {
+    func 대구() -> CAShapeLayer {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 268.68, y: 445.43))
         shape.addLine(to: CGPoint(x: 260.09, y: 446.51))
@@ -766,7 +708,7 @@ class ViewController: UIViewController {
         return shapeLayer
     }
     
-    func map113() -> CAShapeLayer {
+    func 광주() -> CAShapeLayer {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 113.44, y: 517.49))
         shape.addLine(to: CGPoint(x: 94.51, y: 522.66))
@@ -793,7 +735,7 @@ class ViewController: UIViewController {
         return shapeLayer
     }
     
-    func map134() -> CAShapeLayer {
+    func 서울() -> CAShapeLayer {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 134.87, y: 246.61))
         shape.addLine(to: CGPoint(x: 127.21, y: 253.67))
@@ -810,33 +752,6 @@ class ViewController: UIViewController {
         shape.addCurve(to: CGPoint(x: 129.44, y: 229.35), controlPoint1: CGPoint(x: 127.95, y: 226.03), controlPoint2: CGPoint(x: 129.44, y: 227.51))
         shape.addLine(to: CGPoint(x: 134.61, y: 241.51))
         shape.addCurve(to: CGPoint(x: 134.87, y: 246.61), controlPoint1: CGPoint(x: 136.27, y: 242.75), controlPoint2: CGPoint(x: 136.4, y: 245.2))
-        shape.close()
-        shape.stroke()
-        
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.path = shape.cgPath
-        shapeLayer.strokeColor = UIColor.lightGray.cgColor
-        shapeLayer.fillColor = UIColor.blue.cgColor
-        shapeLayer.lineWidth = 2.0
-        
-        return shapeLayer
-    }
-    
-    func map103_() -> CAShapeLayer {
-        let shape = UIBezierPath()
-        shape.move(to: CGPoint(x: 103.95, y: 650.71))
-        shape.addLine(to: CGPoint(x: 93.51, y: 660.4))
-        shape.addCurve(to: CGPoint(x: 90.28, y: 662.16), controlPoint1: CGPoint(x: 92.6, y: 661.24), controlPoint2: CGPoint(x: 91.5, y: 661.85))
-        shape.addLine(to: CGPoint(x: 46.12, y: 673.44))
-        shape.addCurve(to: CGPoint(x: 38.56, y: 670.99), controlPoint1: CGPoint(x: 43.33, y: 674.14), controlPoint2: CGPoint(x: 40.39, y: 673.19))
-        shape.addLine(to: CGPoint(x: 33.43, y: 664.84))
-        shape.addCurve(to: CGPoint(x: 33.55, y: 655.16), controlPoint1: CGPoint(x: 31.09, y: 662.02), controlPoint2: CGPoint(x: 31.14, y: 657.92))
-        shape.addLine(to: CGPoint(x: 45.03, y: 642.07))
-        shape.addCurve(to: CGPoint(x: 49.42, y: 639.64), controlPoint1: CGPoint(x: 46.17, y: 640.78), controlPoint2: CGPoint(x: 47.72, y: 639.92))
-        shape.addLine(to: CGPoint(x: 88.61, y: 633.15))
-        shape.addCurve(to: CGPoint(x: 93.29, y: 633.91), controlPoint1: CGPoint(x: 90.21, y: 632.89), controlPoint2: CGPoint(x: 91.85, y: 633.15))
-        shape.addLine(to: CGPoint(x: 102.35, y: 638.67))
-        shape.addCurve(to: CGPoint(x: 103.95, y: 650.71), controlPoint1: CGPoint(x: 106.89, y: 641.06), controlPoint2: CGPoint(x: 107.71, y: 647.22))
         shape.close()
         shape.stroke()
         
