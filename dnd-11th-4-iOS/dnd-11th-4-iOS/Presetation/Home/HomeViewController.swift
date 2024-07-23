@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  dnd-11th-4-iOS
 //
 //  Created by 황찬미 on 7/18/24.
@@ -8,10 +8,11 @@
 import UIKit
 import SnapKit
 
-final class ViewController: UIViewController {
+final class HomeViewController: UIViewController {
     
     private let homeScrollView: UIScrollView = {
-        let scrollerView = UIScrollView()
+        let scrollerView = UIScrollView(frame: CGRect(x: 0, y: 0,
+                                                              width: Constant.Screen.width, height: Constant.Screen.height))
         scrollerView.contentSize = CGSize(width: Constant.Screen.width, height: Constant.Screen.height)
         scrollerView.backgroundColor = .white
         return scrollerView
@@ -40,6 +41,7 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        
         setLayout()
     }
     
@@ -54,10 +56,12 @@ final class ViewController: UIViewController {
     }
     
     func 기기대응메서드() {
-        if UIScreen.main.bounds.size.width == 375 {
-            mapContainerView.frame = CGRect(x: 0, y: 0, width: 800, height: 812)
-        } else if UIScreen.main.bounds.size.width == 430 {
-            mapContainerView.frame = CGRect(x: 25, y: 25, width: 800, height: 812)
+        // 13 mini 기준
+        if Constant.Screen.width == 375 {
+            mapContainerView.frame = CGRect(x: 0, y: 0, width: Constant.Screen.width, height: Constant.Screen.height)
+        // 15 pro max 기준
+        } else if Constant.Screen.width == 430 {
+            mapContainerView.frame = CGRect(x: 25, y: 50, width: Constant.Screen.width, height: Constant.Screen.height)
         }
     }
 }

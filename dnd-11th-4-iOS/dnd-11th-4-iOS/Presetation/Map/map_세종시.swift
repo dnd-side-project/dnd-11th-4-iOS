@@ -44,6 +44,8 @@ final class map_세종시: UIView, DrawMapProtocol {
         shapeLayer.strokeColor = UIColor.lightGray.cgColor
         shapeLayer.fillColor = UIColor.blue.cgColor
         shapeLayer.lineWidth = 2.0
+        
+        self.layer.addSublayer(shapeLayer)
     }
     
     

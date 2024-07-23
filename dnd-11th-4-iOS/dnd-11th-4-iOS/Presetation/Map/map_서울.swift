@@ -50,6 +50,8 @@ final class map_서울: UIView {
         shapeLayer.strokeColor = UIColor.lightGray.cgColor
         shapeLayer.fillColor = UIColor.blue.cgColor
         shapeLayer.lineWidth = 2.0
+        
+        self.layer.addSublayer(shapeLayer)
     }
     
     

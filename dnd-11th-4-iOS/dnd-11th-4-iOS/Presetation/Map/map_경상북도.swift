@@ -77,6 +77,8 @@ final class map_경상북도: UIView, DrawMapProtocol {
         shapeLayer.strokeColor = UIColor.lightGray.cgColor
         shapeLayer.fillColor = UIColor.blue.cgColor
         shapeLayer.lineWidth = 2.0
+        
+        self.layer.addSublayer(shapeLayer)
     }
     
     

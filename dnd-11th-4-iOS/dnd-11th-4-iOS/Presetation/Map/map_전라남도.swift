@@ -108,6 +108,8 @@ final class map_전라남도: UIView, DrawMapProtocol {
         shapeLayer.strokeColor = UIColor.lightGray.cgColor
         shapeLayer.fillColor = UIColor.blue.cgColor
         shapeLayer.lineWidth = 2.0
+        
+        self.layer.addSublayer(shapeLayer)
     }
     
     
