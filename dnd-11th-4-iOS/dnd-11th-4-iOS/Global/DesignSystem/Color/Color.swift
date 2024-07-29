@@ -37,15 +37,15 @@ extension UIColor {
     }
     
     static var mapGray: UIColor {
-        return UIColor(hexCode: "#D9D9D9")
+        return UIColor(hexCode: "#D2D6DD")
     }
     
     static var mapBackground: UIColor {
-        return UIColor(hexCode: "#F3F4F5")
+        return UIColor(hexCode: "#FAFCFF")
     }
     
     static var mapSelect: UIColor {
-        return UIColor(hexCode: "#7A7A7A")
+        return UIColor(hexCode: "#A3ACBB")
     }
     
     static var mapWhite: UIColor {
