@@ -12,27 +12,75 @@ extension UIColor {
         return UIColor(hexCode: "#FF6363")
     }
     
-    static var mapPink: UIColor {
+    static var mapPink1: UIColor {
+        return UIColor(hexCode: "#FFD8E1")
+    }
+    
+    static var mapPink2: UIColor {
+        return UIColor(hexCode: "#FF8BA7")
+    }
+    
+    static var mapPink3: UIColor {
         return UIColor(hexCode: "#FF547D")
     }
     
-    static var mapOrange: UIColor {
+    static var mapOrange1: UIColor {
+        return UIColor(hexCode: "#FFEFCF")
+    }
+    
+    static var mapOrange2: UIColor {
+        return UIColor(hexCode: "#FFCC6A")
+    }
+    
+    static var mapOrange3: UIColor {
         return UIColor(hexCode: "#FFB629")
     }
     
-    static var mapYellow: UIColor {
-        return UIColor(hexCode: "#FFE55B")
+    static var mapYellow1: UIColor {
+        return UIColor(hexCode: "#FFF9D7")
     }
     
-    static var mapGreen: UIColor {
+    static var mapYellow2: UIColor {
+        return UIColor(hexCode: "#FFE870")
+    }
+    
+    static var mapYellow3: UIColor {
+        return UIColor(hexCode: "#FFE03E")
+    }
+    
+    static var mapGreen1: UIColor {
+        return UIColor(hexCode: "#DCFFF0")
+    }
+    
+    static var mapGreen2: UIColor {
+        return UIColor(hexCode: "#6BEEB7")
+    }
+    
+    static var mapGreen3: UIColor {
         return UIColor(hexCode: "#00DC80")
     }
     
-    static var mapBlue: UIColor {
+    static var mapBlue1: UIColor {
+        return UIColor(hexCode: "#C5D8FF")
+    }
+    
+    static var mapBlue2: UIColor {
+        return UIColor(hexCode: "#7CA9FF")
+    }
+    
+    static var mapBlue3: UIColor {
         return UIColor(hexCode: "#3A7DFF")
     }
     
-    static var mapPurple: UIColor {
+    static var mapPurple1: UIColor {
+        return UIColor(hexCode: "#EDCDF8")
+    }
+    
+    static var mapPurple2: UIColor {
+        return UIColor(hexCode: "#D879FA")
+    }
+    
+    static var mapPurple3: UIColor {
         return UIColor(hexCode: "#BB45E4")
     }
     
