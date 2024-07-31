@@ -1,5 +1,5 @@
 //
-//  map_서울.swift
+//  HomeMap_서울.swift
 //  dnd-11th-4-iOS
 //
 //  Created by 황찬미 on 7/23/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class map_서울: UIView {
+final class HomeMap_서울: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
