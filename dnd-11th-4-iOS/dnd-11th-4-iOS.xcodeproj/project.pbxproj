@@ -154,7 +154,7 @@
 		4A16E2A22C5A4DDD00F48180 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				4A16E2A32C5A4DE700F48180 /* OnboardingViewController.swift */,
+				4A16E2C92C5A5C2500F48180 /* ViewController */,
 				4A16E2A52C5A4E2900F48180 /* OnboardingMap */,
 			);
 			path = Onboarding;
@@ -183,18 +183,9 @@
 			path = OnboardingMap;
 			sourceTree = "<group>";
 		};
-		4A5FFDA42C4FAA60002F5A77 /* Constant */ = {
+		4A16E2C72C5A5C0E00F48180 /* HomeMap */ = {
 			isa = PBXGroup;
 			children = (
-				4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */,
-			);
-			path = Constant;
-			sourceTree = "<group>";
-		};
-		4A5FFDA92C4FABC2002F5A77 /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				4A5FFDD12C4FB48F002F5A77 /* Protocol */,
 				4A5FFDCF2C4FB3C0002F5A77 /* map_서울.swift */,
 				4A5FFDA72C4FABBF002F5A77 /* map_경기도.swift */,
 				4A5FFDAA2C4FAD05002F5A77 /* map_인천.swift */,
@@ -213,15 +204,39 @@
 				4A5FFDC72C4FB0F1002F5A77 /* map_제주도.swift */,
 				4A5FFDB72C4FAF3F002F5A77 /* map_세종시.swift */,
 			);
-			path = Map;
+			path = HomeMap;
 			sourceTree = "<group>";
 		};
-		4A5FFDD12C4FB48F002F5A77 /* Protocol */ = {
+		4A16E2C82C5A5C1F00F48180 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4AAFDB702C494CFF008C6DAF /* HomeViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		4A16E2C92C5A5C2500F48180 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4A16E2A32C5A4DE700F48180 /* OnboardingViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		4A16E2CA2C5A5C4C00F48180 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
 				4A5FFDAD2C4FAD42002F5A77 /* DrawMapProtocol.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		4A5FFDA42C4FAA60002F5A77 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */,
+			);
+			path = Constant;
 			sourceTree = "<group>";
 		};
 		4A5FFDD22C4FB50D002F5A77 /* Extension */ = {
@@ -264,7 +279,6 @@
 			children = (
 				4A16E2A22C5A4DDD00F48180 /* Onboarding */,
 				4ADB30212C4FC0E000CAC638 /* Home */,
-				4A5FFDA92C4FABC2002F5A77 /* Map */,
 			);
 			path = Presetation;
 			sourceTree = "<group>";
@@ -292,6 +306,7 @@
 		4AAFDBAB2C49538D008C6DAF /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				4A16E2CA2C5A5C4C00F48180 /* Protocol */,
 				4A5FFDD22C4FB50D002F5A77 /* Extension */,
 				4A5FFDA42C4FAA60002F5A77 /* Constant */,
 				4AAFDBAC2C495392008C6DAF /* DesignSystem */,
@@ -333,7 +348,8 @@
 		4ADB30212C4FC0E000CAC638 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				4AAFDB702C494CFF008C6DAF /* HomeViewController.swift */,
+				4A16E2C82C5A5C1F00F48180 /* ViewController */,
+				4A16E2C72C5A5C0E00F48180 /* HomeMap */,
 			);
 			path = Home;
 			sourceTree = "<group>";
