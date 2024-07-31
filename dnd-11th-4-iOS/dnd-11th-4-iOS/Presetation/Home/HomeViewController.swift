@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 final class HomeViewController: UIViewController {
-    
     private let homeScrollView: UIScrollView = {
         let scrollerView = UIScrollView(frame: CGRect(x: 0, y: 0,
                                                               width: Constant.Screen.width, height: Constant.Screen.height))
