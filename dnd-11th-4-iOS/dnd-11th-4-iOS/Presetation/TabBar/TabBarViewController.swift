@@ -35,7 +35,7 @@ final class TabBarViewController: UITabBarController {
                                         tabBarSelectedImg: UIImage(named: "IconMyPageBlack")!,
                                       renderingMode: .alwaysOriginal)
         
-        self.setViewControllers([homeViewController, recordListViewController, myPageViewController], animated: false)
+        self.viewControllers = [homeViewController, recordListViewController, myPageViewController]
     }
     
     override func viewDidLayoutSubviews() {
@@ -48,8 +48,8 @@ final class TabBarViewController: UITabBarController {
 private extension TabBarViewController {
     
     func setTabBarHeight() {
-        tabBar.frame.size.height = 100
-        tabBar.frame.origin.y = view.frame.height - 100
+        tabBar.frame.size.height = 95
+        tabBar.frame.origin.y = view.frame.height - 95
     }
     
     func setTabBarAppearance() {
@@ -65,6 +65,7 @@ private extension TabBarViewController {
         tabBar.backgroundColor = .white
         tabBar.tintColor = .black2
         tabBar.layer.applyShadow()
+//        tabBar.layer.masksToBounds = true
         tabBar.layer.cornerRadius = tabBar.frame.height * 0.41
         tabBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
