@@ -40,7 +40,7 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = .mapBackground
         
         setLayout()
     }
@@ -57,7 +57,7 @@ final class HomeViewController: UIViewController {
     func 기기대응메서드() {
         // 13 mini 기준
         if Constant.Screen.width == 375 {
-            mapContainerView.frame = CGRect(x: 0, y: 0, width: Constant.Screen.width, height: Constant.Screen.height)
+            mapContainerView.frame = CGRect(x: 0, y: -50, width: Constant.Screen.width, height: Constant.Screen.height)
         // 15 pro max 기준
         } else if Constant.Screen.width == 430 {
             mapContainerView.frame = CGRect(x: 25, y: 50, width: Constant.Screen.width, height: Constant.Screen.height)

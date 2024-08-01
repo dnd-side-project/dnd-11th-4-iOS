@@ -24,6 +24,10 @@
 		4A16E2C22C5A59D100F48180 /* OnboardingMap_대구.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2C12C5A59D100F48180 /* OnboardingMap_대구.swift */; };
 		4A16E2C42C5A5A2800F48180 /* OnboardingMap_광주.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2C32C5A5A2800F48180 /* OnboardingMap_광주.swift */; };
 		4A16E2C62C5A5A7500F48180 /* OnboardingMap_서울.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2C52C5A5A7500F48180 /* OnboardingMap_서울.swift */; };
+		4A16E2CD2C5A6B7E00F48180 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2CC2C5A6B7E00F48180 /* TabBarViewController.swift */; };
+		4A16E2D02C5A702000F48180 /* RecordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2CF2C5A702000F48180 /* RecordListViewController.swift */; };
+		4A16E2D32C5A70AC00F48180 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2D22C5A70AC00F48180 /* MyPageViewController.swift */; };
+		4A16E2D52C5A779100F48180 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2D42C5A779100F48180 /* CALayer+.swift */; };
 		4A5FFDA62C4FAA6A002F5A77 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */; };
 		4A5FFDA82C4FABBF002F5A77 /* HomeMap_경기도.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDA72C4FABBF002F5A77 /* HomeMap_경기도.swift */; };
 		4A5FFDAB2C4FAD05002F5A77 /* HomeMap_인천.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDAA2C4FAD05002F5A77 /* HomeMap_인천.swift */; };
@@ -90,6 +94,10 @@
 		4A16E2C12C5A59D100F48180 /* OnboardingMap_대구.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnboardingMap_대구.swift"; sourceTree = "<group>"; };
 		4A16E2C32C5A5A2800F48180 /* OnboardingMap_광주.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnboardingMap_광주.swift"; sourceTree = "<group>"; };
 		4A16E2C52C5A5A7500F48180 /* OnboardingMap_서울.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnboardingMap_서울.swift"; sourceTree = "<group>"; };
+		4A16E2CC2C5A6B7E00F48180 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		4A16E2CF2C5A702000F48180 /* RecordListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListViewController.swift; sourceTree = "<group>"; };
+		4A16E2D22C5A70AC00F48180 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		4A16E2D42C5A779100F48180 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
 		4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		4A5FFDA72C4FABBF002F5A77 /* HomeMap_경기도.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeMap_경기도.swift"; sourceTree = "<group>"; };
 		4A5FFDAA2C4FAD05002F5A77 /* HomeMap_인천.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeMap_인천.swift"; sourceTree = "<group>"; };
@@ -231,6 +239,30 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		4A16E2CB2C5A6B7200F48180 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				4A16E2CC2C5A6B7E00F48180 /* TabBarViewController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		4A16E2CE2C5A6FED00F48180 /* RecordList */ = {
+			isa = PBXGroup;
+			children = (
+				4A16E2CF2C5A702000F48180 /* RecordListViewController.swift */,
+			);
+			path = RecordList;
+			sourceTree = "<group>";
+		};
+		4A16E2D12C5A70A500F48180 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				4A16E2D22C5A70AC00F48180 /* MyPageViewController.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
 		4A5FFDA42C4FAA60002F5A77 /* Constant */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				4A5FFDD32C4FB515002F5A77 /* UIView+.swift */,
+				4A16E2D42C5A779100F48180 /* CALayer+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -277,6 +310,9 @@
 		4AAFDBA82C495290008C6DAF /* Presetation */ = {
 			isa = PBXGroup;
 			children = (
+				4A16E2D12C5A70A500F48180 /* MyPage */,
+				4A16E2CE2C5A6FED00F48180 /* RecordList */,
+				4A16E2CB2C5A6B7200F48180 /* TabBar */,
 				4A16E2A22C5A4DDD00F48180 /* Onboarding */,
 				4ADB30212C4FC0E000CAC638 /* Home */,
 			);
@@ -296,8 +332,8 @@
 			children = (
 				4AAFDB7A2C494D00008C6DAF /* Info.plist */,
 				4AAFDB772C494D00008C6DAF /* LaunchScreen.storyboard */,
-				4AAFDB6E2C494CFF008C6DAF /* SceneDelegate.swift */,
 				4AAFDB6C2C494CFF008C6DAF /* AppDelegate.swift */,
+				4AAFDB6E2C494CFF008C6DAF /* SceneDelegate.swift */,
 				4AAFDBB12C4953C9008C6DAF /* Application.swift */,
 			);
 			path = Application;
@@ -464,8 +500,10 @@
 				4A16E2B22C5A539400F48180 /* OnboardingMap_전라북도.swift in Sources */,
 				4A5FFDA62C4FAA6A002F5A77 /* Constant.swift in Sources */,
 				4A16E2B42C5A54B400F48180 /* OnboardingMap_경상북도.swift in Sources */,
+				4A16E2CD2C5A6B7E00F48180 /* TabBarViewController.swift in Sources */,
 				4A5FFDAB2C4FAD05002F5A77 /* HomeMap_인천.swift in Sources */,
 				4A16E2AC2C5A51B000F48180 /* OnboardingMap_충청남도.swift in Sources */,
+				4A16E2D32C5A70AC00F48180 /* MyPageViewController.swift in Sources */,
 				4A5FFDBA2C4FAF75002F5A77 /* HomeMap_전라북도.swift in Sources */,
 				4A16E2C02C5A57D900F48180 /* OnboardingMap_충청북도.swift in Sources */,
 				4A16E2AA2C5A511300F48180 /* OnboardingMap_인천.swift in Sources */,
@@ -486,7 +524,9 @@
 				4AAFDB6F2C494CFF008C6DAF /* SceneDelegate.swift in Sources */,
 				4A16E2B62C5A551F00F48180 /* OnboardingMap_경상남도.swift in Sources */,
 				4A16E2BE2C5A571400F48180 /* OnboardingMap_제주도.swift in Sources */,
+				4A16E2D52C5A779100F48180 /* CALayer+.swift in Sources */,
 				4A5FFDB42C4FAEB2002F5A77 /* HomeMap_강원도.swift in Sources */,
+				4A16E2D02C5A702000F48180 /* RecordListViewController.swift in Sources */,
 				4A5FFDA82C4FABBF002F5A77 /* HomeMap_경기도.swift in Sources */,
 				4A5FFDB62C4FAF12002F5A77 /* HomeMap_대전.swift in Sources */,
 				4A5FFDCC2C4FB236002F5A77 /* HomeMap_대구.swift in Sources */,
