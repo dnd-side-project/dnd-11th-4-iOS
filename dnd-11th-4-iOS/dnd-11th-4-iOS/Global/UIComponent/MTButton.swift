@@ -9,8 +9,13 @@ import UIKit
 
 final class MTButton: UIButton {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(backgroundColor: UIColor,
+         cornerRadius: CGFloat = 12) {
+        super.init(frame: .zero)
+    
+        self.backgroundColor = backgroundColor
+        self.layer.cornerRadius = cornerRadius
+        self.layer.masksToBounds = true
     }
     
     required init?(coder: NSCoder) {
@@ -19,9 +24,8 @@ final class MTButton: UIButton {
     
     /// 글씨만 들어가는 버튼
     @discardableResult
-    func setText(text: String, font: NSAttributedString, color: UIColor) -> Self {
-        self.titleLabel?.text = text
-        self.titleLabel?.attributedText = font
+    func setText(attributedString: NSAttributedString, color: UIColor) -> Self {
+        self.setAttributedTitle(attributedString, for: .normal)
         self.titleLabel?.textColor = color
         return self
     }
@@ -35,27 +39,12 @@ final class MTButton: UIButton {
     
     /// 이미지랑 글씨 모두 들어가는 버튼
     @discardableResult
-    func setImageAndText(text: String, font: NSAttributedString, color: UIColor, image: UIImage) -> Self {
-        self.titleLabel?.text = text
-        self.titleLabel?.attributedText = font
+    func setImageAndText(attributedString: NSAttributedString, color: UIColor, image: UIImage) -> Self {
+        self.setAttributedTitle(attributedString, for: .normal)
         self.titleLabel?.textColor = color
         self.setImage(image, for: .normal)
         self.semanticContentAttribute = .forceLeftToRight
         self.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
         return self
     }
-    
-    @discardableResult
-    func setbackgroundColor(color: UIColor) -> Self {
-        self.backgroundColor = color
-        return self
-    }
-    
-    @discardableResult
-    func setLayer(cornerRadius: CGFloat = 12) -> Self {
-        self.layer.cornerRadius = cornerRadius
-        self.layer.masksToBounds = true
-        return self
-    }
-    
 }

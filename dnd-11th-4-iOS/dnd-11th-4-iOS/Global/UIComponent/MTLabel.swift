@@ -9,17 +9,15 @@ import UIKit
 
 final class MTLabel: UILabel {
     
-    init(font: NSAttributedString,
+    init(attributedString: NSAttributedString,
          color: UIColor,
          alignment: NSTextAlignment = .left,
-         lines: Int = 0,
-         text: String? = nil) {
+         lines: Int = 0) {
         super.init(frame: .zero)
-        self.attributedText = font
+        self.attributedText = attributedString
         self.textColor = color
         self.textAlignment = alignment
         self.numberOfLines = lines
-        self.text = text
     }
     
     required init?(coder: NSCoder) {
