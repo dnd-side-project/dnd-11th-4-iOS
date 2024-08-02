@@ -36,10 +36,8 @@ final class MTToastView: UIView {
         switch type {
         case .delete:
             self.layer.cornerRadius = 6
-            self.clipsToBounds = true
         default:
             self.layer.cornerRadius = 25
-            self.clipsToBounds = true
         }
         
         setUI(type: type)

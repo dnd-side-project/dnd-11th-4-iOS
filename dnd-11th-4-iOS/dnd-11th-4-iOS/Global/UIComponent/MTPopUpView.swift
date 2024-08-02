@@ -14,7 +14,6 @@ final class MtPopUpView: UIView {
         
         self.backgroundColor = .mapWhite
         self.layer.cornerRadius = 12
-        self.clipsToBounds = false
     }
     
     required init?(coder: NSCoder) {
