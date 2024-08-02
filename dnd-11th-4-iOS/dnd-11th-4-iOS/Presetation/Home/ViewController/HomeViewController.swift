@@ -43,6 +43,9 @@ final class HomeViewController: UIViewController {
         view.backgroundColor = .mapBackground
         
         setLayout()
+        
+        /// 여기서 호출 중
+        MTToast.show(type: .onboarding)
     }
     
     func setLayout() {
