@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 enum ToastViewType {
-    case onboarding, complete
+    case onboarding, complete, delete
     
     var text: String {
         switch self {
@@ -17,22 +17,30 @@ enum ToastViewType {
             return "지도를 선택하여 지도를 색칠해보세요"
         case .complete:
             return "여행 기록이 성공적으로 완료되었어요"
+        case .delete:
+            return "기록이 삭제되었어요"
         }
     }
 }
 
 final class MTToastView: UIView {
     
-    private let detailText = MTLabel(font: NSAttributedString.pretendardSB3("아무값"), color: .white)
-//    private let detailText = UILabel()
+    private let detailText = MTLabel(attributedString: NSAttributedString.pretendardSB3("dummy"), color: .mapWhite)
     private let image = UIImageView()
     
     init(type: ToastViewType) {
         super.init(frame: .zero)
         
         self.backgroundColor = .mapBlack
-        self.layer.cornerRadius = 25
-        self.clipsToBounds = true
+        
+        switch type {
+        case .delete:
+            self.layer.cornerRadius = 6
+            self.clipsToBounds = true
+        default:
+            self.layer.cornerRadius = 25
+            self.clipsToBounds = true
+        }
         
         setUI(type: type)
     }
@@ -58,13 +66,7 @@ final class MTToastView: UIView {
                 make.width.height.equalTo(74)
             }
         case .complete:
-            /// 현재 문제 코드
             self.detailText.attributedText = NSAttributedString(string: type.text)
-            
-            /// 일반 라벨로는 레이아웃 잘 잡히는 거 확인
-//            self.detailText.font = UIFont(name: "Pretendard-SemiBold", size: 16)!
-//            self.detailText.text = "여행 기록이 성공적으로 완료되었어요"
-//            self.detailText.textColor = .white
             self.image.backgroundColor = .errorRed
             
             self.addSubviews(detailText, image)
@@ -76,6 +78,13 @@ final class MTToastView: UIView {
             detailText.snp.makeConstraints { make in
                 make.centerY.equalToSuperview()
                 make.leading.equalTo(image.snp.trailing).offset(9)
+            }
+        case .delete:
+            self.detailText.attributedText = NSAttributedString.pretendardM2(type.text)
+            
+            self.addSubviews(detailText, image)
+            detailText.snp.makeConstraints { make in
+                make.centerY.centerX.equalToSuperview()
             }
         }
     }

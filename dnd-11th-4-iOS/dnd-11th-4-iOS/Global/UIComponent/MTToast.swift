@@ -15,11 +15,22 @@ final class MTToast {
             .filter { $0 is MTToastView }
             .forEach { $0.removeFromSuperview() }
         window.addSubview(toastView)
-        toastView.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.top.equalTo(window.safeAreaLayoutGuide.snp.top).offset(31)
-            make.leading.trailing.equalToSuperview().inset(26)
+        
+        switch type {
+        case .delete:
+            toastView.snp.makeConstraints { make in
+                make.height.equalTo(36)
+                make.width.equalTo(136)
+                make.centerY.centerX.equalToSuperview()
+            }
+        default:
+            toastView.snp.makeConstraints { make in
+                make.height.equalTo(50)
+                make.top.equalTo(window.safeAreaLayoutGuide.snp.top).offset(31)
+                make.leading.trailing.equalToSuperview().inset(26)
+            }
         }
+        
         UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
             toastView.alpha = 0.0
         }, completion: {(isCompleted) in
