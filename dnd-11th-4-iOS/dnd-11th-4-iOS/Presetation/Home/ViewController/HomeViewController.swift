@@ -40,12 +40,12 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .mapBackground
-        
+        setBackgroundColor()
         setLayout()
-        
-        /// 여기서 호출 중
-        MTToast.show(type: .onboarding)
+    }
+    
+    func setBackgroundColor() {
+        view.backgroundColor = .mapBackground
     }
     
     func setLayout() {

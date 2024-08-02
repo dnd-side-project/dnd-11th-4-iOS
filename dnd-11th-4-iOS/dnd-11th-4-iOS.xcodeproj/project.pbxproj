@@ -32,6 +32,8 @@
 		4A16E2DA2C5B44FD00F48180 /* MTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2D92C5B44FD00F48180 /* MTButton.swift */; };
 		4A16E2DC2C5B50DF00F48180 /* MTToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2DB2C5B50DF00F48180 /* MTToastView.swift */; };
 		4A16E2DE2C5CC3BA00F48180 /* MTToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2DD2C5CC3BA00F48180 /* MTToast.swift */; };
+		4A16E2E42C5D0DFA00F48180 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2E32C5D0DFA00F48180 /* PopupViewController.swift */; };
+		4A16E2E62C5D0F5D00F48180 /* MTPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2E52C5D0F5D00F48180 /* MTPopUpView.swift */; };
 		4A5FFDA62C4FAA6A002F5A77 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */; };
 		4A5FFDA82C4FABBF002F5A77 /* HomeMap_경기도.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDA72C4FABBF002F5A77 /* HomeMap_경기도.swift */; };
 		4A5FFDAB2C4FAD05002F5A77 /* HomeMap_인천.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDAA2C4FAD05002F5A77 /* HomeMap_인천.swift */; };
@@ -106,6 +108,8 @@
 		4A16E2D92C5B44FD00F48180 /* MTButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTButton.swift; sourceTree = "<group>"; };
 		4A16E2DB2C5B50DF00F48180 /* MTToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTToastView.swift; sourceTree = "<group>"; };
 		4A16E2DD2C5CC3BA00F48180 /* MTToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTToast.swift; sourceTree = "<group>"; };
+		4A16E2E32C5D0DFA00F48180 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
+		4A16E2E52C5D0F5D00F48180 /* MTPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTPopUpView.swift; sourceTree = "<group>"; };
 		4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		4A5FFDA72C4FABBF002F5A77 /* HomeMap_경기도.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeMap_경기도.swift"; sourceTree = "<group>"; };
 		4A5FFDAA2C4FAD05002F5A77 /* HomeMap_인천.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeMap_인천.swift"; sourceTree = "<group>"; };
@@ -278,8 +282,17 @@
 				4A16E2D92C5B44FD00F48180 /* MTButton.swift */,
 				4A16E2DB2C5B50DF00F48180 /* MTToastView.swift */,
 				4A16E2DD2C5CC3BA00F48180 /* MTToast.swift */,
+				4A16E2E52C5D0F5D00F48180 /* MTPopUpView.swift */,
 			);
 			path = UIComponent;
+			sourceTree = "<group>";
+		};
+		4A16E2E22C5D0DEC00F48180 /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				4A16E2E32C5D0DFA00F48180 /* PopupViewController.swift */,
+			);
+			path = PopUp;
 			sourceTree = "<group>";
 		};
 		4A5FFDA42C4FAA60002F5A77 /* Constant */ = {
@@ -329,6 +342,7 @@
 		4AAFDBA82C495290008C6DAF /* Presetation */ = {
 			isa = PBXGroup;
 			children = (
+				4A16E2E22C5D0DEC00F48180 /* PopUp */,
 				4A16E2D12C5A70A500F48180 /* MyPage */,
 				4A16E2CE2C5A6FED00F48180 /* RecordList */,
 				4A16E2CB2C5A6B7200F48180 /* TabBar */,
@@ -547,6 +561,7 @@
 				4A16E2BA2C5A560B00F48180 /* OnboardingMap_부산.swift in Sources */,
 				4AAFDB6F2C494CFF008C6DAF /* SceneDelegate.swift in Sources */,
 				4A16E2B62C5A551F00F48180 /* OnboardingMap_경상남도.swift in Sources */,
+				4A16E2E62C5D0F5D00F48180 /* MTPopUpView.swift in Sources */,
 				4A16E2BE2C5A571400F48180 /* OnboardingMap_제주도.swift in Sources */,
 				4A16E2D52C5A779100F48180 /* CALayer+.swift in Sources */,
 				4A5FFDB42C4FAEB2002F5A77 /* HomeMap_강원도.swift in Sources */,
@@ -559,6 +574,7 @@
 				4A16E2C22C5A59D100F48180 /* OnboardingMap_대구.swift in Sources */,
 				4A5FFDC02C4FB027002F5A77 /* HomeMap_전라남도.swift in Sources */,
 				4A5FFDAE2C4FAD42002F5A77 /* DrawMapProtocol.swift in Sources */,
+				4A16E2E42C5D0DFA00F48180 /* PopupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
