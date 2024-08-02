@@ -55,7 +55,6 @@ final class OnboardingMap_강원도: UIView, DrawMapProtocol {
         shape.addLine(to: CGPoint(x: 279.77, y: 304.88))
         shape.addCurve(to: CGPoint(x: 280.17, y: 306.34), controlPoint1: CGPoint(x: 280.04, y: 305.32), controlPoint2: CGPoint(x: 280.18, y: 305.83))
         shape.close()
-        shape.stroke()
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath

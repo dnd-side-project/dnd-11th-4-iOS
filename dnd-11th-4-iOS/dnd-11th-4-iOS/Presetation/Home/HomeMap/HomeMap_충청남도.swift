@@ -79,7 +79,6 @@ final class HomeMap_충청남도: UIView, DrawMapProtocol {
         shape.addLine(to: CGPoint(x: 158.37, y: 357.75))
         
         shape.close()
-        shape.stroke()
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath

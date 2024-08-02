@@ -60,7 +60,6 @@ final class HomeMap_경상남도: UIView, DrawMapProtocol {
         shape.addCurve(to: CGPoint(x: 301.63, y: 469.4), controlPoint1: CGPoint(x: 300.02, y: 468.02), controlPoint2: CGPoint(x: 300.75, y: 468.81))
         shape.addLine(to: CGPoint(x: 314.85, y: 478.24))
         shape.close()
-        shape.stroke()
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath

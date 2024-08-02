@@ -43,7 +43,6 @@ final class HomeMap_서울: UIView {
         shape.addLine(to: CGPoint(x: 134.61, y: 241.51))
         shape.addCurve(to: CGPoint(x: 134.87, y: 246.61), controlPoint1: CGPoint(x: 136.27, y: 242.75), controlPoint2: CGPoint(x: 136.4, y: 245.2))
         shape.close()
-        shape.stroke()
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath

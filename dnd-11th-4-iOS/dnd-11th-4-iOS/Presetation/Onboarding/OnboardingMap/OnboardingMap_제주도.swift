@@ -41,7 +41,6 @@ final class OnboardingMap_제주도: UIView, DrawMapProtocol {
         shape.addLine(to: CGPoint(x: 135.49, y: 522.82))
         shape.addCurve(to: CGPoint(x: 136.49, y: 530.3), controlPoint1: CGPoint(x: 138.31, y: 524.3), controlPoint2: CGPoint(x: 138.82, y: 528.14))
         shape.close()
-        shape.stroke()
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath

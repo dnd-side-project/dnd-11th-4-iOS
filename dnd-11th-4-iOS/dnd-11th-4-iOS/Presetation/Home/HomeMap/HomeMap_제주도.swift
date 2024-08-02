@@ -41,7 +41,6 @@ final class HomeMap_제주도: UIView, DrawMapProtocol {
         shape.addLine(to: CGPoint(x: 102.35, y: 638.67))
         shape.addCurve(to: CGPoint(x: 103.95, y: 650.71), controlPoint1: CGPoint(x: 106.89, y: 641.06), controlPoint2: CGPoint(x: 107.71, y: 647.22))
         shape.close()
-        shape.stroke()
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath

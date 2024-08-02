@@ -52,7 +52,6 @@ final class HomeMap_전라북도: UIView, DrawMapProtocol {
         shape.addLine(to: CGPoint(x: 190.1, y: 410.52))
         shape.addLine(to: CGPoint(x: 193.28, y: 428.07))
         shape.close()
-        shape.stroke()
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath

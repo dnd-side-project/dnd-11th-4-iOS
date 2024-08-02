@@ -39,7 +39,6 @@ final class HomeMap_대구: UIView, DrawMapProtocol {
         shape.addLine(to: CGPoint(x: 273.09, y: 439.68))
         shape.addCurve(to: CGPoint(x: 268.68, y: 445.43), controlPoint1: CGPoint(x: 273.48, y: 442.5), controlPoint2: CGPoint(x: 271.5, y: 445.08))
         shape.close()
-        shape.stroke()
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath
