@@ -7,15 +7,25 @@
 
 import UIKit
 
-
 final class TabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setTabBar()
         setTabBarAppearance()
         setTabBarUI()
-        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setTabBarHeight()
+    }
+}
+
+private extension TabBarViewController {
+    
+    private func setTabBar() {
         let homeViewController = UINavigationController(rootViewController: HomeViewController())
         homeViewController.isNavigationBarHidden = true
         homeViewController.makeTabBar(title: "지도",
@@ -38,15 +48,6 @@ final class TabBarViewController: UITabBarController {
         self.viewControllers = [homeViewController, recordListViewController, myPageViewController]
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        setTabBarHeight()
-    }
-}
-
-private extension TabBarViewController {
-    
     func setTabBarHeight() {
         tabBar.frame.size.height = 95
         tabBar.frame.origin.y = view.frame.height - 95
@@ -59,15 +60,17 @@ private extension TabBarViewController {
         tabBarAppearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.gray60, .font: UIFont(name: "Pretendard-SemiBold", size: 10)!]
         tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.black2,.font: UIFont(name: "Pretendard-SemiBold", size: 10)!]
         self.tabBar.standardAppearance = tabBarAppearance
+        self.tabBar.scrollEdgeAppearance = tabBarAppearance
     }
     
     func setTabBarUI() {
         tabBar.backgroundColor = .white
         tabBar.tintColor = .black2
-        tabBar.layer.applyShadow()
-//        tabBar.layer.masksToBounds = true
-        tabBar.layer.cornerRadius = tabBar.frame.height * 0.41
+        tabBar.layer.cornerRadius = 8
         tabBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        tabBar.layer.masksToBounds = true
+        tabBar.layer.borderColor = UIColor.gray40.cgColor
+        tabBar.layer.borderWidth = 1
     }
 }
 
