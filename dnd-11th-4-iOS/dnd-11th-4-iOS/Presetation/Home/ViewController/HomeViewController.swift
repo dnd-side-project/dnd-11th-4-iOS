@@ -14,7 +14,7 @@ final class HomeViewController: UIViewController {
         let scrollerView = UIScrollView(frame: CGRect(x: 0, y: 0,
                                                               width: Constant.Screen.width, height: Constant.Screen.height))
         scrollerView.contentSize = CGSize(width: Constant.Screen.width, height: Constant.Screen.height)
-        scrollerView.backgroundColor = .white
+        scrollerView.backgroundColor = .mapBackground
         return scrollerView
     }()
     
@@ -40,12 +40,7 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setBackgroundColor()
         setLayout()
-    }
-    
-    func setBackgroundColor() {
-        view.backgroundColor = .mapBackground
     }
     
     func setLayout() {
