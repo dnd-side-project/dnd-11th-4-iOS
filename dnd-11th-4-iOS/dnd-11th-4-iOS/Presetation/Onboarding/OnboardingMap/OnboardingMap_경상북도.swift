@@ -70,7 +70,6 @@ final class OnboardingMap_경상북도: UIView, DrawMapProtocol {
         shape.addCurve(to: CGPoint(x: 282.17, y: 380.1), controlPoint1: CGPoint(x: 281.5, y: 380.29), controlPoint2: CGPoint(x: 281.84, y: 380.23))
         shape.addCurve(to: CGPoint(x: 285.69, y: 383.26), controlPoint1: CGPoint(x: 284.19, y: 379.28), controlPoint2: CGPoint(x: 286.27, y: 381.15))
         shape.close()
-        shape.stroke()
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath

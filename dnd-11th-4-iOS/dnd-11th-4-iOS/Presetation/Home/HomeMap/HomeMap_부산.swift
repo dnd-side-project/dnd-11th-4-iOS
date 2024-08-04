@@ -39,13 +39,12 @@ final class HomeMap_부산: UIView, DrawMapProtocol {
         shape.addLine(to: CGPoint(x: 314.85, y: 478.23))
         shape.addLine(to: CGPoint(x: 324.95, y: 485))
         shape.close()
-        shape.stroke()
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath
-        shapeLayer.strokeColor = UIColor.lightGray.cgColor
-        shapeLayer.fillColor = UIColor.blue.cgColor
-        shapeLayer.lineWidth = 2.0
+        shapeLayer.strokeColor = UIColor.mapBackground.cgColor
+        shapeLayer.fillColor = UIColor.mapGray.cgColor
+        shapeLayer.lineWidth = 1.0
         
         self.layer.addSublayer(shapeLayer)
     }

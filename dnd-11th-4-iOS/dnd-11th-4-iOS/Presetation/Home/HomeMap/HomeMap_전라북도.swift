@@ -52,13 +52,12 @@ final class HomeMap_전라북도: UIView, DrawMapProtocol {
         shape.addLine(to: CGPoint(x: 190.1, y: 410.52))
         shape.addLine(to: CGPoint(x: 193.28, y: 428.07))
         shape.close()
-        shape.stroke()
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath
-        shapeLayer.strokeColor = UIColor.lightGray.cgColor
-        shapeLayer.fillColor = UIColor.blue.cgColor
-        shapeLayer.lineWidth = 2.0
+        shapeLayer.strokeColor = UIColor.mapBackground.cgColor
+        shapeLayer.fillColor = UIColor.mapGray.cgColor
+        shapeLayer.lineWidth = 1.0
         
         self.layer.addSublayer(shapeLayer)
     }

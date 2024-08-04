@@ -81,13 +81,12 @@ final class HomeMap_경기도: UIView, DrawMapProtocol {
         shape.addLine(to: CGPoint(x: 134.61, y: 241.51))
         shape.addCurve(to: CGPoint(x: 134.87, y: 246.61), controlPoint1: CGPoint(x: 136.27, y: 242.75), controlPoint2: CGPoint(x: 136.4, y: 245.2))
         shape.close()
-        shape.stroke()
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath
-        shapeLayer.strokeColor = UIColor.lightGray.cgColor
-        shapeLayer.fillColor = UIColor.blue.cgColor
-        shapeLayer.lineWidth = 2.0
+        shapeLayer.strokeColor = UIColor.mapBackground.cgColor
+        shapeLayer.fillColor = UIColor.mapGray.cgColor
+        shapeLayer.lineWidth = 1.0
         
         self.layer.addSublayer(shapeLayer)
     }

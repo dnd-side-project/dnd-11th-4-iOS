@@ -37,13 +37,12 @@ final class HomeMap_울산: UIView, DrawMapProtocol {
         shape.addLine(to: CGPoint(x: 308.04, y: 448.71))
         shape.addCurve(to: CGPoint(x: 316.97, y: 446.18), controlPoint1: CGPoint(x: 310.73, y: 447.06), controlPoint2: CGPoint(x: 313.82, y: 446.18))
         shape.close()
-        shape.stroke()
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath
-        shapeLayer.strokeColor = UIColor.lightGray.cgColor
-        shapeLayer.fillColor = UIColor.blue.cgColor
-        shapeLayer.lineWidth = 2.0
+        shapeLayer.strokeColor = UIColor.mapBackground.cgColor
+        shapeLayer.fillColor = UIColor.mapGray.cgColor
+        shapeLayer.lineWidth = 1.0
         
         self.layer.addSublayer(shapeLayer)
     }

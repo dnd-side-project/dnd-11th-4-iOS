@@ -64,7 +64,6 @@ final class OnboardingMap_충청북도: UIView, DrawMapProtocol {
         shape.addCurve(to: CGPoint(x: 219.2, y: 295.16), controlPoint1: CGPoint(x: 213.48, y: 293.88), controlPoint2: CGPoint(x: 216.6, y: 293.8))
         shape.addLine(to: CGPoint(x: 239.04, y: 305.54))
         shape.close()
-        shape.stroke()
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath

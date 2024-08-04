@@ -39,7 +39,6 @@ final class OnboardingMap_대전: UIView, DrawMapProtocol {
         shape.addLine(to: CGPoint(x: 172.15, y: 349.98))
         shape.addCurve(to: CGPoint(x: 173.19, y: 353.3), controlPoint1: CGPoint(x: 173.05, y: 350.83), controlPoint2: CGPoint(x: 173.45, y: 352.09))
         shape.close()
-        shape.stroke()
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath

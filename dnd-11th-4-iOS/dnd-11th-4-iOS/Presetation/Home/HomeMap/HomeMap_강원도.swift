@@ -55,13 +55,12 @@ final class HomeMap_강원도: UIView, DrawMapProtocol {
         shape.addLine(to: CGPoint(x: 334.95, y: 288.18))
         shape.addCurve(to: CGPoint(x: 335.6, y: 290.54), controlPoint1: CGPoint(x: 335.4, y: 288.89), controlPoint2: CGPoint(x: 335.62, y: 289.71))
         shape.close()
-        shape.stroke()
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath
-        shapeLayer.strokeColor = UIColor.lightGray.cgColor
-        shapeLayer.fillColor = UIColor.blue.cgColor
-        shapeLayer.lineWidth = 2.0
+        shapeLayer.strokeColor = UIColor.mapBackground.cgColor
+        shapeLayer.fillColor = UIColor.mapGray.cgColor
+        shapeLayer.lineWidth = 1.0
         
         self.layer.addSublayer(shapeLayer)
     }

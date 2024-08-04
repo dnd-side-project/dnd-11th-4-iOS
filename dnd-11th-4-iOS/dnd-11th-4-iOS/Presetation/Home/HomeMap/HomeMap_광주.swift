@@ -41,13 +41,12 @@ final class HomeMap_광주: UIView, DrawMapProtocol {
         shape.addLine(to: CGPoint(x: 117.27, y: 508.47))
         shape.addCurve(to: CGPoint(x: 113.44, y: 517.49), controlPoint1: CGPoint(x: 119.2, y: 512), controlPoint2: CGPoint(x: 117.33, y: 516.42))
         shape.close()
-        shape.stroke()
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath
-        shapeLayer.strokeColor = UIColor.lightGray.cgColor
-        shapeLayer.fillColor = UIColor.blue.cgColor
-        shapeLayer.lineWidth = 2.0
+        shapeLayer.strokeColor = UIColor.mapBackground.cgColor
+        shapeLayer.fillColor = UIColor.mapGray.cgColor
+        shapeLayer.lineWidth = 1.0
         
         self.layer.addSublayer(shapeLayer)
     }

@@ -52,7 +52,6 @@ final class OnboardingMap_전라북도: UIView, DrawMapProtocol {
         shape.addLine(to: CGPoint(x: 189.92, y: 380.95))
         shape.addLine(to: CGPoint(x: 191.89, y: 391.87))
         shape.close()
-        shape.stroke()
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath
