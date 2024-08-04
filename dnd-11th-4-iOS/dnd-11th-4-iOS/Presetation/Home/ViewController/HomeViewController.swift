@@ -12,9 +12,13 @@ final class HomeViewController: UIViewController {
     
     private let homeScrollView: UIScrollView = {
         let scrollerView = UIScrollView(frame: CGRect(x: 0, y: 0,
-                                                              width: Constant.Screen.width, height: Constant.Screen.height))
-        scrollerView.contentSize = CGSize(width: Constant.Screen.width, height: Constant.Screen.height)
+                                                      width: Constant.Screen.width, height: Constant.Screen.height))
         scrollerView.backgroundColor = .mapBackground
+        scrollerView.isScrollEnabled = true
+        scrollerView.minimumZoomScale = 1.0
+        scrollerView.maximumZoomScale = 6.0
+        scrollerView.showsVerticalScrollIndicator = false
+        scrollerView.showsHorizontalScrollIndicator = false
         return scrollerView
     }()
     
@@ -41,9 +45,10 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         setLayout()
+        setDelegate()
     }
     
-    func setLayout() {
+    private func setLayout() {
         view.addSubview(homeScrollView)
         homeScrollView.addSubview(mapContainerView)
         mapContainerView.addSubviews(서울, 경기도, 인천, 강원도, 충청북도, 충청남도,
@@ -52,13 +57,30 @@ final class HomeViewController: UIViewController {
         기기대응메서드()
     }
     
+    private func setDelegate() {
+        homeScrollView.delegate = self
+    }
+    
     func 기기대응메서드() {
+        // TabBar 높이 + 이동한 거리 50 = 145
         // 13 mini 기준
         if Constant.Screen.width == 375 {
-            mapContainerView.frame = CGRect(x: 0, y: -50, width: Constant.Screen.width, height: Constant.Screen.height)
+            mapContainerView.frame = CGRect(x: 0, y: -50, width: Constant.Screen.width, height: Constant.Screen.height-145)
         // 15 pro max 기준
         } else if Constant.Screen.width == 430 {
             mapContainerView.frame = CGRect(x: 25, y: 50, width: Constant.Screen.width, height: Constant.Screen.height)
+        }
+    }
+}
+
+extension HomeViewController: UIScrollViewDelegate {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return mapContainerView
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.zoomScale <= 1.0 {
+            scrollView.zoomScale = 1.0
         }
     }
 }
