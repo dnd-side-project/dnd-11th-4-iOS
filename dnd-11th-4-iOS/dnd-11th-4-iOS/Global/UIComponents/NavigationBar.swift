@@ -19,7 +19,7 @@ final class NavigationBar: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.attributedText = NSAttributedString.pretendardB1("기록 추가")
+        label.attributedText = NSAttributedString.pretendardB16("기록 추가")
         return label
     }()
     
