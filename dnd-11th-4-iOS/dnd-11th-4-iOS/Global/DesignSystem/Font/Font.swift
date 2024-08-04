@@ -9,63 +9,63 @@ import UIKit
 
 extension NSAttributedString {
     static var pretendardB16: (String) -> NSAttributedString {
-        return customFont(.pretendardBold, size: 16, lineHeight: 22, letterSpacing: -0.1)
+        return customFont(.pretendardBold, size: 16, lineHeight: 1.0, letterSpacing: -0.1)
     }
     
     static var pretendardB20: (String) -> NSAttributedString {
-        return customFont(.pretendardBold, size: 20, lineHeight: 26, letterSpacing: -0.34)
+        return customFont(.pretendardBold, size: 20, lineHeight: 1.0, letterSpacing: -0.34)
     }
     
     static var pretendardB24: (String) -> NSAttributedString {
-        return customFont(.pretendardBold, size: 24, lineHeight: 30, letterSpacing: -0.4)
+        return customFont(.pretendardBold, size: 24, lineHeight: 1.0, letterSpacing: -0.4)
     }
     
     static var pretendardSB10: (String) -> NSAttributedString {
-        return customFont(.pretendardSemiBold, size: 10, lineHeight: 14, letterSpacing: 0)
+        return customFont(.pretendardSemiBold, size: 10, lineHeight: 1.0, letterSpacing: 0)
     }
     
     static var pretendardSB12: (String) -> NSAttributedString {
-        return customFont(.pretendardSemiBold, size: 12, lineHeight: 17, letterSpacing: 0)
+        return customFont(.pretendardSemiBold, size: 12, lineHeight: 1.0, letterSpacing: 0)
     }
     
     static var pretendardSB14: (String) -> NSAttributedString {
-        return customFont(.pretendardSemiBold, size: 14, lineHeight: 20, letterSpacing: -0.1)
+        return customFont(.pretendardSemiBold, size: 14, lineHeight: 1.0, letterSpacing: -0.1)
     }
     
     static var pretendardSB16: (String) -> NSAttributedString {
-        return customFont(.pretendardSemiBold, size: 16, lineHeight: 22, letterSpacing: -0.1)
+        return customFont(.pretendardSemiBold, size: 16, lineHeight: 1.0, letterSpacing: -0.1)
     }
     
     static var pretendardM10: (String) -> NSAttributedString {
-        return customFont(.pretendardMedium, size: 10, lineHeight: 14, letterSpacing: 0)
+        return customFont(.pretendardMedium, size: 10, lineHeight: 1.0, letterSpacing: 0)
     }
     
     static var pretendardM14: (String) -> NSAttributedString {
-        return customFont(.pretendardMedium, size: 14, lineHeight: 20, letterSpacing: -0.1)
+        return customFont(.pretendardMedium, size: 14, lineHeight: 1.0, letterSpacing: -0.1)
     }
     
     static var pretendardM16: (String) -> NSAttributedString {
-        return customFont(.pretendardMedium, size: 16, lineHeight: 22, letterSpacing: -0.1)
+        return customFont(.pretendardMedium, size: 16, lineHeight: 1.0, letterSpacing: -0.1)
     }
     
     static var pretendardR10: (String) -> NSAttributedString {
-        return customFont(.pretendardRegular, size: 10, lineHeight: 14, letterSpacing: 0)
+        return customFont(.pretendardRegular, size: 10, lineHeight: 1.0, letterSpacing: 0)
     }
     
     static var pretendardR12: (String) -> NSAttributedString {
-        return customFont(.pretendardRegular, size: 12, lineHeight: 17, letterSpacing: 0)
+        return customFont(.pretendardRegular, size: 12, lineHeight: 1.0, letterSpacing: 0)
     }
     
     static var pretendardR14: (String) -> NSAttributedString {
-        return customFont(.pretendardRegular, size: 14, lineHeight: 20, letterSpacing: -0.1)
+        return customFont(.pretendardRegular, size: 14, lineHeight: 1.0, letterSpacing: -0.1)
     }
     
     static var pretendardR16: (String) -> NSAttributedString {
-        return customFont(.pretendardRegular, size: 16, lineHeight: 22, letterSpacing: -0.1)
+        return customFont(.pretendardRegular, size: 16, lineHeight: 1.0, letterSpacing: -0.1)
     }
     
     static var peopleFirst19: (String) -> NSAttributedString {
-        return customFont(.peoplefirst, size: 19, lineHeight: 20, letterSpacing: -0.1)
+        return customFont(.peoplefirst, size: 19, lineHeight: 1.0, letterSpacing: -0.04)
     }
 }
 
