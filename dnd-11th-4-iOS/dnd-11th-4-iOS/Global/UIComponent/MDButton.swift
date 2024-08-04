@@ -1,5 +1,5 @@
 //
-//  MTButton.swift
+//  MDButton.swift
 //  dnd-11th-4-iOS
 //
 //  Created by 황찬미 on 8/1/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MTButton: UIButton {
+final class MDButton: UIButton {
     
     init(backgroundColor: UIColor,
          cornerRadius: CGFloat = 12) {

@@ -1,5 +1,5 @@
 //
-//  MTLabel.swift
+//  MDLabel.swift
 //  dnd-11th-4-iOS
 //
 //  Created by 황찬미 on 8/1/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MTLabel: UILabel {
+final class MDLabel: UILabel {
     
     init(attributedString: NSAttributedString,
          color: UIColor,

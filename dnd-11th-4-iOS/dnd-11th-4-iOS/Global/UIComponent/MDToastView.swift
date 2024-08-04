@@ -1,5 +1,5 @@
 //
-//  MTToastView.swift
+//  MDToastView.swift
 //  dnd-11th-4-iOS
 //
 //  Created by 황찬미 on 8/1/24.
@@ -23,9 +23,9 @@ enum ToastViewType {
     }
 }
 
-final class MTToastView: UIView {
+final class MDToastView: UIView {
     
-    private let detailText = MTLabel(attributedString: NSAttributedString.pretendardSB3("dummy"), color: .mapWhite)
+    private let detailText = MDLabel(attributedString: NSAttributedString.pretendardSB3("dummy"), color: .mapWhite)
     private let image = UIImageView()
     
     init(type: ToastViewType) {

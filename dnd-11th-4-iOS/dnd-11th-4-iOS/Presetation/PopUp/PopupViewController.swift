@@ -1,5 +1,5 @@
 //
-//  PopupViewController.swift
+//  PopUpViewController.swift
 //  dnd-11th-4-iOS
 //
 //  Created by 황찬미 on 8/2/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PopupViewController: UIViewController {
+class PopUpViewController: UIViewController {
     
     private let dimmedView = UIView()
     

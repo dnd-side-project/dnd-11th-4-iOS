@@ -1,5 +1,5 @@
 //
-//  MTToast.swift
+//  MDToast.swift
 //  dnd-11th-4-iOS
 //
 //  Created by 황찬미 on 8/2/24.
@@ -7,12 +7,12 @@
 
 import UIKit
 
-final class MTToast {
+final class MDToast {
     static func show(type: ToastViewType) {
-        let toastView = MTToastView(type: type)
+        let toastView = MDToastView(type: type)
         guard let window = UIApplication.shared.windows.first(where: \.isKeyWindow) else { return }
         window.subviews
-            .filter { $0 is MTToastView }
+            .filter { $0 is MDToastView }
             .forEach { $0.removeFromSuperview() }
         window.addSubview(toastView)
         
