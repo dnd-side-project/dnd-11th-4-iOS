@@ -27,7 +27,6 @@
 		4A16E2CD2C5A6B7E00F48180 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2CC2C5A6B7E00F48180 /* TabBarViewController.swift */; };
 		4A16E2D02C5A702000F48180 /* RecordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2CF2C5A702000F48180 /* RecordListViewController.swift */; };
 		4A16E2D32C5A70AC00F48180 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2D22C5A70AC00F48180 /* MyPageViewController.swift */; };
-		4A16E2D52C5A779100F48180 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2D42C5A779100F48180 /* CALayer+.swift */; };
 		4A16E2D82C5B434F00F48180 /* MTLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2D72C5B434F00F48180 /* MTLabel.swift */; };
 		4A16E2DA2C5B44FD00F48180 /* MTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2D92C5B44FD00F48180 /* MTButton.swift */; };
 		4A16E2DC2C5B50DF00F48180 /* MTToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2DB2C5B50DF00F48180 /* MTToastView.swift */; };
@@ -103,7 +102,6 @@
 		4A16E2CC2C5A6B7E00F48180 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		4A16E2CF2C5A702000F48180 /* RecordListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListViewController.swift; sourceTree = "<group>"; };
 		4A16E2D22C5A70AC00F48180 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
-		4A16E2D42C5A779100F48180 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
 		4A16E2D72C5B434F00F48180 /* MTLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLabel.swift; sourceTree = "<group>"; };
 		4A16E2D92C5B44FD00F48180 /* MTButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTButton.swift; sourceTree = "<group>"; };
 		4A16E2DB2C5B50DF00F48180 /* MTToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTToastView.swift; sourceTree = "<group>"; };
@@ -307,7 +305,6 @@
 			isa = PBXGroup;
 			children = (
 				4A5FFDD32C4FB515002F5A77 /* UIView+.swift */,
-				4A16E2D42C5A779100F48180 /* CALayer+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -563,7 +560,6 @@
 				4A16E2B62C5A551F00F48180 /* OnboardingMap_경상남도.swift in Sources */,
 				4A16E2E62C5D0F5D00F48180 /* MTPopUpView.swift in Sources */,
 				4A16E2BE2C5A571400F48180 /* OnboardingMap_제주도.swift in Sources */,
-				4A16E2D52C5A779100F48180 /* CALayer+.swift in Sources */,
 				4A5FFDB42C4FAEB2002F5A77 /* HomeMap_강원도.swift in Sources */,
 				4A16E2D02C5A702000F48180 /* RecordListViewController.swift in Sources */,
 				4A5FFDA82C4FABBF002F5A77 /* HomeMap_경기도.swift in Sources */,

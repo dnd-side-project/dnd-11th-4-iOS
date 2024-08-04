@@ -60,7 +60,6 @@ private extension TabBarViewController {
         tabBarAppearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.gray60, .font: UIFont(name: "Pretendard-SemiBold", size: 10)!]
         tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.black2,.font: UIFont(name: "Pretendard-SemiBold", size: 10)!]
         self.tabBar.standardAppearance = tabBarAppearance
-        self.tabBar.scrollEdgeAppearance = tabBarAppearance
     }
     
     func setTabBarUI() {
