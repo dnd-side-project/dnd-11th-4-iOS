@@ -374,11 +374,8 @@
 		4AAFDBAB2C49538D008C6DAF /* Global */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				FB808E522C5A72A100E9E2E5 /* UIComponents */,
-=======
 				4A16E2CA2C5A5C4C00F48180 /* Protocol */,
->>>>>>> develop
 				4A5FFDD22C4FB50D002F5A77 /* Extension */,
 				4A5FFDA42C4FAA60002F5A77 /* Constant */,
 				4A16E2D62C5B431D00F48180 /* UIComponent */,
