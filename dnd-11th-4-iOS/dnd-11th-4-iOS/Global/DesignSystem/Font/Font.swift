@@ -8,6 +8,11 @@
 import UIKit
 
 extension NSAttributedString {
+    
+    static var pretendardB14: (String) -> NSAttributedString {
+        return customFont(.pretendardBold, size: 14, lineHeight: 1.0, letterSpacing: -0.1)
+    }
+    
     static var pretendardB16: (String) -> NSAttributedString {
         return customFont(.pretendardBold, size: 16, lineHeight: 1.0, letterSpacing: -0.1)
     }

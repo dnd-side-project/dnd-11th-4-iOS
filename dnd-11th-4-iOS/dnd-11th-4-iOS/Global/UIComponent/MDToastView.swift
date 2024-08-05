@@ -25,7 +25,7 @@ enum ToastViewType {
 
 final class MDToastView: UIView {
     
-    private let detailText = MDLabel(attributedString: NSAttributedString.pretendardSB3("dummy"), color: .mapWhite)
+    private let detailText = MDLabel(attributedString: NSAttributedString.pretendardB14("dummy"), color: .mapWhite)
     private let image = UIImageView()
     
     init(type: ToastViewType) {
@@ -78,7 +78,7 @@ final class MDToastView: UIView {
                 make.leading.equalTo(image.snp.trailing).offset(9)
             }
         case .delete:
-            self.detailText.attributedText = NSAttributedString.pretendardM2(type.text)
+            self.detailText.attributedText = NSAttributedString.pretendardM14(type.text)
             
             self.addSubviews(detailText, image)
             detailText.snp.makeConstraints { make in
