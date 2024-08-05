@@ -1,5 +1,5 @@
 //
-//  HomeMap_서울.swift
+//  HomeMap_서울.swift
 //  dnd-11th-4-iOS
 //
 //  Created by 황찬미 on 7/23/24.
@@ -7,11 +7,12 @@
 
 import UIKit
 
-final class HomeMap_서울: UIView {
+final class HomeMap_서울: UIView, DrawMapProtocol {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.backgroundColor = .mapGray
         drawMap()
     }
     
@@ -19,13 +20,7 @@ final class HomeMap_서울: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        
-        drawMap()
-    }
-    
-    func drawMap() {
+    private func drawMap() {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 134.87, y: 246.61))
         shape.addLine(to: CGPoint(x: 127.21, y: 253.67))
@@ -44,6 +39,9 @@ final class HomeMap_서울: UIView {
         shape.addCurve(to: CGPoint(x: 134.87, y: 246.61), controlPoint1: CGPoint(x: 136.27, y: 242.75), controlPoint2: CGPoint(x: 136.4, y: 245.2))
         shape.close()
         
+        // 해당 View의 크기를 shape 크기에 맞게
+        self.frame = shape.bounds
+        
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath
         shapeLayer.strokeColor = UIColor.mapBackground.cgColor
@@ -52,6 +50,4 @@ final class HomeMap_서울: UIView {
         
         self.layer.addSublayer(shapeLayer)
     }
-    
-    
 }
