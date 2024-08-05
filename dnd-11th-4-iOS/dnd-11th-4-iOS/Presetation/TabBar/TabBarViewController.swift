@@ -26,7 +26,7 @@ final class TabBarViewController: UITabBarController {
 private extension TabBarViewController {
     
     private func setTabBar() {
-        let homeViewController = UINavigationController(rootViewController: HomeViewController())
+        let homeViewController = UINavigationController(rootViewController: HomeMapViewController(reactor: HomeMapReactor()))
         homeViewController.isNavigationBarHidden = true
         homeViewController.makeTabBar(title: "지도",
                                       tabBarImg: UIImage(named: "IconMapGray")!,

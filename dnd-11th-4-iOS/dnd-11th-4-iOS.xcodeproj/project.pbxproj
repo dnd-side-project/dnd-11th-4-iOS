@@ -34,6 +34,8 @@
 		4A16E2E42C5D0DFA00F48180 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2E32C5D0DFA00F48180 /* PopUpViewController.swift */; };
 		4A16E2E62C5D0F5D00F48180 /* MDPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2E52C5D0F5D00F48180 /* MDPopUpView.swift */; };
 		4A16E2EB2C5FC1DB00F48180 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 4A16E2EA2C5FC1DB00F48180 /* RxGesture */; };
+		4A16E2EE2C60AD8F00F48180 /* OpacityColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2ED2C60AD8F00F48180 /* OpacityColorType.swift */; };
+		4A16E2F62C60F8DA00F48180 /* HomeMapReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2F52C60F8DA00F48180 /* HomeMapReactor.swift */; };
 		4A5FFDA62C4FAA6A002F5A77 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */; };
 		4A5FFDA82C4FABBF002F5A77 /* HomeMap_경기도.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDA72C4FABBF002F5A77 /* HomeMap_경기도.swift */; };
 		4A5FFDAB2C4FAD05002F5A77 /* HomeMap_인천.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDAA2C4FAD05002F5A77 /* HomeMap_인천.swift */; };
@@ -66,7 +68,7 @@
 		4AADE3662C4FD7F300A2ABE3 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 4AADE3652C4FD7F300A2ABE3 /* AlamofireDynamic */; };
 		4AAFDB6D2C494CFF008C6DAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFDB6C2C494CFF008C6DAF /* AppDelegate.swift */; };
 		4AAFDB6F2C494CFF008C6DAF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFDB6E2C494CFF008C6DAF /* SceneDelegate.swift */; };
-		4AAFDB712C494CFF008C6DAF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFDB702C494CFF008C6DAF /* HomeViewController.swift */; };
+		4AAFDB712C494CFF008C6DAF /* HomeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFDB702C494CFF008C6DAF /* HomeMapViewController.swift */; };
 		4AAFDB762C494D00008C6DAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AAFDB752C494D00008C6DAF /* Assets.xcassets */; };
 		4AAFDB792C494D00008C6DAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AAFDB772C494D00008C6DAF /* LaunchScreen.storyboard */; };
 		4AAFDBB02C4953C0008C6DAF /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFDBAF2C4953C0008C6DAF /* Network.swift */; };
@@ -109,6 +111,8 @@
 		4A16E2DD2C5CC3BA00F48180 /* MDToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDToast.swift; sourceTree = "<group>"; };
 		4A16E2E32C5D0DFA00F48180 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		4A16E2E52C5D0F5D00F48180 /* MDPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDPopUpView.swift; sourceTree = "<group>"; };
+		4A16E2ED2C60AD8F00F48180 /* OpacityColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpacityColorType.swift; sourceTree = "<group>"; };
+		4A16E2F52C60F8DA00F48180 /* HomeMapReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapReactor.swift; sourceTree = "<group>"; };
 		4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		4A5FFDA72C4FABBF002F5A77 /* HomeMap_경기도.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeMap_경기도.swift"; sourceTree = "<group>"; };
 		4A5FFDAA2C4FAD05002F5A77 /* HomeMap_인천.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeMap_인천.swift"; sourceTree = "<group>"; };
@@ -132,7 +136,7 @@
 		4AAFDB692C494CFF008C6DAF /* dnd-11th-4-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dnd-11th-4-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AAFDB6C2C494CFF008C6DAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AAFDB6E2C494CFF008C6DAF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4AAFDB702C494CFF008C6DAF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4AAFDB702C494CFF008C6DAF /* HomeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapViewController.swift; sourceTree = "<group>"; };
 		4AAFDB752C494D00008C6DAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4AAFDB782C494D00008C6DAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4AAFDB7A2C494D00008C6DAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -230,7 +234,9 @@
 		4A16E2C82C5A5C1F00F48180 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				4AAFDB702C494CFF008C6DAF /* HomeViewController.swift */,
+				4AAFDB702C494CFF008C6DAF /* HomeMapViewController.swift */,
+				4A16E2ED2C60AD8F00F48180 /* OpacityColorType.swift */,
+				4A16E2F52C60F8DA00F48180 /* HomeMapReactor.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -526,7 +532,7 @@
 				4A5FFDB22C4FAE73002F5A77 /* HomeMap_충청남도.swift in Sources */,
 				4A5FFDC82C4FB0F1002F5A77 /* HomeMap_제주도.swift in Sources */,
 				4A16E2BC2C5A56C800F48180 /* OnboardingMap_울산.swift in Sources */,
-				4AAFDB712C494CFF008C6DAF /* HomeViewController.swift in Sources */,
+				4AAFDB712C494CFF008C6DAF /* HomeMapViewController.swift in Sources */,
 				4A5FFDCA2C4FB202002F5A77 /* HomeMap_충청북도.swift in Sources */,
 				4A5FFDBE2C4FAFF2002F5A77 /* HomeMap_경상남도.swift in Sources */,
 				4AAFDBB62C4953D2008C6DAF /* Font.swift in Sources */,
@@ -558,6 +564,7 @@
 				4AAFDB6D2C494CFF008C6DAF /* AppDelegate.swift in Sources */,
 				4AAFDBB02C4953C0008C6DAF /* Network.swift in Sources */,
 				4A16E2B82C5A559E00F48180 /* OnboardingMap_전라남도.swift in Sources */,
+				4A16E2F62C60F8DA00F48180 /* HomeMapReactor.swift in Sources */,
 				4A5FFDC22C4FB056002F5A77 /* HomeMap_부산.swift in Sources */,
 				4A16E2BA2C5A560B00F48180 /* OnboardingMap_부산.swift in Sources */,
 				4AAFDB6F2C494CFF008C6DAF /* SceneDelegate.swift in Sources */,
@@ -571,6 +578,7 @@
 				4A5FFDCC2C4FB236002F5A77 /* HomeMap_대구.swift in Sources */,
 				4AAFDBB42C4953CD008C6DAF /* Color.swift in Sources */,
 				4A16E2B02C5A530E00F48180 /* OnboardingMap_대전.swift in Sources */,
+				4A16E2EE2C60AD8F00F48180 /* OpacityColorType.swift in Sources */,
 				4A16E2C22C5A59D100F48180 /* OnboardingMap_대구.swift in Sources */,
 				4A5FFDC02C4FB027002F5A77 /* HomeMap_전라남도.swift in Sources */,
 				4A5FFDAE2C4FAD42002F5A77 /* DrawMapProtocol.swift in Sources */,
