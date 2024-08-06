@@ -6,12 +6,25 @@
 //
 
 import UIKit
+import SnapKit
 
 final class RecordListViewController: UIViewController {
+    private let navigationBar = MDNavigationBar(type: .list)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .mapWhite
+        setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
+        navigationController?.navigationBar.isHidden = true
+        view.addSubview(navigationBar)
         
-        view.backgroundColor = .white
+        navigationBar.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(44)
+        }
     }
 }

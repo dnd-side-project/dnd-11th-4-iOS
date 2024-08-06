@@ -8,43 +8,57 @@
 import UIKit
 import SnapKit
 
+enum NavigationBarType {
+    case list, add, inquiry
+    
+    var text: String {
+        switch self {
+        case .list:
+            return "내 기록"
+        case .add:
+            return "기록 추가"
+        case .inquiry:
+            return "1:1 문의"
+        }
+    }
+}
+
 final class MDNavigationBar: UIView {
-    private let backButton: UIButton = {
-        let button = UIButton()
-        button.setImage(Constant.Image.iconBack, for: .normal)
-        button.imageView?.contentMode = .scaleAspectFit
-        return button
-    }()
+    private let backButton = MDButton(backgroundColor: .clear).setImage(image: .iconBack)
+    private let detailText = MDLabel(attributedString: NSAttributedString.pretendardB16("dummy"), color: .mapBlack)
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .black
-        label.attributedText = NSAttributedString.pretendardB16("기록 추가")
-        return label
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setLayout()
+    init(type: NavigationBarType) {
+        super.init(frame: .zero)
+        self.backgroundColor = .mapWhite
+        setUI(type: type)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setLayout() {
-        self.backgroundColor = .white
-        self.addSubview(backButton)
-        self.addSubview(titleLabel)
-        
-        backButton.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(16)
-            $0.centerY.equalToSuperview()
-            $0.width.height.equalTo(30)
-        }
-        
-        titleLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
+    private func setUI(type: NavigationBarType) {
+        switch type {
+        case .list:
+            self.detailText.attributedText = NSAttributedString.pretendardB16(type.text)
+            
+            self.addSubviews(detailText)
+            detailText.snp.makeConstraints {
+                $0.center.equalToSuperview()
+            }
+        case .add, .inquiry:
+            self.detailText.attributedText = NSAttributedString.pretendardB16(type.text)
+            
+            self.addSubviews(backButton, detailText)
+            backButton.imageView?.contentMode = .scaleAspectFit
+            backButton.snp.makeConstraints {
+                $0.leading.equalToSuperview().offset(16)
+                $0.centerY.equalToSuperview()
+                $0.width.height.equalTo(30)
+            }
+            detailText.snp.makeConstraints {
+                $0.center.equalToSuperview()
+            }
         }
     }
 }
