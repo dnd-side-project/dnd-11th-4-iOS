@@ -20,7 +20,7 @@ final class HomeMap_서울: UIView, DrawMapProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func drawMap() {
+    func drawMap() {
         let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 134.87, y: 246.61))
         shape.addLine(to: CGPoint(x: 127.21, y: 253.67))

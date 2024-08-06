@@ -77,6 +77,8 @@ final class HomeMapViewController: UIViewController, View {
         setDelegate()
         // 첫 진입시 button hidden 처리
         recordButton.isHidden = true
+        
+        self.제주도.backgroundColor = .purple
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -101,48 +103,48 @@ final class HomeMapViewController: UIViewController, View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
-//        reactor.state.map { $0.initMapViewColor }
-//            .withUnretained(self)
-//            .subscribe { _, models in
-//                for model in models {
-//                    switch model.mapName {
-//                    case "서울":
-//                        self.서울.bindMapUI(color: model.mapColor)
-//                    case "경기도":
-//                        self.경기도.bindMapUI(color: .errorRed)
-//                    case "인천":
-//                        self.인천.bindMapUI(color: model.mapColor)
-//                    case "강원도":
-//                        self.강원도.bindMapUI(color: model.mapColor)
-//                    case "충청북도":
-//                        self.충청북도.bindMapUI(color: model.mapColor)
-//                    case "충청남도":
-//                        self.충청남도.bindMapUI(color: model.mapColor)
-//                    case "대전":
-//                        self.대전.bindMapUI(color: .green)
-//                    case "경상북도":
-//                        self.경상북도.bindMapUI(color: model.mapColor)
-//                    case "경상남도":
-//                        self.경상남도.bindMapUI(color: model.mapColor)
-//                    case "대구":
-//                        self.대구.bindMapUI(color: model.mapColor)
-//                    case "울산":
-//                        self.울산.bindMapUI(color: model.mapColor)
-//                    case "부산":
-//                        self.부산.bindMapUI(color: model.mapColor)
-//                    case "전라북도":
-//                        self.부산.bindMapUI(color: model.mapColor)
-//                    case "전라남도":
-//                        self.부산.bindMapUI(color: model.mapColor)
-//                    case "광주":
-//                        self.부산.bindMapUI(color: model.mapColor)
-//                    case "제주도":
-//                        self.부산.bindMapUI(color: model.mapColor)
-//                    default: break
-//                    }
-//                }
-//            }
-//            .disposed(by: disposeBag)
+        reactor.state.map { $0.initMapViewColor }
+            .withUnretained(self)
+            .subscribe { _, models in
+                for model in models {
+                    switch model.mapName {
+                    case "서울":
+                        self.서울.bindMapUI(color: .blue)
+                    case "경기도":
+                        self.경기도.bindMapUI(color: model.mapColor)
+                    case "인천":
+                        self.인천.bindMapUI(color: model.mapColor)
+                    case "강원도":
+                        self.강원도.bindMapUI(color: model.mapColor)
+                    case "충청북도":
+                        self.충청북도.bindMapUI(color: model.mapColor)
+                    case "충청남도":
+                        self.충청남도.bindMapUI(color: model.mapColor)
+                    case "대전":
+                        self.대전.bindMapUI(color: .mapBlue3)
+                    case "경상북도":
+                        self.경상북도.bindMapUI(color: model.mapColor)
+                    case "경상남도":
+                        self.경상남도.bindMapUI(color: model.mapColor)
+                    case "대구":
+                        self.대구.bindMapUI(color: model.mapColor)
+                    case "울산":
+                        self.울산.bindMapUI(color: model.mapColor)
+                    case "부산":
+                        self.부산.bindMapUI(color: model.mapColor)
+                    case "전라북도":
+                        self.부산.bindMapUI(color: model.mapColor)
+                    case "전라남도":
+                        self.부산.bindMapUI(color: model.mapColor)
+                    case "광주":
+                        self.부산.bindMapUI(color: model.mapColor)
+                    case "제주도":
+                        self.제주도.bindMapUI(color: model.mapColor)
+                    default: break
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
     private func setLayout() {
