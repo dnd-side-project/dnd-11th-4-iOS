@@ -79,7 +79,7 @@
 		FB0BE4F22C57B5FD00C34C7B /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4EE2C57B5FD00C34C7B /* Pretendard-SemiBold.otf */; };
 		FB0BE4F32C57B5FD00C34C7B /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4EF2C57B5FD00C34C7B /* Pretendard-Regular.otf */; };
 		FB8004CA2C49581700AFED19 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FB8004C92C49581700AFED19 /* Kingfisher */; };
-		FB808E542C5A72E500E9E2E5 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E532C5A72E500E9E2E5 /* NavigationBar.swift */; };
+		FB808E542C5A72E500E9E2E5 /* MDNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E532C5A72E500E9E2E5 /* MDNavigationBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,7 +145,7 @@
 		FB0BE4ED2C57B5FD00C34C7B /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		FB0BE4EE2C57B5FD00C34C7B /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		FB0BE4EF2C57B5FD00C34C7B /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
-		FB808E532C5A72E500E9E2E5 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		FB808E532C5A72E500E9E2E5 /* MDNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDNavigationBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +283,7 @@
 				4A16E2DB2C5B50DF00F48180 /* MDToastView.swift */,
 				4A16E2DD2C5CC3BA00F48180 /* MDToast.swift */,
 				4A16E2E52C5D0F5D00F48180 /* MDPopUpView.swift */,
+				FB808E532C5A72E500E9E2E5 /* MDNavigationBar.swift */,
 			);
 			path = UIComponent;
 			sourceTree = "<group>";
@@ -374,7 +375,6 @@
 		4AAFDBAB2C49538D008C6DAF /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				FB808E522C5A72A100E9E2E5 /* UIComponents */,
 				4A16E2CA2C5A5C4C00F48180 /* Protocol */,
 				4A5FFDD22C4FB50D002F5A77 /* Extension */,
 				4A5FFDA42C4FAA60002F5A77 /* Constant */,
@@ -422,14 +422,6 @@
 				4A16E2C72C5A5C0E00F48180 /* HomeMap */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		FB808E522C5A72A100E9E2E5 /* UIComponents */ = {
-			isa = PBXGroup;
-			children = (
-				FB808E532C5A72E500E9E2E5 /* NavigationBar.swift */,
-			);
-			path = UIComponents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -547,7 +539,7 @@
 				4A16E2A82C5A4FC400F48180 /* OnboardingMap_경기도.swift in Sources */,
 				4A16E2B22C5A539400F48180 /* OnboardingMap_전라북도.swift in Sources */,
 				4A5FFDA62C4FAA6A002F5A77 /* Constant.swift in Sources */,
-				FB808E542C5A72E500E9E2E5 /* NavigationBar.swift in Sources */,
+				FB808E542C5A72E500E9E2E5 /* MDNavigationBar.swift in Sources */,
 				4A16E2DE2C5CC3BA00F48180 /* MDToast.swift in Sources */,
 				4A16E2B42C5A54B400F48180 /* OnboardingMap_경상북도.swift in Sources */,
 				4A16E2CD2C5A6B7E00F48180 /* TabBarViewController.swift in Sources */,

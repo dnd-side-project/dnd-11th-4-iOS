@@ -1,5 +1,5 @@
 //
-//  NavigationBar.swift
+//  MDNavigationBar.swift
 //  dnd-11th-4-iOS
 //
 //  Created by Allie on 7/31/24.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class NavigationBar: UIView {
+final class MDNavigationBar: UIView {
     private let backButton: UIButton = {
         let button = UIButton()
         button.setImage(Constant.Image.iconBack, for: .normal)
