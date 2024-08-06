@@ -8,7 +8,15 @@
 import UIKit
 import SnapKit
 
+struct Test {
+    let image: UIImage
+    let title: String
+    let memo: String
+    let date: String
+}
+
 final class RecordListCell: UICollectionViewCell {
+    static let identifier = "RecordListCell"
     private let recordImage: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
@@ -83,4 +91,12 @@ final class RecordListCell: UICollectionViewCell {
             $0.height.width.equalTo(20)
         }
     }
+    
+    func configure(with record: Test) {
+        titleLabel.attributedText = NSAttributedString.pretendardSB14(record.title)
+        memoLabel.attributedText = NSAttributedString.pretendardR14(record.memo)
+        dateLabel.attributedText = NSAttributedString.pretendardR12(record.date)
+        recordImage.image = record.image
+    }
+    
 }
