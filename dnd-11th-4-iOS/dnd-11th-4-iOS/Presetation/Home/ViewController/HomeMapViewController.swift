@@ -161,7 +161,7 @@ final class HomeMapViewController: UIViewController, View {
                 
                 if let mapData = data.selectedMap {
                     self.recordButton.isHidden = false
-                    self.recordButton.setText(attributedString: NSAttributedString.pretendardB1("\(mapData.selectedMapName)에 기록 추가하기"),
+                    self.recordButton.setText(attributedString: NSAttributedString.pretendardB16("\(mapData.selectedMapName)에 기록 추가하기"),
                                               color: .mapWhite)
                 }
             }
