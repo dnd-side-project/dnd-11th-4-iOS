@@ -121,7 +121,7 @@ final class HomeMapViewController: UIViewController, View {
         reactor.state.map{ $0.totalMapColorState }
             .withUnretained(self)
             .subscribe { _, data in
-                for model in data.totalMapColor {
+                for model in data.totalMapColorArray {
                     switch model.mapName {
                     case "서울":
                         self.서울.bindMapUI(color: model.mapColor)

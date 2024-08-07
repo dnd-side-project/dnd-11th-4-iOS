@@ -10,12 +10,11 @@ import UIKit
 
 struct TotalMapModel {
     var selectedMap: SelectedMapModel?
-    var totalMapColor: [TotalMapColorModelArray]
+    var totalMapColorArray: [TotalMapColorModelArray]
 }
 
 struct SelectedMapModel {
     let selectedMapName: String
-    let selectedMapColor: UIColor
     let isHidden: Bool
 }
 
@@ -41,11 +40,11 @@ class HomeMapReactor: Reactor {
     
     enum Mutation {
         case setTotalMapColor(TotalMapModel)
-        case setSpecificMapColor(SelectedMapModel)
+        case setSelectedMapColor(TotalMapModel)
     }
     
     struct State {
-        var totalMapColorState = TotalMapModel(selectedMap: nil, totalMapColor: [])
+        var totalMapColorState = TotalMapModel(selectedMap: nil, totalMapColorArray: [])
     }
     
     init() {
@@ -56,11 +55,16 @@ class HomeMapReactor: Reactor {
         switch action {
         case .totalMapColor(let model):
             let mapColorArray = model.map { data in TotalMapColorModelArray(mapName: data.name, mapColor: .mapPink1) }
-            let totalMapModel = TotalMapModel(selectedMap: nil, totalMapColor: mapColorArray)
-            return Observable.just(Mutation.setTotalMapColor(totalMapModel))
+            initialState.totalMapColorState = TotalMapModel(selectedMap: nil, totalMapColorArray: mapColorArray)
+            return Observable.just(Mutation.setTotalMapColor(initialState.totalMapColorState))
         case .mapAction(let type):
-            let specificModel = SelectedMapModel(selectedMapName: type.rawValue, selectedMapColor: .mapSelect, isHidden: false)
-            return Observable.just(Mutation.setSpecificMapColor(specificModel))
+            var tempState = initialState.totalMapColorState
+            if let index = tempState.totalMapColorArray.firstIndex(where: { $0.mapName == type.rawValue }) {
+                tempState.totalMapColorArray[index] = TotalMapColorModelArray(mapName: type.rawValue,
+                                                                              mapColor: .mapSelect)
+                tempState.selectedMap = SelectedMapModel(selectedMapName: type.rawValue, isHidden: false)
+            }
+            return Observable.just(Mutation.setSelectedMapColor(tempState))
         }
     }
     
@@ -69,14 +73,8 @@ class HomeMapReactor: Reactor {
         switch mutation {
         case .setTotalMapColor(let model):
             newState.totalMapColorState = model
-        case .setSpecificMapColor(let specificModel):
-            var tempState = newState
-            if let index = tempState.totalMapColorState.totalMapColor.firstIndex(where: { $0.mapName == specificModel.selectedMapName }) {
-                tempState.totalMapColorState.selectedMap = specificModel
-                tempState.totalMapColorState.totalMapColor[index] = TotalMapColorModelArray(mapName: specificModel.selectedMapName,
-                                                                                            mapColor: specificModel.selectedMapColor)
-            }
-            return tempState
+        case .setSelectedMapColor(let specificModel):
+            newState.totalMapColorState = specificModel
         }
         return newState
     }

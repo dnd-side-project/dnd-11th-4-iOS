@@ -54,6 +54,7 @@
 		4A5FFDCE2C4FB399002F5A77 /* HomeMap_광주.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDCD2C4FB399002F5A77 /* HomeMap_광주.swift */; };
 		4A5FFDD02C4FB3C0002F5A77 /* HomeMap_서울.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDCF2C4FB3C0002F5A77 /* HomeMap_서울.swift */; };
 		4A5FFDD42C4FB515002F5A77 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDD32C4FB515002F5A77 /* UIView+.swift */; };
+		4AA414452C63B26000AB3CE8 /* RegionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA414442C63B26000AB3CE8 /* RegionType.swift */; };
 		4AADE34E2C4FD7E100A2ABE3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4AADE34D2C4FD7E100A2ABE3 /* SnapKit */; };
 		4AADE3502C4FD7E100A2ABE3 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 4AADE34F2C4FD7E100A2ABE3 /* SnapKit-Dynamic */; };
 		4AADE3532C4FD7E500A2ABE3 /* RxFlow in Frameworks */ = {isa = PBXBuildFile; productRef = 4AADE3522C4FD7E500A2ABE3 /* RxFlow */; };
@@ -131,6 +132,7 @@
 		4A5FFDCD2C4FB399002F5A77 /* HomeMap_광주.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeMap_광주.swift"; sourceTree = "<group>"; };
 		4A5FFDCF2C4FB3C0002F5A77 /* HomeMap_서울.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeMap_서울.swift"; sourceTree = "<group>"; };
 		4A5FFDD32C4FB515002F5A77 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		4AA414442C63B26000AB3CE8 /* RegionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionType.swift; sourceTree = "<group>"; };
 		4AAFDB692C494CFF008C6DAF /* dnd-11th-4-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dnd-11th-4-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AAFDB6C2C494CFF008C6DAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AAFDB6E2C494CFF008C6DAF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				4AAFDB702C494CFF008C6DAF /* HomeMapViewController.swift */,
 				4A16E2ED2C60AD8F00F48180 /* OpacityColorType.swift */,
 				4A16E2F52C60F8DA00F48180 /* HomeMapReactor.swift */,
+				4AA414442C63B26000AB3CE8 /* RegionType.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				4A16E2CD2C5A6B7E00F48180 /* TabBarViewController.swift in Sources */,
 				4A5FFDAB2C4FAD05002F5A77 /* HomeMap_인천.swift in Sources */,
 				4A16E2AC2C5A51B000F48180 /* OnboardingMap_충청남도.swift in Sources */,
+				4AA414452C63B26000AB3CE8 /* RegionType.swift in Sources */,
 				4A16E2D32C5A70AC00F48180 /* MyPageViewController.swift in Sources */,
 				4A5FFDBA2C4FAF75002F5A77 /* HomeMap_전라북도.swift in Sources */,
 				4A16E2C02C5A57D900F48180 /* OnboardingMap_충청북도.swift in Sources */,
