@@ -31,8 +31,6 @@ final class HomeMapViewController: UIViewController, View {
     }()
     
     private let recordButton = MDButton(backgroundColor: .black2)
-        .setText(attributedString: NSAttributedString.pretendardB1("서울에 기록 추가하기"),
-                 color: .mapWhite)
     
     private let mapContainerView = UIView()
     
@@ -84,7 +82,7 @@ final class HomeMapViewController: UIViewController, View {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        reactor?.action.onNext(.서울Action(data))
+        reactor?.action.onNext(.totalMapColor(data))
     }
     
     init(reactor: HomeMapReactor) {
@@ -97,19 +95,36 @@ final class HomeMapViewController: UIViewController, View {
     }
     
     func bind(reactor: HomeMapReactor) {
-        서울.rx.tapGesture()
-            .when(.recognized)
-            .map { _ in Reactor.Action.서울Action(self.data) }
-            .bind(to: reactor.action)
-            .disposed(by: disposeBag)
+        let 서울Tap = 서울.rx.tapGesture().when(.recognized).map { _ in RegionType.서울 }
+        let 경기도Tap = 경기도.rx.tapGesture().when(.recognized).map { _ in RegionType.경기도 }
+        let 인천Tap = 인천.rx.tapGesture().when(.recognized).map { _ in RegionType.인천 }
+        let 강원도Tap = 강원도.rx.tapGesture().when(.recognized).map { _ in RegionType.강원도 }
+        let 충청북도Tap = 충청북도.rx.tapGesture().when(.recognized).map { _ in RegionType.충청북도 }
+        let 충청남도Tap = 충청남도.rx.tapGesture().when(.recognized).map { _ in RegionType.충청남도 }
+        let 대전Tap = 대전.rx.tapGesture().when(.recognized).map { _ in RegionType.대전 }
+        let 경상북도Tap = 경상북도.rx.tapGesture().when(.recognized).map { _ in RegionType.경상북도 }
+        let 경상남도Tap = 경상남도.rx.tapGesture().when(.recognized).map { _ in RegionType.경상남도 }
+        let 대구Tap = 대구.rx.tapGesture().when(.recognized).map { _ in RegionType.대구 }
+        let 울산Tap = 울산.rx.tapGesture().when(.recognized).map { _ in RegionType.울산 }
+        let 부산Tap = 부산.rx.tapGesture().when(.recognized).map { _ in RegionType.부산 }
+        let 전라북도Tap = 전라북도.rx.tapGesture().when(.recognized).map { _ in RegionType.전라북도 }
+        let 전라남도Tap = 전라남도.rx.tapGesture().when(.recognized).map { _ in RegionType.전라남도 }
+        let 광주Tap = 광주.rx.tapGesture().when(.recognized).map { _ in RegionType.광주 }
+        let 제주도Tap = 제주도.rx.tapGesture().when(.recognized).map { _ in RegionType.제주도 }
         
-        reactor.state.map { $0.initMapViewColor }
+        Observable.merge(서울Tap, 경기도Tap, 인천Tap, 강원도Tap, 충청북도Tap, 충청남도Tap, 대전Tap, 경상북도Tap,
+                         경상남도Tap, 대구Tap, 울산Tap, 부산Tap, 전라북도Tap, 전라남도Tap, 광주Tap, 제주도Tap)
+        .map { type in Reactor.Action.mapAction(type)}
+        .bind(to: reactor.action)
+        .disposed(by: disposeBag)
+        
+        reactor.state.map{ $0.totalMapColorState }
             .withUnretained(self)
-            .subscribe { _, models in
-                for model in models {
+            .subscribe { _, data in
+                for model in data.totalMapColor {
                     switch model.mapName {
                     case "서울":
-                        self.서울.bindMapUI(color: .blue)
+                        self.서울.bindMapUI(color: model.mapColor)
                     case "경기도":
                         self.경기도.bindMapUI(color: model.mapColor)
                     case "인천":
@@ -121,7 +136,7 @@ final class HomeMapViewController: UIViewController, View {
                     case "충청남도":
                         self.충청남도.bindMapUI(color: model.mapColor)
                     case "대전":
-                        self.대전.bindMapUI(color: .mapBlue3)
+                        self.대전.bindMapUI(color: model.mapColor)
                     case "경상북도":
                         self.경상북도.bindMapUI(color: model.mapColor)
                     case "경상남도":
@@ -133,15 +148,21 @@ final class HomeMapViewController: UIViewController, View {
                     case "부산":
                         self.부산.bindMapUI(color: model.mapColor)
                     case "전라북도":
-                        self.부산.bindMapUI(color: model.mapColor)
+                        self.전라북도.bindMapUI(color: model.mapColor)
                     case "전라남도":
-                        self.부산.bindMapUI(color: model.mapColor)
+                        self.전라남도.bindMapUI(color: model.mapColor)
                     case "광주":
-                        self.부산.bindMapUI(color: model.mapColor)
+                        self.광주.bindMapUI(color: model.mapColor)
                     case "제주도":
                         self.제주도.bindMapUI(color: model.mapColor)
                     default: break
                     }
+                }
+                
+                if let mapData = data.selectedMap {
+                    self.recordButton.isHidden = false
+                    self.recordButton.setText(attributedString: NSAttributedString.pretendardB1("\(mapData.selectedMapName)에 기록 추가하기"),
+                                              color: .mapWhite)
                 }
             }
             .disposed(by: disposeBag)

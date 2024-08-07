@@ -23,7 +23,6 @@ final class HomeMap_울산: UIView, DrawMapProtocol {
     }
     
     func drawMap() {
-        let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 335.68, y: 446.18))
         shape.addLine(to: CGPoint(x: 324.95, y: 485))
         shape.addLine(to: CGPoint(x: 314.85, y: 478.23))

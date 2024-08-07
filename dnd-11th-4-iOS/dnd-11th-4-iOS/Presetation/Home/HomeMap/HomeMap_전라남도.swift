@@ -24,8 +24,6 @@ final class HomeMap_전라남도: UIView, DrawMapProtocol {
     
     func drawMap() {
         // MARK: - 전라남도
-        
-        let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 174.87, y: 520.57))
         shape.addCurve(to: CGPoint(x: 171.47, y: 514.2), controlPoint1: CGPoint(x: 173, y: 518.93), controlPoint2: CGPoint(x: 171.8, y: 516.66))
         shape.addLine(to: CGPoint(x: 169.08, y: 496.02))
