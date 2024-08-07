@@ -7,18 +7,27 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
+import ReactorKit
 
 final class RecordListViewController: UIViewController {
     private let navigationBar = MDNavigationBar(type: .list)
     private var records: [Test] = []
     private var collectionView: UICollectionView!
     
+    var disposeBag: DisposeBag = DisposeBag()
+    var reactor: RecordListReactor?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .mapWhite
         setupNavigationBar()
         setupCollectionView()
-        loadRecords()
+        
+        reactor = RecordListReactor()
+        bind(reactor: reactor!)
+        reactor?.action.onNext(.loadRecords)
     }
     
     private func setupNavigationBar() {
@@ -38,8 +47,6 @@ final class RecordListViewController: UIViewController {
         layout.minimumLineSpacing = 24
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.delegate = self
-        collectionView.dataSource = self
         collectionView.register(RecordListCell.self, forCellWithReuseIdentifier: RecordListCell.identifier)
         
         view.addSubview(collectionView)
@@ -49,30 +56,15 @@ final class RecordListViewController: UIViewController {
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
-    
-    private func loadRecords() {
-        // 예시 데이터 추가
-        records.append(Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드", memo: "꾸르잼", date: "24.10.22"))
-        records.append(Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드", memo: "꾸르잼", date: "24.10.22"))
-        records.append(Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드", memo: "꾸르잼", date: "24.10.22"))
-        records.append(Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드", memo: "꾸르잼", date: "24.10.22"))
-        records.append(Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드", memo: "꾸르잼", date: "24.10.22"))
-        
-        collectionView.reloadData()
-    }
-    
-    
 }
 
-
-extension RecordListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return records.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecordListCell.identifier, for: indexPath) as! RecordListCell
-        cell.configure(with: records[indexPath.item])
-        return cell
+extension RecordListViewController: View {
+    func bind(reactor: RecordListReactor) {
+        reactor.state
+            .map { $0.records }
+            .bind(to: collectionView.rx.items(cellIdentifier: RecordListCell.identifier, cellType: RecordListCell.self)) { index, record, cell in
+                cell.configure(with: record)
+            }
+            .disposed(by: disposeBag)
     }
 }

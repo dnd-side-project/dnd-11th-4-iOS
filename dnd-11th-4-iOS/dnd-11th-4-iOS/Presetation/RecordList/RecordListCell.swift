@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 
+/// 임시 데이터
 struct Test {
     let image: UIImage
     let title: String
