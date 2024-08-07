@@ -31,8 +31,23 @@ final class HomeMapViewController: UIViewController, View {
     }()
     
     private let recordButton = MDButton(backgroundColor: .black2)
-    
     private let mapContainerView = UIView()
+    
+    private let visitedMapCountView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .mapWhite
+        view.layer.cornerRadius = 8
+        view.layer.borderColor = UIColor.gray60.cgColor
+        view.layer.borderWidth = 1.0
+        return view
+    }()
+    private let shoesImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = Constant.Image.iconShoes
+        return imageView
+    }()
+    
+    private let mapCountLabel = MDLabel(attributedString: NSAttributedString.pretendardM16("0/16"), color: .gray90)
     
     private let 서울 = HomeMap_서울()
     private let 경기도 = HomeMap_경기도()
@@ -71,10 +86,9 @@ final class HomeMapViewController: UIViewController, View {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUI()
         setLayout()
         setDelegate()
-        // 첫 진입시 button hidden 처리
-        recordButton.isHidden = true
         
         self.제주도.backgroundColor = .purple
     }
@@ -163,22 +177,47 @@ final class HomeMapViewController: UIViewController, View {
                     self.recordButton.isHidden = false
                     self.recordButton.setText(attributedString: NSAttributedString.pretendardB16("\(mapData.selectedMapName)에 기록 추가하기"),
                                               color: .mapWhite)
+                } else {
+                    self.recordButton.isHidden = true
                 }
             }
             .disposed(by: disposeBag)
     }
     
+    private func setUI() {
+        self.recordButton.isHidden = true
+    }
+    
     private func setLayout() {
-        view.addSubviews(homeScrollView, recordButton)
+        view.addSubviews(homeScrollView, recordButton, visitedMapCountView)
         homeScrollView.addSubviews(mapContainerView)
         mapContainerView.addSubviews(서울, 경기도, 인천, 강원도, 충청북도, 충청남도,
                                      대전, 경상북도, 경상남도, 대구, 울산, 부산, 전라북도,
                                      전라남도, 광주, 제주도)
+        visitedMapCountView.addSubviews(shoesImageView, mapCountLabel)
         
         recordButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(11)
             make.height.equalTo(52)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-40)
+        }
+        
+        visitedMapCountView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(14)
+            make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(17)
+            make.width.equalTo(87)
+            make.height.equalTo(38)
+        }
+        
+        shoesImageView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(8)
+            make.centerY.equalToSuperview()
+            make.width.height.equalTo(30)
+        }
+        
+        mapCountLabel.snp.makeConstraints { make in
+            make.leading.equalTo(shoesImageView.snp.trailing).offset(4)
+            make.centerY.equalTo(shoesImageView)
         }
         
         기기대응메서드()
