@@ -9,6 +9,9 @@ import UIKit
 
 final class OnboardingMap_대구: UIView, DrawMapProtocol {
     
+    var shape = UIBezierPath()
+    var shapeLayer = CAShapeLayer()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -19,14 +22,7 @@ final class OnboardingMap_대구: UIView, DrawMapProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        
-        drawMap()
-    }
-    
     func drawMap() {
-        let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 238.66, y: 402.66))
         shape.addLine(to: CGPoint(x: 233.33, y: 403.33))
         shape.addCurve(to: CGPoint(x: 230.81, y: 405.26), controlPoint1: CGPoint(x: 232.21, y: 403.47), controlPoint2: CGPoint(x: 231.24, y: 404.21))
@@ -40,7 +36,6 @@ final class OnboardingMap_대구: UIView, DrawMapProtocol {
         shape.addCurve(to: CGPoint(x: 238.66, y: 402.66), controlPoint1: CGPoint(x: 241.64, y: 400.83), controlPoint2: CGPoint(x: 240.41, y: 402.44))
         shape.close()
         
-        let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath
         shapeLayer.strokeColor = UIColor.lightGray.cgColor
         shapeLayer.fillColor = UIColor.blue.cgColor

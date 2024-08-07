@@ -9,6 +9,9 @@ import UIKit
 
 final class HomeMap_울산: UIView, DrawMapProtocol {
     
+    var shape = UIBezierPath()
+    var shapeLayer = CAShapeLayer()
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
@@ -17,12 +20,6 @@ final class HomeMap_울산: UIView, DrawMapProtocol {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        
-        drawMap()
     }
     
     func drawMap() {
@@ -38,7 +35,6 @@ final class HomeMap_울산: UIView, DrawMapProtocol {
         shape.addCurve(to: CGPoint(x: 316.97, y: 446.18), controlPoint1: CGPoint(x: 310.73, y: 447.06), controlPoint2: CGPoint(x: 313.82, y: 446.18))
         shape.close()
         
-        let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath
         shapeLayer.strokeColor = UIColor.mapBackground.cgColor
         shapeLayer.fillColor = UIColor.mapGray.cgColor
@@ -47,5 +43,7 @@ final class HomeMap_울산: UIView, DrawMapProtocol {
         self.layer.addSublayer(shapeLayer)
     }
     
-    
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        return shape.contains(point)
+    }
 }

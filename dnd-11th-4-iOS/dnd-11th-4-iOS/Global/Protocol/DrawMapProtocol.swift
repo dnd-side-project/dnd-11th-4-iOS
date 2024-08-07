@@ -13,16 +13,14 @@ struct MapUIModel {
 }
 
 protocol DrawMapProtocol: AnyObject {
+    var shape: UIBezierPath { get set }
+    var shapeLayer: CAShapeLayer { get set }
     func drawMap()
-    func setBackgrundColor()
     func bindMapUI(color: UIColor)
 }
 
 extension DrawMapProtocol where Self: UIView {
-    func setBackgrundColor() {
-        self.backgroundColor = .mapGray
-    }
     func bindMapUI(color: UIColor) {
-        self.backgroundColor = color
+        shapeLayer.fillColor = color.cgColor
     }
 }

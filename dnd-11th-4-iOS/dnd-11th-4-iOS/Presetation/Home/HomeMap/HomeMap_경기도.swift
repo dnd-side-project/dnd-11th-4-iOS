@@ -9,6 +9,9 @@ import UIKit
 
 final class HomeMap_경기도: UIView, DrawMapProtocol {
     
+    var shape = UIBezierPath()
+    var shapeLayer = CAShapeLayer()
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
@@ -26,7 +29,6 @@ final class HomeMap_경기도: UIView, DrawMapProtocol {
     }
     
     func drawMap() {
-        let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 179.26, y: 249.88))
         shape.addCurve(to: CGPoint(x: 166.66, y: 244.61), controlPoint1: CGPoint(x: 170.47, y: 249.88), controlPoint2: CGPoint(x: 167.59, y: 247.74))
         shape.addLine(to: CGPoint(x: 162.03, y: 229.25))
@@ -82,12 +84,15 @@ final class HomeMap_경기도: UIView, DrawMapProtocol {
         shape.addCurve(to: CGPoint(x: 134.87, y: 246.61), controlPoint1: CGPoint(x: 136.27, y: 242.75), controlPoint2: CGPoint(x: 136.4, y: 245.2))
         shape.close()
         
-        let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath
         shapeLayer.strokeColor = UIColor.mapBackground.cgColor
         shapeLayer.fillColor = UIColor.mapGray.cgColor
         shapeLayer.lineWidth = 1.0
         
         self.layer.addSublayer(shapeLayer)
+    }
+    
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        return shape.contains(point)
     }
 }

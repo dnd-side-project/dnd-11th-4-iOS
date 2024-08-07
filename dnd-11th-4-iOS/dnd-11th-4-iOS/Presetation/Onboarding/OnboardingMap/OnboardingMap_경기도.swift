@@ -9,6 +9,9 @@ import UIKit
 
 final class OnboardingMap_경기도: UIView, DrawMapProtocol {
     
+    var shape = UIBezierPath()
+    var shapeLayer = CAShapeLayer()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -19,14 +22,7 @@ final class OnboardingMap_경기도: UIView, DrawMapProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        
-        drawMap()
-    }
-    
     func drawMap() {
-        let shape = UIBezierPath()
         shape.move(to: CGPoint(x: 183.2, y: 281.06))
         shape.addCurve(to: CGPoint(x: 175.38, y: 277.78), controlPoint1: CGPoint(x: 177.75, y: 281.06), controlPoint2: CGPoint(x: 175.96, y: 279.73))
         shape.addLine(to: CGPoint(x: 172.51, y: 268.23))
@@ -64,7 +60,7 @@ final class OnboardingMap_경기도: UIView, DrawMapProtocol {
         shape.addCurve(to: CGPoint(x: 184.12, y: 300.53), controlPoint1: CGPoint(x: 183.27, y: 302.42), controlPoint2: CGPoint(x: 183.86, y: 301.54))
         shape.addLine(to: CGPoint(x: 187.64, y: 286.81))
         shape.addCurve(to: CGPoint(x: 183.2, y: 281.06), controlPoint1: CGPoint(x: 188.39, y: 283.89), controlPoint2: CGPoint(x: 186.2, y: 281.06))
-        shape.close()
+//        shape.close()
         shape.move(to: CGPoint(x: 155.67, y: 279.03))
         shape.addLine(to: CGPoint(x: 150.91, y: 283.42))
         shape.addCurve(to: CGPoint(x: 148.47, y: 283.67), controlPoint1: CGPoint(x: 150.25, y: 284.04), controlPoint2: CGPoint(x: 149.25, y: 284.14))
@@ -82,7 +78,6 @@ final class OnboardingMap_경기도: UIView, DrawMapProtocol {
         shape.addCurve(to: CGPoint(x: 155.67, y: 279.03), controlPoint1: CGPoint(x: 156.54, y: 276.63), controlPoint2: CGPoint(x: 156.62, y: 278.15))
         shape.close()
         
-        let shapeLayer = CAShapeLayer()
         shapeLayer.path = shape.cgPath
         shapeLayer.strokeColor = UIColor.lightGray.cgColor
         shapeLayer.fillColor = UIColor.blue.cgColor
