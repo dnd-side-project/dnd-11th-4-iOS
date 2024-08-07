@@ -66,23 +66,6 @@ final class HomeMapViewController: UIViewController, View {
     private let 광주 = HomeMap_광주()
     private let 제주도 = HomeMap_제주도()
     
-    private let data = [DummyModel(name: "서울", opacity: 1, blue: .blue),
-                        DummyModel(name: "경기도", opacity: 1, blue: .yellow),
-                        DummyModel(name: "인천", opacity: 1, blue: .blue),
-                        DummyModel(name: "강원도", opacity: 1, blue: .yellow),
-                        DummyModel(name: "충청북도", opacity: 1, blue: .blue),
-                        DummyModel(name: "충청남도", opacity: 1, blue: .yellow),
-                        DummyModel(name: "대전", opacity: 1, blue: .blue),
-                        DummyModel(name: "경상북도", opacity: 1, blue: .yellow),
-                        DummyModel(name: "경상남도", opacity: 1, blue: .blue),
-                        DummyModel(name: "대구", opacity: 1, blue: .yellow),
-                        DummyModel(name: "울산", opacity: 1, blue: .blue),
-                        DummyModel(name: "부산", opacity: 1, blue: .yellow),
-                        DummyModel(name: "전라북도", opacity: 1, blue: .blue),
-                        DummyModel(name: "전라남도", opacity: 1, blue: .yellow),
-                        DummyModel(name: "광주", opacity: 1, blue: .blue),
-                        DummyModel(name: "제주도", opacity: 1, blue: .yellow)]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -96,7 +79,7 @@ final class HomeMapViewController: UIViewController, View {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        reactor?.action.onNext(.totalMapColor(data))
+        reactor?.action.onNext(.totalMapColor)
     }
     
     init(reactor: HomeMapReactor) {

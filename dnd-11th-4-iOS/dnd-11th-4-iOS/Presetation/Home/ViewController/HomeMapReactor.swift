@@ -23,10 +23,10 @@ struct TotalMapColorModelArray {
     let mapColor: UIColor
 }
 
-struct DummyModel {
+struct DummyResponse {
     let name: String
     let opacity: Int
-    let blue: OpacityColorType
+    let colorType: OpacityColorType
 }
 
 class HomeMapReactor: Reactor {
@@ -34,7 +34,7 @@ class HomeMapReactor: Reactor {
     var initialState: State
     
     enum Action {
-        case totalMapColor([DummyModel])
+        case totalMapColor
         case mapAction((RegionType))
     }
     
@@ -45,6 +45,22 @@ class HomeMapReactor: Reactor {
     
     struct State {
         var totalMapColorState = TotalMapModel(selectedMap: nil, totalMapColorArray: [])
+        var dummyState = [DummyResponse(name: "서울", opacity: 1, colorType: .pink(3)),
+                          DummyResponse(name: "경기도", opacity: 1, colorType: .yellow(1)),
+                          DummyResponse(name: "인천", opacity: 1, colorType: .blue(1)),
+                          DummyResponse(name: "강원도", opacity: 1, colorType: .yellow(1)),
+                          DummyResponse(name: "충청북도", opacity: 1, colorType: .blue(1)),
+                          DummyResponse(name: "충청남도", opacity: 1, colorType: .yellow(1)),
+                          DummyResponse(name: "대전", opacity: 1, colorType: .blue(1)),
+                          DummyResponse(name: "경상북도", opacity: 1, colorType: .yellow(1)),
+                          DummyResponse(name: "경상남도", opacity: 1, colorType: .blue(1)),
+                          DummyResponse(name: "대구", opacity: 1, colorType: .purple(2)),
+                          DummyResponse(name: "울산", opacity: 1, colorType: .blue(1)),
+                          DummyResponse(name: "부산", opacity: 1, colorType: .yellow(0)),
+                          DummyResponse(name: "전라북도", opacity: 1, colorType: .blue(1)),
+                          DummyResponse(name: "전라남도", opacity: 1, colorType: .yellow(1)),
+                          DummyResponse(name: "광주", opacity: 1, colorType: .blue(1)),
+                          DummyResponse(name: "제주도", opacity: 1, colorType: .yellow(1))]
     }
     
     init() {
@@ -53,9 +69,13 @@ class HomeMapReactor: Reactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .totalMapColor(let model):
-            let mapColorArray = model.map { data in TotalMapColorModelArray(mapName: data.name, mapColor: .mapPink1) }
-            initialState.totalMapColorState = TotalMapModel(selectedMap: nil, totalMapColorArray: mapColorArray)
+        case .totalMapColor:
+            // 추후 여기서 서버 통신, 현재는 dummyResponse로 color 세팅
+            let mapColorArray = initialState.dummyState.map({ data in
+                TotalMapColorModelArray(mapName: data.name, mapColor: data.colorType.color)
+            })
+            
+            initialState.totalMapColorState = TotalMapModel(totalMapColorArray: mapColorArray)
             return Observable.just(Mutation.setTotalMapColor(initialState.totalMapColorState))
         case .mapAction(let type):
             var tempState = initialState.totalMapColorState
