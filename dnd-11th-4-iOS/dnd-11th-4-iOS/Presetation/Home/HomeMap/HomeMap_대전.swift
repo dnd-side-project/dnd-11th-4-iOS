@@ -32,7 +32,7 @@ final class HomeMap_대전: UIView, DrawMapProtocol {
         shape.addCurve(to: CGPoint(x: 146.4, y: 390.84), controlPoint1: CGPoint(x: 152.99, y: 392.36), controlPoint2: CGPoint(x: 149.3, y: 392.6))
         shape.addLine(to: CGPoint(x: 141.87, y: 388.1))
         shape.addCurve(to: CGPoint(x: 138, y: 381.23), controlPoint1: CGPoint(x: 139.47, y: 386.65), controlPoint2: CGPoint(x: 138, y: 384.04))
-        shape.addCurve(to: CGPoint(x: 138.21, y: 365.35), controlPoint1: CGPoint(x: 138.01, y: 365.83), controlPoint2: CGPoint(x: 138.14, y: 365.8))
+        shape.addCurve(to: CGPoint(x: 137.21, y: 365.35), controlPoint1: CGPoint(x: 137.01, y: 365.83), controlPoint2: CGPoint(x: 137.14, y: 365.8))
         shape.addLine(to: CGPoint(x: 158.55, y: 358))
         shape.addLine(to: CGPoint(x: 161.45, y: 360.71))
         shape.addCurve(to: CGPoint(x: 163.13, y: 366.06), controlPoint1: CGPoint(x: 162.9, y: 362.08), controlPoint2: CGPoint(x: 163.54, y: 364.1))
