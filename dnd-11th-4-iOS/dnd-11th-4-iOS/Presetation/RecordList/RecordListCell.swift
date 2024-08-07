@@ -36,17 +36,23 @@ final class RecordListCell: UICollectionViewCell {
         return imageView
     }()
     private let dateLabel = MDLabel(attributedString: NSAttributedString.pretendardR12("date"), color: .black4)
-    private let eclipseImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.clipsToBounds = true
-        imageView.image = UIImage(resource: .iconDetail)
-        imageView.tintColor = .gray60
-        return imageView
+    private let menuButton: MDButton = {
+        let button = MDButton(backgroundColor: .clear, cornerRadius: 0)
+        button.setImage(image: UIImage(resource: .iconDetail))
+        button.imageView?.tintColor = .gray60
+        button.addTarget(self, action: #selector(showMenu), for: .touchUpInside)
+        return button
+    }()
+    private let menuView: MenuAlertView = {
+        let view = MenuAlertView()
+        view.isHidden = true
+        return view
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        menuButton.bringSubviewToFront(menuView)
     }
     
     required init?(coder: NSCoder) {
@@ -54,7 +60,7 @@ final class RecordListCell: UICollectionViewCell {
     }
     
     private func setupUI() {
-        [recordImage, titleLabel, memoLabel, calendarImage, dateLabel, eclipseImage].forEach { view in
+        [recordImage, titleLabel, memoLabel, calendarImage, dateLabel, menuButton, menuView].forEach { view in
             contentView.addSubview(view)
         }
         
@@ -67,13 +73,13 @@ final class RecordListCell: UICollectionViewCell {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(8)
             $0.leading.equalTo(recordImage.snp.trailing).offset(10)
-            $0.trailing.equalTo(eclipseImage.snp.leading).offset(-10)
+            $0.trailing.equalTo(menuButton.snp.leading).offset(-10)
         }
         
         memoLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(6)
             $0.leading.equalTo(recordImage.snp.trailing).offset(10)
-            $0.trailing.equalTo(eclipseImage.snp.leading).offset(-10)
+            $0.trailing.equalTo(menuButton.snp.leading).offset(-10)
         }
         
         calendarImage.snp.makeConstraints {
@@ -87,9 +93,16 @@ final class RecordListCell: UICollectionViewCell {
             $0.centerY.equalTo(calendarImage)
         }
         
-        eclipseImage.snp.makeConstraints {
+        menuButton.snp.makeConstraints {
             $0.top.trailing.equalToSuperview().inset(10)
             $0.height.width.equalTo(20)
+        }
+        
+        menuView.snp.makeConstraints {
+            $0.top.equalTo(menuButton.snp.bottom).offset(5)
+            $0.trailing.equalTo(menuButton.snp.trailing)
+            $0.width.equalTo(156)
+            $0.height.greaterThanOrEqualTo(81)
         }
     }
     
@@ -100,4 +113,8 @@ final class RecordListCell: UICollectionViewCell {
         recordImage.image = record.image
     }
     
+    @objc private func showMenu() {
+        print("hit")
+        menuView.isHidden.toggle()
+    }
 }

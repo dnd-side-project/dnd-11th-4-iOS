@@ -82,6 +82,8 @@
 		FB808E542C5A72E500E9E2E5 /* MDNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E532C5A72E500E9E2E5 /* MDNavigationBar.swift */; };
 		FB808E582C622DC600E9E2E5 /* RecordListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E572C622DC600E9E2E5 /* RecordListCell.swift */; };
 		FB808E5C2C63998600E9E2E5 /* RecordListReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E5B2C63998600E9E2E5 /* RecordListReactor.swift */; };
+		FB808E602C63A61F00E9E2E5 /* MenuAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E5F2C63A61F00E9E2E5 /* MenuAlertView.swift */; };
+		FB808E642C63C6EE00E9E2E5 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E632C63C6EE00E9E2E5 /* UIImage+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,6 +152,8 @@
 		FB808E532C5A72E500E9E2E5 /* MDNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDNavigationBar.swift; sourceTree = "<group>"; };
 		FB808E572C622DC600E9E2E5 /* RecordListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListCell.swift; sourceTree = "<group>"; };
 		FB808E5B2C63998600E9E2E5 /* RecordListReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListReactor.swift; sourceTree = "<group>"; };
+		FB808E5F2C63A61F00E9E2E5 /* MenuAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAlertView.swift; sourceTree = "<group>"; };
+		FB808E632C63C6EE00E9E2E5 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +273,7 @@
 				4A16E2CF2C5A702000F48180 /* RecordListViewController.swift */,
 				FB808E572C622DC600E9E2E5 /* RecordListCell.swift */,
 				FB808E5B2C63998600E9E2E5 /* RecordListReactor.swift */,
+				FB808E5F2C63A61F00E9E2E5 /* MenuAlertView.swift */,
 			);
 			path = RecordList;
 			sourceTree = "<group>";
@@ -314,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				4A5FFDD32C4FB515002F5A77 /* UIView+.swift */,
+				FB808E632C63C6EE00E9E2E5 /* UIImage+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -532,6 +538,7 @@
 				4A16E2F12C60F0A700F48180 /* HomeMap_울산.swift in Sources */,
 				4A16E2F22C60F0A700F48180 /* HomeMap_전라북도.swift in Sources */,
 				4A16E2F32C60F0A700F48180 /* HomeMap_광주.swift in Sources */,
+				FB808E642C63C6EE00E9E2E5 /* UIImage+.swift in Sources */,
 				4A16E2F42C60F0A700F48180 /* HomeMap_세종시.swift in Sources */,
 				4AAFDBB22C4953C9008C6DAF /* Application.swift in Sources */,
 				4A5FFDB22C4FAE73002F5A77 /* HomeMap_충청남도.swift in Sources */,
@@ -572,6 +579,7 @@
 				4A16E2B62C5A551F00F48180 /* OnboardingMap_경상남도.swift in Sources */,
 				4A16E2E62C5D0F5D00F48180 /* MDPopUpView.swift in Sources */,
 				4A16E2BE2C5A571400F48180 /* OnboardingMap_제주도.swift in Sources */,
+				FB808E602C63A61F00E9E2E5 /* MenuAlertView.swift in Sources */,
 				4A5FFDB42C4FAEB2002F5A77 /* HomeMap_강원도.swift in Sources */,
 				4A16E2D02C5A702000F48180 /* RecordListViewController.swift in Sources */,
 				4A5FFDA82C4FABBF002F5A77 /* HomeMap_경기도.swift in Sources */,
