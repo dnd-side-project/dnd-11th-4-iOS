@@ -49,7 +49,6 @@ final class HomeMap_대전: UIView, DrawMapProtocol {
     }
     
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        print(point)
         return shape.contains(point)
     }
 }
