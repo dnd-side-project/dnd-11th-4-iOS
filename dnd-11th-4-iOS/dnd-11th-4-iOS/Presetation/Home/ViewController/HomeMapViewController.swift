@@ -46,7 +46,7 @@ final class HomeMapViewController: UIViewController, View {
         return imageView
     }()
     
-    private let mapCountLabel = MDLabel(attributedString: NSAttributedString.pretendardM16("0/16"), color: .gray90)
+    private let mapCountLabel = MDLabel(textColor: .gray90)
     
     private let 서울 = HomeMap_서울()
     private let 경기도 = HomeMap_경기도()
@@ -165,6 +165,8 @@ final class HomeMapViewController: UIViewController, View {
                 } else {
                     self.recordButton.isHidden = true
                 }
+                
+                self.mapCountLabel.attributedText = NSAttributedString.pretendardM16(data.visitedMapCount)
             }
             .disposed(by: disposeBag)
     }

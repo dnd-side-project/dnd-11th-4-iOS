@@ -9,13 +9,13 @@ import UIKit
 
 final class MDLabel: UILabel {
     
-    init(attributedString: NSAttributedString,
-         color: UIColor,
+    init(attributedString: NSAttributedString? = nil,
+         textColor: UIColor,
          alignment: NSTextAlignment = .left,
          lines: Int = 0) {
         super.init(frame: .zero)
         self.attributedText = attributedString
-        self.textColor = color
+        self.textColor = textColor
         self.textAlignment = alignment
         self.numberOfLines = lines
     }

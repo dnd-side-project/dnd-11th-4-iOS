@@ -23,7 +23,7 @@ final class HomeMapReactor: Reactor {
     }
     
     struct State {
-        var totalMapColorState = TotalMapModel(selectedMap: nil, totalMapArray: [])
+        var totalMapColorState = TotalMapModel(selectedMap: nil, totalMapArray: [], visitedMapCount: "0/16")
         var dummyState = [ColorWithOpacityModel(name: "서울", opacity: 1, colorType: .pink(3)),
                           ColorWithOpacityModel(name: "경기도", opacity: 1, colorType: .yellow(1)),
                           ColorWithOpacityModel(name: "인천", opacity: 1, colorType: .blue(1)),
@@ -54,7 +54,7 @@ final class HomeMapReactor: Reactor {
                 MapModel(mapName: data.name, mapColor: data.colorType.color)
             })
             
-            initialState.totalMapColorState = TotalMapModel(totalMapArray: mapColorArray)
+            initialState.totalMapColorState = TotalMapModel(totalMapArray: mapColorArray, visitedMapCount: "0/16")
             return Observable.just(Mutation.setTotalMapColor(initialState.totalMapColorState))
         case .mapAction(let type):
             var tempState = initialState.totalMapColorState

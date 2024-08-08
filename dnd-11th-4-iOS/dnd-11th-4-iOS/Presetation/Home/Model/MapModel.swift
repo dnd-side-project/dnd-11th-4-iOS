@@ -7,10 +7,11 @@
 
 import UIKit
 
-/// 전체 map Model (선택된 map, 배열 형태의 전체 map)
+/// 전체 map Model (선택된 map, 배열 형태의 전체 map, map 방문 count 데이터)
 struct TotalMapModel {
     var selectedMap: SelectedMapModel?
     var totalMapArray: [MapModel]
+    var visitedMapCount: String
 }
 
 /// 선택된 map Model
