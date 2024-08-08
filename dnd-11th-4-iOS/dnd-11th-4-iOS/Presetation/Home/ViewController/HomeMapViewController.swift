@@ -7,16 +7,15 @@
 
 import UIKit
 import SnapKit
-import RxSwift
-import RxCocoa
 import RxGesture
 import ReactorKit
 
 final class HomeMapViewController: UIViewController, View {
     
     typealias Reactor = HomeMapReactor
-    
     var disposeBag = DisposeBag()
+    
+    // MARK: UI Properties
     
     private let homeScrollView: UIScrollView = {
         let scrollerView = UIScrollView(frame: CGRect(x: 0, y: 0,
@@ -66,14 +65,14 @@ final class HomeMapViewController: UIViewController, View {
     private let 광주 = HomeMap_광주()
     private let 제주도 = HomeMap_제주도()
     
+    // MARK: Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUI()
         setLayout()
         setDelegate()
-        
-        self.제주도.backgroundColor = .purple
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,6 +89,9 @@ final class HomeMapViewController: UIViewController, View {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    // MARK: - Method
     
     func bind(reactor: HomeMapReactor) {
         let 서울Tap = 서울.rx.tapGesture().when(.recognized).map { _ in RegionType.서울 }
@@ -118,7 +120,7 @@ final class HomeMapViewController: UIViewController, View {
         reactor.state.map{ $0.totalMapColorState }
             .withUnretained(self)
             .subscribe { _, data in
-                for model in data.totalMapColorArray {
+                for model in data.totalMapArray {
                     switch model.mapName {
                     case "서울":
                         self.서울.bindMapUI(color: model.mapColor)
@@ -215,12 +217,14 @@ final class HomeMapViewController: UIViewController, View {
         // 13 mini 기준
         if Constant.Screen.width == 375 {
             mapContainerView.frame = CGRect(x: 0, y: -50, width: Constant.Screen.width, height: Constant.Screen.height-145)
-            // 15 pro max 기준
+        // 15 pro max 기준
         } else if Constant.Screen.width == 430 {
-            mapContainerView.frame = CGRect(x: 25, y: 50, width: Constant.Screen.width, height: Constant.Screen.height)
+            mapContainerView.frame = CGRect(x: 25, y: -20, width: Constant.Screen.width, height: Constant.Screen.height-145)
         }
     }
 }
+
+// MARK: - UIScrollViewDelegate
 
 extension HomeMapViewController: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {

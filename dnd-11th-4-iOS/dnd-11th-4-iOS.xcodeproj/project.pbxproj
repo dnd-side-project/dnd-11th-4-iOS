@@ -35,21 +35,19 @@
 		4A16E2E62C5D0F5D00F48180 /* MDPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2E52C5D0F5D00F48180 /* MDPopUpView.swift */; };
 		4A16E2EB2C5FC1DB00F48180 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 4A16E2EA2C5FC1DB00F48180 /* RxGesture */; };
 		4A16E2EE2C60AD8F00F48180 /* OpacityColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2ED2C60AD8F00F48180 /* OpacityColorType.swift */; };
-		4A16E2F62C60F8DA00F48180 /* HomeMapReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2F52C60F8DA00F48180 /* HomeMapReactor.swift */; };
 		4A16E2EF2C60F0A700F48180 /* HomeMap_인천.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDAA2C4FAD05002F5A77 /* HomeMap_인천.swift */; };
 		4A16E2F02C60F0A700F48180 /* HomeMap_경상북도.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDBB2C4FAFB7002F5A77 /* HomeMap_경상북도.swift */; };
 		4A16E2F12C60F0A700F48180 /* HomeMap_울산.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDC32C4FB08E002F5A77 /* HomeMap_울산.swift */; };
 		4A16E2F22C60F0A700F48180 /* HomeMap_전라북도.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDB92C4FAF75002F5A77 /* HomeMap_전라북도.swift */; };
 		4A16E2F32C60F0A700F48180 /* HomeMap_광주.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDCD2C4FB399002F5A77 /* HomeMap_광주.swift */; };
 		4A16E2F42C60F0A700F48180 /* HomeMap_세종시.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDB72C4FAF3F002F5A77 /* HomeMap_세종시.swift */; };
+		4A16E2F62C60F8DA00F48180 /* HomeMapReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2F52C60F8DA00F48180 /* HomeMapReactor.swift */; };
 		4A5FFDA62C4FAA6A002F5A77 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */; };
 		4A5FFDA82C4FABBF002F5A77 /* HomeMap_경기도.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDA72C4FABBF002F5A77 /* HomeMap_경기도.swift */; };
 		4A5FFDAE2C4FAD42002F5A77 /* DrawMapProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDAD2C4FAD42002F5A77 /* DrawMapProtocol.swift */; };
 		4A5FFDB22C4FAE73002F5A77 /* HomeMap_충청남도.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDB12C4FAE73002F5A77 /* HomeMap_충청남도.swift */; };
 		4A5FFDB42C4FAEB2002F5A77 /* HomeMap_강원도.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDB32C4FAEB2002F5A77 /* HomeMap_강원도.swift */; };
 		4A5FFDB62C4FAF12002F5A77 /* HomeMap_대전.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDB52C4FAF12002F5A77 /* HomeMap_대전.swift */; };
-		4A5FFDBA2C4FAF75002F5A77 /* HomeMap_전라북도.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDB92C4FAF75002F5A77 /* HomeMap_전라북도.swift */; };
-		4A5FFDBC2C4FAFB7002F5A77 /* HomeMap_경상북도.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDBB2C4FAFB7002F5A77 /* HomeMap_경상북도.swift */; };
 		4A5FFDBE2C4FAFF2002F5A77 /* HomeMap_경상남도.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDBD2C4FAFF2002F5A77 /* HomeMap_경상남도.swift */; };
 		4A5FFDC02C4FB027002F5A77 /* HomeMap_전라남도.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDBF2C4FB027002F5A77 /* HomeMap_전라남도.swift */; };
 		4A5FFDC22C4FB056002F5A77 /* HomeMap_부산.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDC12C4FB056002F5A77 /* HomeMap_부산.swift */; };
@@ -59,6 +57,8 @@
 		4A5FFDD02C4FB3C0002F5A77 /* HomeMap_서울.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDCF2C4FB3C0002F5A77 /* HomeMap_서울.swift */; };
 		4A5FFDD42C4FB515002F5A77 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDD32C4FB515002F5A77 /* UIView+.swift */; };
 		4AA414452C63B26000AB3CE8 /* RegionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA414442C63B26000AB3CE8 /* RegionType.swift */; };
+		4AA4144B2C6466E700AB3CE8 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4144A2C6466E700AB3CE8 /* MapModel.swift */; };
+		4AA4144F2C64686900AB3CE8 /* ColorWithOpacityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA4144E2C64686900AB3CE8 /* ColorWithOpacityModel.swift */; };
 		4AADE34E2C4FD7E100A2ABE3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4AADE34D2C4FD7E100A2ABE3 /* SnapKit */; };
 		4AADE3502C4FD7E100A2ABE3 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 4AADE34F2C4FD7E100A2ABE3 /* SnapKit-Dynamic */; };
 		4AADE3532C4FD7E500A2ABE3 /* RxFlow in Frameworks */ = {isa = PBXBuildFile; productRef = 4AADE3522C4FD7E500A2ABE3 /* RxFlow */; };
@@ -137,6 +137,8 @@
 		4A5FFDCF2C4FB3C0002F5A77 /* HomeMap_서울.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeMap_서울.swift"; sourceTree = "<group>"; };
 		4A5FFDD32C4FB515002F5A77 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		4AA414442C63B26000AB3CE8 /* RegionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionType.swift; sourceTree = "<group>"; };
+		4AA4144A2C6466E700AB3CE8 /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
+		4AA4144E2C64686900AB3CE8 /* ColorWithOpacityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorWithOpacityModel.swift; sourceTree = "<group>"; };
 		4AAFDB692C494CFF008C6DAF /* dnd-11th-4-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dnd-11th-4-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AAFDB6C2C494CFF008C6DAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AAFDB6E2C494CFF008C6DAF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -212,7 +214,7 @@
 			path = OnboardingMap;
 			sourceTree = "<group>";
 		};
-		4A16E2C72C5A5C0E00F48180 /* HomeMap */ = {
+		4A16E2C72C5A5C0E00F48180 /* MapView */ = {
 			isa = PBXGroup;
 			children = (
 				4A5FFDCF2C4FB3C0002F5A77 /* HomeMap_서울.swift */,
@@ -232,16 +234,13 @@
 				4A5FFDCD2C4FB399002F5A77 /* HomeMap_광주.swift */,
 				4A5FFDC72C4FB0F1002F5A77 /* HomeMap_제주도.swift */,
 			);
-			path = HomeMap;
+			path = MapView;
 			sourceTree = "<group>";
 		};
 		4A16E2C82C5A5C1F00F48180 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				4AAFDB702C494CFF008C6DAF /* HomeMapViewController.swift */,
-				4A16E2ED2C60AD8F00F48180 /* OpacityColorType.swift */,
-				4A16E2F52C60F8DA00F48180 /* HomeMapReactor.swift */,
-				4AA414442C63B26000AB3CE8 /* RegionType.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -320,6 +319,25 @@
 				4A5FFDD32C4FB515002F5A77 /* UIView+.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		4AA414482C64665F00AB3CE8 /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+				4A16E2F52C60F8DA00F48180 /* HomeMapReactor.swift */,
+			);
+			path = Reactor;
+			sourceTree = "<group>";
+		};
+		4AA414492C64667000AB3CE8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4A16E2ED2C60AD8F00F48180 /* OpacityColorType.swift */,
+				4AA414442C63B26000AB3CE8 /* RegionType.swift */,
+				4AA4144E2C64686900AB3CE8 /* ColorWithOpacityModel.swift */,
+				4AA4144A2C6466E700AB3CE8 /* MapModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		4AAFDB602C494CFF008C6DAF = {
@@ -430,7 +448,9 @@
 			isa = PBXGroup;
 			children = (
 				4A16E2C82C5A5C1F00F48180 /* ViewController */,
-				4A16E2C72C5A5C0E00F48180 /* HomeMap */,
+				4AA414482C64665F00AB3CE8 /* Reactor */,
+				4A16E2C72C5A5C0E00F48180 /* MapView */,
+				4AA414492C64667000AB3CE8 /* Model */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -592,7 +612,9 @@
 				4A5FFDA82C4FABBF002F5A77 /* HomeMap_경기도.swift in Sources */,
 				4A5FFDB62C4FAF12002F5A77 /* HomeMap_대전.swift in Sources */,
 				4A5FFDCC2C4FB236002F5A77 /* HomeMap_대구.swift in Sources */,
+				4AA4144B2C6466E700AB3CE8 /* MapModel.swift in Sources */,
 				4AAFDBB42C4953CD008C6DAF /* Color.swift in Sources */,
+				4AA4144F2C64686900AB3CE8 /* ColorWithOpacityModel.swift in Sources */,
 				4A16E2B02C5A530E00F48180 /* OnboardingMap_대전.swift in Sources */,
 				4A16E2EE2C60AD8F00F48180 /* OpacityColorType.swift in Sources */,
 				4A16E2C22C5A59D100F48180 /* OnboardingMap_대구.swift in Sources */,
