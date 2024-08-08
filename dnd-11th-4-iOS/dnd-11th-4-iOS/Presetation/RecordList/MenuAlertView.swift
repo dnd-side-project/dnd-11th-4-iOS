@@ -11,7 +11,7 @@ import SnapKit
 final class MenuAlertView: UIView {
     private let editButton: MDButton = {
         let button = MDButton(backgroundColor: .mapWhite, cornerRadius: 0)
-        let resizedImage = UIImage(resource: .iconPencilGray).resizeImageTo(size: CGSize(width: 20, height: 20))
+        let resizedImage = UIImage(resource: .iconEdit).resizeImageTo(size: CGSize(width: 20, height: 20))
         button.setImageAndText(attributedString: NSAttributedString.pretendardR14("수정"), color: .black, image: resizedImage!)
         button.semanticContentAttribute = .forceRightToLeft
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 83, bottom: 0, right: 0)
@@ -34,6 +34,7 @@ final class MenuAlertView: UIView {
     private let separator: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.gray50
+        view.isUserInteractionEnabled = false
         return view
     }()
     
@@ -46,6 +47,10 @@ final class MenuAlertView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         setupAppearance()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            print(#function)
     }
     
     required init?(coder: NSCoder) {

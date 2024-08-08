@@ -9,11 +9,12 @@ import UIKit
 import SnapKit
 
 /// 임시 데이터
-struct Test {
+struct Test: Hashable {
     let image: UIImage
     let title: String
     let memo: String
     let date: String
+    let id: UUID = UUID()
 }
 
 final class RecordListCell: UICollectionViewCell {
@@ -46,23 +47,34 @@ final class RecordListCell: UICollectionViewCell {
     private let menuView: MenuAlertView = {
         let view = MenuAlertView()
         view.isHidden = true
+        view.clipsToBounds = true
         return view
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
-        menuButton.bringSubviewToFront(menuView)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        menuView.isHidden = true
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//            print(#function)
+//        }
+    
     private func setupUI() {
-        [recordImage, titleLabel, memoLabel, calendarImage, dateLabel, menuButton, menuView].forEach { view in
+        [recordImage, titleLabel, memoLabel, calendarImage, dateLabel, menuButton].forEach { view in
             contentView.addSubview(view)
         }
+        
+        self.addSubview(menuView)
         
         recordImage.snp.makeConstraints {
             $0.top.leading.equalToSuperview()
@@ -94,11 +106,12 @@ final class RecordListCell: UICollectionViewCell {
         }
         
         menuButton.snp.makeConstraints {
-            $0.top.trailing.equalToSuperview().inset(10)
+            $0.top.equalToSuperview().inset(10)
+            $0.trailing.equalToSuperview()
             $0.height.width.equalTo(20)
         }
         
-        menuView.snp.makeConstraints {
+        menuView.snp.remakeConstraints {
             $0.top.equalTo(menuButton.snp.bottom).offset(5)
             $0.trailing.equalTo(menuButton.snp.trailing)
             $0.width.equalTo(156)
@@ -114,7 +127,10 @@ final class RecordListCell: UICollectionViewCell {
     }
     
     @objc private func showMenu() {
-        print("hit")
         menuView.isHidden.toggle()
+        if !menuView.isHidden {
+            self.bringSubviewToFront(menuView)
+            self.layoutIfNeeded()
+        }
     }
 }

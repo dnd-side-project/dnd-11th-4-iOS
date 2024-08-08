@@ -24,7 +24,6 @@ final class RecordListViewController: UIViewController {
         view.backgroundColor = .mapWhite
         setupNavigationBar()
         setupCollectionView()
-        
         reactor = RecordListReactor()
         bind(reactor: reactor!)
         reactor?.action.onNext(.loadRecords)
@@ -45,16 +44,20 @@ final class RecordListViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: view.frame.width - 32, height: 76)
         layout.minimumLineSpacing = 24
+        layout.headerReferenceSize = CGSize(width: view.frame.width, height: 44)
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(RecordListCell.self, forCellWithReuseIdentifier: RecordListCell.identifier)
+        collectionView.register(RecordListHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: RecordListHeaderView.identifier)
         
         view.addSubview(collectionView)
         
-        collectionView.snp.makeConstraints { make in
-            make.top.equalTo(navigationBar.snp.bottom)
-            make.leading.trailing.bottom.equalToSuperview()
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(navigationBar.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
+        
+        collectionView.dataSource = self
     }
 }
 
@@ -62,9 +65,37 @@ extension RecordListViewController: View {
     func bind(reactor: RecordListReactor) {
         reactor.state
             .map { $0.records }
-            .bind(to: collectionView.rx.items(cellIdentifier: RecordListCell.identifier, cellType: RecordListCell.self)) { index, record, cell in
-                cell.configure(with: record)
-            }
+            .subscribe(onNext: { [weak self] records in
+                guard let self = self else { return }
+                self.records = records
+                self.collectionView.reloadData()
+            })
             .disposed(by: disposeBag)
     }
 }
+
+extension RecordListViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return records.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecordListCell.identifier, for: indexPath) as! RecordListCell
+        cell.configure(with: records[indexPath.item])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: RecordListHeaderView.identifier, for: indexPath) as! RecordListHeaderView
+            headerView.setCount(records.count)
+            return headerView
+        }
+        return UICollectionReusableView()
+    }
+}
+

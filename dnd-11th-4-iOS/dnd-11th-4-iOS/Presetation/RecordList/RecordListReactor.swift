@@ -34,6 +34,11 @@ extension RecordListReactor {
                 Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드", memo: "꾸르잼", date: "24.10.22"),
                 Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드", memo: "꾸르잼", date: "24.10.22"),
                 Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드", memo: "꾸르잼", date: "24.10.22"),
+                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드", memo: "꾸르잼", date: "24.10.22"),
+                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드", memo: "꾸르잼", date: "24.10.22"),
+                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드", memo: "꾸르잼", date: "24.10.22"),
+                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드", memo: "꾸르잼", date: "24.10.22"),
+                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드", memo: "꾸르잼", date: "24.10.22"),
                 Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드", memo: "꾸르잼", date: "24.10.22")
             ]
             return Observable.just(Mutation.setRecords(records))
