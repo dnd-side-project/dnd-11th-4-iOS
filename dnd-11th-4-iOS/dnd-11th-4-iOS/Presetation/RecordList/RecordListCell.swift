@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 /// 임시 데이터
 struct Test: Hashable {
@@ -18,6 +20,10 @@ struct Test: Hashable {
 }
 
 final class RecordListCell: UICollectionViewCell {
+    let deleteButtonTapped = PublishSubject<Void>()
+    let editButtonTapped = PublishSubject<Void>()
+    private let disposeBag = DisposeBag()
+    
     static let identifier = "RecordListCell"
     private let recordImage: UIImageView = {
         let imageView = UIImageView()
@@ -54,6 +60,7 @@ final class RecordListCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        didTapDeleteButton()
     }
     
     override func prepareForReuse() {
@@ -128,5 +135,14 @@ final class RecordListCell: UICollectionViewCell {
             self.bringSubviewToFront(menuView)
             self.layoutIfNeeded()
         }
+    }
+    
+    func didTapDeleteButton() {
+        menuView.deleteButtonTapped
+            .subscribe(onNext: {
+                self.deleteButtonTapped.onNext(())
+                print("cell")
+            })
+            .disposed(by: disposeBag)
     }
 }

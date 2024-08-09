@@ -115,6 +115,12 @@ extension RecordListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecordListCell.identifier, for: indexPath) as! RecordListCell
         cell.configure(with: records[indexPath.item])
+        cell.deleteButtonTapped
+            .subscribe(onNext: {
+                let popUpVC = PopUpViewController()
+                self.navigationController?.pushViewController(popUpVC, animated: true)
+            })
+            .disposed(by: disposeBag)
         return cell
     }
     

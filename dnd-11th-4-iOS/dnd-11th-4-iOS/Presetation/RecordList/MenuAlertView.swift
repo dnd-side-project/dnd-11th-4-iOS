@@ -7,8 +7,14 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class MenuAlertView: UIView {
+    let deleteButtonTapped = PublishSubject<Void>()
+    let editButtonTapped = PublishSubject<Void>()
+    private let disposeBag = DisposeBag()
+    
     private let editButton: MDButton = {
         let button = MDButton(backgroundColor: .mapWhite, cornerRadius: 0)
         let resizedImage = UIImage(resource: .iconEdit).resizeImageTo(size: CGSize(width: 20, height: 20))
@@ -16,7 +22,6 @@ final class MenuAlertView: UIView {
         button.semanticContentAttribute = .forceRightToLeft
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 83, bottom: 0, right: 0)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 83)
-        button.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -27,7 +32,6 @@ final class MenuAlertView: UIView {
         button.semanticContentAttribute = .forceRightToLeft
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 83, bottom: 0, right: 0)
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 83)
-        button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -42,6 +46,7 @@ final class MenuAlertView: UIView {
         super.init(frame: frame)
         setupUI()
         setupAppearance()
+        didTapDeleteButton()
     }
     
     override func layoutSubviews() {
@@ -95,11 +100,16 @@ final class MenuAlertView: UIView {
         self.layer.shadowRadius = 2.0
     }
     
-    @objc func editButtonTapped() {
+    func didTapEditButton() {
         print("hit edit")
     }
     
-    @objc func deleteButtonTapped() {
-        print("hit delete")
+    func didTapDeleteButton() {
+        deleteButton.rx.tap
+            .bind(onNext: { [weak self] in
+                self?.deleteButtonTapped.onNext(())
+                print("hit delete")
+            })
+            .disposed(by: disposeBag)
     }
 }

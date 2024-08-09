@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import SnapKit
 
 class PopUpViewController: UIViewController {
-    
+    private let popUpView = MDPopUpView()
     private let dimmedView = UIView()
     
     init() {
@@ -24,8 +25,8 @@ class PopUpViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        dimmedView.backgroundColor = .black2
-        dimmedView.alpha = 0
+        dimmedView.backgroundColor = .gray10
+        dimmedView.alpha = 1
         self.view.addSubview(dimmedView)
         
         dimmedView.snp.makeConstraints { make in
@@ -35,6 +36,8 @@ class PopUpViewController: UIViewController {
         UIView.animate(withDuration: 0.3) {
             self.dimmedView.alpha = 0.3
         }
+        
+        setupPopUpView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -44,6 +47,16 @@ class PopUpViewController: UIViewController {
             self.dimmedView.alpha = 0
         } completion: { _ in
             self.dimmedView.removeFromSuperview()
+        }
+    }
+    
+    private func setupPopUpView() {
+        view.addSubview(popUpView)
+        
+        popUpView.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
+            $0.height.equalTo(117)
+            $0.width.equalTo(293)
         }
     }
 }
