@@ -64,7 +64,7 @@ final class MenuAlertView: UIView {
         
         editButton.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(40)
+            $0.height.equalTo(37)
         }
         
         separator.snp.makeConstraints {
@@ -76,7 +76,7 @@ final class MenuAlertView: UIView {
         deleteButton.snp.makeConstraints {
             $0.top.equalTo(separator.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
-            $0.height.equalTo(40)
+            $0.height.equalTo(37)
         }
     }
     

@@ -107,11 +107,11 @@ final class RecordListCell: UICollectionViewCell {
             $0.height.width.equalTo(20)
         }
         
-        menuView.snp.remakeConstraints {
-            $0.top.equalTo(menuButton.snp.bottom).offset(5)
-            $0.trailing.equalTo(menuButton.snp.trailing)
+        menuView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.trailing.equalTo(menuButton.snp.leading).offset(-5)
             $0.width.equalTo(156)
-            $0.height.greaterThanOrEqualTo(81)
+            $0.height.greaterThanOrEqualTo(75)
         }
     }
     
