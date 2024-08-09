@@ -85,6 +85,7 @@
 		FB808E602C63A61F00E9E2E5 /* MenuAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E5F2C63A61F00E9E2E5 /* MenuAlertView.swift */; };
 		FB808E642C63C6EE00E9E2E5 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E632C63C6EE00E9E2E5 /* UIImage+.swift */; };
 		FB808E662C64BD7500E9E2E5 /* RecordListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E652C64BD7500E9E2E5 /* RecordListHeaderView.swift */; };
+		FB808E682C660AE600E9E2E5 /* EmptyRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E672C660AE600E9E2E5 /* EmptyRecordView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -156,6 +157,7 @@
 		FB808E5F2C63A61F00E9E2E5 /* MenuAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAlertView.swift; sourceTree = "<group>"; };
 		FB808E632C63C6EE00E9E2E5 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		FB808E652C64BD7500E9E2E5 /* RecordListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListHeaderView.swift; sourceTree = "<group>"; };
+		FB808E672C660AE600E9E2E5 /* EmptyRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRecordView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +279,7 @@
 				FB808E5B2C63998600E9E2E5 /* RecordListReactor.swift */,
 				FB808E5F2C63A61F00E9E2E5 /* MenuAlertView.swift */,
 				FB808E652C64BD7500E9E2E5 /* RecordListHeaderView.swift */,
+				FB808E672C660AE600E9E2E5 /* EmptyRecordView.swift */,
 			);
 			path = RecordList;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				4A16E2BC2C5A56C800F48180 /* OnboardingMap_울산.swift in Sources */,
 				4AAFDB712C494CFF008C6DAF /* HomeViewController.swift in Sources */,
 				4A5FFDCA2C4FB202002F5A77 /* HomeMap_충청북도.swift in Sources */,
+				FB808E682C660AE600E9E2E5 /* EmptyRecordView.swift in Sources */,
 				4A5FFDBE2C4FAFF2002F5A77 /* HomeMap_경상남도.swift in Sources */,
 				4AAFDBB62C4953D2008C6DAF /* Font.swift in Sources */,
 				4A5FFDD02C4FB3C0002F5A77 /* HomeMap_서울.swift in Sources */,

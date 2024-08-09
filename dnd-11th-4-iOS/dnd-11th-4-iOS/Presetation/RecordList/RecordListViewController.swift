@@ -14,7 +14,8 @@ import ReactorKit
 final class RecordListViewController: UIViewController {
     private let navigationBar = MDNavigationBar(type: .list)
     private var records: [Test] = []
-    private var collectionView: UICollectionView!
+    private var recordListView: UICollectionView!
+    private let emptyRecordView = EmptyRecordView()
     
     var disposeBag: DisposeBag = DisposeBag()
     var reactor: RecordListReactor?
@@ -24,6 +25,7 @@ final class RecordListViewController: UIViewController {
         view.backgroundColor = .mapWhite
         setupNavigationBar()
         setupCollectionView()
+        setupEmptyRecordView()
         reactor = RecordListReactor()
         bind(reactor: reactor!)
         reactor?.action.onNext(.loadRecords)
@@ -40,24 +42,45 @@ final class RecordListViewController: UIViewController {
         }
     }
     
+    private func setupEmptyRecordView() {
+        view.addSubview(emptyRecordView)
+        
+        emptyRecordView.snp.makeConstraints {
+            $0.top.equalTo(navigationBar.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        emptyRecordView.isHidden = true
+    }
+    
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: view.frame.width - 32, height: 76)
         layout.minimumLineSpacing = 24
         layout.headerReferenceSize = CGSize(width: view.frame.width, height: 44)
         
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(RecordListCell.self, forCellWithReuseIdentifier: RecordListCell.identifier)
-        collectionView.register(RecordListHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: RecordListHeaderView.identifier)
+        recordListView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        recordListView.register(RecordListCell.self, forCellWithReuseIdentifier: RecordListCell.identifier)
+        recordListView.register(RecordListHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: RecordListHeaderView.identifier)
         
-        view.addSubview(collectionView)
+        view.addSubview(recordListView)
         
-        collectionView.snp.makeConstraints {
+        recordListView.snp.makeConstraints {
             $0.top.equalTo(navigationBar.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
         
-        collectionView.dataSource = self
+        recordListView.dataSource = self
+    }
+    
+    private func showEmptyRecordView() {
+        emptyRecordView.isHidden = false
+        recordListView.isHidden = true
+    }
+    
+    private func showRecordListView() {
+        emptyRecordView.isHidden = true
+        recordListView.isHidden = false
     }
 }
 
@@ -68,7 +91,13 @@ extension RecordListViewController: View {
             .subscribe(onNext: { [weak self] records in
                 guard let self = self else { return }
                 self.records = records
-                self.collectionView.reloadData()
+                
+                if records.isEmpty {
+                    self.showEmptyRecordView()
+                } else {
+                    self.recordListView.reloadData()
+                    self.showRecordListView()
+                }
             })
             .disposed(by: disposeBag)
     }

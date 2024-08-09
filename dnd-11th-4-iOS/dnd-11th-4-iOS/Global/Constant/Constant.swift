@@ -34,5 +34,6 @@ extension Constant {
         static let iconTrashcan = UIImage(named: "IconTrashcan")
         static let iconXCircle = UIImage(named: "IconXCircle")
         static let iconEdit = UIImage(named: "IconEdit")
+        static let imageEmpty = UIImage(named: "ImageEmpty")
     }
 }
