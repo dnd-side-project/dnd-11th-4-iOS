@@ -26,11 +26,13 @@ enum NavigationBarType {
 final class MDNavigationBar: UIView {
     private let backButton = MDButton(backgroundColor: .clear).setImage(image: .iconBack)
     private let detailText = MDLabel(attributedString: NSAttributedString.pretendardB16("dummy"), color: .mapBlack)
+    private let underlineView = UIView()
     
     init(type: NavigationBarType) {
         super.init(frame: .zero)
         self.backgroundColor = .mapWhite
         setUI(type: type)
+        setupUnderline()
     }
     
     required init?(coder: NSCoder) {
@@ -59,6 +61,16 @@ final class MDNavigationBar: UIView {
             detailText.snp.makeConstraints {
                 $0.center.equalToSuperview()
             }
+        }
+    }
+    
+    private func setupUnderline() {
+        underlineView.backgroundColor = .gray40
+        self.addSubview(underlineView)
+        underlineView.snp.makeConstraints {
+            $0.height.equalTo(1)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
     }
 }

@@ -65,10 +65,6 @@ final class RecordListCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//            print(#function)
-//        }
-    
     private func setupUI() {
         [recordImage, titleLabel, memoLabel, calendarImage, dateLabel, menuButton].forEach { view in
             contentView.addSubview(view)
