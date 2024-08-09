@@ -36,7 +36,10 @@ class PopUpViewController: UIViewController {
         UIView.animate(withDuration: 0.3) {
             self.dimmedView.alpha = 0.3
         }
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         setupPopUpView()
     }
     
