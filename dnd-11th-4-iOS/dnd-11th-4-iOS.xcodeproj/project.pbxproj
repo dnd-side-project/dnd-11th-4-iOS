@@ -86,6 +86,7 @@
 		FB808E642C63C6EE00E9E2E5 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E632C63C6EE00E9E2E5 /* UIImage+.swift */; };
 		FB808E662C64BD7500E9E2E5 /* RecordListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E652C64BD7500E9E2E5 /* RecordListHeaderView.swift */; };
 		FB808E682C660AE600E9E2E5 /* EmptyRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E672C660AE600E9E2E5 /* EmptyRecordView.swift */; };
+		FB808E6A2C6901EA00E9E2E5 /* ListDeleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E692C6901EA00E9E2E5 /* ListDeleteViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -158,6 +159,7 @@
 		FB808E632C63C6EE00E9E2E5 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		FB808E652C64BD7500E9E2E5 /* RecordListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListHeaderView.swift; sourceTree = "<group>"; };
 		FB808E672C660AE600E9E2E5 /* EmptyRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRecordView.swift; sourceTree = "<group>"; };
+		FB808E692C6901EA00E9E2E5 /* ListDeleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDeleteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				4A16E2E32C5D0DFA00F48180 /* PopUpViewController.swift */,
+				FB808E692C6901EA00E9E2E5 /* ListDeleteViewController.swift */,
 			);
 			path = PopUp;
 			sourceTree = "<group>";
@@ -575,6 +578,7 @@
 				4A16E2D82C5B434F00F48180 /* MDLabel.swift in Sources */,
 				4A16E2DC2C5B50DF00F48180 /* MDToastView.swift in Sources */,
 				4A16E2C42C5A5A2800F48180 /* OnboardingMap_광주.swift in Sources */,
+				FB808E6A2C6901EA00E9E2E5 /* ListDeleteViewController.swift in Sources */,
 				4A16E2DA2C5B44FD00F48180 /* MDButton.swift in Sources */,
 				4A5FFDD42C4FB515002F5A77 /* UIView+.swift in Sources */,
 				4AAFDB6D2C494CFF008C6DAF /* AppDelegate.swift in Sources */,

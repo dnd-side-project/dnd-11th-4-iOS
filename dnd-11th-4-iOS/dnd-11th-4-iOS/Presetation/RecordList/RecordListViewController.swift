@@ -109,7 +109,7 @@ extension RecordListViewController: UICollectionViewDataSource {
         cell.configure(with: records[indexPath.item])
         cell.deleteButtonTapped
             .subscribe(onNext: {
-                let popUpVC = PopUpViewController()
+                let popUpVC = ListDeleteViewController()
                 self.navigationController?.pushViewController(popUpVC, animated: true)
             })
             .disposed(by: disposeBag)
