@@ -47,7 +47,6 @@ final class RecordListCell: UICollectionViewCell {
         let button = MDButton(backgroundColor: .clear, cornerRadius: 0)
         button.setImage(image: UIImage(resource: .iconDetail))
         button.imageView?.tintColor = .gray60
-        button.addTarget(self, action: #selector(showMenu), for: .touchUpInside)
         return button
     }()
     private let menuView: MenuAlertView = {
@@ -60,6 +59,7 @@ final class RecordListCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        showMenu()
         didTapDeleteButton()
     }
     
@@ -122,19 +122,24 @@ final class RecordListCell: UICollectionViewCell {
         }
     }
     
+    private func showMenu() {
+        menuButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                self.menuView.isHidden.toggle()
+                if !self.menuView.isHidden {
+                    self.bringSubviewToFront(self.menuView)
+                    self.layoutIfNeeded()
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
     func configure(with record: Test) {
         titleLabel.attributedText = NSAttributedString.pretendardSB14(record.title)
         memoLabel.attributedText = NSAttributedString.pretendardR14(record.memo)
         dateLabel.attributedText = NSAttributedString.pretendardR12(record.date)
         recordImage.image = record.image
-    }
-    
-    @objc private func showMenu() {
-        menuView.isHidden.toggle()
-        if !menuView.isHidden {
-            self.bringSubviewToFront(menuView)
-            self.layoutIfNeeded()
-        }
     }
     
     func didTapDeleteButton() {

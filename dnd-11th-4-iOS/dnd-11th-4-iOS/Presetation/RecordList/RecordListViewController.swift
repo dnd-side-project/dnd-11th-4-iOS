@@ -22,54 +22,46 @@ final class RecordListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .mapWhite
-        setupNavigationBar()
-        setupCollectionView()
-        setupEmptyRecordView()
+        setupUI()
+        registerCollectionView()
         reactor = RecordListReactor()
         bind(reactor: reactor!)
         reactor?.action.onNext(.loadRecords)
     }
     
-    private func setupNavigationBar() {
+    private func setupUI() {
+        view.backgroundColor = .mapWhite
+        
         navigationController?.navigationBar.isHidden = true
         view.addSubview(navigationBar)
-        
         navigationBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(44)
         }
-    }
-    
-    private func setupEmptyRecordView() {
-        view.addSubview(emptyRecordView)
         
+        view.addSubview(emptyRecordView)
         emptyRecordView.snp.makeConstraints {
             $0.top.equalTo(navigationBar.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
-        
         emptyRecordView.isHidden = true
-    }
-    
-    private func setupCollectionView() {
+        
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: view.frame.width - 32, height: 76)
         layout.minimumLineSpacing = 24
         layout.headerReferenceSize = CGSize(width: view.frame.width, height: 44)
-        
         recordListView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        recordListView.register(RecordListCell.self, forCellWithReuseIdentifier: RecordListCell.identifier)
-        recordListView.register(RecordListHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: RecordListHeaderView.identifier)
-        
         view.addSubview(recordListView)
-        
         recordListView.snp.makeConstraints {
             $0.top.equalTo(navigationBar.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
-        
+    }
+    
+    private func registerCollectionView() {
+        recordListView.register(RecordListCell.self, forCellWithReuseIdentifier: RecordListCell.identifier)
+        recordListView.register(RecordListHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: RecordListHeaderView.identifier)
         recordListView.dataSource = self
     }
     
