@@ -18,15 +18,15 @@ final class HomeMapViewController: UIViewController, View {
     // MARK: UI Properties
     
     private let homeScrollView: UIScrollView = {
-        let scrollerView = UIScrollView(frame: CGRect(x: 0, y: 0,
-                                                      width: Constant.Screen.width, height: Constant.Screen.height))
-        scrollerView.backgroundColor = .mapBackground
-        scrollerView.isScrollEnabled = true
-        scrollerView.minimumZoomScale = 1.0
-        scrollerView.maximumZoomScale = 6.0
-        scrollerView.showsVerticalScrollIndicator = false
-        scrollerView.showsHorizontalScrollIndicator = false
-        return scrollerView
+        let scrollView = UIScrollView(frame: .zero)
+        scrollView.contentInsetAdjustmentBehavior = .never
+        scrollView.backgroundColor = .mapBackground
+        scrollView.isScrollEnabled = true
+        scrollView.minimumZoomScale = 1.0
+        scrollView.maximumZoomScale = 6.0
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        return scrollView
     }()
     
     private let recordButton = MDButton(backgroundColor: .black2)
@@ -69,16 +69,17 @@ final class HomeMapViewController: UIViewController, View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setUI()
-        setLayout()
         setDelegate()
+        reactor?.action.onNext(.mapInset(DeviceSize(width: Constant.Screen.width,
+                                                               height: Constant.Screen.height)))
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        reactor?.action.onNext(.totalMapColor)
+        reactor?.action.onNext(.viewWillAppear)
     }
     
     init(reactor: HomeMapReactor) {
@@ -89,7 +90,6 @@ final class HomeMapViewController: UIViewController, View {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     // MARK: - Method
     
@@ -117,7 +117,20 @@ final class HomeMapViewController: UIViewController, View {
         .bind(to: reactor.action)
         .disposed(by: disposeBag)
         
-        reactor.state.map{ $0.totalMapColorState }
+        mapContainerView.rx.tapGesture()
+            .when(.recognized)
+            .map { _ in Reactor.Action.clearViewAction }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        reactor.state.compactMap{ $0.inset }
+            .withUnretained(self)
+            .subscribe { _, inset in
+                self.setLayout(inset: TopAndLeadingInset(top: inset.top, leading: inset.leading))
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state.map{ $0.totalMapState }
             .withUnretained(self)
             .subscribe { _, data in
                 for model in data.totalMapArray {
@@ -175,7 +188,7 @@ final class HomeMapViewController: UIViewController, View {
         self.recordButton.isHidden = true
     }
     
-    private func setLayout() {
+    private func setLayout(inset: TopAndLeadingInset) {
         view.addSubviews(homeScrollView, recordButton, visitedMapCountView)
         homeScrollView.addSubviews(mapContainerView)
         mapContainerView.addSubviews(서울, 경기도, 인천, 강원도, 충청북도, 충청남도,
@@ -183,10 +196,21 @@ final class HomeMapViewController: UIViewController, View {
                                      전라남도, 광주, 제주도)
         visitedMapCountView.addSubviews(shoesImageView, mapCountLabel)
         
+        homeScrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        mapContainerView.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalToSuperview()
+            make.top.equalToSuperview().inset(inset.top)
+            make.leading.equalToSuperview().inset(inset.leading)
+        }
+        
         recordButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(11)
             make.height.equalTo(52)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-40)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(40)
         }
         
         visitedMapCountView.snp.makeConstraints { make in
@@ -206,24 +230,12 @@ final class HomeMapViewController: UIViewController, View {
             make.leading.equalTo(shoesImageView.snp.trailing).offset(4)
             make.centerY.equalTo(shoesImageView)
         }
-        
-        기기대응메서드()
     }
     
     private func setDelegate() {
         homeScrollView.delegate = self
     }
     
-    func 기기대응메서드() {
-        // TabBar 높이 + 이동한 거리 50 = 145
-        // 13 mini 기준
-        if Constant.Screen.width == 375 {
-            mapContainerView.frame = CGRect(x: 0, y: -50, width: Constant.Screen.width, height: Constant.Screen.height-145)
-        // 15 pro max 기준
-        } else if Constant.Screen.width == 430 {
-            mapContainerView.frame = CGRect(x: 25, y: -20, width: Constant.Screen.width, height: Constant.Screen.height-145)
-        }
-    }
 }
 
 // MARK: - UIScrollViewDelegate
