@@ -17,21 +17,13 @@ final class MenuAlertView: UIView {
     
     private let editButton: MDButton = {
         let button = MDButton(backgroundColor: .mapWhite, cornerRadius: 0)
-        let resizedImage = UIImage(resource: .iconEdit).resizeImageTo(size: CGSize(width: 20, height: 20))
-        button.setImageAndText(attributedString: NSAttributedString.pretendardR14("수정"), color: .black, image: resizedImage!)
-        button.semanticContentAttribute = .forceRightToLeft
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 83, bottom: 0, right: 0)
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 83)
+        button.setResizedImage(attributedString: NSAttributedString.pretendardR14("수정"), color: .black, image: .iconEdit, width: 20, height: 20)
         return button
     }()
     
     private let deleteButton: MDButton = {
         let button = MDButton(backgroundColor: .mapWhite, cornerRadius: 0)
-        let resizedImage = UIImage(resource: .iconTrashcan).resizeImageTo(size: CGSize(width: 20, height: 20))
-        button.setImageAndText(attributedString: NSAttributedString.pretendardR14("삭제"), color: .black, image: resizedImage!)
-        button.semanticContentAttribute = .forceRightToLeft
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 83, bottom: 0, right: 0)
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 83)
+        button.setResizedImage(attributedString: NSAttributedString.pretendardR14("삭제"), color: .black, image: .iconTrashcan, width: 20, height: 20)
         return button
     }()
     
