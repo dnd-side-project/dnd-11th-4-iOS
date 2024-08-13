@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 final class MDPopUpView: UIView {
-    private let titleLabel = MDLabel(attributedString: NSAttributedString.pretendardB16("정말 삭제하시겠어요?"), color: .mapBlack)
+    private let titleLabel = MDLabel(attributedString: NSAttributedString.pretendardB16("정말 삭제하시겠어요?"), textColor: .mapBlack)
     
     private let cancelButton: MDButton = {
         let button = MDButton(backgroundColor: .gray40, cornerRadius: 8)

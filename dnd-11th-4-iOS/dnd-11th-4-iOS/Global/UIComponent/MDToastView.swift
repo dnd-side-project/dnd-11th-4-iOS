@@ -25,7 +25,7 @@ enum ToastViewType {
 
 final class MDToastView: UIView {
     
-    private let detailText = MDLabel(attributedString: NSAttributedString.pretendardB14("dummy"), color: .mapWhite)
+    private let detailText = MDLabel(attributedString: NSAttributedString.pretendardB14("dummy"), textColor: .mapWhite)
     private let image = UIImageView()
     
     init(type: ToastViewType) {
