@@ -95,6 +95,13 @@
 		FB808E682C660AE600E9E2E5 /* EmptyRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E672C660AE600E9E2E5 /* EmptyRecordView.swift */; };
 		FB808E6A2C6901EA00E9E2E5 /* ListDeleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E692C6901EA00E9E2E5 /* ListDeleteViewController.swift */; };
 		FB808E882C6B926400E9E2E5 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = FB808E872C6B926400E9E2E5 /* Lottie */; };
+		FB808E8F2C6B93A000E9E2E5 /* Onboarding_Orange.json in Resources */ = {isa = PBXBuildFile; fileRef = FB808E892C6B93A000E9E2E5 /* Onboarding_Orange.json */; };
+		FB808E902C6B93A000E9E2E5 /* Onboarding_Pink.json in Resources */ = {isa = PBXBuildFile; fileRef = FB808E8A2C6B93A000E9E2E5 /* Onboarding_Pink.json */; };
+		FB808E912C6B93A000E9E2E5 /* Onboarding_Blue.json in Resources */ = {isa = PBXBuildFile; fileRef = FB808E8B2C6B93A000E9E2E5 /* Onboarding_Blue.json */; };
+		FB808E922C6B93A000E9E2E5 /* Onboarding_Purple.json in Resources */ = {isa = PBXBuildFile; fileRef = FB808E8C2C6B93A000E9E2E5 /* Onboarding_Purple.json */; };
+		FB808E932C6B93A000E9E2E5 /* Onboarding_Yellow.json in Resources */ = {isa = PBXBuildFile; fileRef = FB808E8D2C6B93A000E9E2E5 /* Onboarding_Yellow.json */; };
+		FB808E942C6B93A000E9E2E5 /* Onboarding_Green.json in Resources */ = {isa = PBXBuildFile; fileRef = FB808E8E2C6B93A000E9E2E5 /* Onboarding_Green.json */; };
+		FB808E962C6B955B00E9E2E5 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E952C6B955B00E9E2E5 /* OnboardingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -173,6 +180,13 @@
 		FB808E652C64BD7500E9E2E5 /* RecordListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListHeaderView.swift; sourceTree = "<group>"; };
 		FB808E672C660AE600E9E2E5 /* EmptyRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRecordView.swift; sourceTree = "<group>"; };
 		FB808E692C6901EA00E9E2E5 /* ListDeleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDeleteViewController.swift; sourceTree = "<group>"; };
+		FB808E892C6B93A000E9E2E5 /* Onboarding_Orange.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding_Orange.json; sourceTree = "<group>"; };
+		FB808E8A2C6B93A000E9E2E5 /* Onboarding_Pink.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding_Pink.json; sourceTree = "<group>"; };
+		FB808E8B2C6B93A000E9E2E5 /* Onboarding_Blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding_Blue.json; sourceTree = "<group>"; };
+		FB808E8C2C6B93A000E9E2E5 /* Onboarding_Purple.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding_Purple.json; sourceTree = "<group>"; };
+		FB808E8D2C6B93A000E9E2E5 /* Onboarding_Yellow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding_Yellow.json; sourceTree = "<group>"; };
+		FB808E8E2C6B93A000E9E2E5 /* Onboarding_Green.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding_Green.json; sourceTree = "<group>"; };
+		FB808E952C6B955B00E9E2E5 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +226,12 @@
 		4A16E2A52C5A4E2900F48180 /* OnboardingMap */ = {
 			isa = PBXGroup;
 			children = (
+				FB808E8B2C6B93A000E9E2E5 /* Onboarding_Blue.json */,
+				FB808E8E2C6B93A000E9E2E5 /* Onboarding_Green.json */,
+				FB808E892C6B93A000E9E2E5 /* Onboarding_Orange.json */,
+				FB808E8A2C6B93A000E9E2E5 /* Onboarding_Pink.json */,
+				FB808E8C2C6B93A000E9E2E5 /* Onboarding_Purple.json */,
+				FB808E8D2C6B93A000E9E2E5 /* Onboarding_Yellow.json */,
 				4A16E2A72C5A4FC400F48180 /* OnboardingMap_경기도.swift */,
 				4A16E2A92C5A511300F48180 /* OnboardingMap_인천.swift */,
 				4A16E2AB2C5A51B000F48180 /* OnboardingMap_충청남도.swift */,
@@ -267,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				4A16E2A32C5A4DE700F48180 /* OnboardingViewController.swift */,
+				FB808E952C6B955B00E9E2E5 /* OnboardingView.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -565,10 +586,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB808E912C6B93A000E9E2E5 /* Onboarding_Blue.json in Resources */,
 				FB0BE4EB2C57B5EB00C34C7B /* PeoplefirstNeat&Loud.otf in Resources */,
 				FB0BE4F12C57B5FD00C34C7B /* Pretendard-Bold.otf in Resources */,
+				FB808E922C6B93A000E9E2E5 /* Onboarding_Purple.json in Resources */,
+				FB808E932C6B93A000E9E2E5 /* Onboarding_Yellow.json in Resources */,
+				FB808E942C6B93A000E9E2E5 /* Onboarding_Green.json in Resources */,
+				FB808E902C6B93A000E9E2E5 /* Onboarding_Pink.json in Resources */,
 				4AAFDB792C494D00008C6DAF /* LaunchScreen.storyboard in Resources */,
 				FB0BE4F22C57B5FD00C34C7B /* Pretendard-SemiBold.otf in Resources */,
+				FB808E8F2C6B93A000E9E2E5 /* Onboarding_Orange.json in Resources */,
 				FB0BE4F32C57B5FD00C34C7B /* Pretendard-Regular.otf in Resources */,
 				4AAFDB762C494D00008C6DAF /* Assets.xcassets in Resources */,
 				FB0BE4F02C57B5FD00C34C7B /* Pretendard-Medium.otf in Resources */,
@@ -631,6 +658,7 @@
 				4AAFDB6F2C494CFF008C6DAF /* SceneDelegate.swift in Sources */,
 				4A16E2B62C5A551F00F48180 /* OnboardingMap_경상남도.swift in Sources */,
 				4A16E2E62C5D0F5D00F48180 /* MDPopUpView.swift in Sources */,
+				FB808E962C6B955B00E9E2E5 /* OnboardingView.swift in Sources */,
 				4A16E2BE2C5A571400F48180 /* OnboardingMap_제주도.swift in Sources */,
 				FB808E602C63A61F00E9E2E5 /* MenuAlertView.swift in Sources */,
 				FB808E662C64BD7500E9E2E5 /* RecordListHeaderView.swift in Sources */,
