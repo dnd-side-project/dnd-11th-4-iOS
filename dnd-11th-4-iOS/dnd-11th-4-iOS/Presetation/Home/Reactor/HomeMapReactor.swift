@@ -15,7 +15,6 @@ final class HomeMapReactor: Reactor {
     enum Action {
         case viewWillAppear
         case mapAction(RegionType)
-        case clearViewAction
         case mapInset(DeviceSize)
     }
     
@@ -57,8 +56,6 @@ final class HomeMapReactor: Reactor {
             return Observable.just(Mutation.setTotalMap(prepareTotalMap()))
         case .mapAction(let type):
             return Observable.just(Mutation.setSelectedMap(prepareSelectedMap(type: type)))
-        case .clearViewAction:
-            return Observable.just(Mutation.setTotalMap(prepareClearMap()))
         case .mapInset(let layout):
             return Observable.just(Mutation.setMapInset(prepareMapLayoutInset(inset: layout)))
         }

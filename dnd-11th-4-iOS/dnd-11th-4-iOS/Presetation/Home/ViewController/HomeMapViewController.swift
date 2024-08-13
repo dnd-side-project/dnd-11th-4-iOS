@@ -110,18 +110,13 @@ final class HomeMapViewController: UIViewController, View {
         let 전라남도Tap = 전라남도.rx.tapGesture().when(.recognized).map { _ in RegionType.전라남도 }
         let 광주Tap = 광주.rx.tapGesture().when(.recognized).map { _ in RegionType.광주 }
         let 제주도Tap = 제주도.rx.tapGesture().when(.recognized).map { _ in RegionType.제주도 }
+        let 외부Tap = mapContainerView.rx.tapGesture().when(.recognized).map { _ in RegionType.외부 }
         
         Observable.merge(서울Tap, 경기도Tap, 인천Tap, 강원도Tap, 충청북도Tap, 충청남도Tap, 대전Tap, 경상북도Tap,
-                         경상남도Tap, 대구Tap, 울산Tap, 부산Tap, 전라북도Tap, 전라남도Tap, 광주Tap, 제주도Tap)
+                         경상남도Tap, 대구Tap, 울산Tap, 부산Tap, 전라북도Tap, 전라남도Tap, 광주Tap, 제주도Tap, 외부Tap)
         .map { type in Reactor.Action.mapAction(type)}
         .bind(to: reactor.action)
         .disposed(by: disposeBag)
-        
-        mapContainerView.rx.tapGesture()
-            .when(.recognized)
-            .map { _ in Reactor.Action.clearViewAction }
-            .bind(to: reactor.action)
-            .disposed(by: disposeBag)
         
         reactor.state.compactMap{ $0.inset }
             .withUnretained(self)
