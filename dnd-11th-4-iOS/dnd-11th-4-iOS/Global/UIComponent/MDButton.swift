@@ -47,4 +47,16 @@ final class MDButton: UIButton {
         self.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
         return self
     }
+    
+    /// 이미지 resize 버튼
+    @discardableResult
+    func setResizedImage(attributedString: NSAttributedString, color: UIColor, image: UIImage, width: Double, height: Double) -> Self {
+        let resizedImage = image.resizeImageTo(size: CGSize(width: width, height: height))
+        self.setAttributedTitle(attributedString, for: .normal)
+        self.setImageAndText(attributedString: attributedString, color: color, image: resizedImage!)
+        self.semanticContentAttribute = .forceRightToLeft
+        self.imageEdgeInsets = UIEdgeInsets(top: 0, left: 83, bottom: 0, right: 0)
+        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 83)
+        return self
+    }
 }
