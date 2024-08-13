@@ -40,7 +40,7 @@
 		4A16E2F12C60F0A700F48180 /* HomeMap_울산.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDC32C4FB08E002F5A77 /* HomeMap_울산.swift */; };
 		4A16E2F22C60F0A700F48180 /* HomeMap_전라북도.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDB92C4FAF75002F5A77 /* HomeMap_전라북도.swift */; };
 		4A16E2F32C60F0A700F48180 /* HomeMap_광주.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDCD2C4FB399002F5A77 /* HomeMap_광주.swift */; };
-		4A16E2F42C60F0A700F48180 /* HomeMap_세종시.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDB72C4FAF3F002F5A77 /* HomeMap_세종시.swift */; };
+		4A16E2F42C60F0A700F48180 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		4A16E2F62C60F8DA00F48180 /* HomeMapReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2F52C60F8DA00F48180 /* HomeMapReactor.swift */; };
 		4A5FFDA62C4FAA6A002F5A77 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */; };
 		4A5FFDA82C4FABBF002F5A77 /* HomeMap_경기도.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDA72C4FABBF002F5A77 /* HomeMap_경기도.swift */; };
@@ -364,13 +364,13 @@
 			children = (
 				4AAFDBAB2C49538D008C6DAF /* Global */,
 				4AAFDBA92C495320008C6DAF /* Network */,
-				4AAFDBA82C495290008C6DAF /* Presetation */,
+				4AAFDBA82C495290008C6DAF /* Presentation */,
 				4AAFDBAA2C495339008C6DAF /* Application */,
 			);
 			path = "dnd-11th-4-iOS";
 			sourceTree = "<group>";
 		};
-		4AAFDBA82C495290008C6DAF /* Presetation */ = {
+		4AAFDBA82C495290008C6DAF /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
 				4A16E2E22C5D0DEC00F48180 /* PopUp */,
@@ -380,7 +380,7 @@
 				4A16E2A22C5A4DDD00F48180 /* Onboarding */,
 				4ADB30212C4FC0E000CAC638 /* Home */,
 			);
-			path = Presetation;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		4AAFDBA92C495320008C6DAF /* Network */ = {
@@ -570,7 +570,7 @@
 				4A16E2F12C60F0A700F48180 /* HomeMap_울산.swift in Sources */,
 				4A16E2F22C60F0A700F48180 /* HomeMap_전라북도.swift in Sources */,
 				4A16E2F32C60F0A700F48180 /* HomeMap_광주.swift in Sources */,
-				4A16E2F42C60F0A700F48180 /* HomeMap_세종시.swift in Sources */,
+				4A16E2F42C60F0A700F48180 /* (null) in Sources */,
 				4AAFDBB22C4953C9008C6DAF /* Application.swift in Sources */,
 				4A5FFDB22C4FAE73002F5A77 /* HomeMap_충청남도.swift in Sources */,
 				4A5FFDC82C4FB0F1002F5A77 /* HomeMap_제주도.swift in Sources */,

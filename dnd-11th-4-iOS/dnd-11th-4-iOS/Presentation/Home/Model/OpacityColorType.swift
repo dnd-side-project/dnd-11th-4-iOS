@@ -18,7 +18,7 @@ enum OpacityColorType {
     var color: UIColor {
         switch self {
         case .pink(let opacity):
-            return redWithOpacity(opacity: opacity)
+            return pinkWithOpacity(opacity: opacity)
         case .orange(let opacity):
             return orangeWithOpacity(opacity: opacity)
         case .yellow(let opacity):
@@ -32,7 +32,7 @@ enum OpacityColorType {
         }
     }
     
-    func redWithOpacity(opacity: Int) -> UIColor {
+    func pinkWithOpacity(opacity: Int) -> UIColor {
         switch opacity {
         case 1:
             return .mapPink1

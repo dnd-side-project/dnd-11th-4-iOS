@@ -15,7 +15,7 @@ final class HomeMapViewController: UIViewController, View {
     typealias Reactor = HomeMapReactor
     var disposeBag = DisposeBag()
     
-    // MARK: UI Properties
+    // MARK: - UI Properties
     
     private let homeScrollView: UIScrollView = {
         let scrollView = UIScrollView(frame: .zero)
@@ -65,7 +65,7 @@ final class HomeMapViewController: UIViewController, View {
     private let 광주 = HomeMap_광주()
     private let 제주도 = HomeMap_제주도()
     
-    // MARK: Life Cycle
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,7 +91,7 @@ final class HomeMapViewController: UIViewController, View {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Method
+    // MARK: - Bind
     
     func bind(reactor: HomeMapReactor) {
         let 서울Tap = 서울.rx.tapGesture().when(.recognized).map { _ in RegionType.서울 }
@@ -179,9 +179,17 @@ final class HomeMapViewController: UIViewController, View {
             .disposed(by: disposeBag)
     }
     
+    // MARK: - Method
+    
     private func setUI() {
         self.recordButton.isHidden = true
     }
+    
+    private func setDelegate() {
+        homeScrollView.delegate = self
+    }
+    
+    // MARK: - Layout
     
     private func setLayout(inset: TopAndLeadingInset) {
         view.addSubviews(homeScrollView, recordButton, visitedMapCountView)
@@ -225,10 +233,6 @@ final class HomeMapViewController: UIViewController, View {
             make.leading.equalTo(shoesImageView.snp.trailing).offset(4)
             make.centerY.equalTo(shoesImageView)
         }
-    }
-    
-    private func setDelegate() {
-        homeScrollView.delegate = self
     }
     
 }
