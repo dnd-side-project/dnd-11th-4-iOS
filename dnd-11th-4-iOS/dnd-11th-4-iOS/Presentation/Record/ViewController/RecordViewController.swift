@@ -6,8 +6,14 @@
 //
 
 import UIKit
+import ReactorKit
+import RxSwift
+import RxCocoa
 
-final class RecordViewController: UIViewController {
+final class RecordViewController: UIViewController, View {
+    
+    typealias Reactor = RecordReactor
+    var disposeBag = DisposeBag()
     
     // MARK: - UI Properties
     
@@ -32,7 +38,7 @@ final class RecordViewController: UIViewController {
     private let memoLabel = MDLabel(attributedString: NSAttributedString.pretendardSB14("한 줄 메모"), textColor: .black)
     private let visitedLabel = MDLabel(attributedString: NSAttributedString.pretendardSB14("방문 날짜"), textColor: .black)
     
-    private let regionTextField = MDTextField(text: "서울")
+    private let regionTextField = MDTextField(text: "인천")
     private let placeTextField = MDTextField()
     private let memoTextField = MDTextField()
     private let visitedTextField = MDTextField().setLeftImage(image: Constant.Image.iconCalendar)
@@ -41,22 +47,95 @@ final class RecordViewController: UIViewController {
     private let memoTextLimitedLabel = MDLabel(attributedString: NSAttributedString.pretendardR10("7/25자"), textColor: .errorRed)
     
     private let completeButton = MDButton(backgroundColor: .black2)
-        .setText(attributedString: NSAttributedString.pretendardB16("기록 수정 완료"), color: .white)
+        .setText(attributedString: NSAttributedString.pretendardB16("기록 작성 완료"), color: .white)
+    
+    private let regionPickerView = UIPickerView()
+    private let toolBar: UIToolbar = {
+        let toolBar = UIToolbar()
+        toolBar.frame = CGRect(x: 0, y: 0, width: Constant.Screen.width, height: 50)
+        return toolBar
+    }()
+    private lazy var cancelBarButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: nil)
+    private lazy var flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    private lazy var complteBarButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: nil)
     
     // MARK: - Life Cycle
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        setTextField()
+        setToolbar()
         setLayout()
+        setDelegate()
+    }
+    
+    init(reactor: RecordReactor) {
+        super.init(nibName: nil, bundle: nil)
+        
+        self.reactor = reactor
+        self.reactor?.initialState.selectedRegion = "서울"
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Bind
+    
+    func bind(reactor: RecordReactor) {
+        // 취소하면 기존 text로 다시
+        cancelBarButton.rx.tap
+            .withUnretained(self)
+            .compactMap { owner, _ in owner.reactor }
+            .bind { reactor in
+                self.regionTextField.text = reactor.initialState.selectedRegion
+                self.regionTextField.resignFirstResponder()
+            }
+            .disposed(by: disposeBag)
+        
+        complteBarButton.rx.tap
+            .withUnretained(self)
+            .compactMap { owner, _ in owner.reactor }
+            .bind { reactor in
+                let row = self.regionPickerView.selectedRow(inComponent: 0)
+                reactor.initialState.selectedRegion = reactor.initialState.regionArray[row]
+                self.regionTextField.text = reactor.initialState.regionArray[row]
+                self.regionTextField.resignFirstResponder()
+            }
+            .disposed(by: disposeBag)
+        /// 왜 안될까...
+//        regionPickerView.rx.itemSelected
+//            .withUnretained(self)
+//            .map { _, _ in
+//                let row = self.regionPickerView.selectedRow(inComponent: 0)
+//                return self.reactor?.initialState.regionArray[row]
+//            }
+//            .bind(to: regionTextField.rx.text )
+//            .disposed(by: disposeBag)
+    }
     
     // MARK: - Method
     
     private func setUI() {
         view.backgroundColor = .mapBackground
+    }
+    
+    private func setToolbar() {
+        toolBar.setItems([cancelBarButton, flexibleSpace, complteBarButton], animated: false)
+    }
+    
+    private func setTextField() {
+        regionTextField.tintColor = .clear
+        regionTextField.inputView = regionPickerView
+        regionTextField.inputAccessoryView = toolBar
+    }
+    
+    private func setDelegate() {
+        regionTextField.delegate = self
+        regionPickerView.delegate = self
+        regionPickerView.dataSource = self
     }
     
     // MARK: - Layout
@@ -157,5 +236,32 @@ final class RecordViewController: UIViewController {
             make.leading.trailing.equalToSuperview().inset(11)
             make.height.equalTo(52)
         }
+    }
+}
+
+extension RecordViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == regionTextField {
+            return false
+        }
+        return true
+    }
+}
+
+extension RecordViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.reactor?.initialState.regionArray.count ?? 16
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.reactor?.initialState.regionArray[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        return regionTextField.text = self.reactor?.initialState.regionArray[row]
     }
 }

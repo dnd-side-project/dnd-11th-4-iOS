@@ -82,6 +82,7 @@
 		4AAFDBB62C4953D2008C6DAF /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFDBB52C4953D2008C6DAF /* Font.swift */; };
 		4AB1221F2C6BB3DF00A7337F /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB1221E2C6BB3DF00A7337F /* RecordViewController.swift */; };
 		4AB122212C6C6F0B00A7337F /* MDTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB122202C6C6F0B00A7337F /* MDTextField.swift */; };
+		4AB122252C6CAE7500A7337F /* RecordReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB122242C6CAE7500A7337F /* RecordReactor.swift */; };
 		FB0BE4EB2C57B5EB00C34C7B /* PeoplefirstNeat&Loud.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4EA2C57B5EB00C34C7B /* PeoplefirstNeat&Loud.otf */; };
 		FB0BE4F02C57B5FD00C34C7B /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4EC2C57B5FD00C34C7B /* Pretendard-Medium.otf */; };
 		FB0BE4F12C57B5FD00C34C7B /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4ED2C57B5FD00C34C7B /* Pretendard-Bold.otf */; };
@@ -163,6 +164,7 @@
 		4AAFDBB52C4953D2008C6DAF /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		4AB1221E2C6BB3DF00A7337F /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		4AB122202C6C6F0B00A7337F /* MDTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDTextField.swift; sourceTree = "<group>"; };
+		4AB122242C6CAE7500A7337F /* RecordReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordReactor.swift; sourceTree = "<group>"; };
 		FB0BE4EA2C57B5EB00C34C7B /* PeoplefirstNeat&Loud.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PeoplefirstNeat&Loud.otf"; sourceTree = "<group>"; };
 		FB0BE4EC2C57B5FD00C34C7B /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		FB0BE4ED2C57B5FD00C34C7B /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
@@ -477,9 +479,26 @@
 		4AB1221D2C6BB3D600A7337F /* Record */ = {
 			isa = PBXGroup;
 			children = (
-				4AB1221E2C6BB3DF00A7337F /* RecordViewController.swift */,
+				4AB122222C6CAE5400A7337F /* ViewController */,
+				4AB122232C6CAE5800A7337F /* Reactor */,
 			);
 			path = Record;
+			sourceTree = "<group>";
+		};
+		4AB122222C6CAE5400A7337F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4AB1221E2C6BB3DF00A7337F /* RecordViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		4AB122232C6CAE5800A7337F /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+				4AB122242C6CAE7500A7337F /* RecordReactor.swift */,
+			);
+			path = Reactor;
 			sourceTree = "<group>";
 		};
 		4ADB30212C4FC0E000CAC638 /* Home */ = {
@@ -639,6 +658,7 @@
 				4A16E2F62C60F8DA00F48180 /* HomeMapReactor.swift in Sources */,
 				4A5FFDC22C4FB056002F5A77 /* HomeMap_부산.swift in Sources */,
 				4A16E2BA2C5A560B00F48180 /* OnboardingMap_부산.swift in Sources */,
+				4AB122252C6CAE7500A7337F /* RecordReactor.swift in Sources */,
 				4AAFDB6F2C494CFF008C6DAF /* SceneDelegate.swift in Sources */,
 				4A16E2B62C5A551F00F48180 /* OnboardingMap_경상남도.swift in Sources */,
 				4A16E2E62C5D0F5D00F48180 /* MDPopUpView.swift in Sources */,
