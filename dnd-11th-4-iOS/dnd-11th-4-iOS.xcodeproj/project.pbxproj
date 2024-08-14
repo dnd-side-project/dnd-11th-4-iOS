@@ -80,6 +80,8 @@
 		4AAFDBB22C4953C9008C6DAF /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFDBB12C4953C9008C6DAF /* Application.swift */; };
 		4AAFDBB42C4953CD008C6DAF /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFDBB32C4953CD008C6DAF /* Color.swift */; };
 		4AAFDBB62C4953D2008C6DAF /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFDBB52C4953D2008C6DAF /* Font.swift */; };
+		4AB1221F2C6BB3DF00A7337F /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB1221E2C6BB3DF00A7337F /* RecordViewController.swift */; };
+		4AB122212C6C6F0B00A7337F /* MDTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB122202C6C6F0B00A7337F /* MDTextField.swift */; };
 		FB0BE4EB2C57B5EB00C34C7B /* PeoplefirstNeat&Loud.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4EA2C57B5EB00C34C7B /* PeoplefirstNeat&Loud.otf */; };
 		FB0BE4F02C57B5FD00C34C7B /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4EC2C57B5FD00C34C7B /* Pretendard-Medium.otf */; };
 		FB0BE4F12C57B5FD00C34C7B /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4ED2C57B5FD00C34C7B /* Pretendard-Bold.otf */; };
@@ -159,6 +161,8 @@
 		4AAFDBB12C4953C9008C6DAF /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		4AAFDBB32C4953CD008C6DAF /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		4AAFDBB52C4953D2008C6DAF /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		4AB1221E2C6BB3DF00A7337F /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		4AB122202C6C6F0B00A7337F /* MDTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDTextField.swift; sourceTree = "<group>"; };
 		FB0BE4EA2C57B5EB00C34C7B /* PeoplefirstNeat&Loud.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PeoplefirstNeat&Loud.otf"; sourceTree = "<group>"; };
 		FB0BE4EC2C57B5FD00C34C7B /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		FB0BE4ED2C57B5FD00C34C7B /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
@@ -315,6 +319,7 @@
 				4A16E2DD2C5CC3BA00F48180 /* MDToast.swift */,
 				4A16E2E52C5D0F5D00F48180 /* MDPopUpView.swift */,
 				FB808E532C5A72E500E9E2E5 /* MDNavigationBar.swift */,
+				4AB122202C6C6F0B00A7337F /* MDTextField.swift */,
 			);
 			path = UIComponent;
 			sourceTree = "<group>";
@@ -395,6 +400,7 @@
 		4AAFDBA82C495290008C6DAF /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				4AB1221D2C6BB3D600A7337F /* Record */,
 				4A16E2E22C5D0DEC00F48180 /* PopUp */,
 				4A16E2D12C5A70A500F48180 /* MyPage */,
 				4A16E2CE2C5A6FED00F48180 /* RecordList */,
@@ -466,6 +472,14 @@
 				4AAFDBB32C4953CD008C6DAF /* Color.swift */,
 			);
 			path = Color;
+			sourceTree = "<group>";
+		};
+		4AB1221D2C6BB3D600A7337F /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				4AB1221E2C6BB3DF00A7337F /* RecordViewController.swift */,
+			);
+			path = Record;
 			sourceTree = "<group>";
 		};
 		4ADB30212C4FC0E000CAC638 /* Home */ = {
@@ -585,6 +599,7 @@
 				4A16E2F32C60F0A700F48180 /* HomeMap_광주.swift in Sources */,
 				FB808E642C63C6EE00E9E2E5 /* UIImage+.swift in Sources */,
 				4A16E2F42C60F0A700F48180 /* HomeMap_세종시.swift in Sources */,
+				4AB122212C6C6F0B00A7337F /* MDTextField.swift in Sources */,
 				4AAFDBB22C4953C9008C6DAF /* Application.swift in Sources */,
 				4A5FFDB22C4FAE73002F5A77 /* HomeMap_충청남도.swift in Sources */,
 				4A5FFDC82C4FB0F1002F5A77 /* HomeMap_제주도.swift in Sources */,
@@ -621,6 +636,7 @@
 				4AAFDB6D2C494CFF008C6DAF /* AppDelegate.swift in Sources */,
 				4AAFDBB02C4953C0008C6DAF /* Network.swift in Sources */,
 				4A16E2B82C5A559E00F48180 /* OnboardingMap_전라남도.swift in Sources */,
+				4AB1221F2C6BB3DF00A7337F /* RecordViewController.swift in Sources */,
 				4A16E2F62C60F8DA00F48180 /* HomeMapReactor.swift in Sources */,
 				4A5FFDC22C4FB056002F5A77 /* HomeMap_부산.swift in Sources */,
 				4A16E2BA2C5A560B00F48180 /* OnboardingMap_부산.swift in Sources */,
