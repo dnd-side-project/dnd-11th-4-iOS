@@ -105,15 +105,46 @@ final class RecordViewController: UIViewController, View {
                 self.regionTextField.resignFirstResponder()
             }
             .disposed(by: disposeBag)
+        
+        placeTextField.rx.text
+            .orEmpty
+            .map { String($0.prefix(20)) }
+            .asDriver(onErrorJustReturn: "잠시 후 다시 실행해 주세요")
+            .drive(placeTextField.rx.text)
+            .disposed(by: disposeBag)
+        
+        placeTextField.rx.text
+            .compactMap{ $0 }
+            .distinctUntilChanged()
+            .map { text in"\(text.count)/20" }
+            .asDriver(onErrorJustReturn: "0/20")
+            .drive(placeTextLimitedLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        memoTextField.rx.text
+            .orEmpty
+            .map { String($0.prefix(25)) }
+            .asDriver(onErrorJustReturn: "잠시 후 다시 실행해 주세요")
+            .drive(memoTextField.rx.text)
+            .disposed(by: disposeBag)
+        
+        memoTextField.rx.text
+            .compactMap{ $0 }
+            .distinctUntilChanged()
+            .map { text in"\(text.count)/25" }
+            .asDriver(onErrorJustReturn: "0/25")
+            .drive(placeTextLimitedLabel.rx.text)
+            .disposed(by: disposeBag)
+        
         /// 왜 안될까...
-//        regionPickerView.rx.itemSelected
-//            .withUnretained(self)
-//            .map { _, _ in
-//                let row = self.regionPickerView.selectedRow(inComponent: 0)
-//                return self.reactor?.initialState.regionArray[row]
-//            }
-//            .bind(to: regionTextField.rx.text )
-//            .disposed(by: disposeBag)
+        //        regionPickerView.rx.itemSelected
+        //            .withUnretained(self)
+        //            .map { _, _ in
+        //                let row = self.regionPickerView.selectedRow(inComponent: 0)
+        //                return self.reactor?.initialState.regionArray[row]
+        //            }
+        //            .bind(to: regionTextField.rx.text )
+        //            .disposed(by: disposeBag)
     }
     
     // MARK: - Method
@@ -145,7 +176,7 @@ final class RecordViewController: UIViewController, View {
         recordScrollView.addSubview(contentView)
         contentView.addSubviews(regionLabel, regionTextField, placeLabel, placeTextLimitedLabel, placeTextField,
                                 imageLabel, imageCollectionView, memoLabel, memoTextLimitedLabel, memoTextField,
-                                 visitedLabel, visitedTextField, completeButton)
+                                visitedLabel, visitedTextField, completeButton)
         
         navigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
