@@ -7,50 +7,87 @@
 
 import UIKit
 import SnapKit
+import Lottie
+import RxSwift
+import RxCocoa
+import ReactorKit
 
 final class OnboardingViewController: UIViewController {
+    typealias Reactor = OnboardingReactor
     
-    private let mapContainerView = UIView()
+    private let onboardingView: OnboardingView = OnboardingView()
+    var disposeBag: DisposeBag = DisposeBag()
     
-    private let 경기도 = OnboardingMap_경기도()
-    private let 인천 = OnboardingMap_인천()
-    private let 충청남도 = OnboardingMap_충청남도()
-    private let 강원도 = OnboardingMap_강원도()
-    private let 대전 = OnboardingMap_대전()
-    private let 전라북도 = OnboardingMap_전라북도()
-    private let 경상북도 = OnboardingMap_경상북도()
-    private let 경상남도 = OnboardingMap_경상남도()
-    private let 전라남도 = OnboardingMap_전라남도()
-    private let 부산 = OnboardingMap_부산()
-    private let 울산 = OnboardingMap_울산()
-    private let 제주도 = OnboardingMap_제주도()
-    private let 충청북도 = OnboardingMap_충청북도()
-    private let 대구 = OnboardingMap_대구()
-    private let 광주 = OnboardingMap_광주()
-    private let 서울 = OnboardingMap_서울()
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .white
-        
-        setLayout()
+        self.navigationController?.navigationBar.isHidden = true
+        setupUI()
+        bind(reactor: reactor!)
+        bindActions()
     }
     
-    func setLayout() {
-        view.addSubview(mapContainerView)
-        mapContainerView.addSubviews(경기도, 인천, 충청남도, 강원도, 대전, 전라북도, 경상북도,
-                                     경상남도, 전라남도, 부산, 울산, 제주도, 충청북도, 대구, 광주, 서울)
-        기기대응메서드()
+    init(reactor: OnboardingReactor) {
+        super.init(nibName: nil, bundle: nil)
+        self.reactor = reactor
     }
     
-    func 기기대응메서드() {
-        // 13 mini 기준
-        if Constant.Screen.width == 375 {
-            mapContainerView.frame = CGRect(x: -5, y: 0, width: Constant.Screen.width, height: Constant.Screen.height)
-        // 15 pro max 기준
-        } else if Constant.Screen.width == 430 {
-            mapContainerView.frame = CGRect(x: 25, y: 50, width: Constant.Screen.width, height: Constant.Screen.height)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Layout
+    
+    private func setupUI() {
+        view.addSubview(onboardingView)
+        
+        onboardingView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
+    }
+    
+    // MARK: - Bind
+    
+    private func bindActions() {
+        // 색상 선택 이벤트 전달
+        onboardingView.colorSelected
+            .withUnretained(self)
+            .subscribe(onNext: { owner, color in
+                owner.reactor?.action.onNext(.selectColor(color))
+            })
+            .disposed(by: disposeBag)
+        
+        onboardingView.selectButton.rx.tap
+            .asDriver()
+            .delay(.milliseconds(300))
+            .drive(onNext: { [weak self] in
+                guard let self = self else { return }
+                self.navigateToTabBarViewController()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    // MARK: - Method
+    
+    private func navigateToTabBarViewController() {
+        let rootViewController = TabBarViewController()
+        if let window = UIApplication.shared.windows.first {
+            window.rootViewController = rootViewController
+            UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
+        }
+    }
+}
+
+extension OnboardingViewController: View {
+    func bind(reactor: OnboardingReactor) {
+        reactor.state
+            .compactMap { $0.selectedAnimation }
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, animationName in
+                owner.onboardingView.updateAnimationView(with: animationName)
+            })
+            .disposed(by: disposeBag)
     }
 }
