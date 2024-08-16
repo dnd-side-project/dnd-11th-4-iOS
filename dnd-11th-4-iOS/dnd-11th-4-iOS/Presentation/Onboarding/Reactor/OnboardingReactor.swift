@@ -33,22 +33,7 @@ extension OnboardingReactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .selectColor(let color):
-            let animationName: String
-            switch color {
-            case .pink:
-                animationName = "Onboarding_Pink"
-            case .orange:
-                animationName = "Onboarding_Orange"
-            case .yellow:
-                animationName = "Onboarding_Yellow"
-            case .green:
-                animationName = "Onboarding_Green"
-            case .blue:
-                animationName = "Onboarding_Blue"
-            case .purple:
-                animationName = "Onboarding_Purple"
-            }
-            return Observable.just(Mutation.setAnimation(animationName))
+            return Observable.just(Mutation.setAnimation(color.fileName))
         }
     }
     

@@ -43,35 +43,17 @@ final class OnboardingView: UIView {
         return stackView
     }()
     
-    private let pinkButton: MDButton = {
-        let button = MDButton(backgroundColor: .mapPink3, cornerRadius: 15)
-        return button
-    }()
+    private let pinkButton = MDButton(backgroundColor: .mapPink3, cornerRadius: 15)
     
-    private let orangeButton: MDButton = {
-        let button = MDButton(backgroundColor: .mapOrange3, cornerRadius: 15)
-        return button
-    }()
+    private let orangeButton = MDButton(backgroundColor: .mapOrange3, cornerRadius: 15)
     
-    private let yellowButton: MDButton = {
-        let button = MDButton(backgroundColor: .mapYellow3, cornerRadius: 15)
-        return button
-    }()
+    private let yellowButton = MDButton(backgroundColor: .mapYellow3, cornerRadius: 15)
     
-    private let greenButton: MDButton = {
-        let button = MDButton(backgroundColor: .mapGreen3, cornerRadius: 15)
-        return button
-    }()
+    private let greenButton = MDButton(backgroundColor: .mapGreen3, cornerRadius: 15)
     
-    private let blueButton: MDButton = {
-        let button = MDButton(backgroundColor: .mapBlue3, cornerRadius: 15)
-        return button
-    }()
+    private let blueButton = MDButton(backgroundColor: .mapBlue3, cornerRadius: 15)
     
-    private let purpleButton: MDButton = {
-        let button = MDButton(backgroundColor: .mapPurple3, cornerRadius: 15)
-        return button
-    }()
+    private let purpleButton = MDButton(backgroundColor: .mapPurple3, cornerRadius: 15)
 
     let selectButton: MDButton = {
         let button = MDButton(backgroundColor: .black2)
@@ -167,9 +149,11 @@ final class OnboardingView: UIView {
         
         colorButtons.forEach { (button, color) in
             button.rx.tap
-                .subscribe(onNext: { [weak self] in
-                    self?.addSelectedButtonlayer(button: button, color: color)
-                    self?.colorSelected.onNext(color)
+                .asDriver()
+                .drive(onNext: { [weak self] in
+                    guard let self = self else { return }
+                    self.addSelectedButtonlayer(button: button, color: color)
+                    self.colorSelected.onNext(color)
                 })
                 .disposed(by: disposeBag)
         }

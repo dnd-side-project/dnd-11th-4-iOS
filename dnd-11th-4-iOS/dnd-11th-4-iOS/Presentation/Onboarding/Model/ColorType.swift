@@ -14,4 +14,21 @@ enum ColorType {
     case green
     case blue
     case purple
+    
+    var fileName: String {
+        switch self {
+        case .pink:
+            return "Onboarding_Pink"
+        case .orange: 
+            return "Onboarding_Orange"
+        case .yellow: 
+            return "Onboarding_Yellow"
+        case .green: 
+            return "Onboarding_Green"
+        case .blue: 
+            return "Onboarding_Blue"
+        case .purple: 
+            return "Onboarding_Purple"
+        }
+    }
 }
