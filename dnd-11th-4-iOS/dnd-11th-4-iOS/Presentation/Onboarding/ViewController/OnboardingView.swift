@@ -149,22 +149,16 @@ final class OnboardingView: UIView {
         
         colorButtons.forEach { (button, color) in
             button.rx.tap
-                .map { color }
-                .bind(to: colorSelected)
-                .disposed(by: disposeBag)
-            
-            button.rx.tap
                 .subscribe(onNext: { [weak self] in
-                    self?.handleColorButtonTap(button: button, color: color)
+                    self?.addSelectedButtonlayer(button: button, color: color)
                 })
                 .disposed(by: disposeBag)
         }
     }
     
-    private func handleColorButtonTap(button: MDButton, color: Color) {
+    private func addSelectedButtonlayer(button: MDButton, color: Color) {
         selectedButton?.layer.borderWidth = 0
         selectedButton?.layer.borderColor = UIColor.clear.cgColor
-        
         selectedButton = button
         
         button.layer.borderWidth = 2
