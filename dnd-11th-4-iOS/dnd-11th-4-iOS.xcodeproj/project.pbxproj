@@ -192,11 +192,11 @@
 		4A16E2A22C5A4DDD00F48180 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				FB9B35A42C6F83DE00FB884E /* Model */,
 				FB9B35992C6F755400FB884E /* View */,
 				FB9B35982C6F753D00FB884E /* Reactor */,
 				4A16E2C92C5A5C2500F48180 /* ViewController */,
 				4A16E2A52C5A4E2900F48180 /* OnboardingMap */,
-				FB9B35A12C6F828500FB884E /* ColorType.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -519,6 +519,14 @@
 				FB9B359F2C6F768500FB884E /* SplashViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		FB9B35A42C6F83DE00FB884E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FB9B35A12C6F828500FB884E /* ColorType.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
