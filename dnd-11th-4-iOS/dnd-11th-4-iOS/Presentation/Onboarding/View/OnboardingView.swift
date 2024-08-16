@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 
 final class OnboardingView: UIView {
-    let colorSelected = PublishSubject<Color>()
+    let colorSelected = PublishSubject<ColorType>()
     private let disposeBag = DisposeBag()
     
     private var selectedButton: MDButton?
@@ -73,7 +73,7 @@ final class OnboardingView: UIView {
         return button
     }()
 
-    private let selectButton: MDButton = {
+    let selectButton: MDButton = {
         let button = MDButton(backgroundColor: .black2)
         button.setText(attributedString: NSAttributedString.pretendardB16("선택완료"), color: .mapWhite)
         button.titleLabel?.textAlignment = .center
@@ -90,12 +90,16 @@ final class OnboardingView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Method
+    
     func updateAnimationView(with animationName: String) {
         mapAnimationView.stop()
         mapAnimationView.animation = LottieAnimation.named(animationName)
         mapAnimationView.animationSpeed = 0.8
         mapAnimationView.play()
     }
+    
+    // MARK: - Layout
     
     private func setupUI() {
         backgroundColor = .mapWhite
@@ -137,26 +141,7 @@ final class OnboardingView: UIView {
         }
     }
     
-    private func bindButtons() {
-        let colorButtons: [(MDButton, Color)] = [
-            (pinkButton, Color.pink),
-            (orangeButton, Color.orange),
-            (yellowButton, Color.yellow),
-            (greenButton, Color.green),
-            (blueButton, Color.blue),
-            (purpleButton, Color.purple)
-        ]
-        
-        colorButtons.forEach { (button, color) in
-            button.rx.tap
-                .subscribe(onNext: { [weak self] in
-                    self?.addSelectedButtonlayer(button: button, color: color)
-                })
-                .disposed(by: disposeBag)
-        }
-    }
-    
-    private func addSelectedButtonlayer(button: MDButton, color: Color) {
+    private func addSelectedButtonlayer(button: MDButton, color: ColorType) {
         selectedButton?.layer.borderWidth = 0
         selectedButton?.layer.borderColor = UIColor.clear.cgColor
         selectedButton = button
@@ -166,5 +151,27 @@ final class OnboardingView: UIView {
         button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
         colorSelected.onNext(color)
+    }
+    
+    // MARK: - Bind
+    
+    private func bindButtons() {
+        let colorButtons: [(MDButton, ColorType)] = [
+            (pinkButton, ColorType.pink),
+            (orangeButton, ColorType.orange),
+            (yellowButton, ColorType.yellow),
+            (greenButton, ColorType.green),
+            (blueButton, ColorType.blue),
+            (purpleButton, ColorType.purple)
+        ]
+        
+        colorButtons.forEach { (button, color) in
+            button.rx.tap
+                .subscribe(onNext: { [weak self] in
+                    self?.addSelectedButtonlayer(button: button, color: color)
+                    self?.colorSelected.onNext(color)
+                })
+                .disposed(by: disposeBag)
+        }
     }
 }

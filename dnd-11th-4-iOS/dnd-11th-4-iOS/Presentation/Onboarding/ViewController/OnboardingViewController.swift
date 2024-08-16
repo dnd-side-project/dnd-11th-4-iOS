@@ -17,12 +17,14 @@ final class OnboardingViewController: UIViewController {
     var reactor: OnboardingReactor?
     var disposeBag: DisposeBag = DisposeBag()
     
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
         setupUI()
         bind(reactor: reactor!)
+        bindActions()
     }
     
     init(reactor: OnboardingReactor) {
@@ -34,6 +36,7 @@ final class OnboardingViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Layout
     
     private func setupUI() {
         view.addSubview(onboardingView)
@@ -42,15 +45,39 @@ final class OnboardingViewController: UIViewController {
             $0.edges.equalToSuperview()
         }
     }
+    
+    // MARK: - Bind
+    
+    private func bindActions() {
+        // 색상 선택 이벤트 전달
+        onboardingView.colorSelected
+            .subscribe(onNext: { [weak self] color in
+                self?.reactor?.action.onNext(.selectColor(color))
+            })
+            .disposed(by: disposeBag)
+        
+        onboardingView.selectButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.navigateToTabBarViewController()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    // MARK: - Method
+    
+    private func navigateToTabBarViewController() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            let rootViewController = TabBarViewController()
+            if let window = UIApplication.shared.windows.first {
+                window.rootViewController = rootViewController
+                UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
+            }
+        }
+    }
 }
 
 extension OnboardingViewController: View {
     func bind(reactor: OnboardingReactor) {
-        onboardingView.colorSelected
-            .map { Reactor.Action.selectColor($0) }
-            .bind(to: reactor.action)
-            .disposed(by: disposeBag)
-        
         reactor.state
             .map { $0.selectedAnimation }
             .distinctUntilChanged()

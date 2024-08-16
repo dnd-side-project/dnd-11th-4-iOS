@@ -13,7 +13,7 @@ final class OnboardingReactor: Reactor {
     var initialState: State
     
     enum Action {
-        case selectColor(Color)
+        case selectColor(ColorType)
     }
     
     enum Mutation {
@@ -62,11 +62,4 @@ extension OnboardingReactor {
     }
 }
 
-enum Color {
-    case pink
-    case orange
-    case yellow
-    case green
-    case blue
-    case purple
-}
+

@@ -88,6 +88,7 @@
 		FB808E962C6B955B00E9E2E5 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E952C6B955B00E9E2E5 /* OnboardingView.swift */; };
 		FB808E982C6BAC6000E9E2E5 /* OnboardingReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E972C6BAC6000E9E2E5 /* OnboardingReactor.swift */; };
 		FB9B35A02C6F768500FB884E /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9B359F2C6F768500FB884E /* SplashViewController.swift */; };
+		FB9B35A22C6F828500FB884E /* ColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9B35A12C6F828500FB884E /* ColorType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -159,6 +160,7 @@
 		FB808E952C6B955B00E9E2E5 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		FB808E972C6BAC6000E9E2E5 /* OnboardingReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingReactor.swift; sourceTree = "<group>"; };
 		FB9B359F2C6F768500FB884E /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		FB9B35A12C6F828500FB884E /* ColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorType.swift; sourceTree = "<group>"; };
 		FBC970BB2C6CB53B00A892F2 /* dnd-11th-4-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "dnd-11th-4-iOS.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -194,6 +196,7 @@
 				FB9B35982C6F753D00FB884E /* Reactor */,
 				4A16E2C92C5A5C2500F48180 /* ViewController */,
 				4A16E2A52C5A4E2900F48180 /* OnboardingMap */,
+				FB9B35A12C6F828500FB884E /* ColorType.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -661,6 +664,7 @@
 				4AAFDBB02C4953C0008C6DAF /* Network.swift in Sources */,
 				4A16E2F62C60F8DA00F48180 /* HomeMapReactor.swift in Sources */,
 				4A5FFDC22C4FB056002F5A77 /* HomeMap_부산.swift in Sources */,
+				FB9B35A22C6F828500FB884E /* ColorType.swift in Sources */,
 				4AAFDB6F2C494CFF008C6DAF /* SceneDelegate.swift in Sources */,
 				4A16E2E62C5D0F5D00F48180 /* MDPopUpView.swift in Sources */,
 				FB808E962C6B955B00E9E2E5 /* OnboardingView.swift in Sources */,

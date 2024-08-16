@@ -21,12 +21,16 @@ final class SplashViewController: UIViewController {
         
         return imageView
     }()
+    
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         navigateToOnboardingViewController()
     }
+    
+    // MARK: - Layout
     
     private func setupUI() {
         let backgroundLayer = CAGradientLayer()
@@ -53,6 +57,8 @@ final class SplashViewController: UIViewController {
             $0.centerX.equalToSuperview()
         }
     }
+    
+    // MARK: - Method
     
     private func navigateToOnboardingViewController() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
