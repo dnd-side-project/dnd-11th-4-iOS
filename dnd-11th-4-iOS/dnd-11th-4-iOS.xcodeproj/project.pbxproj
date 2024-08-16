@@ -188,6 +188,8 @@
 		4A16E2A22C5A4DDD00F48180 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				FB9B35992C6F755400FB884E /* View */,
+				FB9B35982C6F753D00FB884E /* Reactor */,
 				4A16E2C92C5A5C2500F48180 /* ViewController */,
 				4A16E2A52C5A4E2900F48180 /* OnboardingMap */,
 			);
@@ -242,8 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				4A16E2A32C5A4DE700F48180 /* OnboardingViewController.swift */,
-				FB808E952C6B955B00E9E2E5 /* OnboardingView.swift */,
-				FB808E972C6BAC6000E9E2E5 /* OnboardingReactor.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -267,12 +267,9 @@
 		4A16E2CE2C5A6FED00F48180 /* RecordList */ = {
 			isa = PBXGroup;
 			children = (
-				4A16E2CF2C5A702000F48180 /* RecordListViewController.swift */,
-				FB808E572C622DC600E9E2E5 /* RecordListCell.swift */,
-				FB808E5B2C63998600E9E2E5 /* RecordListReactor.swift */,
-				FB808E5F2C63A61F00E9E2E5 /* MenuAlertView.swift */,
-				FB808E652C64BD7500E9E2E5 /* RecordListHeaderView.swift */,
-				FB808E672C660AE600E9E2E5 /* EmptyRecordView.swift */,
+				FB9B359C2C6F758000FB884E /* View */,
+				FB9B359B2C6F757200FB884E /* Reactor */,
+				FB9B359A2C6F756600FB884E /* ViewController */,
 			);
 			path = RecordList;
 			sourceTree = "<group>";
@@ -457,6 +454,49 @@
 				4AA414492C64667000AB3CE8 /* Model */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		FB9B35982C6F753D00FB884E /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+				FB808E972C6BAC6000E9E2E5 /* OnboardingReactor.swift */,
+			);
+			path = Reactor;
+			sourceTree = "<group>";
+		};
+		FB9B35992C6F755400FB884E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FB808E952C6B955B00E9E2E5 /* OnboardingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FB9B359A2C6F756600FB884E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4A16E2CF2C5A702000F48180 /* RecordListViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		FB9B359B2C6F757200FB884E /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+				FB808E5B2C63998600E9E2E5 /* RecordListReactor.swift */,
+			);
+			path = Reactor;
+			sourceTree = "<group>";
+		};
+		FB9B359C2C6F758000FB884E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FB808E572C622DC600E9E2E5 /* RecordListCell.swift */,
+				FB808E5F2C63A61F00E9E2E5 /* MenuAlertView.swift */,
+				FB808E652C64BD7500E9E2E5 /* RecordListHeaderView.swift */,
+				FB808E672C660AE600E9E2E5 /* EmptyRecordView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
