@@ -102,6 +102,7 @@
 		FB808E932C6B93A000E9E2E5 /* Onboarding_Yellow.json in Resources */ = {isa = PBXBuildFile; fileRef = FB808E8D2C6B93A000E9E2E5 /* Onboarding_Yellow.json */; };
 		FB808E942C6B93A000E9E2E5 /* Onboarding_Green.json in Resources */ = {isa = PBXBuildFile; fileRef = FB808E8E2C6B93A000E9E2E5 /* Onboarding_Green.json */; };
 		FB808E962C6B955B00E9E2E5 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E952C6B955B00E9E2E5 /* OnboardingView.swift */; };
+		FB808E982C6BAC6000E9E2E5 /* OnboardingReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E972C6BAC6000E9E2E5 /* OnboardingReactor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -187,6 +188,8 @@
 		FB808E8D2C6B93A000E9E2E5 /* Onboarding_Yellow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding_Yellow.json; sourceTree = "<group>"; };
 		FB808E8E2C6B93A000E9E2E5 /* Onboarding_Green.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding_Green.json; sourceTree = "<group>"; };
 		FB808E952C6B955B00E9E2E5 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		FB808E972C6BAC6000E9E2E5 /* OnboardingReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingReactor.swift; sourceTree = "<group>"; };
+		FBC970BB2C6CB53B00A892F2 /* dnd-11th-4-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "dnd-11th-4-iOS.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,6 +291,7 @@
 			children = (
 				4A16E2A32C5A4DE700F48180 /* OnboardingViewController.swift */,
 				FB808E952C6B955B00E9E2E5 /* OnboardingView.swift */,
+				FB808E972C6BAC6000E9E2E5 /* OnboardingReactor.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -407,6 +411,7 @@
 		4AAFDB6B2C494CFF008C6DAF /* dnd-11th-4-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				FBC970BB2C6CB53B00A892F2 /* dnd-11th-4-iOS.entitlements */,
 				4AAFDBAB2C49538D008C6DAF /* Global */,
 				4AAFDBA92C495320008C6DAF /* Network */,
 				4AAFDBA82C495290008C6DAF /* Presentation */,
@@ -645,6 +650,7 @@
 				4A16E2A42C5A4DE700F48180 /* OnboardingViewController.swift in Sources */,
 				4A16E2D82C5B434F00F48180 /* MDLabel.swift in Sources */,
 				4A16E2DC2C5B50DF00F48180 /* MDToastView.swift in Sources */,
+				FB808E982C6BAC6000E9E2E5 /* OnboardingReactor.swift in Sources */,
 				4A16E2C42C5A5A2800F48180 /* OnboardingMap_광주.swift in Sources */,
 				FB808E6A2C6901EA00E9E2E5 /* ListDeleteViewController.swift in Sources */,
 				4A16E2DA2C5B44FD00F48180 /* MDButton.swift in Sources */,
@@ -818,9 +824,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = "dnd-11th-4-iOS/dnd-11th-4-iOS.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J5UBGNBDYX;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D5WYU8R9W8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "dnd-11th-4-iOS/Application/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -832,8 +841,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "team-dnd.dnd-11th-4-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.record.mapddang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "MapDDang Debug";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -845,9 +856,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = "dnd-11th-4-iOS/dnd-11th-4-iOS.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J5UBGNBDYX;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D5WYU8R9W8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "dnd-11th-4-iOS/Application/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -859,8 +873,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "team-dnd.dnd-11th-4-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.record.mapddang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "MapDDang Release";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

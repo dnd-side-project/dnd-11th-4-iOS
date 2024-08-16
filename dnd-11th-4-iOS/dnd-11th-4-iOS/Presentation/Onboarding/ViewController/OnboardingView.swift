@@ -8,10 +8,20 @@
 import UIKit
 import SnapKit
 import Lottie
+import RxSwift
+import RxCocoa
 
 final class OnboardingView: UIView {
+    let colorSelected = PublishSubject<Color>()
+    private let disposeBag = DisposeBag()
+    
+    private var selectedButton: MDButton?
+    
     private let mapAnimationView: LottieAnimationView = {
         let view = LottieAnimationView(name: "Onboarding_Pink")
+        view.contentMode = .scaleAspectFit
+        view.loopMode = .playOnce
+        view.animationSpeed = 0.8
         return view
     }()
     
@@ -73,10 +83,18 @@ final class OnboardingView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        bindButtons()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func updateAnimationView(with animationName: String) {
+        mapAnimationView.stop()
+        mapAnimationView.animation = LottieAnimation.named(animationName)
+        mapAnimationView.animationSpeed = 0.8
+        mapAnimationView.play()
     }
     
     private func setupUI() {
@@ -113,9 +131,46 @@ final class OnboardingView: UIView {
         }
         
         selectButton.snp.makeConstraints {
-            $0.top.equalTo(colorStackView.snp.bottom).offset(75)
+            $0.top.equalTo(colorStackView.snp.bottom).offset(60)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(52)
         }
+    }
+    
+    private func bindButtons() {
+        let colorButtons: [(MDButton, Color)] = [
+            (pinkButton, Color.pink),
+            (orangeButton, Color.orange),
+            (yellowButton, Color.yellow),
+            (greenButton, Color.green),
+            (blueButton, Color.blue),
+            (purpleButton, Color.purple)
+        ]
+        
+        colorButtons.forEach { (button, color) in
+            button.rx.tap
+                .map { color }
+                .bind(to: colorSelected)
+                .disposed(by: disposeBag)
+            
+            button.rx.tap
+                .subscribe(onNext: { [weak self] in
+                    self?.handleColorButtonTap(button: button, color: color)
+                })
+                .disposed(by: disposeBag)
+        }
+    }
+    
+    private func handleColorButtonTap(button: MDButton, color: Color) {
+        selectedButton?.layer.borderWidth = 0
+        selectedButton?.layer.borderColor = UIColor.clear.cgColor
+        
+        selectedButton = button
+        
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.black.cgColor
+        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        
+        colorSelected.onNext(color)
     }
 }
