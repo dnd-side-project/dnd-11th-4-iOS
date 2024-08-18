@@ -50,7 +50,7 @@ extension NSAttributedString {
     }
     
     static var pretendardM16: (String) -> NSAttributedString {
-        return customFont(.pretendardMedium, size: 16, lineHeight: 1.0, letterSpacing: -0.1)
+        return customFont(.pretendardMedium, size: 16, lineHeight: 1.15, letterSpacing: -0.1)
     }
     
     static var pretendardR10: (String) -> NSAttributedString {
