@@ -1,0 +1,6 @@
+framework module Pods_dnd_11th_4_iOS {
+  umbrella header "Pods-dnd-11th-4-iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}
