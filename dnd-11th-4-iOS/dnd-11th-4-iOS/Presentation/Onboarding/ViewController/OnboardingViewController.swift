@@ -24,7 +24,6 @@ final class OnboardingViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
         setupUI()
-        bind(reactor: reactor!)
         bindActions()
     }
     
