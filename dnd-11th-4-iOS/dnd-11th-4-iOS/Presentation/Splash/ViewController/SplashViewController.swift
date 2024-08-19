@@ -27,12 +27,13 @@ final class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        navigateToOnboardingViewController()
+        navigateToLoginViewController()
     }
     
     // MARK: - Layout
     
     private func setupUI() {
+        self.navigationController?.navigationBar.isHidden = true
         let backgroundLayer = CAGradientLayer()
         backgroundLayer.colors = [
             UIColor(red: 0.567, green: 0.896, blue: 1, alpha: 1).cgColor,
@@ -60,9 +61,9 @@ final class SplashViewController: UIViewController {
     
     // MARK: - Method
     
-    private func navigateToOnboardingViewController() {
+    private func navigateToLoginViewController() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            let rootViewController = UINavigationController(rootViewController: OnboardingViewController(reactor: OnboardingReactor()))
+            let rootViewController = UINavigationController(rootViewController: LoginViewController())
             if let window = UIApplication.shared.windows.first {
                 window.rootViewController = rootViewController
                 UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
