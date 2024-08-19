@@ -41,7 +41,7 @@ final class RecordViewController: UIViewController, View {
     private let regionTextField = MDTextField(text: "인천")
     private let placeTextField = MDTextField()
     private let memoTextField = MDTextField()
-    private let visitedTextField = MDTextField().setLeftImage(image: Constant.Image.iconCalendar)
+    private let dateTextField = MDTextField().setLeftImage(image: Constant.Image.iconCalendar)
     
     private let placeTextLimitedLabel = MDLabel(attributedString: NSAttributedString.pretendardR10("0/20자"), textColor: .errorRed)
     private let memoTextLimitedLabel = MDLabel(attributedString: NSAttributedString.pretendardR10("7/25자"), textColor: .errorRed)
@@ -50,16 +50,16 @@ final class RecordViewController: UIViewController, View {
         .setText(attributedString: NSAttributedString.pretendardB16("기록 작성 완료"), color: .white)
     
     private let regionPickerView = UIPickerView()
-    private let toolBar: UIToolbar = {
+    private let regionToolbar: UIToolbar = {
         let toolBar = UIToolbar()
         toolBar.frame = CGRect(x: 0, y: 0, width: Constant.Screen.width, height: 50)
         return toolBar
     }()
-    private lazy var cancelBarButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: nil)
-    private lazy var flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-    private lazy var complteBarButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: nil)
+    private lazy var regionCancelBarButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: nil)
+    private lazy var regionFlexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    private lazy var regionComplteBarButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: nil)
     
-    private let dateDatePicker: UIDatePicker = {
+    private let datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
         datePicker.locale = Locale(identifier: "ko_KR")
@@ -71,6 +71,15 @@ final class RecordViewController: UIViewController, View {
         formatter.dateFormat = "yyyy년 MM월 dd일"
         return formatter
     }()
+    private let dateToolbar: UIToolbar = {
+        let toolBar = UIToolbar()
+        toolBar.frame = CGRect(x: 0, y: 0, width: Constant.Screen.width, height: 50)
+        return toolBar
+    }()
+    private lazy var dateCancelBarButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: nil)
+    private lazy var dateFlexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    private lazy var dateComplteBarButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: nil)
+    
     
     // MARK: - Life Cycle
     
@@ -100,7 +109,7 @@ final class RecordViewController: UIViewController, View {
     
     func bind(reactor: RecordReactor) {
         // 취소하면 기존 text로 다시
-        cancelBarButton.rx.tap
+        regionCancelBarButton.rx.tap
             .withUnretained(self)
             .compactMap { owner, _ in owner.reactor }
             .bind { reactor in
@@ -109,7 +118,7 @@ final class RecordViewController: UIViewController, View {
             }
             .disposed(by: disposeBag)
         
-        complteBarButton.rx.tap
+        regionComplteBarButton.rx.tap
             .withUnretained(self)
             .compactMap { owner, _ in owner.reactor }
             .bind { reactor in
@@ -164,12 +173,33 @@ final class RecordViewController: UIViewController, View {
             .bind(to: regionTextField.rx.text)
             .disposed(by: disposeBag)
         
-        dateDatePicker.rx.date
+        // 초기값만 없애는 방법 고려
+        datePicker.rx.date
             .map { date in
+                reactor.initialState.selectedDate = self.dateFormatter.string(from: date)
                 return self.dateFormatter.string(for: date)
             }
-            .bind(to: visitedTextField.rx.text)
+            .bind(to: dateTextField.rx.text)
             .disposed(by: disposeBag)
+        
+        dateCancelBarButton.rx.tap
+            .withUnretained(self)
+            .compactMap { owner, _ in owner.reactor }
+            .bind { reactor in
+                self.dateTextField.text = nil
+                self.dateTextField.resignFirstResponder()
+            }
+            .disposed(by: disposeBag)
+        
+        dateComplteBarButton.rx.tap
+            .withUnretained(self)
+            .compactMap { owner, _ in owner.reactor }
+            .bind { reactor in
+                self.dateTextField.text = reactor.initialState.selectedDate
+                self.dateTextField.resignFirstResponder()
+            }
+            .disposed(by: disposeBag)
+        
     }
     
     // MARK: - Method
@@ -179,14 +209,16 @@ final class RecordViewController: UIViewController, View {
     }
     
     private func setToolbar() {
-        toolBar.setItems([cancelBarButton, flexibleSpace, complteBarButton], animated: false)
+        regionToolbar.setItems([regionCancelBarButton, regionFlexibleSpace, regionComplteBarButton], animated: false)
+        dateToolbar.setItems([dateCancelBarButton, dateFlexibleSpace, dateComplteBarButton], animated: false)
     }
     
     private func setTextField() {
         regionTextField.tintColor = .clear
         regionTextField.inputView = regionPickerView
-        regionTextField.inputAccessoryView = toolBar
-        visitedTextField.inputView = dateDatePicker
+        regionTextField.inputAccessoryView = regionToolbar
+        dateTextField.inputView = datePicker
+        dateTextField.inputAccessoryView = dateToolbar
     }
     
     private func setDelegate() {
@@ -200,7 +232,7 @@ final class RecordViewController: UIViewController, View {
         recordScrollView.addSubview(contentView)
         contentView.addSubviews(regionLabel, regionTextField, placeLabel, placeTextLimitedLabel, placeTextField,
                                 imageLabel, imageCollectionView, memoLabel, memoTextLimitedLabel, memoTextField,
-                                visitedLabel, visitedTextField, completeButton)
+                                visitedLabel, dateTextField, completeButton)
         
         navigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
@@ -279,7 +311,7 @@ final class RecordViewController: UIViewController, View {
             make.leading.equalToSuperview().inset(16)
         }
         
-        visitedTextField.snp.makeConstraints { make in
+        dateTextField.snp.makeConstraints { make in
             make.top.equalTo(visitedLabel.snp.bottom).offset(8)
             make.leading.equalToSuperview().inset(16)
             make.width.equalTo(170)
