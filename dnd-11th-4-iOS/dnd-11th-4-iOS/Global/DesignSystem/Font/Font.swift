@@ -75,6 +75,12 @@ extension NSAttributedString {
 }
 
 extension NSAttributedString {
+    static let defaultpretendardM14: [NSAttributedString.Key: Any] = {
+        return defaultFont(.pretendardMedium, size: 14, lineHeight: 1.0, letterSpacing: -0.1)
+    }()
+}
+
+extension NSAttributedString {
     static func customFont(_ name: FontName, size: CGFloat, lineHeight: CGFloat, letterSpacing: CGFloat) -> (String) -> NSAttributedString {
         return { text in
             let paragraphStyle = NSMutableParagraphStyle()
@@ -88,6 +94,19 @@ extension NSAttributedString {
             
             return NSAttributedString(string: text, attributes: attributes)
         }
+    }
+    
+    static func defaultFont(_ name: FontName, size: CGFloat, lineHeight: CGFloat, letterSpacing: CGFloat) -> [NSAttributedString.Key: Any] {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = lineHeight
+        
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont(name: name.rawValue, size: size) ?? UIFont.systemFont(ofSize: size),
+            .paragraphStyle: paragraphStyle,
+            .kern: letterSpacing
+        ]
+        
+        return attributes
     }
 }
 

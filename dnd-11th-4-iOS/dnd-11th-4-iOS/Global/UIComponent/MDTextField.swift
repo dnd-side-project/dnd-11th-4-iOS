@@ -18,16 +18,8 @@ final class MDTextField: UITextField {
         
         self.backgroundColor = .gray20
         self.layer.cornerRadius = 8
-        self.attributedText = NSAttributedString.pretendardM14(text)
         
-        self.rx.text
-            .compactMap { $0 }
-            .distinctUntilChanged()
-            .map { text in
-                NSAttributedString.pretendardM14(text)
-            }
-            .bind(to: rx.attributedText)
-            .disposed(by: disposeBag)
+        self.defaultTextAttributes = NSAttributedString.defaultpretendardM14
         
         let paddingLeftView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: self.frame.height))
         self.leftView = paddingLeftView
@@ -42,6 +34,19 @@ final class MDTextField: UITextField {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func adjustWidthToFitText() {
+        guard let text = self.text else { return }
+        let padding: CGFloat = 14 // 오른쪽 패딩값
+        let textSize = NSAttributedString.pretendardM14(text).size()
+        let viewFrame: CGFloat = 44
+        
+        let total = padding+textSize.width+viewFrame
+        
+        var frame = self.frame
+        frame.size.width = total
+        self.frame = frame
     }
     
     @discardableResult

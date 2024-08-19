@@ -59,8 +59,21 @@ final class RecordViewController: UIViewController, View {
     private lazy var flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     private lazy var complteBarButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: nil)
     
+    private let dateDatePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.locale = Locale(identifier: "ko_KR")
+        datePicker.preferredDatePickerStyle = .wheels
+        return datePicker
+    }()
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 MM월 dd일"
+        return formatter
+    }()
+    
     // MARK: - Life Cycle
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +82,7 @@ final class RecordViewController: UIViewController, View {
         setToolbar()
         setLayout()
         setDelegate()
+        
     }
     
     init(reactor: RecordReactor) {
@@ -136,15 +150,26 @@ final class RecordViewController: UIViewController, View {
             .drive(placeTextLimitedLabel.rx.text)
             .disposed(by: disposeBag)
         
-        /// 왜 안될까...
-        //        regionPickerView.rx.itemSelected
-        //            .withUnretained(self)
-        //            .map { _, _ in
-        //                let row = self.regionPickerView.selectedRow(inComponent: 0)
-        //                return self.reactor?.initialState.regionArray[row]
-        //            }
-        //            .bind(to: regionTextField.rx.text )
-        //            .disposed(by: disposeBag)
+        Observable.just(reactor.initialState.regionArray)
+            .bind(to: regionPickerView.rx.itemTitles) { _, item in
+                return item
+            }
+            .disposed(by: disposeBag)
+        
+        regionPickerView.rx.itemSelected
+            .withUnretained(self)
+            .map { owner, index in
+                return self.reactor?.initialState.regionArray[index.row]
+            }
+            .bind(to: regionTextField.rx.text)
+            .disposed(by: disposeBag)
+        
+        dateDatePicker.rx.date
+            .map { date in
+                return self.dateFormatter.string(for: date)
+            }
+            .bind(to: visitedTextField.rx.text)
+            .disposed(by: disposeBag)
     }
     
     // MARK: - Method
@@ -161,12 +186,11 @@ final class RecordViewController: UIViewController, View {
         regionTextField.tintColor = .clear
         regionTextField.inputView = regionPickerView
         regionTextField.inputAccessoryView = toolBar
+        visitedTextField.inputView = dateDatePicker
     }
     
     private func setDelegate() {
         regionTextField.delegate = self
-        regionPickerView.delegate = self
-        regionPickerView.dataSource = self
     }
     
     // MARK: - Layout
@@ -258,7 +282,7 @@ final class RecordViewController: UIViewController, View {
         visitedTextField.snp.makeConstraints { make in
             make.top.equalTo(visitedLabel.snp.bottom).offset(8)
             make.leading.equalToSuperview().inset(16)
-            make.width.equalTo(149)
+            make.width.equalTo(170)
             make.height.equalTo(40)
         }
         
@@ -276,23 +300,5 @@ extension RecordViewController: UITextFieldDelegate {
             return false
         }
         return true
-    }
-}
-
-extension RecordViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.reactor?.initialState.regionArray.count ?? 16
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return self.reactor?.initialState.regionArray[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        return regionTextField.text = self.reactor?.initialState.regionArray[row]
     }
 }
