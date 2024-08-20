@@ -29,7 +29,6 @@ final class LoginReactor: Reactor {
         var error: Error?
     }
     
-    
     init() {
         self.initialState = State()
     }

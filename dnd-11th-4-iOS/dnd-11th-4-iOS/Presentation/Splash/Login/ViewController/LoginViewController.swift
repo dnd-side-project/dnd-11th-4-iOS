@@ -115,9 +115,9 @@ final class LoginViewController: UIViewController {
         authorizationController.performRequests()
     }
     
-    private func navigateToOnboardingViewController() {
+    private func navigateToAgreeViewController() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            let rootViewController = UINavigationController(rootViewController: OnboardingViewController(reactor: OnboardingReactor()))
+            let rootViewController = UINavigationController(rootViewController: AgreeViewController())
             if let window = UIApplication.shared.windows.first {
                 window.rootViewController = rootViewController
                 UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
@@ -173,7 +173,7 @@ extension LoginViewController: View {
                 guard let self = self else { return }
                 if let token = token {
                     print("identityToken: \(token)")
-                    self.navigateToOnboardingViewController()
+                    self.navigateToAgreeViewController()
                 }
             })
             .disposed(by: disposeBag)
