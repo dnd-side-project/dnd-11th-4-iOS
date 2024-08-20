@@ -63,7 +63,7 @@ final class SplashViewController: UIViewController {
     
     private func navigateToLoginViewController() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            let rootViewController = UINavigationController(rootViewController: LoginViewController())
+            let rootViewController = UINavigationController(rootViewController: LoginViewController(reactor: LoginReactor()))
             if let window = UIApplication.shared.windows.first {
                 window.rootViewController = rootViewController
                 UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
