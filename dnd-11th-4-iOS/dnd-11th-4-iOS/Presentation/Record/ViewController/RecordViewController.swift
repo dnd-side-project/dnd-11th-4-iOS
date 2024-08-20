@@ -24,13 +24,48 @@ final class RecordViewController: UIViewController, View {
         scrollView.contentInsetAdjustmentBehavior = .never
         return scrollView
     }()
+    private let contentView = UIView()
     
+    private let imageScrollerView: UIScrollView = {
+        let scrollView = UIScrollView(frame: .zero)
+        scrollView.contentInsetAdjustmentBehavior = .never
+        scrollView.backgroundColor = .clear
+        scrollView.isScrollEnabled = true
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        return scrollView
+    }()
+    private let imageContentView = UIView()
+    private let emptyImageView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.gray50.cgColor
+        view.layer.cornerRadius = 6
+        return view
+    }()
+    private let emptyImage = UIImageView(image: Constant.Image.iconPicture)
+    private let addImageLabel = MDLabel(attributedString: NSAttributedString.pretendardM10("사진 추가"),
+                                        textColor: .gray80)
+    private let countImageLabel = MDLabel(attributedString: NSAttributedString.pretendardM10("(0/3)"),
+                                        textColor: .gray80)
+    private let imageLabelStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 2
+        stackView.alignment = .center
+        return stackView
+    }()
     private let imageCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 90, height: 90)
+        layout.minimumLineSpacing = 6
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(RecordImageCell.self, forCellWithReuseIdentifier: RecordImageCell.identifier)
         return collectionView
     }()
-    
-    private let contentView = UIView()
     
     private let regionLabel = MDLabel(attributedString: NSAttributedString.pretendardSB14("지역"), textColor: .black)
     private let placeLabel = MDLabel(attributedString: NSAttributedString.pretendardSB14("명소명"), textColor: .black)
@@ -91,7 +126,6 @@ final class RecordViewController: UIViewController, View {
         setToolbar()
         setLayout()
         setDelegate()
-        
     }
     
     init(reactor: RecordReactor) {
@@ -139,10 +173,24 @@ final class RecordViewController: UIViewController, View {
         placeTextField.rx.text
             .compactMap{ $0 }
             .distinctUntilChanged()
-            .map { text in"\(text.count)/20" }
+            .map { text in "\(text.count)/20" }
             .asDriver(onErrorJustReturn: "0/20")
             .drive(placeTextLimitedLabel.rx.text)
             .disposed(by: disposeBag)
+        
+        let items = Observable.just([
+                     1,
+                     2,
+                     3
+                 ])
+        items
+        .bind(to: imageCollectionView.rx.items) { (collectionView, row, element) in
+           let indexPath = IndexPath(row: row, section: 0)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecordImageCell.identifier, for: indexPath) as! RecordImageCell
+            cell.backgroundColor = .mapPink2
+            return cell
+        }
+        .disposed(by: disposeBag)
         
         memoTextField.rx.text
             .orEmpty
@@ -154,9 +202,9 @@ final class RecordViewController: UIViewController, View {
         memoTextField.rx.text
             .compactMap{ $0 }
             .distinctUntilChanged()
-            .map { text in"\(text.count)/25" }
+            .map { text in "\(text.count)/25" }
             .asDriver(onErrorJustReturn: "0/25")
-            .drive(placeTextLimitedLabel.rx.text)
+            .drive(memoTextLimitedLabel.rx.text)
             .disposed(by: disposeBag)
         
         Observable.just(reactor.initialState.regionArray)
@@ -200,6 +248,7 @@ final class RecordViewController: UIViewController, View {
             }
             .disposed(by: disposeBag)
         
+        
     }
     
     // MARK: - Method
@@ -231,8 +280,14 @@ final class RecordViewController: UIViewController, View {
         view.addSubviews(navigationBar, recordScrollView)
         recordScrollView.addSubview(contentView)
         contentView.addSubviews(regionLabel, regionTextField, placeLabel, placeTextLimitedLabel, placeTextField,
-                                imageLabel, imageCollectionView, memoLabel, memoTextLimitedLabel, memoTextField,
+                                imageLabel, imageScrollerView, memoLabel, memoTextLimitedLabel, memoTextField,
                                 visitedLabel, dateTextField, completeButton)
+        imageScrollerView.addSubview(imageContentView)
+        imageContentView.addSubviews(emptyImageView, imageCollectionView)
+        emptyImageView.addSubview(imageLabelStackView)
+        imageLabelStackView.addArrangedSubview(emptyImage)
+        imageLabelStackView.addArrangedSubview(addImageLabel)
+        imageLabelStackView.addArrangedSubview(countImageLabel)
         
         navigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
@@ -283,14 +338,39 @@ final class RecordViewController: UIViewController, View {
             make.leading.equalToSuperview().inset(16)
         }
         
-        imageCollectionView.snp.makeConstraints { make in
+        imageScrollerView.snp.makeConstraints { make in
             make.top.equalTo(imageLabel.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.leading.equalToSuperview().inset(16)
+            make.trailing.equalToSuperview()
             make.height.equalTo(90)
         }
         
+        imageContentView.snp.makeConstraints { make in
+            make.height.equalToSuperview()
+            make.edges.equalToSuperview()
+        }
+        
+        emptyImageView.snp.makeConstraints { make in
+            make.top.leading.bottom.equalToSuperview()
+            make.width.height.equalTo(90)
+        }
+        
+        emptyImage.snp.makeConstraints { make in
+            make.width.height.equalTo(24)
+        }
+        
+        imageLabelStackView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
+        imageCollectionView.snp.makeConstraints { make in
+            make.leading.equalTo(emptyImageView.snp.trailing).offset(6)
+            make.top.bottom.trailing.equalToSuperview()
+            make.width.equalTo(270+18)
+        }
+        
         memoLabel.snp.makeConstraints { make in
-            make.top.equalTo(imageCollectionView.snp.bottom).offset(28)
+            make.top.equalTo(imageScrollerView.snp.bottom).offset(28)
             make.leading.equalToSuperview().inset(16)
         }
         

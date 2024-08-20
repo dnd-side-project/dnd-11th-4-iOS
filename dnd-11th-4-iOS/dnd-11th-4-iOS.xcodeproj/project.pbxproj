@@ -55,6 +55,7 @@
 		4AB1221F2C6BB3DF00A7337F /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB1221E2C6BB3DF00A7337F /* RecordViewController.swift */; };
 		4AB122212C6C6F0B00A7337F /* MDTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB122202C6C6F0B00A7337F /* MDTextField.swift */; };
 		4AB122252C6CAE7500A7337F /* RecordReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB122242C6CAE7500A7337F /* RecordReactor.swift */; };
+		4AE91E8F2C74D8BE00E3321E /* RecordImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE91E8E2C74D8BE00E3321E /* RecordImageCell.swift */; };
 		9B683A9A3DF08F60898F35CD /* Pods_dnd_11th_4_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6186EB1A512F7D1B5F90E0 /* Pods_dnd_11th_4_iOS.framework */; };
 		FB0BE4EB2C57B5EB00C34C7B /* PeoplefirstNeat&Loud.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4EA2C57B5EB00C34C7B /* PeoplefirstNeat&Loud.otf */; };
 		FB0BE4F02C57B5FD00C34C7B /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4EC2C57B5FD00C34C7B /* Pretendard-Medium.otf */; };
@@ -132,6 +133,7 @@
 		4AB1221E2C6BB3DF00A7337F /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		4AB122202C6C6F0B00A7337F /* MDTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDTextField.swift; sourceTree = "<group>"; };
 		4AB122242C6CAE7500A7337F /* RecordReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordReactor.swift; sourceTree = "<group>"; };
+		4AE91E8E2C74D8BE00E3321E /* RecordImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordImageCell.swift; sourceTree = "<group>"; };
 		B2752E23310EECA8EBA4E6C2 /* Pods-dnd-11th-4-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dnd-11th-4-iOS.release.xcconfig"; path = "Target Support Files/Pods-dnd-11th-4-iOS/Pods-dnd-11th-4-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		FB0BE4EA2C57B5EB00C34C7B /* PeoplefirstNeat&Loud.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PeoplefirstNeat&Loud.otf"; sourceTree = "<group>"; };
 		FB0BE4EC2C57B5FD00C34C7B /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 		4AB1221D2C6BB3D600A7337F /* Record */ = {
 			isa = PBXGroup;
 			children = (
+				4AE91E892C74D2F500E3321E /* Cell */,
 				4AB122222C6CAE5400A7337F /* ViewController */,
 				4AB122232C6CAE5800A7337F /* Reactor */,
 			);
@@ -480,6 +483,14 @@
 				4AA414492C64667000AB3CE8 /* Model */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		4AE91E892C74D2F500E3321E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4AE91E8E2C74D8BE00E3321E /* RecordImageCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		6435613A2484E869917A686A /* Pods */ = {
@@ -715,6 +726,7 @@
 				FB808E6A2C6901EA00E9E2E5 /* ListDeleteViewController.swift in Sources */,
 				4A16E2DA2C5B44FD00F48180 /* MDButton.swift in Sources */,
 				4A5FFDD42C4FB515002F5A77 /* UIView+.swift in Sources */,
+				4AE91E8F2C74D8BE00E3321E /* RecordImageCell.swift in Sources */,
 				4AAFDB6D2C494CFF008C6DAF /* AppDelegate.swift in Sources */,
 				4AAFDBB02C4953C0008C6DAF /* Network.swift in Sources */,
 				4A16E2B82C5A559E00F48180 /* OnboardingMap_전라남도.swift in Sources */,
