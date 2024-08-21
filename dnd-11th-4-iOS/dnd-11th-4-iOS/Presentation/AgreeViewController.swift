@@ -7,8 +7,15 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
+import ReactorKit
 
 final class AgreeViewController: UIViewController {
+    typealias Reactor = AgreeReactor
+    
+    var disposeBag: DisposeBag = DisposeBag()
+    
     private let titleLabel = MDLabel(attributedString: NSAttributedString.pretendardSB24("약관에 동의해주세요"), textColor: .point)
     private let descriptionLabel = MDLabel(attributedString: NSAttributedString.pretendardM14("원활한 여행 기록을 위해서\n약관 동의가 필요해요!"), textColor: .gray70)
     
@@ -45,11 +52,24 @@ final class AgreeViewController: UIViewController {
         return button
     }()
     
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
+        bindActions()
     }
+    
+    init(reactor: AgreeReactor) {
+        super.init(nibName: nil, bundle: nil)
+        self.reactor = reactor
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Layout
     
     private func setupUI() {
         view.backgroundColor = .mapWhite
@@ -94,5 +114,60 @@ final class AgreeViewController: UIViewController {
             $0.trailing.equalToSuperview().offset(-11)
             $0.bottom.equalToSuperview().offset(-37)
         }
+    }
+    
+    // MARK: - Bind
+    
+    private func bindActions() {
+        checkboxButton.rx.tap
+            .map { Reactor.Action.toggleCheckbox }
+            .bind(to: reactor!.action)
+            .disposed(by: disposeBag)
+        
+        agreeButton.rx.tap
+            .asDriver()
+            .delay(.milliseconds(300))
+            .drive(onNext: { [weak self] in
+                guard let self = self else { return }
+                self.navigateToOnboardingViewController()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    // MARK: - Method
+    
+    private func updateCheckboxUI(isSelected: Bool) {
+        if isSelected {
+            checkboxButton.setImage(image: Constant.Image.iconCheckboxSelected!)
+            agreeButton.backgroundColor = .black2
+            agreeButton.titleLabel?.textColor = .mapWhite
+            agreeButton.isUserInteractionEnabled = true
+        } else {
+            checkboxButton.setImage(image: Constant.Image.iconCheckboxNone!)
+            agreeButton.backgroundColor = .gray40
+            agreeButton.titleLabel?.textColor = .gray60
+            agreeButton.isUserInteractionEnabled = false
+        }
+    }
+    
+    private func navigateToOnboardingViewController() {
+        let rootViewController = OnboardingViewController(reactor: OnboardingReactor())
+        if let window = UIApplication.shared.windows.first {
+            window.rootViewController = rootViewController
+            UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
+        }
+    }
+}
+
+extension AgreeViewController: View {
+    func bind(reactor: AgreeReactor) {
+        reactor.state
+            .map { $0.isCheckboxSelected }
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] isSelected in
+                guard let self = self else { return }
+                self.updateCheckboxUI(isSelected: isSelected)
+            })
+            .disposed(by: disposeBag)
     }
 }

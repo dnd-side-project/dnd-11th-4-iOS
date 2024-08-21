@@ -117,7 +117,7 @@ final class LoginViewController: UIViewController {
     
     private func navigateToAgreeViewController() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            let rootViewController = UINavigationController(rootViewController: AgreeViewController())
+            let rootViewController = UINavigationController(rootViewController: AgreeViewController(reactor: AgreeReactor()))
             if let window = UIApplication.shared.windows.first {
                 window.rootViewController = rootViewController
                 UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
