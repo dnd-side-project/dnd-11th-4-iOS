@@ -14,7 +14,6 @@ final class LoginReactor: Reactor {
     var initialState: State
     
     enum Action {
-        case appleLoginTapped
         case loginSuccess(String)
         case loginFailure(Error)
     }

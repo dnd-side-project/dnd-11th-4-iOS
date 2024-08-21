@@ -27,7 +27,7 @@ final class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        navigateToLoginViewController()
+        navigateToViewController(viewController: LoginViewController(reactor: LoginReactor()), delay: 2.0)
     }
     
     // MARK: - Layout
@@ -56,18 +56,6 @@ final class SplashViewController: UIViewController {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(68)
             $0.centerX.equalToSuperview()
-        }
-    }
-    
-    // MARK: - Method
-    
-    private func navigateToLoginViewController() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            let rootViewController = UINavigationController(rootViewController: LoginViewController(reactor: LoginReactor()))
-            if let window = UIApplication.shared.windows.first {
-                window.rootViewController = rootViewController
-                UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
-            }
         }
     }
 }

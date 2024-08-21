@@ -62,19 +62,9 @@ final class OnboardingViewController: UIViewController {
             .delay(.milliseconds(300))
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
-                self.navigateToTabBarViewController()
+                self.navigateToViewController(viewController: TabBarViewController())
             })
             .disposed(by: disposeBag)
-    }
-    
-    // MARK: - Method
-    
-    private func navigateToTabBarViewController() {
-        let rootViewController = TabBarViewController()
-        if let window = UIApplication.shared.windows.first {
-            window.rootViewController = rootViewController
-            UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
-        }
     }
 }
 

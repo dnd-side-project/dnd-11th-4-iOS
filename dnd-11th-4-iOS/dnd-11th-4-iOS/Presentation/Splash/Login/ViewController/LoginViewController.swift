@@ -14,8 +14,9 @@ import AuthenticationServices
 
 final class LoginViewController: UIViewController {
     typealias Reactor = LoginReactor
-    
     var disposeBag: DisposeBag = DisposeBag()
+    
+    // MARK: - UI Properties
     
     private let descriptionLabel: MDLabel = {
         let label = MDLabel(attributedString: NSAttributedString.pretendardSB16("방방곡곡 대한민국 도장깨기"), textColor: .gray80, alignment: .center)
@@ -114,14 +115,6 @@ final class LoginViewController: UIViewController {
         authorizationController.delegate = self
         authorizationController.performRequests()
     }
-    
-    private func navigateToAgreeViewController() {
-        let rootViewController = UINavigationController(rootViewController: AgreeViewController(reactor: AgreeReactor()))
-        if let window = UIApplication.shared.windows.first {
-            window.rootViewController = rootViewController
-            UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
-        }
-    }
 }
 
 extension LoginViewController: ASAuthorizationControllerDelegate {
@@ -132,25 +125,14 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
-            // You can create an account in your system.
-            let userIdentifier = appleIDCredential.user
-            let fullName = appleIDCredential.fullName
-            let email = appleIDCredential.email
+            let _ = appleIDCredential.user
+            let _ = appleIDCredential.fullName
+            let _ = appleIDCredential.email
             
-            if  let authorizationCode = appleIDCredential.authorizationCode,
-                let identityToken = appleIDCredential.identityToken,
-                let authCodeString = String(data: authorizationCode, encoding: .utf8),
-                let appleTokenString = String(data: identityToken, encoding: .utf8) {
+            if let identityToken = appleIDCredential.identityToken,
+               let appleTokenString = String(data: identityToken, encoding: .utf8) {
                 reactor?.action.onNext(.loginSuccess(appleTokenString))
             }
-            
-        case let passwordCredential as ASPasswordCredential:
-            // Sign in using an existing iCloud Keychain credential.
-            let username = passwordCredential.user
-            let password = passwordCredential.password
-            
-            print("username: \(username)")
-            print("password: \(password)")
             
         default:
             break
@@ -166,12 +148,12 @@ extension LoginViewController: View {
     func bind(reactor: LoginReactor) {
         reactor.state
             .map { $0.identityToken }
-            .distinctUntilChanged()
-            .subscribe(onNext: { [weak self] token in
+            .asDriver(onErrorJustReturn: "token error")
+            .drive(onNext: { [weak self] token in
                 guard let self = self else { return }
                 if let token = token {
                     print("identityToken: \(token)")
-                    self.navigateToAgreeViewController()
+                    self.navigateToViewController(viewController: ServiceAcceptViewController(reactor: ServiceAcceptReactor()))
                 }
             })
             .disposed(by: disposeBag)

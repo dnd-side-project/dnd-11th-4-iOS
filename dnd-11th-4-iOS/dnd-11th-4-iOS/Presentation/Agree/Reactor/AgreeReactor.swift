@@ -1,5 +1,5 @@
 //
-//  AgreeReactor.swift
+//  ServiceAcceptReactor.swift
 //  dnd-11th-4-iOS
 //
 //  Created by Allie on 8/21/24.
@@ -9,7 +9,7 @@ import Foundation
 import ReactorKit
 import RxSwift
 
-final class AgreeReactor: Reactor {
+final class ServiceAcceptReactor: Reactor {
     var initialState: State
     
     enum Action {
@@ -29,7 +29,7 @@ final class AgreeReactor: Reactor {
     }
 }
 
-extension AgreeReactor {
+extension ServiceAcceptReactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .toggleCheckbox:

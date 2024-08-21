@@ -1,5 +1,5 @@
 //
-//  AgreeViewController.swift
+//  ServiceAcceptViewController.swift
 //  dnd-11th-4-iOS
 //
 //  Created by Allie on 8/21/24.
@@ -11,10 +11,11 @@ import RxSwift
 import RxCocoa
 import ReactorKit
 
-final class AgreeViewController: UIViewController {
-    typealias Reactor = AgreeReactor
-    
+final class ServiceAcceptViewController: UIViewController {
+    typealias Reactor = ServiceAcceptReactor
     var disposeBag: DisposeBag = DisposeBag()
+    
+    // MARK: - UI Properties
     
     private let titleLabel = MDLabel(attributedString: NSAttributedString.pretendardSB24("약관에 동의해주세요"), textColor: .point)
     private let descriptionLabel = MDLabel(attributedString: NSAttributedString.pretendardM14("원활한 여행 기록을 위해서\n약관 동의가 필요해요!"), textColor: .gray70)
@@ -60,7 +61,7 @@ final class AgreeViewController: UIViewController {
         bindActions()
     }
     
-    init(reactor: AgreeReactor) {
+    init(reactor: ServiceAcceptReactor) {
         super.init(nibName: nil, bundle: nil)
         self.reactor = reactor
     }
@@ -121,7 +122,10 @@ final class AgreeViewController: UIViewController {
     private func bindActions() {
         checkboxButton.rx.tap
             .map { Reactor.Action.toggleCheckbox }
-            .bind(to: reactor!.action)
+            .bind(onNext: { [weak self] action in
+                guard let reactor = self?.reactor else { return }
+                reactor.action.onNext(action)
+            })
             .disposed(by: disposeBag)
         
         agreeButton.rx.tap
@@ -129,7 +133,7 @@ final class AgreeViewController: UIViewController {
             .delay(.milliseconds(300))
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
-                self.navigateToOnboardingViewController()
+                self.navigateToViewController(viewController: OnboardingViewController(reactor: OnboardingReactor()))
             })
             .disposed(by: disposeBag)
     }
@@ -149,22 +153,15 @@ final class AgreeViewController: UIViewController {
             agreeButton.isUserInteractionEnabled = false
         }
     }
-    
-    private func navigateToOnboardingViewController() {
-        let rootViewController = OnboardingViewController(reactor: OnboardingReactor())
-        if let window = UIApplication.shared.windows.first {
-            window.rootViewController = rootViewController
-            UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
-        }
-    }
 }
 
-extension AgreeViewController: View {
-    func bind(reactor: AgreeReactor) {
+extension ServiceAcceptViewController: View {
+    func bind(reactor: ServiceAcceptReactor) {
         reactor.state
             .map { $0.isCheckboxSelected }
             .distinctUntilChanged()
-            .subscribe(onNext: { [weak self] isSelected in
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { [weak self] isSelected in
                 guard let self = self else { return }
                 self.updateCheckboxUI(isSelected: isSelected)
             })
