@@ -59,8 +59,8 @@
 		FB0BE4F22C57B5FD00C34C7B /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4EE2C57B5FD00C34C7B /* Pretendard-SemiBold.otf */; };
 		FB0BE4F32C57B5FD00C34C7B /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4EF2C57B5FD00C34C7B /* Pretendard-Regular.otf */; };
 		FB7AEDD52C74A62900B95784 /* LoginReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7AEDD42C74A62900B95784 /* LoginReactor.swift */; };
-		FB7AEDD92C74E72E00B95784 /* AgreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7AEDD82C74E72E00B95784 /* AgreeViewController.swift */; };
-		FB7AEDDB2C75AF0B00B95784 /* AgreeReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7AEDDA2C75AF0B00B95784 /* AgreeReactor.swift */; };
+		FB7AEDD92C74E72E00B95784 /* ServiceAcceptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7AEDD82C74E72E00B95784 /* ServiceAcceptViewController.swift */; };
+		FB7AEDDB2C75AF0B00B95784 /* ServiceAcceptReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7AEDDA2C75AF0B00B95784 /* ServiceAcceptReactor.swift */; };
 		FB808E542C5A72E500E9E2E5 /* MDNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E532C5A72E500E9E2E5 /* MDNavigationBar.swift */; };
 		FB808E582C622DC600E9E2E5 /* RecordListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E572C622DC600E9E2E5 /* RecordListCell.swift */; };
 		FB808E5C2C63998600E9E2E5 /* RecordListReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E5B2C63998600E9E2E5 /* RecordListReactor.swift */; };
@@ -138,8 +138,8 @@
 		FB0BE4EE2C57B5FD00C34C7B /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		FB0BE4EF2C57B5FD00C34C7B /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		FB7AEDD42C74A62900B95784 /* LoginReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReactor.swift; sourceTree = "<group>"; };
-		FB7AEDD82C74E72E00B95784 /* AgreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreeViewController.swift; sourceTree = "<group>"; };
-		FB7AEDDA2C75AF0B00B95784 /* AgreeReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreeReactor.swift; sourceTree = "<group>"; };
+		FB7AEDD82C74E72E00B95784 /* ServiceAcceptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAcceptViewController.swift; sourceTree = "<group>"; };
+		FB7AEDDA2C75AF0B00B95784 /* ServiceAcceptReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAcceptReactor.swift; sourceTree = "<group>"; };
 		FB808E532C5A72E500E9E2E5 /* MDNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDNavigationBar.swift; sourceTree = "<group>"; };
 		FB808E572C622DC600E9E2E5 /* RecordListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListCell.swift; sourceTree = "<group>"; };
 		FB808E5B2C63998600E9E2E5 /* RecordListReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListReactor.swift; sourceTree = "<group>"; };
@@ -375,7 +375,7 @@
 		4AAFDBA82C495290008C6DAF /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				FBE0F5AA2C75F14A00C81F8A /* Agree */,
+				FBE0F5AA2C75F14A00C81F8A /* ServiceAccept */,
 				FBAD5AFF2C737AE000DC0171 /* Login */,
 				FB9B359D2C6F763F00FB884E /* Splash */,
 				4A16E2E22C5D0DEC00F48180 /* PopUp */,
@@ -564,19 +564,19 @@
 			path = Splash/Login;
 			sourceTree = "<group>";
 		};
-		FBE0F5AA2C75F14A00C81F8A /* Agree */ = {
+		FBE0F5AA2C75F14A00C81F8A /* ServiceAccept */ = {
 			isa = PBXGroup;
 			children = (
 				FBE0F5AC2C75F15F00C81F8A /* Reactor */,
 				FBE0F5AB2C75F15400C81F8A /* ViewController */,
 			);
-			path = Agree;
+			path = ServiceAccept;
 			sourceTree = "<group>";
 		};
 		FBE0F5AB2C75F15400C81F8A /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				FB7AEDD82C74E72E00B95784 /* AgreeViewController.swift */,
+				FB7AEDD82C74E72E00B95784 /* ServiceAcceptViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -584,7 +584,7 @@
 		FBE0F5AC2C75F15F00C81F8A /* Reactor */ = {
 			isa = PBXGroup;
 			children = (
-				FB7AEDDA2C75AF0B00B95784 /* AgreeReactor.swift */,
+				FB7AEDDA2C75AF0B00B95784 /* ServiceAcceptReactor.swift */,
 			);
 			path = Reactor;
 			sourceTree = "<group>";
@@ -715,7 +715,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A16E2EF2C60F0A700F48180 /* HomeMap_인천.swift in Sources */,
-				FB7AEDD92C74E72E00B95784 /* AgreeViewController.swift in Sources */,
+				FB7AEDD92C74E72E00B95784 /* ServiceAcceptViewController.swift in Sources */,
 				FBE0F5AE2C76315000C81F8A /* UIViewController+.swift in Sources */,
 				4A16E2F02C60F0A700F48180 /* HomeMap_경상북도.swift in Sources */,
 				4A16E2F12C60F0A700F48180 /* HomeMap_울산.swift in Sources */,
@@ -726,7 +726,7 @@
 				4A16E2F42C60F0A700F48180 /* (null) in Sources */,
 				4AAFDBB22C4953C9008C6DAF /* Application.swift in Sources */,
 				4A5FFDB22C4FAE73002F5A77 /* HomeMap_충청남도.swift in Sources */,
-				FB7AEDDB2C75AF0B00B95784 /* AgreeReactor.swift in Sources */,
+				FB7AEDDB2C75AF0B00B95784 /* ServiceAcceptReactor.swift in Sources */,
 				4A5FFDC82C4FB0F1002F5A77 /* HomeMap_제주도.swift in Sources */,
 				4AAFDB712C494CFF008C6DAF /* HomeMapViewController.swift in Sources */,
 				4A5FFDCA2C4FB202002F5A77 /* HomeMap_충청북도.swift in Sources */,

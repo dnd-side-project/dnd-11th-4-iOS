@@ -41,9 +41,6 @@ extension LoginReactor {
             
         case let .loginFailure(error):
             return .just(.setError(error))
-            
-        default:
-            return .empty()
         }
     }
     
