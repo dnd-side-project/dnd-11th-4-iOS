@@ -372,8 +372,7 @@
 		4AAFDBA82C495290008C6DAF /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				FB7AEDD82C74E72E00B95784 /* AgreeViewController.swift */,
-				FB7AEDDA2C75AF0B00B95784 /* AgreeReactor.swift */,
+				FBE0F5AA2C75F14A00C81F8A /* Agree */,
 				FBAD5AFF2C737AE000DC0171 /* Login */,
 				FB9B359D2C6F763F00FB884E /* Splash */,
 				4A16E2E22C5D0DEC00F48180 /* PopUp */,
@@ -560,6 +559,31 @@
 			);
 			name = Login;
 			path = Splash/Login;
+			sourceTree = "<group>";
+		};
+		FBE0F5AA2C75F14A00C81F8A /* Agree */ = {
+			isa = PBXGroup;
+			children = (
+				FBE0F5AC2C75F15F00C81F8A /* Reactor */,
+				FBE0F5AB2C75F15400C81F8A /* ViewController */,
+			);
+			path = Agree;
+			sourceTree = "<group>";
+		};
+		FBE0F5AB2C75F15400C81F8A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FB7AEDD82C74E72E00B95784 /* AgreeViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		FBE0F5AC2C75F15F00C81F8A /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+				FB7AEDDA2C75AF0B00B95784 /* AgreeReactor.swift */,
+			);
+			path = Reactor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
