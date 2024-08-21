@@ -116,12 +116,10 @@ final class LoginViewController: UIViewController {
     }
     
     private func navigateToAgreeViewController() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            let rootViewController = UINavigationController(rootViewController: AgreeViewController(reactor: AgreeReactor()))
-            if let window = UIApplication.shared.windows.first {
-                window.rootViewController = rootViewController
-                UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
-            }
+        let rootViewController = UINavigationController(rootViewController: AgreeViewController(reactor: AgreeReactor()))
+        if let window = UIApplication.shared.windows.first {
+            window.rootViewController = rootViewController
+            UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
         }
     }
 }
@@ -179,9 +177,11 @@ extension LoginViewController: View {
             .disposed(by: disposeBag)
         
         reactor.state
-            .map { $0.error }
-            .subscribe(onNext: { error in
-                print("로그인 실패: \(error?.localizedDescription)")
+            .map { ($0.error, $0.identityToken) }
+            .subscribe(onNext: { error, token in
+                if let error = error, token == nil {
+                    print("로그인 실패: \(error.localizedDescription)")
+                }
             })
             .disposed(by: disposeBag)
     }
