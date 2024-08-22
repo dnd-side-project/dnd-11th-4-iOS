@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "LogoBlack.png",
+      "filename" : "IconCheckboxSelected.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "LogoBlack@2x.png",
+      "filename" : "IconCheckboxSelected@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "LogoBlack@3x.png",
+      "filename" : "IconCheckboxSelected@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

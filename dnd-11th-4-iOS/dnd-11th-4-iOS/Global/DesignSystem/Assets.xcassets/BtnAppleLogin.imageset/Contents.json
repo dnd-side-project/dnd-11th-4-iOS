@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "LogoBlack.png",
+      "filename" : "BtnAppleLogin.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "LogoBlack@2x.png",
+      "filename" : "BtnAppleLogin@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "LogoBlack@3x.png",
+      "filename" : "BtnAppleLogin@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

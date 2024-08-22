@@ -159,6 +159,10 @@ extension UIColor {
     static var black4: UIColor {
         return UIColor(hexCode: "636363")
     }
+    
+    static var point: UIColor {
+        return UIColor(hexCode: "#00D2EF")
+    }
 }
 
 extension UIColor {
