@@ -5,6 +5,9 @@
 //  Created by 황찬미 on 7/31/24.
 //
 
+import AdSupport
+import AppTrackingTransparency
+
 import UIKit
 import SnapKit
 import Lottie
@@ -23,6 +26,7 @@ final class OnboardingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
+        requestPermission()
         setupUI()
         bindActions()
     }
@@ -78,5 +82,29 @@ extension OnboardingViewController: View {
                 owner.onboardingView.updateAnimationView(with: animationName)
             })
             .disposed(by: disposeBag)
+    }
+}
+
+// MARK: - App Tracking Transparency
+
+extension OnboardingViewController {
+    func requestPermission() {
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization { status in
+                switch status {
+                case .authorized:
+                    print("Authorized")
+                    print(ASIdentifierManager.shared().advertisingIdentifier)
+                case .denied:
+                    print("Denied")
+                case .notDetermined:
+                    print("Not Determined")
+                case .restricted:
+                    print("Restricted")
+                @unknown default:
+                    print("Unknown")
+                }
+            }
+        }
     }
 }
