@@ -17,9 +17,11 @@ import ReactorKit
 
 final class OnboardingViewController: UIViewController {
     typealias Reactor = OnboardingReactor
+    var disposeBag: DisposeBag = DisposeBag()
+    
+    // MARK: - UI Properties
     
     private let onboardingView: OnboardingView = OnboardingView()
-    var disposeBag: DisposeBag = DisposeBag()
     
     // MARK: - Life Cycle
     
@@ -77,9 +79,10 @@ extension OnboardingViewController: View {
         reactor.state
             .compactMap { $0.selectedAnimation }
             .distinctUntilChanged()
-            .withUnretained(self)
-            .subscribe(onNext: { owner, animationName in
-                owner.onboardingView.updateAnimationView(with: animationName)
+            .asDriver(onErrorJustReturn: "다시 시도해주세요.")
+            .drive(onNext: { [weak self] animationName in
+                guard let self = self else { return }
+                self.onboardingView.updateAnimationView(with: animationName)
             })
             .disposed(by: disposeBag)
     }

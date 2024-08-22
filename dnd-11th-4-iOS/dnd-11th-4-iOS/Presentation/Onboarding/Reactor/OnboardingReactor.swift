@@ -46,5 +46,3 @@ extension OnboardingReactor {
         return state
     }
 }
-
-
