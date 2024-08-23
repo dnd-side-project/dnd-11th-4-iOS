@@ -128,9 +128,11 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             let _ = appleIDCredential.user
             let _ = appleIDCredential.fullName
             let _ = appleIDCredential.email
-            
-            if let identityToken = appleIDCredential.identityToken,
-               let appleTokenString = String(data: identityToken, encoding: .utf8) {
+            if  let authorizationCode = appleIDCredential.authorizationCode,
+                let identityToken = appleIDCredential.identityToken,
+                let authString = String(data: authorizationCode, encoding: .utf8),
+                let appleTokenString = String(data: identityToken, encoding: .utf8) {
+                print("authString: \(authString)")
                 reactor?.action.onNext(.loginSuccess(appleTokenString))
             }
             

@@ -39,7 +39,7 @@ private extension TabBarViewController {
                                             tabBarSelectedImg: UIImage(named: "IconPencilBlack")!,
                                       renderingMode: .alwaysOriginal)
         
-        let myPageViewController = UINavigationController(rootViewController: MyPageViewController())
+        let myPageViewController = UINavigationController(rootViewController: MyPageViewController(reactor: MyPageReactor()))
         myPageViewController.makeTabBar(title: "마이페이지",
                                         tabBarImg: UIImage(named: "IconMyPageGray")!,
                                         tabBarSelectedImg: UIImage(named: "IconMyPageBlack")!,
