@@ -15,7 +15,7 @@ final class MyPageView: UIView {
     private let userInfoView = UIView()
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(resource: .imageProfile)
+        imageView.image = Constant.Image.imageProfile
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -39,14 +39,12 @@ final class MyPageView: UIView {
     private func setupUI() {
         backgroundColor = .mapWhite
         addSubviews(userInfoView, underlineView)
-
         userInfoView.addSubviews(profileImageView, nameLabel, loginLabel)
         userInfoView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(16)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(84)
         }
-        
         profileImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(16)
@@ -60,7 +58,6 @@ final class MyPageView: UIView {
             $0.top.equalTo(nameLabel.snp.bottom).offset(10)
             $0.leading.equalTo(nameLabel)
         }
-        
         underlineView.backgroundColor = .gray40
         underlineView.snp.makeConstraints {
             $0.top.equalTo(userInfoView.snp.bottom).offset(11)

@@ -29,20 +29,20 @@ private extension TabBarViewController {
         let homeViewController = UINavigationController(rootViewController: HomeMapViewController(reactor: HomeMapReactor()))
         homeViewController.isNavigationBarHidden = true
         homeViewController.makeTabBar(title: "지도",
-                                      tabBarImg: UIImage(named: "IconMapGray")!,
-                                      tabBarSelectedImg: UIImage(named:"IconMapBlack")!,
+                                      tabBarImg: Constant.Image.iconMapGray!,
+                                      tabBarSelectedImg: Constant.Image.iconMapBlack!,
                                       renderingMode: .alwaysOriginal)
         
         let recordListViewController = UINavigationController(rootViewController: RecordListViewController())
         recordListViewController.makeTabBar(title: "기록",
-                                            tabBarImg: UIImage(named: "IconPencilGray")!,
-                                            tabBarSelectedImg: UIImage(named: "IconPencilBlack")!,
+                                            tabBarImg: Constant.Image.iconPencilGray!,
+                                            tabBarSelectedImg: Constant.Image.iconPencilBlack!,
                                       renderingMode: .alwaysOriginal)
         
         let myPageViewController = UINavigationController(rootViewController: MyPageViewController(reactor: MyPageReactor()))
         myPageViewController.makeTabBar(title: "마이페이지",
-                                        tabBarImg: UIImage(named: "IconMyPageGray")!,
-                                        tabBarSelectedImg: UIImage(named: "IconMyPageBlack")!,
+                                        tabBarImg: Constant.Image.iconMyPageGray!,
+                                        tabBarSelectedImg: Constant.Image.iconMyPageBlack!,
                                       renderingMode: .alwaysOriginal)
         
         self.viewControllers = [homeViewController, recordListViewController, myPageViewController]

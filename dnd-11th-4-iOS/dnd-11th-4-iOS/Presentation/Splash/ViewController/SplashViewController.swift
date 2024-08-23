@@ -27,7 +27,7 @@ final class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        navigateToViewController(viewController: LoginViewController(reactor: LoginReactor()), delay: 2.0)
+        navigateToViewController(viewController: OnboardingViewController(reactor: OnboardingReactor()), delay: 2.0)
     }
     
     // MARK: - Layout

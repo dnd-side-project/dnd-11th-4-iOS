@@ -40,6 +40,7 @@ extension Constant {
         static let imageStart = UIImage(named: "ImageStart")
         static let imageShoes = UIImage(named: "ImageShoes")
         static let imageProfile = UIImage(named: "ImageProfile")
+        static let imageMail = UIImage(named: "ImageMail")
         static let logoBlack = UIImage(named: "LogoBlack")
         static let logoWhite = UIImage(named: "LogoWhite")
         static let btnAppleLogin = UIImage(named: "BtnAppleLogin")
