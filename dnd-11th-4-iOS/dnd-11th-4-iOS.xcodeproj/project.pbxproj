@@ -80,6 +80,7 @@
 		FB9B35A02C6F768500FB884E /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9B359F2C6F768500FB884E /* SplashViewController.swift */; };
 		FB9B35A52C6F99EE00FB884E /* ColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9B35A12C6F828500FB884E /* ColorType.swift */; };
 		FBAD5B012C737AF800DC0171 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAD5B002C737AF800DC0171 /* LoginViewController.swift */; };
+		FBAF7F912C7B363400D71216 /* InquiryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAF7F902C7B363400D71216 /* InquiryViewController.swift */; };
 		FBE0F5AE2C76315000C81F8A /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE0F5AD2C76315000C81F8A /* UIViewController+.swift */; };
 		FBE0F5B02C78717E00C81F8A /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE0F5AF2C78717E00C81F8A /* MyPageView.swift */; };
 		FBE0F5B22C789FB700C81F8A /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE0F5B12C789FB700C81F8A /* MyPageCell.swift */; };
@@ -162,6 +163,7 @@
 		FB9B359F2C6F768500FB884E /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		FB9B35A12C6F828500FB884E /* ColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorType.swift; sourceTree = "<group>"; };
 		FBAD5B002C737AF800DC0171 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FBAF7F902C7B363400D71216 /* InquiryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryViewController.swift; sourceTree = "<group>"; };
 		FBC970BB2C6CB53B00A892F2 /* dnd-11th-4-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "dnd-11th-4-iOS.entitlements"; sourceTree = "<group>"; };
 		FBE0F5AD2C76315000C81F8A /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		FBE0F5AF2C78717E00C81F8A /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
@@ -576,6 +578,7 @@
 			isa = PBXGroup;
 			children = (
 				4A16E2D22C5A70AC00F48180 /* MyPageViewController.swift */,
+				FBAF7F902C7B363400D71216 /* InquiryViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -785,6 +788,7 @@
 				FB808E6A2C6901EA00E9E2E5 /* ListDeleteViewController.swift in Sources */,
 				4A16E2DA2C5B44FD00F48180 /* MDButton.swift in Sources */,
 				FB7AEDD52C74A62900B95784 /* LoginReactor.swift in Sources */,
+				FBAF7F912C7B363400D71216 /* InquiryViewController.swift in Sources */,
 				4A5FFDD42C4FB515002F5A77 /* UIView+.swift in Sources */,
 				4AAFDB6D2C494CFF008C6DAF /* AppDelegate.swift in Sources */,
 				4AAFDBB02C4953C0008C6DAF /* Network.swift in Sources */,

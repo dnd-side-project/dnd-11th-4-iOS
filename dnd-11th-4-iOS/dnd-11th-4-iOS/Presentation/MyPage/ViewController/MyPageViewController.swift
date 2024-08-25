@@ -63,13 +63,14 @@ final class MyPageViewController: UIViewController {
     
     private func bindActions() {
         tableView.rx.modelSelected((String, UIImage?).self)
-            .compactMap { [weak self] model in
+            .compactMap { [weak self] model -> IndexPath? in
                 guard let index = self?.reactor?.currentState.data.firstIndex(where: { $0.0 == model.0 }) else { return nil }
-                
                 return IndexPath(row: index, section: 0)
             }
             .bind(onNext: { [weak self] indexPath in
-                self?.reactor?.action.onNext(.selectItem(indexPath))
+                guard let self = self else { return }
+                let detailVC = InquiryViewController()
+                self.navigationController?.pushViewController(detailVC, animated: true)
             })
             .disposed(by: disposeBag)
     }
@@ -83,17 +84,6 @@ extension MyPageViewController: View {
             .drive(tableView.rx.items(cellIdentifier: MyPageCell.identifier, cellType: MyPageCell.self)) { row, element, cell in
                 cell.configure(title: element.0, image: element.1)
             }
-            .disposed(by: disposeBag)
-        
-        reactor.state
-            .map { $0.selectedItem }
-            .distinctUntilChanged()
-            .compactMap { $0 }
-            .asDriver(onErrorJustReturn: nil)
-            .drive(onNext: { [weak self] selectedItem in
-                guard let self = self else { return }
-                print("selected: \(selectedItem)")
-            })
             .disposed(by: disposeBag)
     }
 }
