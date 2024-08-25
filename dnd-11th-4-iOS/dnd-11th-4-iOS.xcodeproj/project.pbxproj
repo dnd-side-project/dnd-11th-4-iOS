@@ -283,10 +283,9 @@
 		4A16E2D12C5A70A500F48180 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
-				4A16E2D22C5A70AC00F48180 /* MyPageViewController.swift */,
-				FBE0F5AF2C78717E00C81F8A /* MyPageView.swift */,
-				FBE0F5B12C789FB700C81F8A /* MyPageCell.swift */,
-				FBE0F5B32C78AED600C81F8A /* MyPageReactor.swift */,
+				FBAF7F8F2C7B35C800D71216 /* View */,
+				FBAF7F8E2C7B35C000D71216 /* Reactor */,
+				FBAF7F8D2C7B35B800D71216 /* ViewController */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -571,6 +570,31 @@
 			);
 			name = Login;
 			path = Splash/Login;
+			sourceTree = "<group>";
+		};
+		FBAF7F8D2C7B35B800D71216 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4A16E2D22C5A70AC00F48180 /* MyPageViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		FBAF7F8E2C7B35C000D71216 /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+				FBE0F5B32C78AED600C81F8A /* MyPageReactor.swift */,
+			);
+			path = Reactor;
+			sourceTree = "<group>";
+		};
+		FBAF7F8F2C7B35C800D71216 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FBE0F5B12C789FB700C81F8A /* MyPageCell.swift */,
+				FBE0F5AF2C78717E00C81F8A /* MyPageView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		FBE0F5AA2C75F14A00C81F8A /* ServiceAccept */ = {
