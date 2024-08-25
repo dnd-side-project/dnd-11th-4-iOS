@@ -81,6 +81,7 @@
 		FB9B35A52C6F99EE00FB884E /* ColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9B35A12C6F828500FB884E /* ColorType.swift */; };
 		FBAD5B012C737AF800DC0171 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAD5B002C737AF800DC0171 /* LoginViewController.swift */; };
 		FBAF7F912C7B363400D71216 /* InquiryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAF7F902C7B363400D71216 /* InquiryViewController.swift */; };
+		FBAF7F932C7B555900D71216 /* AccountDeleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAF7F922C7B555800D71216 /* AccountDeleteViewController.swift */; };
 		FBE0F5AE2C76315000C81F8A /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE0F5AD2C76315000C81F8A /* UIViewController+.swift */; };
 		FBE0F5B02C78717E00C81F8A /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE0F5AF2C78717E00C81F8A /* MyPageView.swift */; };
 		FBE0F5B22C789FB700C81F8A /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE0F5B12C789FB700C81F8A /* MyPageCell.swift */; };
@@ -164,6 +165,7 @@
 		FB9B35A12C6F828500FB884E /* ColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorType.swift; sourceTree = "<group>"; };
 		FBAD5B002C737AF800DC0171 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FBAF7F902C7B363400D71216 /* InquiryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryViewController.swift; sourceTree = "<group>"; };
+		FBAF7F922C7B555800D71216 /* AccountDeleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDeleteViewController.swift; sourceTree = "<group>"; };
 		FBC970BB2C6CB53B00A892F2 /* dnd-11th-4-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "dnd-11th-4-iOS.entitlements"; sourceTree = "<group>"; };
 		FBE0F5AD2C76315000C81F8A /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		FBE0F5AF2C78717E00C81F8A /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 			children = (
 				4A16E2E32C5D0DFA00F48180 /* PopUpViewController.swift */,
 				FB808E692C6901EA00E9E2E5 /* ListDeleteViewController.swift */,
+				FBAF7F922C7B555800D71216 /* AccountDeleteViewController.swift */,
 			);
 			path = PopUp;
 			sourceTree = "<group>";
@@ -774,6 +777,7 @@
 				4A5FFDA62C4FAA6A002F5A77 /* Constant.swift in Sources */,
 				FB808E582C622DC600E9E2E5 /* RecordListCell.swift in Sources */,
 				FB808E542C5A72E500E9E2E5 /* MDNavigationBar.swift in Sources */,
+				FBAF7F932C7B555900D71216 /* AccountDeleteViewController.swift in Sources */,
 				4A16E2DE2C5CC3BA00F48180 /* MDToast.swift in Sources */,
 				4A16E2CD2C5A6B7E00F48180 /* TabBarViewController.swift in Sources */,
 				4AA414452C63B26000AB3CE8 /* RegionType.swift in Sources */,

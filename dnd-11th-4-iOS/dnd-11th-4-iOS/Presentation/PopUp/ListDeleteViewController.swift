@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 final class ListDeleteViewController: PopUpViewController {
-    private let popUpView = MDPopUpView()
+    private let popUpView = MDPopUpView(title: "정말 삭제하시겠어요?", cancelTitle: "취소", deleteTitle: "삭제")
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

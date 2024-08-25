@@ -65,19 +65,15 @@ final class MyPageViewController: UIViewController {
         tableView.rx.modelSelected((String, UIImage?).self)
             .bind(onNext: { [weak self] model in
                 guard let self = self else { return }
-                var detailVC: UIViewController?
                 switch model.0 {
                 case "1:1 문의":
-                    detailVC = InquiryViewController()
+                    let detailVC = InquiryViewController()
+                    self.navigationController?.pushViewController(detailVC, animated: true)
                 case "서비스 탈퇴":
-                    print("탈퇴")
-//                    detailVC = // 서비스 탈퇴 뷰 컨트롤러
+                    let popUpVC = AccountDeleteViewController()
+                    self.present(popUpVC, animated: true)
                 default:
                     return
-                }
-                
-                if let detailVC = detailVC {
-                    self.navigationController?.pushViewController(detailVC, animated: true)
                 }
             })
             .disposed(by: disposeBag)
