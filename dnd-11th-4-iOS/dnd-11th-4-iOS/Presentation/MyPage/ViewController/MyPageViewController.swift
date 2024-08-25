@@ -63,14 +63,22 @@ final class MyPageViewController: UIViewController {
     
     private func bindActions() {
         tableView.rx.modelSelected((String, UIImage?).self)
-            .compactMap { [weak self] model -> IndexPath? in
-                guard let index = self?.reactor?.currentState.data.firstIndex(where: { $0.0 == model.0 }) else { return nil }
-                return IndexPath(row: index, section: 0)
-            }
-            .bind(onNext: { [weak self] indexPath in
+            .bind(onNext: { [weak self] model in
                 guard let self = self else { return }
-                let detailVC = InquiryViewController()
-                self.navigationController?.pushViewController(detailVC, animated: true)
+                var detailVC: UIViewController?
+                switch model.0 {
+                case "1:1 문의":
+                    detailVC = InquiryViewController()
+                case "서비스 탈퇴":
+                    print("탈퇴")
+//                    detailVC = // 서비스 탈퇴 뷰 컨트롤러
+                default:
+                    return
+                }
+                
+                if let detailVC = detailVC {
+                    self.navigationController?.pushViewController(detailVC, animated: true)
+                }
             })
             .disposed(by: disposeBag)
     }
