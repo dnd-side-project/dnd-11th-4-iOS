@@ -24,7 +24,7 @@ enum NavigationBarType {
 }
 
 final class MDNavigationBar: UIView {
-    private let backButton = MDButton(backgroundColor: .clear).setImage(image: .iconBack)
+    let backButton = MDButton(backgroundColor: .clear).setImage(image: .iconBack)
     private let detailText = MDLabel(attributedString: NSAttributedString.pretendardB16("dummy"), textColor: .mapBlack)
     private let underlineView = UIView()
     

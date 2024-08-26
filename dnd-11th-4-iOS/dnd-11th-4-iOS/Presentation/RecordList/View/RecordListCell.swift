@@ -37,7 +37,7 @@ final class RecordListCell: UICollectionViewCell {
     private let calendarImage: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
-        imageView.image = UIImage(resource: .iconCalendar)
+        imageView.image = Constant.Image.iconCalendar
         imageView.tintColor = .gray60
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -45,7 +45,7 @@ final class RecordListCell: UICollectionViewCell {
     private let dateLabel = MDLabel(attributedString: NSAttributedString.pretendardR12("date"), textColor: .black4)
     private let menuButton: MDButton = {
         let button = MDButton(backgroundColor: .clear, cornerRadius: 0)
-        button.setImage(image: UIImage(resource: .iconDetail))
+        button.setImage(image: Constant.Image.iconDetail!)
         button.imageView?.tintColor = .gray60
         return button
     }()

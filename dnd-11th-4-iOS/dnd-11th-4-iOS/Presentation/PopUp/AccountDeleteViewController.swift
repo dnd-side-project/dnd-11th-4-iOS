@@ -1,8 +1,8 @@
 //
-//  ListDeleteViewController.swift
+//  AccountDeleteViewController.swift
 //  dnd-11th-4-iOS
 //
-//  Created by Allie on 8/11/24.
+//  Created by Allie on 8/25/24.
 //
 
 import UIKit
@@ -10,9 +10,9 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class ListDeleteViewController: PopUpViewController {
-    let disposeBag = DisposeBag()
-    private let popUpView = MDPopUpView(title: "정말 삭제하시겠어요?", cancelTitle: "취소", deleteTitle: "삭제")
+final class AccountDeleteViewController: PopUpViewController {
+    private let disposeBag = DisposeBag()
+    private let popUpView = MDPopUpView(title: "정말 탈퇴하시겠어요?", cancelTitle: "취소", deleteTitle: "탈퇴")
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

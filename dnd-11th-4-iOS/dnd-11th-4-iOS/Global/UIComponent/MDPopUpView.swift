@@ -9,24 +9,23 @@ import UIKit
 import SnapKit
 
 final class MDPopUpView: UIView {
-    private let titleLabel = MDLabel(attributedString: NSAttributedString.pretendardB16("정말 삭제하시겠어요?"), textColor: .mapBlack)
+    private let titleLabel: MDLabel
+    let cancelButton: MDButton
+    let deleteButton: MDButton
     
-    private let cancelButton: MDButton = {
-        let button = MDButton(backgroundColor: .gray40, cornerRadius: 8)
-        button.setText(attributedString: NSAttributedString.pretendardM14("취소"), color: .black4)
-        button.titleEdgeInsets = UIEdgeInsets(top: 8, left: 18, bottom: 8, right: 18)
-        return button
-    }()
-    
-    private let deleteButton: MDButton = {
-        let button = MDButton(backgroundColor: .black2, cornerRadius: 8)
-        button.setText(attributedString: NSAttributedString.pretendardSB14("삭제"), color: .mapWhite)
-        button.titleEdgeInsets = UIEdgeInsets(top: 8, left: 18, bottom: 8, right: 18)
-        return button
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    // init에서 제목과 버튼 텍스트를 매개변수로 받도록 수정
+    init(title: String, cancelTitle: String, deleteTitle: String) {
+        self.titleLabel = MDLabel(attributedString: NSAttributedString.pretendardB16(title), textColor: .mapBlack)
+        
+        self.cancelButton = MDButton(backgroundColor: .gray40, cornerRadius: 8)
+        self.cancelButton.setText(attributedString: NSAttributedString.pretendardM14(cancelTitle), color: .black4)
+        self.cancelButton.titleEdgeInsets = UIEdgeInsets(top: 8, left: 18, bottom: 8, right: 18)
+        
+        self.deleteButton = MDButton(backgroundColor: .black2, cornerRadius: 8)
+        self.deleteButton.setText(attributedString: NSAttributedString.pretendardSB14(deleteTitle), color: .mapWhite)
+        self.deleteButton.titleEdgeInsets = UIEdgeInsets(top: 8, left: 18, bottom: 8, right: 18)
+        
+        super.init(frame: .zero)
         
         self.backgroundColor = .mapWhite
         self.layer.cornerRadius = 12
