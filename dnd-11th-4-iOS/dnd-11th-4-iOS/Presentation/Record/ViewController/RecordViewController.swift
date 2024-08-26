@@ -193,7 +193,7 @@ final class RecordViewController: UIViewController, View {
             .when(.recognized)
             .asDriver(onErrorJustReturn: .init())
             .drive(with: self, onNext: { owner, _ in
-                owner.presentPickerView()
+                owner.didSelectImage()
             })
             .disposed(by: disposeBag)
         
@@ -277,6 +277,37 @@ final class RecordViewController: UIViewController, View {
     
     private func setDelegate() {
         regionTextField.delegate = self
+    }
+    
+    func didSelectImage() {
+        PHPhotoLibrary.requestAuthorization(for: .readWrite) { [weak self] status in
+            DispatchQueue.main.async {
+                switch status {
+                case .authorized, .limited:
+                    self?.presentPickerView()
+                case .denied, .restricted:
+                    self?.showPickerViewAccessDeniedAlert()
+                case .notDetermined:
+                    self?.didSelectImage()
+                default: break
+                }
+            }
+        }
+    }
+    
+    private func showPickerViewAccessDeniedAlert() {
+        let alert = UIAlertController(title: "사진 접근 권한이 없습니다",
+                                      message: "설정에서 사진 접근 권한을 허용해주세요.",
+                                      preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "설정으로 이동", style: .default) { _ in
+            if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(settingsURL)
+            }
+        })
+        
+        alert.addAction(UIAlertAction(title: "취소", style: .cancel))
+        self.present(alert, animated: true)
     }
     
     private func presentPickerView() {
