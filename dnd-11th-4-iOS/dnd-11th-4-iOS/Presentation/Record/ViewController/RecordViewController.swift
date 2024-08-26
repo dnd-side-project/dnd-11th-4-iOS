@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import RxGesture
 import PhotosUI
+import RxKeyboard
 
 final class RecordViewController: UIViewController, View {
     
@@ -253,13 +254,44 @@ final class RecordViewController: UIViewController, View {
             }
             .disposed(by: disposeBag)
         
+                RxKeyboard.instance.visibleHeight
+                    .skip(1)
+                    .filter { [weak self] _ in
+                        return self?.dateTextField.isFirstResponder == true || self?.memoTextField.isFirstResponder == true
+                    }
+                    .drive(with: self, onNext: { owner, height in
+                        print(height)
+                        self.view.frame.origin.y = -(height-self.view.safeAreaInsets.bottom)
+                    })
+                    .disposed(by: disposeBag)
         
+//        RxKeyboard.instance.visibleHeight
+//            .skip(1)
+//            .filter { [weak self] _ in
+//                // dateTextField 또는 memoTextField가 활성화된 경우
+//                return self?.dateTextField.isFirstResponder == true || self?.memoTextField.isFirstResponder == true
+//            }
+//            .drive(with: self, onNext: { owner, height in
+//                let selectedTextField = self.dateTextField.isFirstResponder ? self.dateTextField : self.memoTextField
+//                // selectedTextField의 Y 좌표 가져오기
+//                let textFieldY = self.view.convert(selectedTextField.frame, from: selectedTextField.superview).minY
+//                
+//                let calculateHeight = Constant.Screen.height-height
+//                
+//                if textFieldY > calculateHeight && height != 0 {
+//                    let moveDistance = height // 약간의 여유를 추가
+//                    self.view.frame.origin.y = -(150+self.view.safeAreaInsets.bottom)
+//                } else {
+//                    self.view.frame.origin.y = 0
+//                }
+//            })
+//            .disposed(by: disposeBag)
     }
     
     // MARK: - Method
     
     private func setUI() {
-        view.backgroundColor = .mapBackground
+        view.backgroundColor = .mapWhite
     }
     
     private func setToolbar() {

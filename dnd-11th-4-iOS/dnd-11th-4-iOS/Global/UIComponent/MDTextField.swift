@@ -16,6 +16,9 @@ final class MDTextField: UITextField {
          textColor: UIColor = .black2) {
         super.init(frame: .zero)
         
+        self.autocorrectionType = .no
+        self.spellCheckingType = .no
+        
         self.backgroundColor = .gray20
         self.layer.cornerRadius = 8
         
