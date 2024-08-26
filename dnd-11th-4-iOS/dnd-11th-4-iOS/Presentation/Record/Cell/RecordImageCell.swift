@@ -11,7 +11,7 @@ final class RecordImageCell: UICollectionViewCell {
     
     static let identifier = "RecordImageCell"
     
-    private let recordImage = UIImageView(image: Constant.Image.imageEmpty)
+    var recordImage = UIImageView(image: Constant.Image.imageEmpty)
     private let deleteButton = UIImageView(image: Constant.Image.iconXCircle)
     
     override init(frame: CGRect) {

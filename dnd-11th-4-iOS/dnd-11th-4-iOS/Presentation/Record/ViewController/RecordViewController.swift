@@ -9,6 +9,8 @@ import UIKit
 import ReactorKit
 import RxSwift
 import RxCocoa
+import RxGesture
+import PhotosUI
 
 final class RecordViewController: UIViewController, View {
     
@@ -48,7 +50,7 @@ final class RecordViewController: UIViewController, View {
     private let addImageLabel = MDLabel(attributedString: NSAttributedString.pretendardM10("사진 추가"),
                                         textColor: .gray80)
     private let countImageLabel = MDLabel(attributedString: NSAttributedString.pretendardM10("(0/3)"),
-                                        textColor: .gray80)
+                                          textColor: .gray80)
     private let imageLabelStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -178,19 +180,22 @@ final class RecordViewController: UIViewController, View {
             .drive(placeTextLimitedLabel.rx.text)
             .disposed(by: disposeBag)
         
-        let items = Observable.just([
-                     1,
-                     2,
-                     3
-                 ])
-        items
-        .bind(to: imageCollectionView.rx.items) { (collectionView, row, element) in
-           let indexPath = IndexPath(row: row, section: 0)
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecordImageCell.identifier, for: indexPath) as! RecordImageCell
-            cell.backgroundColor = .mapPink2
-            return cell
-        }
-        .disposed(by: disposeBag)
+        reactor.state.compactMap{ $0.selectedArrayImage }
+            .bind(to: imageCollectionView.rx.items) { (collectionView, row, element) in
+                let indexPath = IndexPath(row: row, section: 0)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecordImageCell.identifier, for: indexPath) as! RecordImageCell
+                cell.recordImage.image = element
+                return cell
+            }
+            .disposed(by: disposeBag)
+        
+        emptyImageView.rx.tapGesture()
+            .when(.recognized)
+            .asDriver(onErrorJustReturn: .init())
+            .drive(with: self, onNext: { owner, _ in
+                owner.presentPickerView()
+            })
+            .disposed(by: disposeBag)
         
         memoTextField.rx.text
             .orEmpty
@@ -272,6 +277,18 @@ final class RecordViewController: UIViewController, View {
     
     private func setDelegate() {
         regionTextField.delegate = self
+    }
+    
+    private func presentPickerView() {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 3
+        configuration.filter = .images
+        configuration.selection = .ordered
+        
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        
+        self.present(picker, animated: true)
     }
     
     // MARK: - Layout
@@ -403,6 +420,15 @@ final class RecordViewController: UIViewController, View {
             make.leading.trailing.equalToSuperview().inset(11)
             make.height.equalTo(52)
         }
+    }
+}
+
+extension RecordViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        
+        let itemProvider = results.compactMap { $0.itemProvider }
+        self.reactor?.action.onNext(.imageAddTapped(itemProvider))
     }
 }
 
