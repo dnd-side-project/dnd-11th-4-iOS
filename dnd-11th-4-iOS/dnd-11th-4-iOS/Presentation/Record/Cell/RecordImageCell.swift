@@ -11,7 +11,14 @@ final class RecordImageCell: UICollectionViewCell {
     
     static let identifier = "RecordImageCell"
     
-    var recordImage = UIImageView(image: Constant.Image.imageEmpty)
+    var recordImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = Constant.Image.imageEmpty
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 6
+        return imageView
+    }()
     private let deleteButton = UIImageView(image: Constant.Image.iconXCircle)
     
     override init(frame: CGRect) {
@@ -25,7 +32,6 @@ final class RecordImageCell: UICollectionViewCell {
     }
     
     private func setUI() {
-        layer.cornerRadius = 6
         
         addSubviews(recordImage, deleteButton)
         
