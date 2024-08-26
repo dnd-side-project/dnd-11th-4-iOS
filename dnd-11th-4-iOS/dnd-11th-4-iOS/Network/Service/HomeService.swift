@@ -10,7 +10,7 @@ import Alamofire
 import RxSwift
 
 final class HomeService {
-    static func getHomeAPI() -> Single<UpdateResponse> {
+    static func getHomeAPI() -> Single<HomeResponse> {
         return BaseRequest.request(HomeEndPoint.getHomeAPI)
     }
 }

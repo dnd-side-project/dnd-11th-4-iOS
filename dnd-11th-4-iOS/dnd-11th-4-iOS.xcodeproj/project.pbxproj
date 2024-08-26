@@ -33,6 +33,7 @@
 		4A1CB9462C7C7FD8002DE4FE /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1CB9452C7C7FD8002DE4FE /* BaseRequest.swift */; };
 		4A1CB9482C7C89B1002DE4FE /* MDError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1CB9472C7C89B0002DE4FE /* MDError.swift */; };
 		4A1CB94A2C7C8D81002DE4FE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1CB9492C7C8D81002DE4FE /* NetworkManager.swift */; };
+		4A1CB94C2C7C9966002DE4FE /* Niltype.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1CB94B2C7C9966002DE4FE /* Niltype.swift */; };
 		4A5FFDA62C4FAA6A002F5A77 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */; };
 		4A5FFDA82C4FABBF002F5A77 /* HomeMap_경기도.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDA72C4FABBF002F5A77 /* HomeMap_경기도.swift */; };
 		4A5FFDAE2C4FAD42002F5A77 /* DrawMapProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDAD2C4FAD42002F5A77 /* DrawMapProtocol.swift */; };
@@ -118,6 +119,7 @@
 		4A1CB9452C7C7FD8002DE4FE /* BaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
 		4A1CB9472C7C89B0002DE4FE /* MDError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDError.swift; sourceTree = "<group>"; };
 		4A1CB9492C7C8D81002DE4FE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		4A1CB94B2C7C9966002DE4FE /* Niltype.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Niltype.swift; sourceTree = "<group>"; };
 		4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		4A5FFDA72C4FABBF002F5A77 /* HomeMap_경기도.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeMap_경기도.swift"; sourceTree = "<group>"; };
 		4A5FFDAA2C4FAD05002F5A77 /* HomeMap_인천.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeMap_인천.swift"; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 				4A1CB9452C7C7FD8002DE4FE /* BaseRequest.swift */,
 				4A1CB9472C7C89B0002DE4FE /* MDError.swift */,
 				4A1CB9492C7C8D81002DE4FE /* NetworkManager.swift */,
+				4A1CB94B2C7C9966002DE4FE /* Niltype.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -866,6 +869,7 @@
 				FB808E602C63A61F00E9E2E5 /* MenuAlertView.swift in Sources */,
 				FB808E662C64BD7500E9E2E5 /* RecordListHeaderView.swift in Sources */,
 				4A5FFDB42C4FAEB2002F5A77 /* HomeMap_강원도.swift in Sources */,
+				4A1CB94C2C7C9966002DE4FE /* Niltype.swift in Sources */,
 				4A1CB9432C7C7F63002DE4FE /* HomeService.swift in Sources */,
 				4A16E2D02C5A702000F48180 /* RecordListViewController.swift in Sources */,
 				4A5FFDA82C4FABBF002F5A77 /* HomeMap_경기도.swift in Sources */,
