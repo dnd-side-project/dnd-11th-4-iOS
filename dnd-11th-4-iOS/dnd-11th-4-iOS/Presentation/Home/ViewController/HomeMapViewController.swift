@@ -74,14 +74,6 @@ final class HomeMapViewController: UIViewController, View {
         setDelegate()
         reactor?.action.onNext(.mapInset(DeviceSize(width: Constant.Screen.width,
                                                                height: Constant.Screen.height)))
-        
-        HomeAPI.getHomeAPI()
-            .subscribe(onSuccess: { response in
-                // 값을 view 바인딩 하고
-            }, onFailure: { error in
-                print(error.localizedDescription)
-            })
-            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
