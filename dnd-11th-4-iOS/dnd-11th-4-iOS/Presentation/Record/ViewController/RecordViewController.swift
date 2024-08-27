@@ -127,11 +127,12 @@ final class RecordViewController: UIViewController, View {
         bindInput()
     }
     
-    init(reactor: RecordReactor) {
+    init(reactor: RecordReactor, selectedRegigon: String?) {
         super.init(nibName: nil, bundle: nil)
         
         self.reactor = reactor
-        self.reactor?.initialState.selectedRegion = "서울"
+        self.regionTextField.text = selectedRegigon
+        self.reactor?.initialState.selectedRegion = selectedRegigon
     }
     
     required init?(coder: NSCoder) {
@@ -142,6 +143,13 @@ final class RecordViewController: UIViewController, View {
     
     func bindInput() {
         guard let reactor = reactor else { return }
+        
+        navigationBar.backButton.rx.tap
+            .asDriver()
+            .drive(with: self) { owner, _ in
+                self.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
         
         regionCancelBarButton.rx.tap
             .bind(with: self, onNext: { owner, text in
@@ -215,7 +223,7 @@ final class RecordViewController: UIViewController, View {
             }
             .disposed(by: disposeBag)
         
-        reactor.state.map {$0.selectedRegion}
+        reactor.state.map {$0.selectedRegion }
             .asDriver(onErrorJustReturn: "잠시 후 다시 실행해 주세요")
             .drive(regionTextField.rx.text)
             .disposed(by: disposeBag)
@@ -301,6 +309,7 @@ final class RecordViewController: UIViewController, View {
     
     private func setUI() {
         view.backgroundColor = .mapWhite
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     private func setCompleteButtonUI(_ state: Bool) {
