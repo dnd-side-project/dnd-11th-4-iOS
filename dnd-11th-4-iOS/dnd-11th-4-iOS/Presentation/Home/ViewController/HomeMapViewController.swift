@@ -80,6 +80,7 @@ final class HomeMapViewController: UIViewController, View {
         super.viewWillAppear(animated)
         
         reactor?.action.onNext(.viewWillAppear)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     init(reactor: HomeMapReactor) {
