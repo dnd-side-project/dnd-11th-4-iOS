@@ -11,7 +11,7 @@ import SnapKit
 final class EmptyRecordView: UIView {
     private let emptyImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(resource: .imageEmpty)
+        imageView.image = Constant.Image.imageEmpty
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()

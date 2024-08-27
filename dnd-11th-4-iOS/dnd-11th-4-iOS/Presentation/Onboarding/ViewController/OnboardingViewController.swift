@@ -5,6 +5,9 @@
 //  Created by 황찬미 on 7/31/24.
 //
 
+import AdSupport
+import AppTrackingTransparency
+
 import UIKit
 import SnapKit
 import Lottie
@@ -14,17 +17,19 @@ import ReactorKit
 
 final class OnboardingViewController: UIViewController {
     typealias Reactor = OnboardingReactor
+    var disposeBag: DisposeBag = DisposeBag()
+    
+    // MARK: - UI Properties
     
     private let onboardingView: OnboardingView = OnboardingView()
-    var disposeBag: DisposeBag = DisposeBag()
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
+        requestPermission()
         setupUI()
-        bind(reactor: reactor!)
         bindActions()
     }
     
@@ -63,19 +68,9 @@ final class OnboardingViewController: UIViewController {
             .delay(.milliseconds(300))
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
-                self.navigateToTabBarViewController()
+                self.navigateToViewController(viewController: TabBarViewController())
             })
             .disposed(by: disposeBag)
-    }
-    
-    // MARK: - Method
-    
-    private func navigateToTabBarViewController() {
-        let rootViewController = TabBarViewController()
-        if let window = UIApplication.shared.windows.first {
-            window.rootViewController = rootViewController
-            UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
-        }
     }
 }
 
@@ -84,10 +79,35 @@ extension OnboardingViewController: View {
         reactor.state
             .compactMap { $0.selectedAnimation }
             .distinctUntilChanged()
-            .withUnretained(self)
-            .subscribe(onNext: { owner, animationName in
-                owner.onboardingView.updateAnimationView(with: animationName)
+            .asDriver(onErrorJustReturn: "다시 시도해주세요.")
+            .drive(onNext: { [weak self] animationName in
+                guard let self = self else { return }
+                self.onboardingView.updateAnimationView(with: animationName)
             })
             .disposed(by: disposeBag)
+    }
+}
+
+// MARK: - App Tracking Transparency
+
+extension OnboardingViewController {
+    func requestPermission() {
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization { status in
+                switch status {
+                case .authorized:
+                    print("Authorized")
+                    print(ASIdentifierManager.shared().advertisingIdentifier)
+                case .denied:
+                    print("Denied")
+                case .notDetermined:
+                    print("Not Determined")
+                case .restricted:
+                    print("Restricted")
+                @unknown default:
+                    print("Unknown")
+                }
+            }
+        }
     }
 }

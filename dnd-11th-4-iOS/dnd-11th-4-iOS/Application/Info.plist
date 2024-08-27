@@ -4,6 +4,8 @@
 <dict>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>맵땅에 사진을 추가하려면 사진 라이브러리 접근 권한이 필요합니다.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>&quot;맵땅 앱에서 사용자에게 최적화된 광고를 제공하기 위해 정보를 수집하려 합니다.&quot;</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>PeoplefirstNeat&amp;Loud.otf</string>

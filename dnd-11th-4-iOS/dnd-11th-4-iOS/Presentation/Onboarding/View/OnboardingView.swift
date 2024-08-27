@@ -56,9 +56,10 @@ final class OnboardingView: UIView {
     private let purpleButton = MDButton(backgroundColor: .mapPurple3, cornerRadius: 15)
 
     let selectButton: MDButton = {
-        let button = MDButton(backgroundColor: .black2)
-        button.setText(attributedString: NSAttributedString.pretendardB16("선택완료"), color: .mapWhite)
+        let button = MDButton(backgroundColor: .gray40)
+        button.setText(attributedString: NSAttributedString.pretendardB16("선택완료"), color: .gray60)
         button.titleLabel?.textAlignment = .center
+        button.isUserInteractionEnabled = false
         return button
     }()
     
@@ -135,6 +136,12 @@ final class OnboardingView: UIView {
         colorSelected.onNext(color)
     }
     
+    private func updateSelectButtonUI() {
+        selectButton.backgroundColor = .black2
+        selectButton.titleLabel?.textColor = .mapWhite
+        selectButton.isUserInteractionEnabled = true
+    }
+    
     // MARK: - Bind
     
     private func bindButtons() {
@@ -154,6 +161,7 @@ final class OnboardingView: UIView {
                     guard let self = self else { return }
                     self.addSelectedButtonlayer(button: button, color: color)
                     self.colorSelected.onNext(color)
+                    self.updateSelectButtonUI()
                 })
                 .disposed(by: disposeBag)
         }

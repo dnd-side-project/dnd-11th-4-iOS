@@ -41,6 +41,10 @@ extension NSAttributedString {
         return customFont(.pretendardSemiBold, size: 16, lineHeight: 1.0, letterSpacing: -0.1)
     }
     
+    static var pretendardSB24: (String) -> NSAttributedString {
+        return customFont(.pretendardSemiBold, size: 24, lineHeight: 1.0, letterSpacing: -0.1)
+    }
+    
     static var pretendardM10: (String) -> NSAttributedString {
         return customFont(.pretendardMedium, size: 10, lineHeight: 1.0, letterSpacing: 0)
     }

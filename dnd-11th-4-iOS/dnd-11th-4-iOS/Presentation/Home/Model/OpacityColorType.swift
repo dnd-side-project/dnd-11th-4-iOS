@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum OpacityColorType {
+enum OpacityColorType: Codable {
     case pink(Int)
     case orange(Int)
     case yellow(Int)
