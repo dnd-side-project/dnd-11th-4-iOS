@@ -104,11 +104,6 @@ final class RecordViewController: UIViewController, View {
         datePicker.preferredDatePickerStyle = .wheels
         return datePicker
     }()
-    let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy년 MM월 dd일"
-        return formatter
-    }()
     private let dateToolbar: UIToolbar = {
         let toolBar = UIToolbar()
         toolBar.frame = CGRect(x: 0, y: 0, width: Constant.Screen.width, height: 50)
@@ -129,6 +124,7 @@ final class RecordViewController: UIViewController, View {
         setToolbar()
         setLayout()
         setDelegate()
+        bindInput()
     }
     
     init(reactor: RecordReactor) {
@@ -144,50 +140,34 @@ final class RecordViewController: UIViewController, View {
     
     // MARK: - Bind
     
-    func bind(reactor: RecordReactor) {
-        // 취소하면 기존 text로 다시
+    func bindInput() {
+        guard let reactor = reactor else { return }
+        
         regionCancelBarButton.rx.tap
-            .withUnretained(self)
-            .compactMap { owner, _ in owner.reactor }
-            .bind { reactor in
-                self.regionTextField.text = reactor.initialState.selectedRegion
-                self.regionTextField.resignFirstResponder()
+            .map { Reactor.Action.regionBarButtonTapped(.cancel) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+
+        regionComplteBarButton.rx.tap
+            .map {
+                let row = self.regionPickerView.selectedRow(inComponent: 0)
+                return Reactor.Action.regionBarButtonTapped(.complete(row))
             }
+            .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
-        regionComplteBarButton.rx.tap
-            .withUnretained(self)
-            .compactMap { owner, _ in owner.reactor }
-            .bind { reactor in
-                let row = self.regionPickerView.selectedRow(inComponent: 0)
-                reactor.initialState.selectedRegion = reactor.initialState.regionArray[row]
-                self.regionTextField.text = reactor.initialState.regionArray[row]
-                self.regionTextField.resignFirstResponder()
-            }
+        regionTextField.rx.text
+            .orEmpty
+            .distinctUntilChanged()
+            .map { Reactor.Action.regionTapped($0) }
+            .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
         placeTextField.rx.text
             .orEmpty
-            .map { String($0.prefix(20)) }
-            .asDriver(onErrorJustReturn: "잠시 후 다시 실행해 주세요")
-            .drive(placeTextField.rx.text)
-            .disposed(by: disposeBag)
-        
-        placeTextField.rx.text
-            .compactMap{ $0 }
             .distinctUntilChanged()
-            .map { text in "\(text.count)/20" }
-            .asDriver(onErrorJustReturn: "0/20")
-            .drive(placeTextLimitedLabel.rx.text)
-            .disposed(by: disposeBag)
-        
-        reactor.state.compactMap{ $0.selectedArrayImage }
-            .bind(to: imageCollectionView.rx.items) { (collectionView, row, element) in
-                let indexPath = IndexPath(row: row, section: 0)
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecordImageCell.identifier, for: indexPath) as! RecordImageCell
-                cell.recordImage.image = element
-                return cell
-            }
+            .map { Reactor.Action.placeTapped($0)}
+            .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
         emptyImageView.rx.tapGesture()
@@ -200,40 +180,14 @@ final class RecordViewController: UIViewController, View {
         
         memoTextField.rx.text
             .orEmpty
-            .map { String($0.prefix(25)) }
-            .asDriver(onErrorJustReturn: "잠시 후 다시 실행해 주세요")
-            .drive(memoTextField.rx.text)
-            .disposed(by: disposeBag)
-        
-        memoTextField.rx.text
-            .compactMap{ $0 }
             .distinctUntilChanged()
-            .map { text in "\(text.count)/25" }
-            .asDriver(onErrorJustReturn: "0/25")
-            .drive(memoTextLimitedLabel.rx.text)
+            .map { Reactor.Action.memoTapped($0)}
+            .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
-        Observable.just(reactor.initialState.regionArray)
-            .bind(to: regionPickerView.rx.itemTitles) { _, item in
-                return item
-            }
-            .disposed(by: disposeBag)
-        
-        regionPickerView.rx.itemSelected
-            .withUnretained(self)
-            .map { owner, index in
-                return self.reactor?.initialState.regionArray[index.row]
-            }
-            .bind(to: regionTextField.rx.text)
-            .disposed(by: disposeBag)
-        
-        // 초기값만 없애는 방법 고려
         datePicker.rx.date
-            .map { date in
-                reactor.initialState.selectedDate = self.dateFormatter.string(from: date)
-                return self.dateFormatter.string(for: date)
-            }
-            .bind(to: dateTextField.rx.text)
+            .map { Reactor.Action.dateTapped($0) }
+            .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
         dateCancelBarButton.rx.tap
@@ -253,39 +207,105 @@ final class RecordViewController: UIViewController, View {
                 self.dateTextField.resignFirstResponder()
             }
             .disposed(by: disposeBag)
+    }
+    
+    func bind(reactor: RecordReactor) {
+        Observable.just(reactor.initialState.regionArray)
+            .bind(to: regionPickerView.rx.itemTitles) { _, item in
+                return item
+            }
+            .disposed(by: disposeBag)
         
-                RxKeyboard.instance.visibleHeight
-                    .skip(1)
-                    .filter { [weak self] _ in
-                        return self?.dateTextField.isFirstResponder == true || self?.memoTextField.isFirstResponder == true
-                    }
-                    .drive(with: self, onNext: { owner, height in
-                        print(height)
-                        self.view.frame.origin.y = -(height-self.view.safeAreaInsets.bottom)
-                    })
-                    .disposed(by: disposeBag)
+        reactor.state.map {$0.selectedRegion}
+            .asDriver(onErrorJustReturn: "잠시 후 다시 실행해 주세요")
+            .drive(regionTextField.rx.text)
+            .disposed(by: disposeBag)
         
-//        RxKeyboard.instance.visibleHeight
-//            .skip(1)
-//            .filter { [weak self] _ in
-//                // dateTextField 또는 memoTextField가 활성화된 경우
-//                return self?.dateTextField.isFirstResponder == true || self?.memoTextField.isFirstResponder == true
-//            }
-//            .drive(with: self, onNext: { owner, height in
-//                let selectedTextField = self.dateTextField.isFirstResponder ? self.dateTextField : self.memoTextField
-//                // selectedTextField의 Y 좌표 가져오기
-//                let textFieldY = self.view.convert(selectedTextField.frame, from: selectedTextField.superview).minY
-//                
-//                let calculateHeight = Constant.Screen.height-height
-//                
-//                if textFieldY > calculateHeight && height != 0 {
-//                    let moveDistance = height // 약간의 여유를 추가
-//                    self.view.frame.origin.y = -(150+self.view.safeAreaInsets.bottom)
-//                } else {
-//                    self.view.frame.origin.y = 0
-//                }
-//            })
-//            .disposed(by: disposeBag)
+        reactor.state.compactMap { $0.placeText }
+            .asDriver(onErrorJustReturn: "잠시 후 다시 실행해 주세요")
+            .drive(placeTextField.rx.text)
+            .disposed(by: disposeBag)
+        
+        reactor.state.compactMap { $0.placeText }
+            .map { text in "\(text.count)/20" }
+            .asDriver(onErrorJustReturn: "잠시 후 다시 실행해 주세요")
+            .drive(placeTextLimitedLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        reactor.state.compactMap{ $0.selectedArrayImage }
+            .bind(to: imageCollectionView.rx.items) { (collectionView, row, element) in
+                let indexPath = IndexPath(row: row, section: 0)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecordImageCell.identifier, for: indexPath) as! RecordImageCell
+                cell.recordImage.image = element
+                return cell
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state.compactMap { $0.memoText }
+            .asDriver(onErrorJustReturn: "잠시 후 다시 실행해 주세요")
+            .drive(memoTextField.rx.text)
+            .disposed(by: disposeBag)
+        
+        reactor.state.compactMap { $0.memoText }
+            .map { text in "\(text.count)/25" }
+            .asDriver(onErrorJustReturn: "0/25")
+            .drive(memoTextLimitedLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        reactor.state.compactMap { $0.selectedDate }
+            .asDriver(onErrorJustReturn: "2024년 08월 27일")
+            .drive(dateTextField.rx.text)
+            .disposed(by: disposeBag)
+        
+        reactor.state.compactMap { $0.regionButtonState }
+            .observe(on: MainScheduler.asyncInstance)
+            .asDriver(onErrorJustReturn: "2024년 08월 27일")
+            .drive(with: self, onNext: { owner, text in
+                owner.regionTextField.text = text
+                owner.regionTextField.resignFirstResponder()
+            })
+            .disposed(by: disposeBag)
+        
+        regionPickerView.rx.itemSelected
+            .withUnretained(self)
+            .map { owner, index in
+                return self.reactor?.initialState.regionArray[index.row]
+            }
+            .bind(to: regionTextField.rx.text)
+            .disposed(by: disposeBag)
+        
+        RxKeyboard.instance.visibleHeight
+            .skip(1)
+            .filter { [weak self] _ in
+                return self?.dateTextField.isFirstResponder == true || self?.memoTextField.isFirstResponder == true
+            }
+            .drive(with: self, onNext: { owner, height in
+                print(height)
+                self.view.frame.origin.y = -(height-self.view.safeAreaInsets.bottom)
+            })
+            .disposed(by: disposeBag)
+        
+        //        RxKeyboard.instance.visibleHeight
+        //            .skip(1)
+        //            .filter { [weak self] _ in
+        //                // dateTextField 또는 memoTextField가 활성화된 경우
+        //                return self?.dateTextField.isFirstResponder == true || self?.memoTextField.isFirstResponder == true
+        //            }
+        //            .drive(with: self, onNext: { owner, height in
+        //                let selectedTextField = self.dateTextField.isFirstResponder ? self.dateTextField : self.memoTextField
+        //                // selectedTextField의 Y 좌표 가져오기
+        //                let textFieldY = self.view.convert(selectedTextField.frame, from: selectedTextField.superview).minY
+        //
+        //                let calculateHeight = Constant.Screen.height-height
+        //
+        //                if textFieldY > calculateHeight && height != 0 {
+        //                    let moveDistance = height // 약간의 여유를 추가
+        //                    self.view.frame.origin.y = -(150+self.view.safeAreaInsets.bottom)
+        //                } else {
+        //                    self.view.frame.origin.y = 0
+        //                }
+        //            })
+        //            .disposed(by: disposeBag)
     }
     
     // MARK: - Method
