@@ -144,16 +144,19 @@ final class RecordViewController: UIViewController, View {
         guard let reactor = reactor else { return }
         
         regionCancelBarButton.rx.tap
-            .map { Reactor.Action.regionBarButtonTapped(.cancel) }
-            .bind(to: reactor.action)
+            .bind(with: self, onNext: { owner, text in
+                owner.regionTextField.text = reactor.initialState.selectedRegion
+                owner.regionTextField.resignFirstResponder()
+            })
             .disposed(by: disposeBag)
         
         regionComplteBarButton.rx.tap
-            .map {
-                let row = self.regionPickerView.selectedRow(inComponent: 0)
-                return Reactor.Action.regionBarButtonTapped(.complete(row))
-            }
-            .bind(to: reactor.action)
+            .bind(with: self, onNext: { owner, text in
+                let row = owner.regionPickerView.selectedRow(inComponent: 0)
+                reactor.initialState.selectedRegion = reactor.initialState.regionArray[row]
+                owner.regionTextField.text = reactor.initialState.regionArray[row]
+                owner.regionTextField.resignFirstResponder()
+            })
             .disposed(by: disposeBag)
         
         regionTextField.rx.text
@@ -191,21 +194,17 @@ final class RecordViewController: UIViewController, View {
             .disposed(by: disposeBag)
         
         dateCancelBarButton.rx.tap
-            .withUnretained(self)
-            .compactMap { owner, _ in owner.reactor }
-            .bind { reactor in
-                self.dateTextField.text = nil
-                self.dateTextField.resignFirstResponder()
-            }
+            .bind(with: self, onNext: { owner, text in
+                owner.dateTextField.text = nil
+                owner.dateTextField.resignFirstResponder()
+            })
             .disposed(by: disposeBag)
         
         dateComplteBarButton.rx.tap
-            .withUnretained(self)
-            .compactMap { owner, _ in owner.reactor }
-            .bind { reactor in
-                self.dateTextField.text = reactor.initialState.selectedDate
-                self.dateTextField.resignFirstResponder()
-            }
+            .bind(with: self, onNext: { owner, text in
+                owner.dateTextField.text = reactor.initialState.selectedDate
+                owner.dateTextField.resignFirstResponder()
+            })
             .disposed(by: disposeBag)
     }
     
@@ -255,15 +254,6 @@ final class RecordViewController: UIViewController, View {
         reactor.state.compactMap { $0.selectedDate }
             .asDriver(onErrorJustReturn: "2024년 08월 27일")
             .drive(dateTextField.rx.text)
-            .disposed(by: disposeBag)
-        
-        reactor.state.compactMap { $0.regionButtonState }
-            .observe(on: MainScheduler.asyncInstance)
-            .asDriver(onErrorJustReturn: "2024년 08월 27일")
-            .drive(with: self, onNext: { owner, text in
-                owner.regionTextField.text = text
-                owner.regionTextField.resignFirstResponder()
-            })
             .disposed(by: disposeBag)
         
         regionPickerView.rx.itemSelected

@@ -28,7 +28,6 @@ final class RecordReactor: Reactor {
         case placeTapped(String)
         case memoTapped(String)
         case dateTapped(Date)
-        case regionBarButtonTapped(RegionButtonType)
     }
     
     enum Mutation {
@@ -37,7 +36,6 @@ final class RecordReactor: Reactor {
         case setPlaceText(String)
         case setMemoText(String)
         case setDateText(String)
-        case setRegionButtonState(String)
     }
     
     struct State {
@@ -48,7 +46,6 @@ final class RecordReactor: Reactor {
         var selectedArrayImage: [UIImage]?
         var placeText: String?
         var memoText: String? = ""
-        var regionButtonState: String?
     }
     
     init() {
@@ -67,8 +64,6 @@ final class RecordReactor: Reactor {
             return Observable.just(.setMemoText(prepareTrimText(memoText, 25)))
         case .dateTapped(let date):
             return Observable.just(.setDateText(prepareDateText(date)))
-        case .regionBarButtonTapped(let type):
-            return Observable.just(.setRegionButtonState(prepareRegionState(type)))
         }
     }
     
@@ -85,8 +80,6 @@ final class RecordReactor: Reactor {
             newState.memoText = memoText
         case .setDateText(let dateText):
             newState.selectedDate = dateText
-        case .setRegionButtonState(let text):
-            newState.regionButtonState = text
         }
         return newState
     }
@@ -123,20 +116,5 @@ extension RecordReactor {
         dateFormatter.dateFormat = "yyyy년 MM월 dd일"
         initialState.selectedDate = dateFormatter.string(from: date)
         return dateFormatter.string(from: date)
-    }
-    
-    enum RegionButtonType: Equatable {
-        case cancel
-        case complete(Int)
-    }
-    
-    private func prepareRegionState(_ type: RegionButtonType) -> String {
-        switch type {
-        case .complete(let row):
-            initialState.selectedRegion = initialState.regionArray[row]
-            return initialState.regionArray[row]
-        case .cancel:
-            return initialState.selectedRegion
-        }
     }
 }
