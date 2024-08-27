@@ -84,8 +84,8 @@ final class RecordViewController: UIViewController, View {
     private let placeTextLimitedLabel = MDLabel(attributedString: NSAttributedString.pretendardR10("0/20자"), textColor: .errorRed)
     private let memoTextLimitedLabel = MDLabel(attributedString: NSAttributedString.pretendardR10("7/25자"), textColor: .errorRed)
     
-    private let completeButton = MDButton(backgroundColor: .black2)
-        .setText(attributedString: NSAttributedString.pretendardB16("기록 작성 완료"), color: .white)
+    private let completeButton = MDButton(backgroundColor: .gray40)
+        .setText(attributedString: NSAttributedString.pretendardB16("기록 작성 완료"), color: .gray60)
     
     private let regionPickerView = UIPickerView()
     private let regionToolbar: UIToolbar = {
@@ -264,6 +264,14 @@ final class RecordViewController: UIViewController, View {
             .bind(to: regionTextField.rx.text)
             .disposed(by: disposeBag)
         
+        reactor.state.map { $0.completeButtonEnabled }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: false)
+            .drive(with: self, onNext: { owner, state in
+                owner.setCompleteButtonUI(state)
+            })
+            .disposed(by: disposeBag)
+        
         RxKeyboard.instance.visibleHeight
             .skip(1)
             .filter { [weak self] _ in
@@ -291,17 +299,14 @@ final class RecordViewController: UIViewController, View {
     
     // MARK: - Method
     
-    private func calculateMovedY(_ height: CGFloat) -> CGFloat {
-        let selectedTextField = self.dateTextField.isFirstResponder ? self.dateTextField : self.memoTextField
-        let textFieldY = self.view.convert(selectedTextField.frame, from: selectedTextField.superview).minY
-        
-        // 화면의 중앙 Y 좌표 계산 (키보드 높이를 고려)
-        let centerY = (self.view.frame.height - height) / 1.2
-        return textFieldY - centerY
-    }
-    
     private func setUI() {
         view.backgroundColor = .mapWhite
+    }
+    
+    private func setCompleteButtonUI(_ state: Bool) {
+        self.completeButton.isEnabled = state
+        self.completeButton.backgroundColor = state ? .black2 : .gray40
+        self.completeButton.titleLabel?.textColor = state ? .white : .gray60
     }
     
     private func setToolbar() {
@@ -319,6 +324,16 @@ final class RecordViewController: UIViewController, View {
     
     private func setDelegate() {
         regionTextField.delegate = self
+        dateTextField.delegate = self
+    }
+    
+    private func calculateMovedY(_ height: CGFloat) -> CGFloat {
+        let selectedTextField = self.dateTextField.isFirstResponder ? self.dateTextField : self.memoTextField
+        let textFieldY = self.view.convert(selectedTextField.frame, from: selectedTextField.superview).minY
+        
+        // 화면의 중앙 Y 좌표 계산 (키보드 높이를 고려)
+        let centerY = (self.view.frame.height - height) / 1.2
+        return textFieldY - centerY
     }
     
     func didSelectImage() {
