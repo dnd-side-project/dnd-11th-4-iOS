@@ -147,7 +147,7 @@ final class RecordViewController: UIViewController, View {
             .map { Reactor.Action.regionBarButtonTapped(.cancel) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
-
+        
         regionComplteBarButton.rx.tap
             .map {
                 let row = self.regionPickerView.selectedRow(inComponent: 0)
@@ -279,36 +279,36 @@ final class RecordViewController: UIViewController, View {
             .filter { [weak self] _ in
                 return self?.dateTextField.isFirstResponder == true || self?.memoTextField.isFirstResponder == true
             }
-            .drive(with: self, onNext: { owner, height in
-                print(height)
-                self.view.frame.origin.y = -(height-self.view.safeAreaInsets.bottom)
+            .map { [weak self] keyboardHeight -> CGFloat in
+                guard let self = self else { return 0.0 }
+                return self.calculateMovedY(keyboardHeight)
+            }
+            .drive(with: self, onNext: { _, height  in
+                // 텍스트 필드가 화면 중앙에 위치하도록 뷰를 이동시킴
+                if height > 0 {
+                    UIView.animate(withDuration: 0.3) {
+                        self.view.frame.origin.y = -height
+                    }
+                } else {
+                    // 키보드가 내려가면 뷰를 원래 위치로 복구
+                    UIView.animate(withDuration: 0.3) {
+                        self.view.frame.origin.y = 0
+                    }
+                }
             })
             .disposed(by: disposeBag)
-        
-        //        RxKeyboard.instance.visibleHeight
-        //            .skip(1)
-        //            .filter { [weak self] _ in
-        //                // dateTextField 또는 memoTextField가 활성화된 경우
-        //                return self?.dateTextField.isFirstResponder == true || self?.memoTextField.isFirstResponder == true
-        //            }
-        //            .drive(with: self, onNext: { owner, height in
-        //                let selectedTextField = self.dateTextField.isFirstResponder ? self.dateTextField : self.memoTextField
-        //                // selectedTextField의 Y 좌표 가져오기
-        //                let textFieldY = self.view.convert(selectedTextField.frame, from: selectedTextField.superview).minY
-        //
-        //                let calculateHeight = Constant.Screen.height-height
-        //
-        //                if textFieldY > calculateHeight && height != 0 {
-        //                    let moveDistance = height // 약간의 여유를 추가
-        //                    self.view.frame.origin.y = -(150+self.view.safeAreaInsets.bottom)
-        //                } else {
-        //                    self.view.frame.origin.y = 0
-        //                }
-        //            })
-        //            .disposed(by: disposeBag)
     }
     
     // MARK: - Method
+    
+    private func calculateMovedY(_ height: CGFloat) -> CGFloat {
+        let selectedTextField = self.dateTextField.isFirstResponder ? self.dateTextField : self.memoTextField
+        let textFieldY = self.view.convert(selectedTextField.frame, from: selectedTextField.superview).minY
+        
+        // 화면의 중앙 Y 좌표 계산 (키보드 높이를 고려)
+        let centerY = (self.view.frame.height - height) / 1.2
+        return textFieldY - centerY
+    }
     
     private func setUI() {
         view.backgroundColor = .mapWhite
@@ -517,7 +517,7 @@ extension RecordViewController: PHPickerViewControllerDelegate {
 
 extension RecordViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == regionTextField {
+        if textField == regionTextField || textField == dateTextField {
             return false
         }
         return true
