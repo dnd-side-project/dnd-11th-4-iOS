@@ -80,6 +80,7 @@ final class HomeMapViewController: UIViewController, View {
         super.viewWillAppear(animated)
         
         reactor?.action.onNext(.viewWillAppear)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     init(reactor: HomeMapReactor) {
@@ -175,6 +176,22 @@ final class HomeMapViewController: UIViewController, View {
                 }
                 
                 self.mapCountLabel.attributedText = NSAttributedString.pretendardM16(data.visitedMapCount)
+            }
+            .disposed(by: disposeBag)
+        
+        recordButton.rx.tap
+            .asDriver()
+            .drive(with: self) { owner, _ in
+                let recordVC = RecordViewController(reactor: RecordReactor(),
+                                                    selectedRegigon: reactor.initialState.selectedMap)
+                owner.navigationController?.pushViewController(recordVC, animated: true)
+                
+                recordVC.completeButtonTapped
+                    .asDriver(onErrorJustReturn: ())
+                    .drive(with: self) { _, _ in
+                        MDToast.show(type: .complete)
+                    }
+                    .disposed(by: recordVC.disposeBag)
             }
             .disposed(by: disposeBag)
     }

@@ -22,8 +22,8 @@ class PopUpViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         dimmedView.backgroundColor = .black2
         dimmedView.alpha = 0

@@ -44,6 +44,7 @@ final class HomeMapReactor: Reactor {
                           ColorWithOpacityModel(name: "제주도", opacity: 1, colorType: .yellow(2))]
         var type = MapDeviceInset.width375Height812
         var inset: TopAndLeadingInset?
+        var selectedMap: String?
     }
     
     init() {
@@ -91,6 +92,7 @@ extension HomeMapReactor {
             tempState.totalMapArray[index] = MapModel(mapName: type.rawValue,
                                                       mapColor: .mapSelect)
             tempState.selectedMap = SelectedMapModel(selectedMapName: type.rawValue, isHidden: false)
+            initialState.selectedMap = type.rawValue
         }
         return tempState
     }

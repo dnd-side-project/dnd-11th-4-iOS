@@ -26,7 +26,7 @@ enum ToastViewType {
 final class MDToastView: UIView {
     
     private let detailText = MDLabel(attributedString: NSAttributedString.pretendardB14("dummy"), textColor: .mapWhite)
-    private let image = UIImageView()
+    private var image = UIImageView()
     
     init(type: ToastViewType) {
         super.init(frame: .zero)
@@ -51,7 +51,7 @@ final class MDToastView: UIView {
         switch type {
         case .onboarding:
             self.detailText.attributedText = NSAttributedString(string: type.text)
-            self.image.backgroundColor = .errorRed
+            self.image = UIImageView(image: Constant.Image.iconCheckboxSelected)
             
             self.addSubviews(detailText, image)
             detailText.snp.makeConstraints { make in
@@ -65,7 +65,7 @@ final class MDToastView: UIView {
             }
         case .complete:
             self.detailText.attributedText = NSAttributedString(string: type.text)
-            self.image.backgroundColor = .errorRed
+            self.image = UIImageView(image: Constant.Image.iconCheckboxSelected)
             
             self.addSubviews(detailText, image)
             image.snp.makeConstraints { make in

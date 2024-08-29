@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A0944492C80CF3900D745C5 /* RecordCancelPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0944482C80CF3900D745C5 /* RecordCancelPopUpViewController.swift */; };
+		4A09444B2C80D83C00D745C5 /* CATransition+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09444A2C80D83C00D745C5 /* CATransition+.swift */; };
 		4A16E2A42C5A4DE700F48180 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2A32C5A4DE700F48180 /* OnboardingViewController.swift */; };
 		4A16E2CD2C5A6B7E00F48180 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2CC2C5A6B7E00F48180 /* TabBarViewController.swift */; };
 		4A16E2D02C5A702000F48180 /* RecordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2CF2C5A702000F48180 /* RecordListViewController.swift */; };
@@ -23,7 +25,6 @@
 		4A16E2F12C60F0A700F48180 /* HomeMap_울산.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDC32C4FB08E002F5A77 /* HomeMap_울산.swift */; };
 		4A16E2F22C60F0A700F48180 /* HomeMap_전라북도.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDB92C4FAF75002F5A77 /* HomeMap_전라북도.swift */; };
 		4A16E2F32C60F0A700F48180 /* HomeMap_광주.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDCD2C4FB399002F5A77 /* HomeMap_광주.swift */; };
-		4A16E2F42C60F0A700F48180 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		4A16E2F62C60F8DA00F48180 /* HomeMapReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2F52C60F8DA00F48180 /* HomeMapReactor.swift */; };
 		4A1CB9382C7C7033002DE4FE /* BaseEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1CB9372C7C7033002DE4FE /* BaseEndpoint.swift */; };
 		4A1CB93A2C7C7DDA002DE4FE /* HTTPHeaderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1CB9392C7C7DDA002DE4FE /* HTTPHeaderField.swift */; };
@@ -34,6 +35,7 @@
 		4A1CB9482C7C89B1002DE4FE /* MDError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1CB9472C7C89B0002DE4FE /* MDError.swift */; };
 		4A1CB94A2C7C8D81002DE4FE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1CB9492C7C8D81002DE4FE /* NetworkManager.swift */; };
 		4A1CB94C2C7C9966002DE4FE /* Niltype.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1CB94B2C7C9966002DE4FE /* Niltype.swift */; };
+		4A1CB94E2C7E157C002DE4FE /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1CB94D2C7E157C002DE4FE /* Empty.swift */; };
 		4A5FFDA62C4FAA6A002F5A77 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */; };
 		4A5FFDA82C4FABBF002F5A77 /* HomeMap_경기도.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDA72C4FABBF002F5A77 /* HomeMap_경기도.swift */; };
 		4A5FFDAE2C4FAD42002F5A77 /* DrawMapProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDAD2C4FAD42002F5A77 /* DrawMapProtocol.swift */; };
@@ -61,6 +63,10 @@
 		4AAFDBB22C4953C9008C6DAF /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFDBB12C4953C9008C6DAF /* Application.swift */; };
 		4AAFDBB42C4953CD008C6DAF /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFDBB32C4953CD008C6DAF /* Color.swift */; };
 		4AAFDBB62C4953D2008C6DAF /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFDBB52C4953D2008C6DAF /* Font.swift */; };
+		4AB1221F2C6BB3DF00A7337F /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB1221E2C6BB3DF00A7337F /* RecordViewController.swift */; };
+		4AB122212C6C6F0B00A7337F /* MDTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB122202C6C6F0B00A7337F /* MDTextField.swift */; };
+		4AB122252C6CAE7500A7337F /* RecordReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB122242C6CAE7500A7337F /* RecordReactor.swift */; };
+		4AE91E8F2C74D8BE00E3321E /* RecordImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE91E8E2C74D8BE00E3321E /* RecordImageCell.swift */; };
 		9B683A9A3DF08F60898F35CD /* Pods_dnd_11th_4_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6186EB1A512F7D1B5F90E0 /* Pods_dnd_11th_4_iOS.framework */; };
 		FB0BE4EB2C57B5EB00C34C7B /* PeoplefirstNeat&Loud.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4EA2C57B5EB00C34C7B /* PeoplefirstNeat&Loud.otf */; };
 		FB0BE4F02C57B5FD00C34C7B /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4EC2C57B5FD00C34C7B /* Pretendard-Medium.otf */; };
@@ -99,6 +105,8 @@
 
 /* Begin PBXFileReference section */
 		42A37440E49DA42B64FA649E /* Pods-dnd-11th-4-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dnd-11th-4-iOS.debug.xcconfig"; path = "Target Support Files/Pods-dnd-11th-4-iOS/Pods-dnd-11th-4-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		4A0944482C80CF3900D745C5 /* RecordCancelPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCancelPopUpViewController.swift; sourceTree = "<group>"; };
+		4A09444A2C80D83C00D745C5 /* CATransition+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATransition+.swift"; sourceTree = "<group>"; };
 		4A16E2A32C5A4DE700F48180 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		4A16E2CC2C5A6B7E00F48180 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		4A16E2CF2C5A702000F48180 /* RecordListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +128,7 @@
 		4A1CB9472C7C89B0002DE4FE /* MDError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDError.swift; sourceTree = "<group>"; };
 		4A1CB9492C7C8D81002DE4FE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4A1CB94B2C7C9966002DE4FE /* Niltype.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Niltype.swift; sourceTree = "<group>"; };
+		4A1CB94D2C7E157C002DE4FE /* Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Empty.swift; sourceTree = "<group>"; };
 		4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		4A5FFDA72C4FABBF002F5A77 /* HomeMap_경기도.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeMap_경기도.swift"; sourceTree = "<group>"; };
 		4A5FFDAA2C4FAD05002F5A77 /* HomeMap_인천.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeMap_인천.swift"; sourceTree = "<group>"; };
@@ -154,6 +163,10 @@
 		4AAFDBB12C4953C9008C6DAF /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		4AAFDBB32C4953CD008C6DAF /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		4AAFDBB52C4953D2008C6DAF /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		4AB1221E2C6BB3DF00A7337F /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		4AB122202C6C6F0B00A7337F /* MDTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDTextField.swift; sourceTree = "<group>"; };
+		4AB122242C6CAE7500A7337F /* RecordReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordReactor.swift; sourceTree = "<group>"; };
+		4AE91E8E2C74D8BE00E3321E /* RecordImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordImageCell.swift; sourceTree = "<group>"; };
 		B2752E23310EECA8EBA4E6C2 /* Pods-dnd-11th-4-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dnd-11th-4-iOS.release.xcconfig"; path = "Target Support Files/Pods-dnd-11th-4-iOS/Pods-dnd-11th-4-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		FB0BE4EA2C57B5EB00C34C7B /* PeoplefirstNeat&Loud.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PeoplefirstNeat&Loud.otf"; sourceTree = "<group>"; };
 		FB0BE4EC2C57B5FD00C34C7B /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
@@ -321,6 +334,7 @@
 				4A16E2DD2C5CC3BA00F48180 /* MDToast.swift */,
 				4A16E2E52C5D0F5D00F48180 /* MDPopUpView.swift */,
 				FB808E532C5A72E500E9E2E5 /* MDNavigationBar.swift */,
+				4AB122202C6C6F0B00A7337F /* MDTextField.swift */,
 			);
 			path = UIComponent;
 			sourceTree = "<group>";
@@ -331,6 +345,7 @@
 				4A16E2E32C5D0DFA00F48180 /* PopUpViewController.swift */,
 				FB808E692C6901EA00E9E2E5 /* ListDeleteViewController.swift */,
 				FBAF7F922C7B555800D71216 /* AccountDeleteViewController.swift */,
+				4A0944482C80CF3900D745C5 /* RecordCancelPopUpViewController.swift */,
 			);
 			path = PopUp;
 			sourceTree = "<group>";
@@ -386,6 +401,7 @@
 				4A5FFDD32C4FB515002F5A77 /* UIView+.swift */,
 				FB808E632C63C6EE00E9E2E5 /* UIImage+.swift */,
 				FBE0F5AD2C76315000C81F8A /* UIViewController+.swift */,
+				4A09444A2C80D83C00D745C5 /* CATransition+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -443,6 +459,7 @@
 		4AAFDBA82C495290008C6DAF /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				4AB1221D2C6BB3D600A7337F /* Record */,
 				FBE0F5AA2C75F14A00C81F8A /* ServiceAccept */,
 				FBAD5AFF2C737AE000DC0171 /* Login */,
 				FB9B359D2C6F763F00FB884E /* Splash */,
@@ -523,6 +540,33 @@
 			path = Color;
 			sourceTree = "<group>";
 		};
+		4AB1221D2C6BB3D600A7337F /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				4AE91E892C74D2F500E3321E /* Cell */,
+				4AB122222C6CAE5400A7337F /* ViewController */,
+				4AB122232C6CAE5800A7337F /* Reactor */,
+				4A1CB94D2C7E157C002DE4FE /* Empty.swift */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
+		4AB122222C6CAE5400A7337F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4AB1221E2C6BB3DF00A7337F /* RecordViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		4AB122232C6CAE5800A7337F /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+				4AB122242C6CAE7500A7337F /* RecordReactor.swift */,
+			);
+			path = Reactor;
+			sourceTree = "<group>";
+		};
 		4ADB30212C4FC0E000CAC638 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -532,6 +576,14 @@
 				4AA414492C64667000AB3CE8 /* Model */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		4AE91E892C74D2F500E3321E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4AE91E8E2C74D8BE00E3321E /* RecordImageCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		6435613A2484E869917A686A /* Pods */ = {
@@ -822,7 +874,7 @@
 				4A16E2F22C60F0A700F48180 /* HomeMap_전라북도.swift in Sources */,
 				4A16E2F32C60F0A700F48180 /* HomeMap_광주.swift in Sources */,
 				FB808E642C63C6EE00E9E2E5 /* UIImage+.swift in Sources */,
-				4A16E2F42C60F0A700F48180 /* (null) in Sources */,
+				4AB122212C6C6F0B00A7337F /* MDTextField.swift in Sources */,
 				4A1CB9412C7C7E51002DE4FE /* HomeResponse.swift in Sources */,
 				4AAFDBB22C4953C9008C6DAF /* Application.swift in Sources */,
 				4A5FFDB22C4FAE73002F5A77 /* HomeMap_충청남도.swift in Sources */,
@@ -838,6 +890,7 @@
 				4AAFDBB62C4953D2008C6DAF /* Font.swift in Sources */,
 				4A5FFDD02C4FB3C0002F5A77 /* HomeMap_서울.swift in Sources */,
 				FBE0F5B22C789FB700C81F8A /* MyPageCell.swift in Sources */,
+				4A1CB94E2C7E157C002DE4FE /* Empty.swift in Sources */,
 				4A5FFDA62C4FAA6A002F5A77 /* Constant.swift in Sources */,
 				FB808E582C622DC600E9E2E5 /* RecordListCell.swift in Sources */,
 				FB808E542C5A72E500E9E2E5 /* MDNavigationBar.swift in Sources */,
@@ -851,6 +904,7 @@
 				4A16E2D82C5B434F00F48180 /* MDLabel.swift in Sources */,
 				4A16E2DC2C5B50DF00F48180 /* MDToastView.swift in Sources */,
 				FBAD5B012C737AF800DC0171 /* LoginViewController.swift in Sources */,
+				4A09444B2C80D83C00D745C5 /* CATransition+.swift in Sources */,
 				FBE0F5B02C78717E00C81F8A /* MyPageView.swift in Sources */,
 				FB808E982C6BAC6000E9E2E5 /* OnboardingReactor.swift in Sources */,
 				FB808E6A2C6901EA00E9E2E5 /* ListDeleteViewController.swift in Sources */,
@@ -858,10 +912,14 @@
 				FB7AEDD52C74A62900B95784 /* LoginReactor.swift in Sources */,
 				FBAF7F912C7B363400D71216 /* InquiryViewController.swift in Sources */,
 				4A5FFDD42C4FB515002F5A77 /* UIView+.swift in Sources */,
+				4AE91E8F2C74D8BE00E3321E /* RecordImageCell.swift in Sources */,
 				4AAFDB6D2C494CFF008C6DAF /* AppDelegate.swift in Sources */,
 				4AAFDBB02C4953C0008C6DAF /* Network.swift in Sources */,
+				4A0944492C80CF3900D745C5 /* RecordCancelPopUpViewController.swift in Sources */,
+				4AB1221F2C6BB3DF00A7337F /* RecordViewController.swift in Sources */,
 				4A16E2F62C60F8DA00F48180 /* HomeMapReactor.swift in Sources */,
 				4A5FFDC22C4FB056002F5A77 /* HomeMap_부산.swift in Sources */,
+				4AB122252C6CAE7500A7337F /* RecordReactor.swift in Sources */,
 				FB9B35A52C6F99EE00FB884E /* ColorType.swift in Sources */,
 				4AAFDB6F2C494CFF008C6DAF /* SceneDelegate.swift in Sources */,
 				4A16E2E62C5D0F5D00F48180 /* MDPopUpView.swift in Sources */,
@@ -1036,10 +1094,12 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D5WYU8R9W8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "dnd-11th-4-iOS/Application/Info.plist";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "맵땅에 사진을 추가하려면 사진 라이브러리 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1070,10 +1130,12 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D5WYU8R9W8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "dnd-11th-4-iOS/Application/Info.plist";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "맵땅에 사진을 추가하려면 사진 라이브러리 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
