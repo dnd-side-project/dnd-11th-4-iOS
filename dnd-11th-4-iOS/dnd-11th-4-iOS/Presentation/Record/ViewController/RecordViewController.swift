@@ -146,9 +146,17 @@ final class RecordViewController: UIViewController, View {
         
         navigationBar.backButton.rx.tap
             .asDriver()
-            .drive(with: self) { owner, _ in
-                self.navigationController?.popViewController(animated: true)
-            }
+            .drive(with: self, onNext: { owner, _ in
+                let popUpVC = RecordCancelPopUpViewController()
+                owner.present(popUpVC, animated: true)
+                
+                popUpVC.recordCancelTappedSubject
+                    .asDriver(onErrorJustReturn: ())
+                    .drive(with: self, onNext: { owner, _ in
+                        owner.navigationController?.popViewController(animated: true)
+                    })
+                    .disposed(by: popUpVC.disposeBag)
+            })
             .disposed(by: disposeBag)
         
         regionCancelBarButton.rx.tap
@@ -212,6 +220,12 @@ final class RecordViewController: UIViewController, View {
             .bind(with: self, onNext: { owner, text in
                 owner.dateTextField.text = reactor.initialState.selectedDate
                 owner.dateTextField.resignFirstResponder()
+            })
+            .disposed(by: disposeBag)
+        
+        completeButton.rx.tap
+            .bind(with: self, onNext: { owner, text in
+                owner.navigationController?.popViewController(animated: true)
             })
             .disposed(by: disposeBag)
     }
