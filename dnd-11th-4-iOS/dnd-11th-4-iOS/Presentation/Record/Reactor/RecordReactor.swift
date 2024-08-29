@@ -28,6 +28,7 @@ final class RecordReactor: Reactor {
         case placeTapped(String)
         case memoTapped(String)
         case dateTapped(Date)
+        case deleteCellTapped(IndexPath)
     }
     
     enum Mutation {
@@ -36,6 +37,7 @@ final class RecordReactor: Reactor {
         case setPlaceText(String)
         case setMemoText(String)
         case setDateText(String)
+        case setDeleteCell([UIImage])
     }
     
     struct State {
@@ -58,7 +60,10 @@ final class RecordReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .imageAddTapped(let imageArray):
-            return self.prepareImageArray(imageArray).map { Mutation.setImageArray($0) }
+            return self.prepareImageArray(imageArray).map { array in
+                self.initialState.selectedArrayImage = array
+                return Mutation.setImageArray(array)
+            }
         case .regionTapped(let regionText):
             return Observable.just(.setRegionText(regionText))
         case .placeTapped(let placeText):
@@ -67,13 +72,15 @@ final class RecordReactor: Reactor {
             return Observable.just(.setMemoText(prepareTrimText(memoText, 25)))
         case .dateTapped(let date):
             return Observable.just(.setDateText(prepareDateText(date)))
+        case .deleteCellTapped(let indexPath):
+            return Observable.just(.setDeleteCell(prepareDeleteCell(indexPath)))
         }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
         switch mutation {
-        case .setImageArray(let imageArray):
+        case .setImageArray(let imageArray), .setDeleteCell(let imageArray):
             newState.selectedArrayImage = imageArray
         case .setRegionText(let regionText):
             newState.selectedRegion = regionText
@@ -119,5 +126,11 @@ extension RecordReactor {
         dateFormatter.dateFormat = "yyyy년 MM월 dd일"
         initialState.selectedDate = dateFormatter.string(from: date)
         return dateFormatter.string(from: date)
+    }
+    
+    private func prepareDeleteCell(_ indexPath: IndexPath)-> [UIImage] {
+        let row = indexPath.item
+        initialState.selectedArrayImage?.remove(at: row)
+        return initialState.selectedArrayImage ?? []
     }
 }

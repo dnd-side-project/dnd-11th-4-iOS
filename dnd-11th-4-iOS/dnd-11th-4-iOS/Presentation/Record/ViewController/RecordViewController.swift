@@ -244,6 +244,13 @@ final class RecordViewController: UIViewController, View {
                 let indexPath = IndexPath(row: row, section: 0)
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecordImageCell.identifier, for: indexPath) as! RecordImageCell
                 cell.recordImage.image = element
+                
+                cell.deleteButtonTappedSubject
+                    .subscribe(with: self, onNext: { _, indexPath in
+                        reactor.action.onNext(.deleteCellTapped(indexPath))
+                    })
+                    .disposed(by: cell.disposeBag)
+                
                 return cell
             }
             .disposed(by: disposeBag)

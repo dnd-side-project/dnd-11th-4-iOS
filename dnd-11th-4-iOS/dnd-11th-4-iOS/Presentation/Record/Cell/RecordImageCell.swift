@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class RecordImageCell: UICollectionViewCell {
     
     static let identifier = "RecordImageCell"
+    
+    let deleteButtonTappedSubject = PublishSubject<IndexPath>()
+    var disposeBag = DisposeBag()
     
     var recordImage: UIImageView = {
         let imageView = UIImageView()
@@ -19,16 +24,24 @@ final class RecordImageCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 6
         return imageView
     }()
-    private let deleteButton = UIImageView(image: Constant.Image.iconXCircle)
+    let deleteButton = UIImageView(image: Constant.Image.iconXCircle)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setUI()
+        bind()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.disposeBag = DisposeBag()
+        
+        bind()
     }
     
     private func setUI() {
@@ -43,5 +56,20 @@ final class RecordImageCell: UICollectionViewCell {
             make.top.trailing.equalToSuperview().inset(6)
             make.width.height.equalTo(20)
         }
+    }
+    
+    private func getIndexPath() -> IndexPath? {
+        guard let superView = self.superview as? UICollectionView else { return nil }
+        return superView.indexPath(for: self)
+    }
+    
+    private func bind() {
+        deleteButton.rx.tapGesture()
+            .when(.recognized)
+            .compactMap{ _ in self.getIndexPath() }
+            .subscribe(with: self) { owner, indexPath in
+                owner.deleteButtonTappedSubject.onNext(indexPath)
+            }
+            .disposed(by: disposeBag)
     }
 }
