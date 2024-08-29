@@ -255,6 +255,12 @@ final class RecordViewController: UIViewController, View {
             }
             .disposed(by: disposeBag)
         
+        reactor.state.map { $0.imageCount }
+            .map { count in "\(count)/3" }
+            .asDriver(onErrorJustReturn: "0/3")
+            .drive(countImageLabel.rx.text)
+            .disposed(by: disposeBag)
+        
         reactor.state.compactMap { $0.memoText }
             .asDriver(onErrorJustReturn: "잠시 후 다시 실행해 주세요")
             .drive(memoTextField.rx.text)

@@ -48,6 +48,7 @@ final class RecordReactor: Reactor {
         var selectedArrayImage: [UIImage]?
         var placeText: String?
         var memoText: String? = ""
+        var imageCount: Int = 0
         var completeButtonEnabled: Bool {
             return selectedRegion != nil && placeText != ""
         }
@@ -82,6 +83,7 @@ final class RecordReactor: Reactor {
         switch mutation {
         case .setImageArray(let imageArray), .setDeleteCell(let imageArray):
             newState.selectedArrayImage = imageArray
+            newState.imageCount = imageArray.count
         case .setRegionText(let regionText):
             newState.selectedRegion = regionText
         case .setPlaceText(let placeText):
