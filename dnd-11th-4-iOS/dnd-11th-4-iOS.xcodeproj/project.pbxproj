@@ -25,7 +25,6 @@
 		4A16E2F12C60F0A700F48180 /* HomeMap_울산.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDC32C4FB08E002F5A77 /* HomeMap_울산.swift */; };
 		4A16E2F22C60F0A700F48180 /* HomeMap_전라북도.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDB92C4FAF75002F5A77 /* HomeMap_전라북도.swift */; };
 		4A16E2F32C60F0A700F48180 /* HomeMap_광주.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDCD2C4FB399002F5A77 /* HomeMap_광주.swift */; };
-		4A16E2F42C60F0A700F48180 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		4A16E2F62C60F8DA00F48180 /* HomeMapReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2F52C60F8DA00F48180 /* HomeMapReactor.swift */; };
 		4A1CB9382C7C7033002DE4FE /* BaseEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1CB9372C7C7033002DE4FE /* BaseEndpoint.swift */; };
 		4A1CB93A2C7C7DDA002DE4FE /* HTTPHeaderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1CB9392C7C7DDA002DE4FE /* HTTPHeaderField.swift */; };
@@ -920,7 +919,6 @@
 				4AB1221F2C6BB3DF00A7337F /* RecordViewController.swift in Sources */,
 				4A16E2F62C60F8DA00F48180 /* HomeMapReactor.swift in Sources */,
 				4A5FFDC22C4FB056002F5A77 /* HomeMap_부산.swift in Sources */,
-				4A16E2BA2C5A560B00F48180 /* OnboardingMap_부산.swift in Sources */,
 				4AB122252C6CAE7500A7337F /* RecordReactor.swift in Sources */,
 				FB9B35A52C6F99EE00FB884E /* ColorType.swift in Sources */,
 				4AAFDB6F2C494CFF008C6DAF /* SceneDelegate.swift in Sources */,
