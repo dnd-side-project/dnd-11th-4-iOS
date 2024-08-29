@@ -96,7 +96,7 @@ final class RecordViewController: UIViewController, View {
     }()
     private lazy var regionCancelBarButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: nil)
     private lazy var regionFlexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-    private lazy var regionComplteBarButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: nil)
+    private lazy var regionCompleteBarButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: nil)
     
     private let datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
@@ -167,7 +167,7 @@ final class RecordViewController: UIViewController, View {
             })
             .disposed(by: disposeBag)
         
-        regionComplteBarButton.rx.tap
+        regionCompleteBarButton.rx.tap
             .bind(with: self, onNext: { owner, text in
                 let row = owner.regionPickerView.selectedRow(inComponent: 0)
                 reactor.initialState.selectedRegion = reactor.initialState.regionArray[row]
@@ -349,7 +349,7 @@ final class RecordViewController: UIViewController, View {
     }
     
     private func setToolbar() {
-        regionToolbar.setItems([regionCancelBarButton, regionFlexibleSpace, regionComplteBarButton], animated: false)
+        regionToolbar.setItems([regionCancelBarButton, regionFlexibleSpace, regionCompleteBarButton], animated: false)
         dateToolbar.setItems([dateCancelBarButton, dateFlexibleSpace, dateComplteBarButton], animated: false)
     }
     
