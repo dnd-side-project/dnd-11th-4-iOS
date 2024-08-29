@@ -17,6 +17,7 @@ final class RecordViewController: UIViewController, View {
     
     typealias Reactor = RecordReactor
     var disposeBag = DisposeBag()
+    let completeButtonTapped = PublishSubject<Void>()
     
     // MARK: - UI Properties
     
@@ -225,7 +226,9 @@ final class RecordViewController: UIViewController, View {
         
         completeButton.rx.tap
             .bind(with: self, onNext: { owner, text in
-                owner.navigationController?.popViewController(animated: true)
+                owner.navigationController?.view.layer.add(CATransition().fadeType(), forKey: kCATransition)
+                owner.navigationController?.popViewController(animated: false)
+                owner.completeButtonTapped.onNext(())
             })
             .disposed(by: disposeBag)
     }

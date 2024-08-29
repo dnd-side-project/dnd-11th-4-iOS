@@ -185,6 +185,13 @@ final class HomeMapViewController: UIViewController, View {
                 let recordVC = RecordViewController(reactor: RecordReactor(),
                                                     selectedRegigon: reactor.initialState.selectedMap)
                 owner.navigationController?.pushViewController(recordVC, animated: true)
+                
+                recordVC.completeButtonTapped
+                    .asDriver(onErrorJustReturn: ())
+                    .drive(with: self) { _, _ in
+                        MDToast.show(type: .complete)
+                    }
+                    .disposed(by: recordVC.disposeBag)
             }
             .disposed(by: disposeBag)
     }
