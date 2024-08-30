@@ -86,6 +86,8 @@ final class RecordListViewController: UIViewController, ListDeleteDelegate {
         if records.isEmpty {
             showEmptyRecordView()
         }
+        
+        MDToast.show(type: .delete)
     }
 }
 
