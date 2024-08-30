@@ -111,6 +111,18 @@ extension RecordListViewController: UICollectionViewDataSource {
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
                 let popUpVC = ListDeleteViewController()
+                popUpVC.deleteButtonTapped
+                    .subscribe(onNext: { [weak self] in
+                        guard let self = self else { return }
+                        self.records.remove(at: indexPath.item)
+                        self.recordListView.deleteItems(at: [indexPath])
+                        
+                        if self.records.isEmpty {
+                            self.showEmptyRecordView()
+                        }
+                    })
+                    .disposed(by: popUpVC.disposeBag)
+                
                 self.present(popUpVC, animated: true)
             })
             .disposed(by: disposeBag)
@@ -126,4 +138,3 @@ extension RecordListViewController: UICollectionViewDataSource {
         return UICollectionReusableView()
     }
 }
-

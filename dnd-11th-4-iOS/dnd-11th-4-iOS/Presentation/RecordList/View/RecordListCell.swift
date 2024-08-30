@@ -146,7 +146,6 @@ final class RecordListCell: UICollectionViewCell {
         menuView.deleteButtonTapped
             .subscribe(onNext: {
                 self.deleteButtonTapped.onNext(())
-                print("cell")
             })
             .disposed(by: disposeBag)
     }
