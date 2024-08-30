@@ -100,7 +100,6 @@ final class MenuAlertView: UIView {
         deleteButton.rx.tap
             .bind(onNext: { [weak self] in
                 self?.deleteButtonTapped.onNext(())
-                print("hit delete")
             })
             .disposed(by: disposeBag)
     }

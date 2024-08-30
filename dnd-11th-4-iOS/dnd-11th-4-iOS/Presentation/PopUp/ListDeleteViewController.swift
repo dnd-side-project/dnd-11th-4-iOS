@@ -11,7 +11,9 @@ import RxSwift
 import RxCocoa
 
 final class ListDeleteViewController: PopUpViewController {
-    let deleteButtonTapped = PublishSubject<Void>()
+    weak var delegate: ListDeleteDelegate?
+    var recordIndex: IndexPath?
+    
     let disposeBag = DisposeBag()
     private let popUpView = MDPopUpView(title: "정말 삭제하시겠어요?", cancelTitle: "취소", deleteTitle: "삭제")
     
@@ -43,8 +45,8 @@ final class ListDeleteViewController: PopUpViewController {
         popUpView.deleteButton.rx.tap
             .asDriver()
             .drive(onNext: { [weak self] in
-                guard let self = self else { return }
-                self.deleteButtonTapped.onNext(())
+                guard let self = self, let index = self.recordIndex else { return }
+                self.delegate?.didDeleteRecord(at: index)
                 self.dismiss(animated: true)
             })
             .disposed(by: disposeBag)

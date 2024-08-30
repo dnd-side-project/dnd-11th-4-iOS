@@ -11,7 +11,11 @@ import RxSwift
 import RxCocoa
 import ReactorKit
 
-final class RecordListViewController: UIViewController {
+protocol ListDeleteDelegate: AnyObject {
+    func didDeleteRecord(at indexPath: IndexPath)
+}
+
+final class RecordListViewController: UIViewController, ListDeleteDelegate {
     private let navigationBar = MDNavigationBar(type: .list)
     private var records: [Test] = []
     private var recordListView: UICollectionView!
@@ -74,6 +78,15 @@ final class RecordListViewController: UIViewController {
         emptyRecordView.isHidden = true
         recordListView.isHidden = false
     }
+    
+    func didDeleteRecord(at indexPath: IndexPath) {
+        records.remove(at: indexPath.item)
+        recordListView.deleteItems(at: [indexPath])
+        
+        if records.isEmpty {
+            showEmptyRecordView()
+        }
+    }
 }
 
 extension RecordListViewController: View {
@@ -108,22 +121,11 @@ extension RecordListViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecordListCell.identifier, for: indexPath) as! RecordListCell
         cell.configure(with: records[indexPath.item])
         cell.deleteButtonTapped
-            .subscribe(onNext: { [weak self] in
-                guard let self = self else { return }
+            .subscribe(onNext: {
                 let popUpVC = ListDeleteViewController()
-                popUpVC.deleteButtonTapped
-                    .subscribe(onNext: { [weak self] in
-                        guard let self = self else { return }
-                        self.records.remove(at: indexPath.item)
-                        self.recordListView.deleteItems(at: [indexPath])
-                        
-                        if self.records.isEmpty {
-                            self.showEmptyRecordView()
-                        }
-                    })
-                    .disposed(by: popUpVC.disposeBag)
-                
                 self.present(popUpVC, animated: true)
+                popUpVC.delegate = self
+                popUpVC.recordIndex = indexPath
             })
             .disposed(by: disposeBag)
         return cell
