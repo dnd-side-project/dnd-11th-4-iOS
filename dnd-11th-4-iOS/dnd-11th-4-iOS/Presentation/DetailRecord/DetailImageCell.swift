@@ -16,7 +16,7 @@ final class DetailImageCell: UICollectionViewCell {
     let deleteButtonTappedSubject = PublishSubject<IndexPath>()
     var disposeBag = DisposeBag()
     
-    let deatilImageView: UIImageView = {
+    let detailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = Constant.Image.imageDetailEmpty
         imageView.contentMode = .scaleAspectFill
@@ -42,9 +42,9 @@ final class DetailImageCell: UICollectionViewCell {
     }
     
     private func setUI() {
-        addSubviews(deatilImageView)
+        addSubviews(detailImageView)
         
-        deatilImageView.snp.makeConstraints { make in
+        detailImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }

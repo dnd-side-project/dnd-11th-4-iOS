@@ -47,6 +47,7 @@ final class DetailRecordViewController: UIViewController, View {
     private lazy var imagePageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.currentPage = 0
+        pageControl.hidesForSinglePage = true
         return pageControl
     }()
     private let regionAndPlaceLabel: MDLabel = {
@@ -57,6 +58,7 @@ final class DetailRecordViewController: UIViewController, View {
     private let explanationLabel = MDLabel(textColor: .black)
     private let dateLabel = MDLabel(textColor: .newGray)
     private let backButton = MDButton(backgroundColor: .black4, cornerRadius: 12)
+        .setText(attributedString: NSAttributedString.pretendardB16("닫기"), color: .gray20)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,7 +94,7 @@ final class DetailRecordViewController: UIViewController, View {
             .bind(to: detailImageCollectionView.rx.items) { (collectionView, row, element) in
                 let indexPath = IndexPath(row: row, section: 0)
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailImageCell.identifier, for: indexPath) as! DetailImageCell
-                cell.deatilImageView.image = element
+                cell.detailImageView.image = element
                 return cell
             }
             .disposed(by: disposeBag)
@@ -104,10 +106,10 @@ final class DetailRecordViewController: UIViewController, View {
         
         detailImageCollectionView.rx.contentOffset
             .withUnretained(self)
-            .compactMap({ owner, contentOffset in
+            .compactMap { owner, contentOffset in
                 let width = owner.detailImageCollectionView.frame.width-86
                 return Int((contentOffset.x + width / 2) / width)
-            })
+            }
             .distinctUntilChanged()
             .bind(to: imagePageControl.rx.currentPage)
             .disposed(by: disposeBag)
