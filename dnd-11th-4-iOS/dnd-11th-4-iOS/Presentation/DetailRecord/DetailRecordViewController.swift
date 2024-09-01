@@ -37,8 +37,10 @@ final class DetailRecordViewController: UIViewController, View {
         layout.itemSize = CGSize(width: Constant.Screen.width-86, height: 430)
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        layout.scrollDirection = .vertical
+        layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.isPagingEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(DetailImageCell.self, forCellWithReuseIdentifier: DetailImageCell.identifier)
         return collectionView
     }()
@@ -94,12 +96,27 @@ final class DetailRecordViewController: UIViewController, View {
                 return cell
             }
             .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.imageArray.count }
+            .asDriver(onErrorJustReturn: 1)
+            .drive(imagePageControl.rx.numberOfPages)
+            .disposed(by: disposeBag)
+        
+        detailImageCollectionView.rx.contentOffset
+            .withUnretained(self)
+            .compactMap({ owner, contentOffset in
+                let width = owner.detailImageCollectionView.frame.width-86
+                return Int((contentOffset.x + width / 2) / width)
+            })
+            .distinctUntilChanged()
+            .bind(to: imagePageControl.rx.currentPage)
+            .disposed(by: disposeBag)
     }
     
     private func setLayout() {
         view.addSubview(dimmedView)
         dimmedView.addSubviews(detailPopUpView, deleteButton, editButton, backButton)
-        detailPopUpView.addSubviews(regionAndPlaceLabel, detailImageCollectionView, explanationLabel, dateLabel)
+        detailPopUpView.addSubviews(regionAndPlaceLabel, detailImageCollectionView, imagePageControl, explanationLabel, dateLabel)
         
         dimmedView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -130,6 +147,11 @@ final class DetailRecordViewController: UIViewController, View {
             make.top.equalToSuperview().inset(19)
             make.leading.trailing.equalToSuperview().inset(17)
             make.height.equalTo(430)
+        }
+        
+        imagePageControl.snp.makeConstraints { make in
+            make.bottom.equalTo(detailImageCollectionView.snp.bottom).inset(20)
+            make.centerX.equalToSuperview()
         }
         
         regionAndPlaceLabel.snp.makeConstraints { make in
