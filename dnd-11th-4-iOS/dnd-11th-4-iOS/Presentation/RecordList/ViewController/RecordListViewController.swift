@@ -63,6 +63,7 @@ final class RecordListViewController: UIViewController {
         recordListView.register(RecordListCell.self, forCellWithReuseIdentifier: RecordListCell.identifier)
         recordListView.register(RecordListHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: RecordListHeaderView.identifier)
         recordListView.dataSource = self
+        recordListView.delegate = self
     }
     
     private func showEmptyRecordView() {
@@ -124,6 +125,17 @@ extension RecordListViewController: UICollectionViewDataSource {
             return headerView
         }
         return UICollectionReusableView()
+    }
+}
+
+extension RecordListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let reactor = reactor else { return }
+        let selectedItem = reactor.initialState.detailRecords[0]
+        let detailRecordVC = DetailRecordViewController(reactor: DetailRecordReactor(),
+                                                        data: selectedItem)
+        detailRecordVC.modalPresentationStyle = .overFullScreen
+        self.present(detailRecordVC, animated: true)
     }
 }
 

@@ -20,6 +20,12 @@ final class RecordListReactor: Reactor {
     
     struct State {
         var records: [Test] = []
+        var detailRecords: [DetailRecordAppData] = [DetailRecordAppData(imageArray: [Constant.Image.imageDetailEmpty!,
+                                                                                     Constant.Image.imageDetailEmpty!],
+                                                                      region: "전라남도",
+                                                                      place: "보성 녹차밭",
+                                                                      memo: "녹차좋아",
+                                                                      date: "24.10.22")]
     }
     
     let initialState: State = State()

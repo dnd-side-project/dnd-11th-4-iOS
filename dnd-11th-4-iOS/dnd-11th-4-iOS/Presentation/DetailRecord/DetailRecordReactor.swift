@@ -13,15 +13,17 @@ final class DetailRecordReactor: Reactor {
     var initialState: State
     
     enum Action {
+        case detailRecord(DetailRecordAppData)
     }
     
     enum Mutation {
-        case setImageArray([UIImage])
+        case setDetailRecordData(DetailRecordAppData)
     }
     
     struct State {
         var imageArray = [Constant.Image.imageDetailEmpty,
                           Constant.Image.imageDetailEmpty]
+        var detailRecordData: DetailRecordAppData?
     }
     
     init() {
@@ -29,14 +31,18 @@ final class DetailRecordReactor: Reactor {
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
-        
+        switch action {
+        case .detailRecord(let data):
+            return Observable.just(Mutation.setDetailRecordData(data))
+        }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
         switch mutation {
-        case .setImageArray(let array):
-            newState.imageArray = array
+        case .setDetailRecordData(let data):
+            print(data)
+            newState.detailRecordData = data
         }
         return newState
     }

@@ -55,7 +55,7 @@ final class DetailRecordViewController: UIViewController, View {
         label.backgroundColor = UIColor.dimmedBlack.withAlphaComponent(0.65)
         return label
     }()
-    private let explanationLabel = MDLabel(textColor: .black)
+    private let memoLabel = MDLabel(textColor: .black)
     private let dateLabel = MDLabel(textColor: .newGray)
     private let backButton = MDButton(backgroundColor: .black4, cornerRadius: 12)
         .setText(attributedString: NSAttributedString.pretendardB16("닫기"), color: .gray20)
@@ -66,9 +66,10 @@ final class DetailRecordViewController: UIViewController, View {
         setLayout()
     }
     
-    init(reactor: DetailRecordReactor) {
+    init(reactor: DetailRecordReactor, data: DetailRecordAppData) {
         super.init(nibName: nil, bundle: nil)
         self.reactor = reactor
+        self.reactor?.action.onNext(.detailRecord(data))
     }
     
     required init?(coder: NSCoder) {
@@ -90,7 +91,7 @@ final class DetailRecordViewController: UIViewController, View {
             }
             .disposed(by: disposeBag)
         
-        reactor.state.map { $0.imageArray }
+        reactor.state.compactMap { $0.detailRecordData?.imageArray }
             .bind(to: detailImageCollectionView.rx.items) { (collectionView, row, element) in
                 let indexPath = IndexPath(row: row, section: 0)
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailImageCell.identifier, for: indexPath) as! DetailImageCell
@@ -99,7 +100,7 @@ final class DetailRecordViewController: UIViewController, View {
             }
             .disposed(by: disposeBag)
         
-        reactor.state.map { $0.imageArray.count }
+        reactor.state.compactMap { $0.detailRecordData?.imageArray.count }
             .asDriver(onErrorJustReturn: 1)
             .drive(imagePageControl.rx.numberOfPages)
             .disposed(by: disposeBag)
@@ -113,12 +114,30 @@ final class DetailRecordViewController: UIViewController, View {
             .distinctUntilChanged()
             .bind(to: imagePageControl.rx.currentPage)
             .disposed(by: disposeBag)
+        
+        reactor.state.compactMap { $0.detailRecordData?.place }
+            .map { NSAttributedString.pretendardSB12($0) }
+            .asDriver(onErrorJustReturn: NSAttributedString(string: ""))
+            .drive(regionAndPlaceLabel.rx.attributedText)
+            .disposed(by: disposeBag)
+        
+        reactor.state.compactMap { $0.detailRecordData?.memo }
+            .map { NSAttributedString.peopleFirst19($0) }
+            .asDriver(onErrorJustReturn: NSAttributedString(string: ""))
+            .drive(memoLabel.rx.attributedText)
+            .disposed(by: disposeBag)
+        
+        reactor.state.compactMap { $0.detailRecordData?.date }
+            .map { NSAttributedString.pretendardR12($0) }
+            .asDriver(onErrorJustReturn: NSAttributedString(string: ""))
+            .drive(dateLabel.rx.attributedText)
+            .disposed(by: disposeBag)
     }
     
     private func setLayout() {
         view.addSubview(dimmedView)
         dimmedView.addSubviews(detailPopUpView, deleteButton, editButton, backButton)
-        detailPopUpView.addSubviews(regionAndPlaceLabel, detailImageCollectionView, imagePageControl, explanationLabel, dateLabel)
+        detailPopUpView.addSubviews(regionAndPlaceLabel, detailImageCollectionView, imagePageControl, memoLabel, dateLabel)
         
         dimmedView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -157,19 +176,21 @@ final class DetailRecordViewController: UIViewController, View {
         }
         
         regionAndPlaceLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(31)
+            make.top.equalToSuperview().inset(12)
             make.centerX.equalToSuperview()
         }
         
+        view.bringSubviewToFront(regionAndPlaceLabel)
+        
         // TODO: leading, training layout 추가
         
-        explanationLabel.snp.makeConstraints { make in
+        memoLabel.snp.makeConstraints { make in
             make.top.equalTo(detailImageCollectionView.snp.bottom).offset(22)
             make.centerX.equalToSuperview()
         }
         
         dateLabel.snp.makeConstraints { make in
-            make.top.equalTo(explanationLabel.snp.bottom).offset(10)
+            make.top.equalTo(memoLabel.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
         }
         
