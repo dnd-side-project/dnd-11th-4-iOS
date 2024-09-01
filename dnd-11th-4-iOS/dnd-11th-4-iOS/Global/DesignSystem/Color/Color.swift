@@ -163,6 +163,14 @@ extension UIColor {
     static var point: UIColor {
         return UIColor(hexCode: "#00D2EF")
     }
+    
+    static var newGray: UIColor {
+        return UIColor(hexCode: "#707070")
+    }
+    
+    static var dimmedBlack: UIColor {
+        return UIColor(hexCode: "#282828")
+    }
 }
 
 extension UIColor {
