@@ -40,7 +40,6 @@
 		4A1CB94C2C7C9966002DE4FE /* Niltype.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1CB94B2C7C9966002DE4FE /* Niltype.swift */; };
 		4A1CB94E2C7E157C002DE4FE /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1CB94D2C7E157C002DE4FE /* Empty.swift */; };
 		4A5555342C84A7820008AF07 /* DetailRecordAppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5555332C84A7820008AF07 /* DetailRecordAppData.swift */; };
-		4A5555362C84A9D40008AF07 /* DetailRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5555352C84A9D40008AF07 /* DetailRecordModel.swift */; };
 		4A5FFDA62C4FAA6A002F5A77 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */; };
 		4A5FFDA82C4FABBF002F5A77 /* HomeMap_경기도.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDA72C4FABBF002F5A77 /* HomeMap_경기도.swift */; };
 		4A5FFDAE2C4FAD42002F5A77 /* DrawMapProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDAD2C4FAD42002F5A77 /* DrawMapProtocol.swift */; };
@@ -138,7 +137,6 @@
 		4A1CB94B2C7C9966002DE4FE /* Niltype.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Niltype.swift; sourceTree = "<group>"; };
 		4A1CB94D2C7E157C002DE4FE /* Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Empty.swift; sourceTree = "<group>"; };
 		4A5555332C84A7820008AF07 /* DetailRecordAppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecordAppData.swift; sourceTree = "<group>"; };
-		4A5555352C84A9D40008AF07 /* DetailRecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecordModel.swift; sourceTree = "<group>"; };
 		4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		4A5FFDA72C4FABBF002F5A77 /* HomeMap_경기도.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeMap_경기도.swift"; sourceTree = "<group>"; };
 		4A5FFDAA2C4FAD05002F5A77 /* HomeMap_인천.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeMap_인천.swift"; sourceTree = "<group>"; };
@@ -412,7 +410,6 @@
 			isa = PBXGroup;
 			children = (
 				4A5555332C84A7820008AF07 /* DetailRecordAppData.swift */,
-				4A5555352C84A9D40008AF07 /* DetailRecordModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -913,7 +910,6 @@
 				FB7AEDDB2C75AF0B00B95784 /* ServiceAcceptReactor.swift in Sources */,
 				4A5FFDC82C4FB0F1002F5A77 /* HomeMap_제주도.swift in Sources */,
 				4A1CB93A2C7C7DDA002DE4FE /* HTTPHeaderField.swift in Sources */,
-				4A5555362C84A9D40008AF07 /* DetailRecordModel.swift in Sources */,
 				4A1CB93D2C7C7E1A002DE4FE /* HomeEndPoint.swift in Sources */,
 				4AAFDB712C494CFF008C6DAF /* HomeMapViewController.swift in Sources */,
 				4A1CB9462C7C7FD8002DE4FE /* BaseRequest.swift in Sources */,

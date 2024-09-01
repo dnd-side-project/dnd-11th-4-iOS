@@ -84,6 +84,13 @@ final class DetailRecordViewController: UIViewController, View {
             }
             .disposed(by: disposeBag)
         
+        deleteButton.rx.tap
+            .asDriver()
+            .drive(with: self) { owner, _ in
+                owner.self.dismiss(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
         backButton.rx.tap
             .asDriver()
             .drive(with: self) { owner, _ in
