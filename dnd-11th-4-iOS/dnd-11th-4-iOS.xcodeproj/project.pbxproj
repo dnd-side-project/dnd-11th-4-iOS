@@ -11,7 +11,7 @@
 		4A09444B2C80D83C00D745C5 /* CATransition+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09444A2C80D83C00D745C5 /* CATransition+.swift */; };
 		4A09444E2C835B5400D745C5 /* DetailRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09444D2C835B5400D745C5 /* DetailRecordViewController.swift */; };
 		4A0944502C84756A00D745C5 /* DetailImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09444F2C84756A00D745C5 /* DetailImageCell.swift */; };
-		4A0944522C84807D00D745C5 /* DetailReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0944512C84807D00D745C5 /* DetailReactor.swift */; };
+		4A0944522C84807D00D745C5 /* DetailRecordReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0944512C84807D00D745C5 /* DetailRecordReactor.swift */; };
 		4A16E2A42C5A4DE700F48180 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2A32C5A4DE700F48180 /* OnboardingViewController.swift */; };
 		4A16E2CD2C5A6B7E00F48180 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2CC2C5A6B7E00F48180 /* TabBarViewController.swift */; };
 		4A16E2D02C5A702000F48180 /* RecordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2CF2C5A702000F48180 /* RecordListViewController.swift */; };
@@ -112,7 +112,7 @@
 		4A09444A2C80D83C00D745C5 /* CATransition+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATransition+.swift"; sourceTree = "<group>"; };
 		4A09444D2C835B5400D745C5 /* DetailRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecordViewController.swift; sourceTree = "<group>"; };
 		4A09444F2C84756A00D745C5 /* DetailImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageCell.swift; sourceTree = "<group>"; };
-		4A0944512C84807D00D745C5 /* DetailReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailReactor.swift; sourceTree = "<group>"; };
+		4A0944512C84807D00D745C5 /* DetailRecordReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecordReactor.swift; sourceTree = "<group>"; };
 		4A16E2A32C5A4DE700F48180 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		4A16E2CC2C5A6B7E00F48180 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		4A16E2CF2C5A702000F48180 /* RecordListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListViewController.swift; sourceTree = "<group>"; };
@@ -236,7 +236,7 @@
 			children = (
 				4A09444D2C835B5400D745C5 /* DetailRecordViewController.swift */,
 				4A09444F2C84756A00D745C5 /* DetailImageCell.swift */,
-				4A0944512C84807D00D745C5 /* DetailReactor.swift */,
+				4A0944512C84807D00D745C5 /* DetailRecordReactor.swift */,
 			);
 			path = DetailRecord;
 			sourceTree = "<group>";
@@ -917,7 +917,7 @@
 				4A16E2CD2C5A6B7E00F48180 /* TabBarViewController.swift in Sources */,
 				4AA414452C63B26000AB3CE8 /* RegionType.swift in Sources */,
 				4A16E2D32C5A70AC00F48180 /* MyPageViewController.swift in Sources */,
-				4A0944522C84807D00D745C5 /* DetailReactor.swift in Sources */,
+				4A0944522C84807D00D745C5 /* DetailRecordReactor.swift in Sources */,
 				FB808E5C2C63998600E9E2E5 /* RecordListReactor.swift in Sources */,
 				4A16E2A42C5A4DE700F48180 /* OnboardingViewController.swift in Sources */,
 				4A16E2D82C5B434F00F48180 /* MDLabel.swift in Sources */,

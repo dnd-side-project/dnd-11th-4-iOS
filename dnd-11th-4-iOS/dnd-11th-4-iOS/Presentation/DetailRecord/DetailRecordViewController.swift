@@ -8,16 +8,18 @@
 import UIKit
 
 import RxSwift
+import RxCocoa
 import ReactorKit
 
 final class DetailRecordViewController: UIViewController, View {
     
-   var dispoasBag = DisposeBag()
-    typealias Reactor = DetailRecordReactor
+   var disposeBag = DisposeBag()
+   typealias Reactor = DetailRecordReactor
     
     private let dimmedView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.dimmedBlack.withAlphaComponent(1.0)
+        view.isUserInteractionEnabled = true
         return view
     }()
     private let deleteButton = MDButton(backgroundColor: .clear)
@@ -33,6 +35,8 @@ final class DetailRecordViewController: UIViewController, View {
     private let detailImageCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: Constant.Screen.width-86, height: 430)
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(DetailImageCell.self, forCellWithReuseIdentifier: DetailImageCell.identifier)
@@ -43,7 +47,11 @@ final class DetailRecordViewController: UIViewController, View {
         pageControl.currentPage = 0
         return pageControl
     }()
-    private let regionAndPlaceLabel = MDLabel(textColor: .white)
+    private let regionAndPlaceLabel: MDLabel = {
+        let label = MDLabel(textColor: .white)
+        label.backgroundColor = UIColor.dimmedBlack.withAlphaComponent(0.65)
+        return label
+    }()
     private let explanationLabel = MDLabel(textColor: .black)
     private let dateLabel = MDLabel(textColor: .newGray)
     private let backButton = MDButton(backgroundColor: .black4, cornerRadius: 12)
@@ -54,13 +62,38 @@ final class DetailRecordViewController: UIViewController, View {
         setLayout()
     }
     
+    init(reactor: DetailRecordReactor) {
+        super.init(nibName: nil, bundle: nil)
+        self.reactor = reactor
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func bind(reactor: DetailRecordReactor) {
+        editButton.rx.tap
+            .asDriver()
+            .drive(with: self) { owner, _ in
+                owner.self.dismiss(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
         backButton.rx.tap
             .asDriver()
             .drive(with: self) { owner, _ in
                 owner.self.dismiss(animated: true)
             }
-            .disposed(by: dispoasBag)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.imageArray }
+            .bind(to: detailImageCollectionView.rx.items) { (collectionView, row, element) in
+                let indexPath = IndexPath(row: row, section: 0)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailImageCell.identifier, for: indexPath) as! DetailImageCell
+                cell.deatilImageView.image = element
+                return cell
+            }
+            .disposed(by: disposeBag)
     }
     
     private func setLayout() {
@@ -96,7 +129,7 @@ final class DetailRecordViewController: UIViewController, View {
         detailImageCollectionView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(19)
             make.leading.trailing.equalToSuperview().inset(17)
-            make.bottom.equalTo(explanationLabel.snp.top).offset(22)
+            make.height.equalTo(430)
         }
         
         regionAndPlaceLabel.snp.makeConstraints { make in

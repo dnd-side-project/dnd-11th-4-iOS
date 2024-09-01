@@ -22,6 +22,7 @@ final class DetailImageCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 12
+        imageView.backgroundColor = .errorRed
         return imageView
     }()
     
@@ -41,7 +42,6 @@ final class DetailImageCell: UICollectionViewCell {
     }
     
     private func setUI() {
-        
         addSubviews(deatilImageView)
         
         deatilImageView.snp.makeConstraints { make in
