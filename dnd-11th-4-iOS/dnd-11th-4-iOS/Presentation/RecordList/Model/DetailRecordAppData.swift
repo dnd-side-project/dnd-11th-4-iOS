@@ -14,3 +14,8 @@ struct DetailRecordAppData {
     let memo: String?
     let date: String?
 }
+
+extension DetailRecordAppData {
+    static let empty = DetailRecordAppData(imageArray: [Constant.Image.imageDetailEmpty!],
+                                           region: "서울", place: nil, memo: nil, date: nil)
+}

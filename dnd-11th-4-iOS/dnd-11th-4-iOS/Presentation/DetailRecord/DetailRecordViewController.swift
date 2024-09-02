@@ -13,8 +13,9 @@ import ReactorKit
 
 final class DetailRecordViewController: UIViewController, View {
     
-   var disposeBag = DisposeBag()
-   typealias Reactor = DetailRecordReactor
+    var disposeBag = DisposeBag()
+    typealias Reactor = DetailRecordReactor
+    var editButtonSubject = PublishSubject<DetailRecordAppData>()
     
     private let dimmedView: UIView = {
         let view = UIView()
@@ -78,23 +79,27 @@ final class DetailRecordViewController: UIViewController, View {
     
     func bind(reactor: DetailRecordReactor) {
         editButton.rx.tap
-            .asDriver()
-            .drive(with: self) { owner, _ in
-                owner.self.dismiss(animated: true)
+            .flatMap { reactor.state }
+            .compactMap { $0.detailRecordData }
+            .asDriver(onErrorJustReturn: DetailRecordAppData.empty)
+            .drive(with: self) { owner, data in
+                owner.dismiss(animated: true)
+                owner.editButtonSubject.onNext(data)
             }
             .disposed(by: disposeBag)
         
         deleteButton.rx.tap
             .asDriver()
             .drive(with: self) { owner, _ in
-                owner.self.dismiss(animated: true)
+                // 삭제 API 호출 후, 화면 전환
+                owner.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
         
         backButton.rx.tap
             .asDriver()
             .drive(with: self) { owner, _ in
-                owner.self.dismiss(animated: true)
+                owner.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
         
@@ -124,19 +129,19 @@ final class DetailRecordViewController: UIViewController, View {
         
         reactor.state.compactMap { $0.detailRecordData?.place }
             .map { NSAttributedString.pretendardSB12($0) }
-            .asDriver(onErrorJustReturn: NSAttributedString(string: ""))
+            .asDriver(onErrorJustReturn: NSAttributedString(string: "보성 녹차밭"))
             .drive(regionAndPlaceLabel.rx.attributedText)
             .disposed(by: disposeBag)
         
         reactor.state.compactMap { $0.detailRecordData?.memo }
             .map { NSAttributedString.peopleFirst19($0) }
-            .asDriver(onErrorJustReturn: NSAttributedString(string: ""))
+            .asDriver(onErrorJustReturn: NSAttributedString(string: "녹차좋아"))
             .drive(memoLabel.rx.attributedText)
             .disposed(by: disposeBag)
         
         reactor.state.compactMap { $0.detailRecordData?.date }
             .map { NSAttributedString.pretendardR12($0) }
-            .asDriver(onErrorJustReturn: NSAttributedString(string: ""))
+            .asDriver(onErrorJustReturn: NSAttributedString(string: "24.10.22"))
             .drive(dateLabel.rx.attributedText)
             .disposed(by: disposeBag)
     }
@@ -144,7 +149,8 @@ final class DetailRecordViewController: UIViewController, View {
     private func setLayout() {
         view.addSubview(dimmedView)
         dimmedView.addSubviews(detailPopUpView, deleteButton, editButton, backButton)
-        detailPopUpView.addSubviews(regionAndPlaceLabel, detailImageCollectionView, imagePageControl, memoLabel, dateLabel)
+        detailPopUpView.addSubviews(detailImageCollectionView, imagePageControl, memoLabel, dateLabel)
+        detailImageCollectionView.addSubview(regionAndPlaceLabel)
         
         dimmedView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -183,11 +189,9 @@ final class DetailRecordViewController: UIViewController, View {
         }
         
         regionAndPlaceLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(12)
+            make.top.equalTo(detailPopUpView.snp.top).inset(31)
             make.centerX.equalToSuperview()
         }
-        
-        view.bringSubviewToFront(regionAndPlaceLabel)
         
         // TODO: leading, training layout 추가
         

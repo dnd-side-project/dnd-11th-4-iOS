@@ -135,6 +135,14 @@ extension RecordListViewController: UICollectionViewDelegate {
         let detailRecordVC = DetailRecordViewController(reactor: DetailRecordReactor(),
                                                         data: selectedItem)
         detailRecordVC.modalPresentationStyle = .overFullScreen
+        detailRecordVC.editButtonSubject
+            .asDriver(onErrorJustReturn: DetailRecordAppData.empty)
+            .drive(with: self) { owner, data in
+                let recordVC = RecordViewController(reactor: RecordReactor(),
+                                                    selectedRegigon: data.region)
+                owner.navigationController?.pushViewController(recordVC, animated: true)
+            }
+            .disposed(by: disposeBag)
         self.present(detailRecordVC, animated: true)
     }
 }
