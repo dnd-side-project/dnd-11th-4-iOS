@@ -22,7 +22,7 @@ struct Test: Hashable {
 final class RecordListCell: UICollectionViewCell {
     let deleteButtonTapped = PublishSubject<Void>()
     let editButtonTapped = PublishSubject<Void>()
-    private let disposeBag = DisposeBag()
+    var disposeBag = DisposeBag()
     
     static let identifier = "RecordListCell"
     private let recordImage: UIImageView = {
@@ -66,6 +66,9 @@ final class RecordListCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         menuView.isHidden = true
+        disposeBag = DisposeBag()
+        showMenu()
+        didTapDeleteButton()
     }
     
     required init?(coder: NSCoder) {

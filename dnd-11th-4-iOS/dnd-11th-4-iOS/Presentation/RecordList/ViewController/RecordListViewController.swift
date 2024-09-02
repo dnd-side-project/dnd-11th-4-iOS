@@ -123,13 +123,16 @@ extension RecordListViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecordListCell.identifier, for: indexPath) as! RecordListCell
         cell.configure(with: records[indexPath.item])
         cell.deleteButtonTapped
-            .subscribe(onNext: {
-                let popUpVC = ListDeleteViewController()
-                self.present(popUpVC, animated: true)
-                popUpVC.delegate = self
-                popUpVC.recordIndex = indexPath
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                if let index = collectionView.indexPath(for: cell) {
+                    let popUpVC = ListDeleteViewController()
+                    self.present(popUpVC, animated: true)
+                    popUpVC.delegate = self
+                    popUpVC.recordIndex = index
+                }
             })
-            .disposed(by: disposeBag)
+            .disposed(by: cell.disposeBag)
         return cell
     }
     
