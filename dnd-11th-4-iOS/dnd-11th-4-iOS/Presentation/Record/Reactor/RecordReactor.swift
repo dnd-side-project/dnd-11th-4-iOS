@@ -152,7 +152,10 @@ extension RecordReactor {
         case .write(let region):
             initialState.recordData?.region = region
         case .edit(let data):
-            initialState.recordData = data
+            if data.imageArray[0] == Constant.Image.imageDetailEmpty {
+                initialState.recordData = data
+                initialState.recordData?.imageArray = []
+            }
         }
         return initialState.recordData ?? DetailRecordAppData.empty
     }

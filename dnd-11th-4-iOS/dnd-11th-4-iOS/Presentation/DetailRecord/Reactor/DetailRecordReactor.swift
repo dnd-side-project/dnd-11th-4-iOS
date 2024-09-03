@@ -21,8 +21,7 @@ final class DetailRecordReactor: Reactor {
     }
     
     struct State {
-        var imageArray = [Constant.Image.imageDetailEmpty,
-                          Constant.Image.imageDetailEmpty]
+        var imageArray = [Constant.Image.imageDetailEmpty]
         var detailRecordData: DetailRecordAppData?
     }
     
