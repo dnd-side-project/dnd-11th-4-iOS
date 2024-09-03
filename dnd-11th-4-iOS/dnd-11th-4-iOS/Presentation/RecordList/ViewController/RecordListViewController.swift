@@ -22,7 +22,6 @@ final class RecordListViewController: UIViewController, ListDeleteDelegate {
     // MARK: - UI Propertise
     
     private let navigationBar = MDNavigationBar(type: .list)
-    private var records: [Test] = []
     private var recordListView: UICollectionView!
     private let emptyRecordView = EmptyRecordView()
     
@@ -100,7 +99,6 @@ extension RecordListViewController: View {
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] records in
                 guard let self = self else { return }
-                self.records = records
                 if records.isEmpty {
                     self.showEmptyRecordView()
                 } else {
@@ -118,12 +116,15 @@ extension RecordListViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return records.count
+        return reactor?.currentState.records.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecordListCell.identifier, for: indexPath) as! RecordListCell
-        cell.configure(with: records[indexPath.item])
+        if let record = reactor?.currentState.records[indexPath.item] {
+            cell.configure(with: record)
+        }
+        
         cell.deleteButtonTapped
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
@@ -141,7 +142,9 @@ extension RecordListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: RecordListHeaderView.identifier, for: indexPath) as! RecordListHeaderView
-            headerView.setCount(records.count)
+            let count = reactor?.currentState.records.count ?? 0
+            headerView.setCount(count)
+            
             return headerView
         }
         return UICollectionReusableView()

@@ -24,7 +24,6 @@ final class RecordListReactor: Reactor {
     
     struct State {
         var records: [Test] = []
-        var deletedIndexPath: IndexPath?
     }
     
     init() {
@@ -62,7 +61,6 @@ extension RecordListReactor {
             newState.records = record
         case .deleteRecord(let indexPath):
             newState.records.remove(at: indexPath.item)
-            newState.deletedIndexPath = indexPath
         }
         
         return newState
