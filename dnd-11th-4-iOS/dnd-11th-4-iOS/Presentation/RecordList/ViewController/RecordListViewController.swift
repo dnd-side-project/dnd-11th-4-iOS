@@ -139,7 +139,7 @@ extension RecordListViewController: UICollectionViewDelegate {
             .asDriver(onErrorJustReturn: DetailRecordAppData.empty)
             .drive(with: self) { owner, data in
                 let recordVC = RecordViewController(reactor: RecordReactor(),
-                                                    selectedRegigon: data.region)
+                                                    type: .edit(data))
                 owner.navigationController?.pushViewController(recordVC, animated: true)
             }
             .disposed(by: disposeBag)

@@ -23,6 +23,7 @@ final class RecordReactor: Reactor {
     var initialState: State
     
     enum Action {
+        case viewWillAppear(RecordType)
         case imageAddTapped([NSItemProvider])
         case regionTapped(String)
         case placeTapped(String)
@@ -32,6 +33,7 @@ final class RecordReactor: Reactor {
     }
     
     enum Mutation {
+        case setRecordData(DetailRecordAppData)
         case setImageArray([UIImage])
         case setRegionText(String)
         case setPlaceText(String)
@@ -52,6 +54,7 @@ final class RecordReactor: Reactor {
         var completeButtonEnabled: Bool {
             return selectedRegion != nil && placeText != ""
         }
+        var recordData: DetailRecordAppData?
     }
     
     init() {
@@ -60,6 +63,8 @@ final class RecordReactor: Reactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
+        case .viewWillAppear(let type):
+            return Observable.just(.setRecordData(prepareTypeData(type: type)))
         case .imageAddTapped(let imageArray):
             return self.prepareImageArray(imageArray).map { array in
                 self.initialState.selectedArrayImage = array
@@ -81,6 +86,12 @@ final class RecordReactor: Reactor {
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
         switch mutation {
+        case .setRecordData(let data):
+            newState.selectedRegion = data.region
+            newState.placeText = data.place
+            newState.memoText = data.memo
+            newState.selectedDate = data.date
+            newState.selectedArrayImage = data.imageArray
         case .setImageArray(let imageArray), .setDeleteCell(let imageArray):
             newState.selectedArrayImage = imageArray
             newState.imageCount = imageArray.count
@@ -134,5 +145,15 @@ extension RecordReactor {
         let row = indexPath.item
         initialState.selectedArrayImage?.remove(at: row)
         return initialState.selectedArrayImage ?? []
+    }
+    
+    private func prepareTypeData(type: RecordType) -> DetailRecordAppData {
+        switch type {
+        case .write(let region):
+            initialState.recordData?.region = region
+        case .edit(let data):
+            initialState.recordData = data
+        }
+        return initialState.recordData ?? DetailRecordAppData.empty
     }
 }
