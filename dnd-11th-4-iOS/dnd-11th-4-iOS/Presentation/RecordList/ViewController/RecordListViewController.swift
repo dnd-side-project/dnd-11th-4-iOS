@@ -80,12 +80,7 @@ final class RecordListViewController: UIViewController, ListDeleteDelegate {
     }
     
     func didDeleteRecord(at indexPath: IndexPath) {
-        records.remove(at: indexPath.item)
-        recordListView.deleteItems(at: [indexPath])
-        
-        if records.isEmpty {
-            showEmptyRecordView()
-        }
+        reactor?.action.onNext(.deleteRecord(indexPath))
         
         MDToast.show(type: .delete)
     }
@@ -95,10 +90,10 @@ extension RecordListViewController: View {
     func bind(reactor: RecordListReactor) {
         reactor.state
             .map { $0.records }
+            .distinctUntilChanged()
             .subscribe(onNext: { [weak self] records in
                 guard let self = self else { return }
                 self.records = records
-                
                 if records.isEmpty {
                     self.showEmptyRecordView()
                 } else {
