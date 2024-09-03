@@ -97,7 +97,8 @@ extension RecordListViewController: View {
         reactor.state
             .map { $0.records }
             .distinctUntilChanged()
-            .subscribe(onNext: { [weak self] records in
+            .asDriver(onErrorJustReturn: [])
+            .drive(onNext: { [weak self] records in
                 guard let self = self else { return }
                 if records.isEmpty {
                     self.showEmptyRecordView()
