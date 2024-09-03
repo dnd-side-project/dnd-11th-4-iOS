@@ -10,6 +10,8 @@ import ReactorKit
 import RxSwift
 
 final class RecordListReactor: Reactor {
+    var initialState: State
+    
     enum Action {
         case loadRecords
         case deleteRecord(IndexPath)
@@ -25,7 +27,9 @@ final class RecordListReactor: Reactor {
         var deletedIndexPath: IndexPath?
     }
     
-    let initialState: State = State()
+    init() {
+        self.initialState = State()
+    }
 }
 
 extension RecordListReactor {

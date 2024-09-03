@@ -16,22 +16,27 @@ protocol ListDeleteDelegate: AnyObject {
 }
 
 final class RecordListViewController: UIViewController, ListDeleteDelegate {
+    typealias Reactor = RecordListReactor
+    var disposeBag = DisposeBag()
+    
+    // MARK: - UI Propertise
+    
     private let navigationBar = MDNavigationBar(type: .list)
     private var records: [Test] = []
     private var recordListView: UICollectionView!
     private let emptyRecordView = EmptyRecordView()
     
-    var disposeBag: DisposeBag = DisposeBag()
-    var reactor: RecordListReactor?
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         registerCollectionView()
         reactor = RecordListReactor()
-        bind(reactor: reactor!)
         reactor?.action.onNext(.loadRecords)
     }
+    
+    // MARK: - Layout
     
     private func setupUI() {
         view.backgroundColor = .mapWhite
@@ -62,6 +67,8 @@ final class RecordListViewController: UIViewController, ListDeleteDelegate {
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
+    
+    // MARK: - Methods
     
     private func registerCollectionView() {
         recordListView.register(RecordListCell.self, forCellWithReuseIdentifier: RecordListCell.identifier)
