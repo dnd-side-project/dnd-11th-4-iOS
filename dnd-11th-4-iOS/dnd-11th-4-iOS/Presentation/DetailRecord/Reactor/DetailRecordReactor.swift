@@ -41,7 +41,6 @@ final class DetailRecordReactor: Reactor {
         var newState = state
         switch mutation {
         case .setDetailRecordData(let data):
-            print(data)
             newState.detailRecordData = data
         }
         return newState

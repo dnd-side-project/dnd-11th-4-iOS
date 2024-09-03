@@ -9,13 +9,13 @@ import UIKit
 
 struct DetailRecordAppData {
     var imageArray: [UIImage]
-    let region: String
+    var region: String
     let place: String?
     let memo: String?
     let date: String?
 }
 
 extension DetailRecordAppData {
-    static let empty = DetailRecordAppData(imageArray: [Constant.Image.imageDetailEmpty!],
-                                           region: "서울", place: nil, memo: nil, date: nil)
+    static let empty = DetailRecordAppData(imageArray: [Constant.Image.imageDetailEmpty!, Constant.Image.imageDetailEmpty!],
+                                           region: "서울", place: "전라남도", memo: nil, date: nil)
 }

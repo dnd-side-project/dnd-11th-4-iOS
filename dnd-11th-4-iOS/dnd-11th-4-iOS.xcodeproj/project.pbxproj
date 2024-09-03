@@ -236,9 +236,9 @@
 		4A09444C2C835B4800D745C5 /* DetailRecord */ = {
 			isa = PBXGroup;
 			children = (
-				4A09444D2C835B5400D745C5 /* DetailRecordViewController.swift */,
-				4A09444F2C84756A00D745C5 /* DetailImageCell.swift */,
-				4A0944512C84807D00D745C5 /* DetailRecordReactor.swift */,
+				4A55553A2C85EB960008AF07 /* ViewController */,
+				4A5555392C85EB900008AF07 /* Reactor */,
+				4A5555382C85EB8A0008AF07 /* Cell */,
 			);
 			path = DetailRecord;
 			sourceTree = "<group>";
@@ -412,6 +412,30 @@
 				4A5555332C84A7820008AF07 /* DetailRecordAppData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		4A5555382C85EB8A0008AF07 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4A09444F2C84756A00D745C5 /* DetailImageCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		4A5555392C85EB900008AF07 /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+				4A0944512C84807D00D745C5 /* DetailRecordReactor.swift */,
+			);
+			path = Reactor;
+			sourceTree = "<group>";
+		};
+		4A55553A2C85EB960008AF07 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4A09444D2C835B5400D745C5 /* DetailRecordViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		4A5FFDA42C4FAA60002F5A77 /* Constant */ = {
