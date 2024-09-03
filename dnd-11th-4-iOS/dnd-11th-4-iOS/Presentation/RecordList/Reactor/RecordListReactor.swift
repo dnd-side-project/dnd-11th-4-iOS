@@ -20,7 +20,7 @@ final class RecordListReactor: Reactor {
     
     struct State {
         var records: [Test] = []
-        var detailRecords: [DetailRecordAppData] = [DetailRecordAppData(imageArray: [Constant.Image.imageDetailEmpty!],
+        var detailRecords: [DetailRecordAppData] = [DetailRecordAppData(imageArray: [Constant.Image.imageDetailEmpty ?? UIImage()],
                                                                         region: "전라남도",
                                                                         place: "보성 녹차밭",
                                                                         memo: "녹차좋아",
