@@ -8,6 +8,7 @@
 import UIKit
 import ReactorKit
 import RxSwift
+import RxDataSources
 
 final class RecordListReactor: Reactor {
     var initialState: State
@@ -18,12 +19,11 @@ final class RecordListReactor: Reactor {
     }
     
     enum Mutation {
-        case setRecords([Test])
-        case deleteRecord(IndexPath)
+        case setRecords([RecordSection])
     }
     
     struct State {
-        var records: [Test] = []
+        var sections: [RecordSection] = []
     }
     
     init() {
@@ -47,22 +47,37 @@ extension RecordListReactor {
                 Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드9", memo: "꾸르잼", date: "24.10.22"),
                 Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드10", memo: "꾸르잼", date: "24.10.22")
             ]
-            return Observable.just(Mutation.setRecords(records))
+            let section = RecordSection(header: "Records", items: records)
+            return Observable.just(Mutation.setRecords([section]))
         case .deleteRecord(let indexPath):
-            return Observable.just(Mutation.deleteRecord(indexPath))
+            var sections = currentState.sections
+            sections[indexPath.section].items.remove(at: indexPath.item)
+            return Observable.just(Mutation.setRecords(sections))
         }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
-        
         switch mutation {
-        case .setRecords(let record):
-            newState.records = record
-        case .deleteRecord(let indexPath):
-            newState.records.remove(at: indexPath.item)
+        case .setRecords(let sections):
+            newState.sections = sections
         }
-        
         return newState
+    }
+}
+
+// MARK: - RxDataSource Section
+
+struct RecordSection {
+    var header: String
+    var items: [Item]
+}
+
+extension RecordSection: SectionModelType {
+    typealias Item = Test
+    
+    init(original: RecordSection, items: [Item]) {
+        self = original
+        self.items = items
     }
 }
