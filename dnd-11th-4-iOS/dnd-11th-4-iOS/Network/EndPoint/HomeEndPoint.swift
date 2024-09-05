@@ -14,7 +14,7 @@ enum HomeEndPoint {
 
 extension HomeEndPoint: BaseEndpoint {
     var baseURL: String {
-        return ""
+        return Environment.baseURL
     }
     
     var method: Alamofire.HTTPMethod {
@@ -22,10 +22,15 @@ extension HomeEndPoint: BaseEndpoint {
     }
     
     var path: String {
-        return ""
+        return "/login/oauth2/apple"
     }
     
     var parameters: RequestParams {
         return .none
+    }
+    
+    var headers: HTTPHeaders? {
+        return ["Content-Type": "application/json",
+                "Authorization": "Bearer " + "token"]
     }
 }

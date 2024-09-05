@@ -40,6 +40,10 @@
 		4A1CB94C2C7C9966002DE4FE /* Niltype.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1CB94B2C7C9966002DE4FE /* Niltype.swift */; };
 		4A1CB94E2C7E157C002DE4FE /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1CB94D2C7E157C002DE4FE /* Empty.swift */; };
 		4A5555342C84A7820008AF07 /* DetailRecordAppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5555332C84A7820008AF07 /* DetailRecordAppData.swift */; };
+		4A55553C2C8767AD0008AF07 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A55553B2C8767AD0008AF07 /* APIManager.swift */; };
+		4A5555402C8768070008AF07 /* APIEventLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A55553F2C8768070008AF07 /* APIEventLogger.swift */; };
+		4A5555442C8953EB0008AF07 /* Enviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5555432C8953EB0008AF07 /* Enviroment.swift */; };
+		4A5555472C8956FB0008AF07 /* Pods_dnd_11th_4_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A5555462C8956FB0008AF07 /* Pods_dnd_11th_4_iOS.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		4A5FFDA62C4FAA6A002F5A77 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */; };
 		4A5FFDA82C4FABBF002F5A77 /* HomeMap_경기도.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDA72C4FABBF002F5A77 /* HomeMap_경기도.swift */; };
 		4A5FFDAE2C4FAD42002F5A77 /* DrawMapProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDAD2C4FAD42002F5A77 /* DrawMapProtocol.swift */; };
@@ -71,7 +75,6 @@
 		4AB122212C6C6F0B00A7337F /* MDTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB122202C6C6F0B00A7337F /* MDTextField.swift */; };
 		4AB122252C6CAE7500A7337F /* RecordReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB122242C6CAE7500A7337F /* RecordReactor.swift */; };
 		4AE91E8F2C74D8BE00E3321E /* RecordImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE91E8E2C74D8BE00E3321E /* RecordImageCell.swift */; };
-		9B683A9A3DF08F60898F35CD /* Pods_dnd_11th_4_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6186EB1A512F7D1B5F90E0 /* Pods_dnd_11th_4_iOS.framework */; };
 		FB0BE4EB2C57B5EB00C34C7B /* PeoplefirstNeat&Loud.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4EA2C57B5EB00C34C7B /* PeoplefirstNeat&Loud.otf */; };
 		FB0BE4F02C57B5FD00C34C7B /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4EC2C57B5FD00C34C7B /* Pretendard-Medium.otf */; };
 		FB0BE4F12C57B5FD00C34C7B /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4ED2C57B5FD00C34C7B /* Pretendard-Bold.otf */; };
@@ -137,6 +140,11 @@
 		4A1CB94B2C7C9966002DE4FE /* Niltype.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Niltype.swift; sourceTree = "<group>"; };
 		4A1CB94D2C7E157C002DE4FE /* Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Empty.swift; sourceTree = "<group>"; };
 		4A5555332C84A7820008AF07 /* DetailRecordAppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecordAppData.swift; sourceTree = "<group>"; };
+		4A55553B2C8767AD0008AF07 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		4A55553F2C8768070008AF07 /* APIEventLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEventLogger.swift; sourceTree = "<group>"; };
+		4A5555412C8952E70008AF07 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		4A5555432C8953EB0008AF07 /* Enviroment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enviroment.swift; sourceTree = "<group>"; };
+		4A5555462C8956FB0008AF07 /* Pods_dnd_11th_4_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_dnd_11th_4_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		4A5FFDA72C4FABBF002F5A77 /* HomeMap_경기도.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeMap_경기도.swift"; sourceTree = "<group>"; };
 		4A5FFDAA2C4FAD05002F5A77 /* HomeMap_인천.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeMap_인천.swift"; sourceTree = "<group>"; };
@@ -218,7 +226,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B683A9A3DF08F60898F35CD /* Pods_dnd_11th_4_iOS.framework in Frameworks */,
+				4A5555472C8956FB0008AF07 /* Pods_dnd_11th_4_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +236,7 @@
 		081D77DF1AD4759C8D8F46D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A5555462C8956FB0008AF07 /* Pods_dnd_11th_4_iOS.framework */,
 				FC6186EB1A512F7D1B5F90E0 /* Pods_dnd_11th_4_iOS.framework */,
 			);
 			name = Frameworks;
@@ -378,6 +387,8 @@
 				4A1CB9472C7C89B0002DE4FE /* MDError.swift */,
 				4A1CB9492C7C8D81002DE4FE /* NetworkManager.swift */,
 				4A1CB94B2C7C9966002DE4FE /* Niltype.swift */,
+				4A55553B2C8767AD0008AF07 /* APIManager.swift */,
+				4A55553F2C8768070008AF07 /* APIEventLogger.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -442,6 +453,7 @@
 			isa = PBXGroup;
 			children = (
 				4A5FFDA52C4FAA6A002F5A77 /* Constant.swift */,
+				4A5555432C8953EB0008AF07 /* Enviroment.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -480,6 +492,7 @@
 		4AAFDB602C494CFF008C6DAF = {
 			isa = PBXGroup;
 			children = (
+				4A5555412C8952E70008AF07 /* Release.xcconfig */,
 				4AAFDB6B2C494CFF008C6DAF /* dnd-11th-4-iOS */,
 				4AAFDB6A2C494CFF008C6DAF /* Products */,
 				6435613A2484E869917A686A /* Pods */,
@@ -932,10 +945,12 @@
 				4A5555342C84A7820008AF07 /* DetailRecordAppData.swift in Sources */,
 				4A5FFDB22C4FAE73002F5A77 /* HomeMap_충청남도.swift in Sources */,
 				FB7AEDDB2C75AF0B00B95784 /* ServiceAcceptReactor.swift in Sources */,
+				4A5555402C8768070008AF07 /* APIEventLogger.swift in Sources */,
 				4A5FFDC82C4FB0F1002F5A77 /* HomeMap_제주도.swift in Sources */,
 				4A1CB93A2C7C7DDA002DE4FE /* HTTPHeaderField.swift in Sources */,
 				4A1CB93D2C7C7E1A002DE4FE /* HomeEndPoint.swift in Sources */,
 				4AAFDB712C494CFF008C6DAF /* HomeMapViewController.swift in Sources */,
+				4A55553C2C8767AD0008AF07 /* APIManager.swift in Sources */,
 				4A1CB9462C7C7FD8002DE4FE /* BaseRequest.swift in Sources */,
 				4A5FFDCA2C4FB202002F5A77 /* HomeMap_충청북도.swift in Sources */,
 				FB808E682C660AE600E9E2E5 /* EmptyRecordView.swift in Sources */,
@@ -949,6 +964,7 @@
 				FB808E582C622DC600E9E2E5 /* RecordListCell.swift in Sources */,
 				FB808E542C5A72E500E9E2E5 /* MDNavigationBar.swift in Sources */,
 				FBAF7F932C7B555900D71216 /* AccountDeleteViewController.swift in Sources */,
+				4A5555442C8953EB0008AF07 /* Enviroment.swift in Sources */,
 				4A16E2DE2C5CC3BA00F48180 /* MDToast.swift in Sources */,
 				4A16E2CD2C5A6B7E00F48180 /* TabBarViewController.swift in Sources */,
 				4AA414452C63B26000AB3CE8 /* RegionType.swift in Sources */,
@@ -1019,6 +1035,7 @@
 /* Begin XCBuildConfiguration section */
 		4AAFDB7B2C494D00008C6DAF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A5555412C8952E70008AF07 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;

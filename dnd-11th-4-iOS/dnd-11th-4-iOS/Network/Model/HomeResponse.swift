@@ -8,9 +8,12 @@
 import Foundation
 
 struct HomeResponse: Codable {
-    let regionName: String
-    let regionColor: OpacityColorType
-    let colorOpacity: Int
-    let totalRegionCount: Int
-    let visitedRegionCount: Int
+    let regions: [Region]
+    let visitCount, totalCount: Int
+    let selectedColor: String
+}
+
+struct Region: Codable {
+    let name: String
+    let opacity: Int
 }

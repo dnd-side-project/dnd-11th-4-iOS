@@ -12,6 +12,7 @@ protocol BaseEndpoint: URLRequestConvertible {
     var method: HTTPMethod { get }
     var path: String { get }
     var parameters: RequestParams { get }
+    var headers: HTTPHeaders? { get }
 }
 
 extension BaseEndpoint {
@@ -19,6 +20,7 @@ extension BaseEndpoint {
     func asURLRequest() throws -> URLRequest {
         let url = try baseURL.asURL()
         var urlRequest = try URLRequest(url: url.appendingPathComponent(path), method: method)
+        urlRequest.headers = headers ?? HTTPHeaders.default
 
         switch parameters {
         case .query(let request):

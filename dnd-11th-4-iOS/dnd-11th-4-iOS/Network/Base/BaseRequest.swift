@@ -12,7 +12,7 @@ import RxSwift
 final class BaseRequest {
     static func request<T: Decodable>(_ endPoint: BaseEndpoint) -> Single<T> {
         return Single.create { single in
-            let request = AF.request(endPoint)
+            let request = APIManager.session.request(endPoint)
                 .responseDecodable { (response: AFDataResponse<T>) in
                     switch response.result {
                     case .success(let result):
