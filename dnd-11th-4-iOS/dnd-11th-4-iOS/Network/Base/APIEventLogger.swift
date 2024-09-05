@@ -1,6 +1,6 @@
 //
 //  APIEventLogger.swift
-//  Smeem-iOS
+//  dnd-11th-4-iOS
 //
 //  Created by 황찬미 on 9/4/24.
 //
