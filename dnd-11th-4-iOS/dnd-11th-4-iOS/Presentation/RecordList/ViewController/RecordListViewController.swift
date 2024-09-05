@@ -82,12 +82,6 @@ final class RecordListViewController: UIViewController {
     }
     
     // MARK: - Methods
-    private func registerCollectionView() {
-        recordListView.register(RecordListCell.self, forCellWithReuseIdentifier: RecordListCell.identifier)
-        recordListView.register(RecordListHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: RecordListHeaderView.identifier)
-        recordListView.dataSource = self
-        recordListView.delegate = self
-    }
     
     private func showEmptyRecordView() {
         emptyRecordView.isHidden = false
