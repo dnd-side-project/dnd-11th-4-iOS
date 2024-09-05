@@ -33,7 +33,7 @@ private extension TabBarViewController {
                                       tabBarSelectedImg: Constant.Image.iconMapBlack!,
                                       renderingMode: .alwaysOriginal)
         
-        let recordListViewController = UINavigationController(rootViewController: RecordListViewController())
+        let recordListViewController = UINavigationController(rootViewController: RecordListViewController(reactor: RecordListReactor()))
         recordListViewController.isNavigationBarHidden = true
         recordListViewController.makeTabBar(title: "기록",
                                             tabBarImg: Constant.Image.iconPencilGray!,

@@ -22,7 +22,7 @@ struct Test: Hashable {
 final class RecordListCell: UICollectionViewCell {
     let deleteButtonTapped = PublishSubject<Void>()
     let editButtonTapped = PublishSubject<Void>()
-    private let disposeBag = DisposeBag()
+    var disposeBag = DisposeBag()
     
     static let identifier = "RecordListCell"
     private let recordImage: UIImageView = {
@@ -66,6 +66,9 @@ final class RecordListCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         menuView.isHidden = true
+        disposeBag = DisposeBag()
+        showMenu()
+        didTapDeleteButton()
     }
     
     required init?(coder: NSCoder) {
@@ -124,7 +127,8 @@ final class RecordListCell: UICollectionViewCell {
     
     private func showMenu() {
         menuButton.rx.tap
-            .subscribe(onNext: { [weak self] in
+            .asDriver()
+            .drive(onNext: { [weak self] in
                 guard let self = self else { return }
                 self.menuView.isHidden.toggle()
                 if !self.menuView.isHidden {
@@ -144,9 +148,9 @@ final class RecordListCell: UICollectionViewCell {
     
     func didTapDeleteButton() {
         menuView.deleteButtonTapped
-            .subscribe(onNext: {
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: {
                 self.deleteButtonTapped.onNext(())
-                print("cell")
             })
             .disposed(by: disposeBag)
     }
