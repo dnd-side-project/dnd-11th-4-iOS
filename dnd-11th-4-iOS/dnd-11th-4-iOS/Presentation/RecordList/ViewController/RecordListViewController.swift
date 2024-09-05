@@ -160,3 +160,23 @@ extension RecordListViewController: View {
             .disposed(by: disposeBag)
     }
 }
+
+extension RecordListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let reactor = reactor else { return }
+        let selectedItem = reactor.initialState.detailRecords[0]
+        let detailRecordVC = DetailRecordViewController(reactor: DetailRecordReactor(),
+                                                        data: selectedItem)
+        detailRecordVC.modalPresentationStyle = .overFullScreen
+        detailRecordVC.editButtonSubject
+            .asDriver(onErrorJustReturn: DetailRecordAppData.empty)
+            .drive(with: self) { owner, data in
+                let recordVC = RecordViewController(reactor: RecordReactor(),
+                                                    type: .edit(data))
+                owner.navigationController?.pushViewController(recordVC, animated: true)
+            }
+            .disposed(by: disposeBag)
+        self.present(detailRecordVC, animated: true)
+    }
+}
+

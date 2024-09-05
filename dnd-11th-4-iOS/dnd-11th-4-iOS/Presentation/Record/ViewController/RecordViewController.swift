@@ -13,6 +13,11 @@ import RxGesture
 import PhotosUI
 import RxKeyboard
 
+enum RecordType {
+    case write(String)
+    case edit(DetailRecordAppData)
+}
+
 final class RecordViewController: UIViewController, View {
     
     typealias Reactor = RecordReactor
@@ -128,12 +133,11 @@ final class RecordViewController: UIViewController, View {
         bindInput()
     }
     
-    init(reactor: RecordReactor, selectedRegigon: String?) {
+    init(reactor: RecordReactor, type: RecordType) {
         super.init(nibName: nil, bundle: nil)
         
         self.reactor = reactor
-        self.regionTextField.text = selectedRegigon
-        self.reactor?.initialState.selectedRegion = selectedRegigon
+        reactor.action.onNext(.viewWillAppear(type))
     }
     
     required init?(coder: NSCoder) {
@@ -340,6 +344,7 @@ final class RecordViewController: UIViewController, View {
     private func setUI() {
         view.backgroundColor = .mapWhite
         self.tabBarController?.tabBar.isHidden = true
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     private func setCompleteButtonUI(_ state: Bool) {

@@ -73,7 +73,7 @@ final class HomeMapViewController: UIViewController, View {
         setUI()
         setDelegate()
         reactor?.action.onNext(.mapInset(DeviceSize(width: Constant.Screen.width,
-                                                               height: Constant.Screen.height)))
+                                                    height: Constant.Screen.height)))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -180,10 +180,11 @@ final class HomeMapViewController: UIViewController, View {
             .disposed(by: disposeBag)
         
         recordButton.rx.tap
-            .asDriver()
-            .drive(with: self) { owner, _ in
+            .compactMap { reactor.initialState.selectedMap }
+            .asDriver(onErrorJustReturn: "서울")
+            .drive(with: self) { owner, text in
                 let recordVC = RecordViewController(reactor: RecordReactor(),
-                                                    selectedRegigon: reactor.initialState.selectedMap)
+                                                    type: .write(text))
                 owner.navigationController?.pushViewController(recordVC, animated: true)
                 
                 recordVC.completeButtonTapped
