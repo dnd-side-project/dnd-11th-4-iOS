@@ -9,25 +9,52 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import RxDataSources
 import ReactorKit
 
 final class RecordListViewController: UIViewController {
+    typealias Reactor = RecordListReactor
+    var disposeBag = DisposeBag()
+    
+    // MARK: - UI Propertise
+    
     private let navigationBar = MDNavigationBar(type: .list)
-    private var records: [Test] = []
-    private var recordListView: UICollectionView!
+    private let recordListView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: Constant.Screen.width - 32, height: 76)
+        layout.minimumLineSpacing = 24
+        layout.headerReferenceSize = CGSize(width: Constant.Screen.width, height: 44)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(RecordListCell.self, forCellWithReuseIdentifier: RecordListCell.identifier)
+        collectionView.register(RecordListHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: RecordListHeaderView.identifier)
+        return collectionView
+    }()
     private let emptyRecordView = EmptyRecordView()
     
-    var disposeBag: DisposeBag = DisposeBag()
-    var reactor: RecordListReactor?
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        registerCollectionView()
-        reactor = RecordListReactor()
-        bind(reactor: reactor!)
-        reactor?.action.onNext(.loadRecords)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    init(reactor: RecordListReactor) {
+        super.init(nibName: nil, bundle: nil)
+        self.reactor = reactor
+        reactor.action.onNext(.loadRecords)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Layout
     
     private func setupUI() {
         view.backgroundColor = .mapWhite
@@ -47,11 +74,6 @@ final class RecordListViewController: UIViewController {
         }
         emptyRecordView.isHidden = true
         
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: view.frame.width - 32, height: 76)
-        layout.minimumLineSpacing = 24
-        layout.headerReferenceSize = CGSize(width: view.frame.width, height: 44)
-        recordListView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.addSubview(recordListView)
         recordListView.snp.makeConstraints {
             $0.top.equalTo(navigationBar.snp.bottom)
@@ -59,11 +81,7 @@ final class RecordListViewController: UIViewController {
         }
     }
     
-    private func registerCollectionView() {
-        recordListView.register(RecordListCell.self, forCellWithReuseIdentifier: RecordListCell.identifier)
-        recordListView.register(RecordListHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: RecordListHeaderView.identifier)
-        recordListView.dataSource = self
-    }
+    // MARK: - Methods
     
     private func showEmptyRecordView() {
         emptyRecordView.isHidden = false
@@ -78,52 +96,87 @@ final class RecordListViewController: UIViewController {
 
 extension RecordListViewController: View {
     func bind(reactor: RecordListReactor) {
-        reactor.state
-            .map { $0.records }
-            .subscribe(onNext: { [weak self] records in
-                guard let self = self else { return }
-                self.records = records
+        let dataSource = RxCollectionViewSectionedReloadDataSource<RecordSection>(
+            configureCell: { dataSource, collectionView, indexPath, item in
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecordListCell.identifier, for: indexPath) as! RecordListCell
+                cell.configure(with: item)
                 
-                if records.isEmpty {
+                cell.deleteButtonTapped
+                    .asDriver(onErrorDriveWith: .empty())
+                    .drive(onNext: { [weak self] in
+                        guard let self = self else { return }
+                        let popUpVC = ListDeleteViewController()
+                        self.present(popUpVC, animated: true)
+                        popUpVC.deleteButtonTapped
+                            .asDriver(onErrorDriveWith: .empty())
+                            .drive(onNext: { [weak self] in
+                                guard let self = self else { return }
+                                self.reactor?.action.onNext(.deleteRecord(indexPath))
+                            })
+                            .disposed(by: popUpVC.disposeBag)
+                    })
+                    .disposed(by: cell.disposeBag)
+                
+                return cell
+            },
+            configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
+                if kind == UICollectionView.elementKindSectionHeader {
+                    let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: RecordListHeaderView.identifier, for: indexPath) as! RecordListHeaderView
+                    let section = dataSource.sectionModels[indexPath.section]
+                    headerView.setCount(section.items.count)
+                    return headerView
+                }
+                return UICollectionReusableView()
+            }
+        )
+        
+        reactor.state
+            .map { $0.sections }
+            .bind(to: recordListView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.sections.first?.items.isEmpty ?? true }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: true)
+            .drive(onNext: { [weak self] isEmpty in
+                guard let self = self else { return }
+                if isEmpty {
                     self.showEmptyRecordView()
                 } else {
-                    self.recordListView.reloadData()
                     self.showRecordListView()
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.isRecordDeleted }
+            .distinctUntilChanged()
+            .filter { $0 }
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { _ in
+                MDToast.show(type: .delete)
             })
             .disposed(by: disposeBag)
     }
 }
 
-extension RecordListViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return records.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecordListCell.identifier, for: indexPath) as! RecordListCell
-        cell.configure(with: records[indexPath.item])
-        cell.deleteButtonTapped
-            .subscribe(onNext: { [weak self] in
-                guard let self = self else { return }
-                let popUpVC = ListDeleteViewController()
-                self.present(popUpVC, animated: true)
-            })
+extension RecordListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let reactor = reactor else { return }
+        let selectedItem = reactor.initialState.detailRecords[0]
+        let detailRecordVC = DetailRecordViewController(reactor: DetailRecordReactor(),
+                                                        data: selectedItem)
+        detailRecordVC.modalPresentationStyle = .overFullScreen
+        detailRecordVC.editButtonSubject
+            .asDriver(onErrorJustReturn: DetailRecordAppData.empty)
+            .drive(with: self) { owner, data in
+                let recordVC = RecordViewController(reactor: RecordReactor(),
+                                                    type: .edit(data))
+                owner.navigationController?.pushViewController(recordVC, animated: true)
+            }
             .disposed(by: disposeBag)
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader {
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: RecordListHeaderView.identifier, for: indexPath) as! RecordListHeaderView
-            headerView.setCount(records.count)
-            return headerView
-        }
-        return UICollectionReusableView()
+        self.present(detailRecordVC, animated: true)
     }
 }
 

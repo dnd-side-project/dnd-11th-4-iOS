@@ -73,13 +73,14 @@ final class HomeMapViewController: UIViewController, View {
         setUI()
         setDelegate()
         reactor?.action.onNext(.mapInset(DeviceSize(width: Constant.Screen.width,
-                                                               height: Constant.Screen.height)))
+                                                    height: Constant.Screen.height)))
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         reactor?.action.onNext(.viewWillAppear)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     init(reactor: HomeMapReactor) {
@@ -175,6 +176,23 @@ final class HomeMapViewController: UIViewController, View {
                 }
                 
                 self.mapCountLabel.attributedText = NSAttributedString.pretendardM16(data.visitedMapCount)
+            }
+            .disposed(by: disposeBag)
+        
+        recordButton.rx.tap
+            .compactMap { reactor.initialState.selectedMap }
+            .asDriver(onErrorJustReturn: "서울")
+            .drive(with: self) { owner, text in
+                let recordVC = RecordViewController(reactor: RecordReactor(),
+                                                    type: .write(text))
+                owner.navigationController?.pushViewController(recordVC, animated: true)
+                
+                recordVC.completeButtonTapped
+                    .asDriver(onErrorJustReturn: ())
+                    .drive(with: self) { _, _ in
+                        MDToast.show(type: .complete)
+                    }
+                    .disposed(by: recordVC.disposeBag)
             }
             .disposed(by: disposeBag)
     }

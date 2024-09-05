@@ -33,13 +33,15 @@ private extension TabBarViewController {
                                       tabBarSelectedImg: Constant.Image.iconMapBlack!,
                                       renderingMode: .alwaysOriginal)
         
-        let recordListViewController = UINavigationController(rootViewController: RecordListViewController())
+        let recordListViewController = UINavigationController(rootViewController: RecordListViewController(reactor: RecordListReactor()))
+        recordListViewController.isNavigationBarHidden = true
         recordListViewController.makeTabBar(title: "기록",
                                             tabBarImg: Constant.Image.iconPencilGray!,
                                             tabBarSelectedImg: Constant.Image.iconPencilBlack!,
                                       renderingMode: .alwaysOriginal)
         
         let myPageViewController = UINavigationController(rootViewController: MyPageViewController(reactor: MyPageReactor()))
+        myPageViewController.isNavigationBarHidden = true
         myPageViewController.makeTabBar(title: "마이페이지",
                                         tabBarImg: Constant.Image.iconMyPageGray!,
                                         tabBarSelectedImg: Constant.Image.iconMyPageBlack!,

@@ -31,10 +31,18 @@ final class MDToast {
             }
         }
         
-        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
-            toastView.alpha = 0.0
-        }, completion: {(isCompleted) in
-            toastView.removeFromSuperview()
+        toastView.alpha = 0.0
+        
+        // 처음에 서서히 보였다가
+        UIView.animate(withDuration: 1.0, delay: 1.0, options: .curveEaseOut, animations: {
+            toastView.alpha = 1.0
+        }, completion: { _ in
+            // 서서히 사라짐
+            UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
+                 toastView.alpha = 0.0
+             }, completion: { _ in
+                 toastView.removeFromSuperview()
+             })
         })
     }
 }

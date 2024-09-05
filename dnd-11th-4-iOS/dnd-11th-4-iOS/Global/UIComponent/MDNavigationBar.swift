@@ -30,7 +30,7 @@ final class MDNavigationBar: UIView {
     
     init(type: NavigationBarType) {
         super.init(frame: .zero)
-        self.backgroundColor = .mapWhite
+        self.backgroundColor = .clear
         setUI(type: type)
         setupUnderline()
     }
