@@ -102,16 +102,18 @@ extension RecordListViewController: View {
                 cell.configure(with: item)
                 
                 cell.deleteButtonTapped
-                    .subscribe(onNext: { [weak self] in
+                    .asDriver(onErrorDriveWith: .empty())
+                    .drive(onNext: { [weak self] in
                         guard let self = self else { return }
                         let popUpVC = ListDeleteViewController()
                         self.present(popUpVC, animated: true)
                         popUpVC.deleteButtonTapped
-                            .subscribe(onNext: { [weak self] in
+                            .asDriver(onErrorDriveWith: .empty())
+                            .drive(onNext: { [weak self] in
                                 guard let self = self else { return }
                                 self.reactor?.action.onNext(.deleteRecord(indexPath))
                             })
-                            .disposed(by: disposeBag)
+                            .disposed(by: popUpVC.disposeBag)
                     })
                     .disposed(by: cell.disposeBag)
                 
