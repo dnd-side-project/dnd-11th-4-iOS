@@ -20,10 +20,13 @@ final class RecordListReactor: Reactor {
     
     enum Mutation {
         case setRecords([RecordSection])
+        case recordDeleted(Bool)
+        case resetDeleteState
     }
     
     struct State {
         var sections: [RecordSection] = []
+        var isRecordDeleted: Bool = false
     }
     
     init() {
@@ -52,7 +55,11 @@ extension RecordListReactor {
         case .deleteRecord(let indexPath):
             var sections = currentState.sections
             sections[indexPath.section].items.remove(at: indexPath.item)
-            return Observable.just(Mutation.setRecords(sections))
+            return Observable.concat([
+                Observable.just(Mutation.setRecords(sections)),
+                Observable.just(Mutation.recordDeleted(true)),
+                Observable.just(Mutation.resetDeleteState)
+            ])
         }
     }
     
@@ -61,6 +68,10 @@ extension RecordListReactor {
         switch mutation {
         case .setRecords(let sections):
             newState.sections = sections
+        case .recordDeleted(let isDeleted):
+            newState.isRecordDeleted = isDeleted
+        case .resetDeleteState:
+            newState.isRecordDeleted = false
         }
         return newState
     }

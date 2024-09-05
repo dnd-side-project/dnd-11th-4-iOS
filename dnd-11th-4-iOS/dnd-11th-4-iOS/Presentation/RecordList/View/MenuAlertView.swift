@@ -98,8 +98,9 @@ final class MenuAlertView: UIView {
     
     func didTapDeleteButton() {
         deleteButton.rx.tap
-            .bind(onNext: { [weak self] in
-                self?.deleteButtonTapped.onNext(())
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: {
+                self.deleteButtonTapped.onNext(())
             })
             .disposed(by: disposeBag)
     }

@@ -12,11 +12,7 @@ import RxCocoa
 import RxDataSources
 import ReactorKit
 
-protocol ListDeleteDelegate: AnyObject {
-    func didDeleteRecord(at indexPath: IndexPath)
-}
-
-final class RecordListViewController: UIViewController, ListDeleteDelegate {
+final class RecordListViewController: UIViewController {
     typealias Reactor = RecordListReactor
     var disposeBag = DisposeBag()
     
@@ -40,6 +36,12 @@ final class RecordListViewController: UIViewController, ListDeleteDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     init(reactor: RecordListReactor) {
@@ -90,12 +92,6 @@ final class RecordListViewController: UIViewController, ListDeleteDelegate {
         emptyRecordView.isHidden = true
         recordListView.isHidden = false
     }
-    
-    func didDeleteRecord(at indexPath: IndexPath) {
-        reactor?.action.onNext(.deleteRecord(indexPath))
-        
-        MDToast.show(type: .delete)
-    }
 }
 
 extension RecordListViewController: View {
@@ -110,8 +106,12 @@ extension RecordListViewController: View {
                         guard let self = self else { return }
                         let popUpVC = ListDeleteViewController()
                         self.present(popUpVC, animated: true)
-                        popUpVC.delegate = self
-                        popUpVC.recordIndex = indexPath
+                        popUpVC.deleteButtonTapped
+                            .subscribe(onNext: { [weak self] in
+                                guard let self = self else { return }
+                                self.reactor?.action.onNext(.deleteRecord(indexPath))
+                            })
+                            .disposed(by: disposeBag)
                     })
                     .disposed(by: cell.disposeBag)
                 
@@ -144,6 +144,16 @@ extension RecordListViewController: View {
                 } else {
                     self.showRecordListView()
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.isRecordDeleted }
+            .distinctUntilChanged()
+            .filter { $0 }
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { _ in
+                MDToast.show(type: .delete)
             })
             .disposed(by: disposeBag)
     }
