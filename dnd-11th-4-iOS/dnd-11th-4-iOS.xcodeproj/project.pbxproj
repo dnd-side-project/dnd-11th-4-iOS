@@ -218,6 +218,7 @@
 		FBE0F5AF2C78717E00C81F8A /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		FBE0F5B12C789FB700C81F8A /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
 		FBE0F5B32C78AED600C81F8A /* MyPageReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageReactor.swift; sourceTree = "<group>"; };
+		FBF1F1172C8EDB060038A64F /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		FC6186EB1A512F7D1B5F90E0 /* Pods_dnd_11th_4_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dnd_11th_4_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -492,6 +493,7 @@
 		4AAFDB602C494CFF008C6DAF = {
 			isa = PBXGroup;
 			children = (
+				FBF1F1172C8EDB060038A64F /* Debug.xcconfig */,
 				4A5555412C8952E70008AF07 /* Release.xcconfig */,
 				4AAFDB6B2C494CFF008C6DAF /* dnd-11th-4-iOS */,
 				4AAFDB6A2C494CFF008C6DAF /* Products */,
@@ -1035,7 +1037,7 @@
 /* Begin XCBuildConfiguration section */
 		4AAFDB7B2C494D00008C6DAF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A5555412C8952E70008AF07 /* Release.xcconfig */;
+			baseConfigurationReference = FBF1F1172C8EDB060038A64F /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -1099,6 +1101,7 @@
 		};
 		4AAFDB7C2C494D00008C6DAF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A5555412C8952E70008AF07 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -1148,6 +1151,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1157,6 +1161,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 42A37440E49DA42B64FA649E /* Pods-dnd-11th-4-iOS.debug.xcconfig */;
 			buildSettings = {
+				APP_BUNDLE_ID = com.record.mapddang;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "dnd-11th-4-iOS/dnd-11th-4-iOS.entitlements";
@@ -1193,6 +1198,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B2752E23310EECA8EBA4E6C2 /* Pods-dnd-11th-4-iOS.release.xcconfig */;
 			buildSettings = {
+				APP_BUNDLE_ID = com.record.mapddang;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "dnd-11th-4-iOS/dnd-11th-4-iOS.entitlements";
