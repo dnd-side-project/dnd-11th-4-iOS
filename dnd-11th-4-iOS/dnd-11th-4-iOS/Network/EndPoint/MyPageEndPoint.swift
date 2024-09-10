@@ -1,18 +1,18 @@
 //
-//  HomeEndPoint.swift
+//  MyPageEndPoint.swift
 //  dnd-11th-4-iOS
 //
-//  Created by 황찬미 on 8/26/24.
+//  Created by Allie on 9/10/24.
 //
 
 import Foundation
 import Alamofire
 
-enum HomeEndPoint {
-    case getHomeAPI
+enum MyPageEndPoint {
+    case getMyPageAPI(MyPageRequest)
 }
 
-extension HomeEndPoint: BaseEndpoint {
+extension MyPageEndPoint: BaseEndpoint {
     var baseURL: String {
         return Environment.baseURL
     }
@@ -22,11 +22,14 @@ extension HomeEndPoint: BaseEndpoint {
     }
     
     var path: String {
-        return "/maps"
+        return "/mypages"
     }
     
     var parameters: RequestParams {
-        return .none
+        switch self {
+        case .getMyPageAPI(let id):
+            return .query(["id": id])
+        }
     }
     
     var headers: HTTPHeaders? {

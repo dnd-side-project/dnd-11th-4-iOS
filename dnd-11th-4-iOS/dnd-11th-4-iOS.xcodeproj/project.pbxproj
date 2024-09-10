@@ -113,6 +113,11 @@
 		FBF1F1252C8EF5190038A64F /* MyPageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F1242C8EF5190038A64F /* MyPageResponse.swift */; };
 		FBF1F12C2C8EF5FC0038A64F /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F12B2C8EF5FC0038A64F /* LoginRequest.swift */; };
 		FBF1F12E2C8EF6C70038A64F /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F12D2C8EF6C70038A64F /* LoginResponse.swift */; };
+		FBF1F1302C903D770038A64F /* RecordListEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F12F2C903D770038A64F /* RecordListEndPoint.swift */; };
+		FBF1F1322C9041A10038A64F /* RecordEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F1312C9041A10038A64F /* RecordEndPoint.swift */; };
+		FBF1F1342C9044E50038A64F /* LoginEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F1332C9044E50038A64F /* LoginEndPoint.swift */; };
+		FBF1F1362C90797B0038A64F /* MyPageEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F1352C90797B0038A64F /* MyPageEndPoint.swift */; };
+		FBF1F1382C9079F50038A64F /* MyPageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F1372C9079F50038A64F /* MyPageRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -229,6 +234,11 @@
 		FBF1F1242C8EF5190038A64F /* MyPageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageResponse.swift; sourceTree = "<group>"; };
 		FBF1F12B2C8EF5FC0038A64F /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		FBF1F12D2C8EF6C70038A64F /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		FBF1F12F2C903D770038A64F /* RecordListEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListEndPoint.swift; sourceTree = "<group>"; };
+		FBF1F1312C9041A10038A64F /* RecordEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordEndPoint.swift; sourceTree = "<group>"; };
+		FBF1F1332C9044E50038A64F /* LoginEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndPoint.swift; sourceTree = "<group>"; };
+		FBF1F1352C90797B0038A64F /* MyPageEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageEndPoint.swift; sourceTree = "<group>"; };
+		FBF1F1372C9079F50038A64F /* MyPageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageRequest.swift; sourceTree = "<group>"; };
 		FC6186EB1A512F7D1B5F90E0 /* Pods_dnd_11th_4_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dnd_11th_4_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -415,7 +425,11 @@
 		4A1CB93E2C7C7E1C002DE4FE /* EndPoint */ = {
 			isa = PBXGroup;
 			children = (
+				FBF1F1332C9044E50038A64F /* LoginEndPoint.swift */,
 				4A1CB93C2C7C7E1A002DE4FE /* HomeEndPoint.swift */,
+				FBF1F12F2C903D770038A64F /* RecordListEndPoint.swift */,
+				FBF1F1312C9041A10038A64F /* RecordEndPoint.swift */,
+				FBF1F1352C90797B0038A64F /* MyPageEndPoint.swift */,
 			);
 			path = EndPoint;
 			sourceTree = "<group>";
@@ -847,6 +861,7 @@
 		FBF1F1292C8EF5900038A64F /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				FBF1F1372C9079F50038A64F /* MyPageRequest.swift */,
 				FBF1F1242C8EF5190038A64F /* MyPageResponse.swift */,
 			);
 			path = MyPage;
@@ -1003,8 +1018,10 @@
 				4AAFDBB22C4953C9008C6DAF /* Application.swift in Sources */,
 				4A5555342C84A7820008AF07 /* DetailRecordAppData.swift in Sources */,
 				4A5FFDB22C4FAE73002F5A77 /* HomeMap_충청남도.swift in Sources */,
+				FBF1F1382C9079F50038A64F /* MyPageRequest.swift in Sources */,
 				FB7AEDDB2C75AF0B00B95784 /* ServiceAcceptReactor.swift in Sources */,
 				4A5555402C8768070008AF07 /* APIEventLogger.swift in Sources */,
+				FBF1F1362C90797B0038A64F /* MyPageEndPoint.swift in Sources */,
 				4A5FFDC82C4FB0F1002F5A77 /* HomeMap_제주도.swift in Sources */,
 				4A1CB93A2C7C7DDA002DE4FE /* HTTPHeaderField.swift in Sources */,
 				4A1CB93D2C7C7E1A002DE4FE /* HomeEndPoint.swift in Sources */,
@@ -1052,11 +1069,13 @@
 				4A16E2F62C60F8DA00F48180 /* HomeMapReactor.swift in Sources */,
 				4A5FFDC22C4FB056002F5A77 /* HomeMap_부산.swift in Sources */,
 				4AB122252C6CAE7500A7337F /* RecordReactor.swift in Sources */,
+				FBF1F1342C9044E50038A64F /* LoginEndPoint.swift in Sources */,
 				FB9B35A52C6F99EE00FB884E /* ColorType.swift in Sources */,
 				4AAFDB6F2C494CFF008C6DAF /* SceneDelegate.swift in Sources */,
 				4A16E2E62C5D0F5D00F48180 /* MDPopUpView.swift in Sources */,
 				FB808E962C6B955B00E9E2E5 /* OnboardingView.swift in Sources */,
 				FB808E602C63A61F00E9E2E5 /* MenuAlertView.swift in Sources */,
+				FBF1F1302C903D770038A64F /* RecordListEndPoint.swift in Sources */,
 				FB808E662C64BD7500E9E2E5 /* RecordListHeaderView.swift in Sources */,
 				4A5FFDB42C4FAEB2002F5A77 /* HomeMap_강원도.swift in Sources */,
 				4A1CB94C2C7C9966002DE4FE /* Niltype.swift in Sources */,
@@ -1064,6 +1083,7 @@
 				4A16E2D02C5A702000F48180 /* RecordListViewController.swift in Sources */,
 				4A5FFDA82C4FABBF002F5A77 /* HomeMap_경기도.swift in Sources */,
 				FBF1F1252C8EF5190038A64F /* MyPageResponse.swift in Sources */,
+				FBF1F1322C9041A10038A64F /* RecordEndPoint.swift in Sources */,
 				4A7101342C6883DB000765CD /* MapDeviceInset.swift in Sources */,
 				4A1CB94A2C7C8D81002DE4FE /* NetworkManager.swift in Sources */,
 				4A5FFDB62C4FAF12002F5A77 /* HomeMap_대전.swift in Sources */,

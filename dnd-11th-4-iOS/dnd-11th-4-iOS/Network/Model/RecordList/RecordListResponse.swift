@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct RecordListResponse: Codable {
+struct RecordListResponse: Decodable {
     let entireRecordCount: Int
     let records: [Record]
 }
 
-struct Record: Codable {
+struct Record: Decodable {
     let id: Int
     let region, attractionName: String
     let memo, visitDate: String?

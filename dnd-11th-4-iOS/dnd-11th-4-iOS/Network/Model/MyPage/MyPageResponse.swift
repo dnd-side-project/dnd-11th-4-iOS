@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct MyPageResponse: Codable {
+struct MyPageResponse: Decodable {
     let id: Int
 }

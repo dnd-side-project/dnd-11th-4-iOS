@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct RecordRequest: Codable {
+struct RecordRequest: Encodable {
     let region, attractionName: String
-    let memo, visitDate: String?
-    let photoUrls: [String]?
+    let memo, localDate: String?
+    let photos: [String]?
 }

@@ -7,11 +7,15 @@
 
 import Foundation
 
-struct LoginRequest: Codable {
+struct LoginRequest: Encodable {
     let appleToken: String
     let selectedColor: String
 }
 
-struct RefreshTokenRequest: Codable {
+struct RefreshTokenRequest: Encodable {
     let refreshToken: String
+}
+
+struct WithdrawRequest: Encodable {
+    let authorizationCode: String
 }

@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct HomeResponse: Codable {
+struct HomeResponse: Decodable {
     let regions: [Region]
     let visitCount, totalCount: Int
     let selectedColor: String
 }
 
-struct Region: Codable {
+struct Region: Decodable {
     let name: String
     let opacity: Int
 }
