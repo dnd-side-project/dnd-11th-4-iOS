@@ -9,10 +9,6 @@ import Foundation
 
 struct RecordListResponse: Decodable {
     let entireRecordCount: Int
-    let records: [Record]
-}
-
-struct Record: Decodable {
     let id: Int
     let region, attractionName: String
     let memo, visitDate: String?

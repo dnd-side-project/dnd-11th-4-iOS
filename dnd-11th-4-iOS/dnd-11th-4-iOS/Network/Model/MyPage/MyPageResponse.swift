@@ -8,5 +8,5 @@
 import Foundation
 
 struct MyPageResponse: Decodable {
-    let id: Int
+    let name: String
 }
