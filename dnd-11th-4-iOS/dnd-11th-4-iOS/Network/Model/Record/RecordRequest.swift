@@ -8,12 +8,10 @@
 import Foundation
 
 struct RecordRequest: Encodable {
-    let photos: [String]?
     let recordRequest: Record
 }
 
 struct UpdateRecordRequest: Encodable {
-    let photos: [String]?
     let updateRecordRequest: Record
 }
 
