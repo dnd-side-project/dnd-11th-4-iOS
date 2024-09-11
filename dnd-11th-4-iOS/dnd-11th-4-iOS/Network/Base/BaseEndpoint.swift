@@ -33,6 +33,14 @@ extension BaseEndpoint {
             let params = request?.toDictionary() ?? [:]
             urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params, options: [])
         case .none: break
+        case .queryAndBody(let queryParams, let bodyParams):
+            let query = queryParams?.toDictionary() ?? [:]
+            let queryItems = query.map { URLQueryItem(name: $0.key, value: "\($0.value)") }
+            var components = URLComponents(string: url.appendingPathComponent(path).absoluteString)
+            components?.queryItems = queryItems
+            urlRequest.url = components?.url
+            let body = bodyParams?.toDictionary() ?? [:]
+            urlRequest.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
         }
 
         return urlRequest
@@ -42,6 +50,7 @@ extension BaseEndpoint {
 enum RequestParams {
     case query(_ parameter: Encodable?)
     case body(_ parameter: Encodable?)
+    case queryAndBody(query: Encodable?, body: Encodable?)
     case none
 }
 

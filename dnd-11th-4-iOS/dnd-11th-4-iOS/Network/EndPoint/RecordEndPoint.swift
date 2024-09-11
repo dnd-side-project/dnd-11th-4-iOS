@@ -9,10 +9,9 @@ import Foundation
 import Alamofire
 
 enum RecordEndPoint {
-    case getRecordAPI(recordId: Int)
     case postRecordAPI(RecordRequest)
-    case updateRecordAPI(recordId: Int, photos: [String], updateRecordRequest: RecordRequest)
-    case deleteRecordAPI(recordId: Int)
+    case updateRecordAPI(RecordId, photos: [String], updateRecordRequest: UpdateRecordRequest)
+    case deleteRecordAPI(RecordId)
 }
 
 extension RecordEndPoint: BaseEndpoint {
@@ -22,7 +21,7 @@ extension RecordEndPoint: BaseEndpoint {
     
     var path: String {
         switch self {
-        case .getRecordAPI, .updateRecordAPI, .deleteRecordAPI:
+        case .updateRecordAPI, .deleteRecordAPI:
             return "/maps/history"
         case .postRecordAPI:
             return "/maps/record"
@@ -32,8 +31,6 @@ extension RecordEndPoint: BaseEndpoint {
     
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .getRecordAPI:
-            return .get
         case .postRecordAPI:
             return .post
         case .updateRecordAPI:
@@ -45,14 +42,12 @@ extension RecordEndPoint: BaseEndpoint {
     
     var parameters: RequestParams {
         switch self {
-        case .getRecordAPI(let recordId):
-            return .query(["recordId": recordId])
-        case .postRecordAPI(let record):
-            return .body(record)
-        case .updateRecordAPI(let recordId, let photos, let updateRecordRequest):
-            return .body(updateRecordRequest)
-        case .deleteRecordAPI(let recordId):
-            return .query(["recordId": recordId])
+        case .postRecordAPI(let request):
+            return .body(request)
+        case .updateRecordAPI(let id, let photos, let updateRecordRequest):
+            return .queryAndBody(query: id, body: updateRecordRequest)
+        case .deleteRecordAPI(let id):
+            return .query(id)
         }
     }
     

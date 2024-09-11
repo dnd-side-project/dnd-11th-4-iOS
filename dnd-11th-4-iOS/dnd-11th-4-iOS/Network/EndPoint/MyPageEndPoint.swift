@@ -27,8 +27,8 @@ extension MyPageEndPoint: BaseEndpoint {
     
     var parameters: RequestParams {
         switch self {
-        case .getMyPageAPI(let id):
-            return .query(["id": id])
+        case .getMyPageAPI(let request):
+            return .query(request)
         }
     }
     
