@@ -108,6 +108,16 @@
 		FBE0F5B02C78717E00C81F8A /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE0F5AF2C78717E00C81F8A /* MyPageView.swift */; };
 		FBE0F5B22C789FB700C81F8A /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE0F5B12C789FB700C81F8A /* MyPageCell.swift */; };
 		FBE0F5B42C78AED600C81F8A /* MyPageReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE0F5B32C78AED600C81F8A /* MyPageReactor.swift */; };
+		FBF1F1212C8EF0CC0038A64F /* RecordListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F1202C8EF0CC0038A64F /* RecordListResponse.swift */; };
+		FBF1F1232C8EF4620038A64F /* RecordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F1222C8EF4620038A64F /* RecordRequest.swift */; };
+		FBF1F1252C8EF5190038A64F /* MyPageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F1242C8EF5190038A64F /* MyPageResponse.swift */; };
+		FBF1F12C2C8EF5FC0038A64F /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F12B2C8EF5FC0038A64F /* LoginRequest.swift */; };
+		FBF1F12E2C8EF6C70038A64F /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F12D2C8EF6C70038A64F /* LoginResponse.swift */; };
+		FBF1F1302C903D770038A64F /* RecordListEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F12F2C903D770038A64F /* RecordListEndPoint.swift */; };
+		FBF1F1322C9041A10038A64F /* RecordEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F1312C9041A10038A64F /* RecordEndPoint.swift */; };
+		FBF1F1342C9044E50038A64F /* LoginEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F1332C9044E50038A64F /* LoginEndPoint.swift */; };
+		FBF1F1362C90797B0038A64F /* MyPageEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F1352C90797B0038A64F /* MyPageEndPoint.swift */; };
+		FBF1F1382C9079F50038A64F /* MyPageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F1372C9079F50038A64F /* MyPageRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -218,6 +228,17 @@
 		FBE0F5AF2C78717E00C81F8A /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		FBE0F5B12C789FB700C81F8A /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
 		FBE0F5B32C78AED600C81F8A /* MyPageReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageReactor.swift; sourceTree = "<group>"; };
+		FBF1F1172C8EDB060038A64F /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		FBF1F1202C8EF0CC0038A64F /* RecordListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListResponse.swift; sourceTree = "<group>"; };
+		FBF1F1222C8EF4620038A64F /* RecordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordRequest.swift; sourceTree = "<group>"; };
+		FBF1F1242C8EF5190038A64F /* MyPageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageResponse.swift; sourceTree = "<group>"; };
+		FBF1F12B2C8EF5FC0038A64F /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		FBF1F12D2C8EF6C70038A64F /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		FBF1F12F2C903D770038A64F /* RecordListEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListEndPoint.swift; sourceTree = "<group>"; };
+		FBF1F1312C9041A10038A64F /* RecordEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordEndPoint.swift; sourceTree = "<group>"; };
+		FBF1F1332C9044E50038A64F /* LoginEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndPoint.swift; sourceTree = "<group>"; };
+		FBF1F1352C90797B0038A64F /* MyPageEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageEndPoint.swift; sourceTree = "<group>"; };
+		FBF1F1372C9079F50038A64F /* MyPageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageRequest.swift; sourceTree = "<group>"; };
 		FC6186EB1A512F7D1B5F90E0 /* Pods_dnd_11th_4_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dnd_11th_4_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -404,7 +425,11 @@
 		4A1CB93E2C7C7E1C002DE4FE /* EndPoint */ = {
 			isa = PBXGroup;
 			children = (
+				FBF1F1332C9044E50038A64F /* LoginEndPoint.swift */,
 				4A1CB93C2C7C7E1A002DE4FE /* HomeEndPoint.swift */,
+				FBF1F12F2C903D770038A64F /* RecordListEndPoint.swift */,
+				FBF1F1312C9041A10038A64F /* RecordEndPoint.swift */,
+				FBF1F1352C90797B0038A64F /* MyPageEndPoint.swift */,
 			);
 			path = EndPoint;
 			sourceTree = "<group>";
@@ -412,7 +437,11 @@
 		4A1CB93F2C7C7E4B002DE4FE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4A1CB9402C7C7E51002DE4FE /* HomeResponse.swift */,
+				FBF1F12A2C8EF5EE0038A64F /* Login */,
+				FBF1F1292C8EF5900038A64F /* MyPage */,
+				FBF1F1282C8EF5890038A64F /* RecordList */,
+				FBF1F1272C8EF5810038A64F /* Record */,
+				FBF1F1262C8EF5730038A64F /* Home */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -492,6 +521,7 @@
 		4AAFDB602C494CFF008C6DAF = {
 			isa = PBXGroup;
 			children = (
+				FBF1F1172C8EDB060038A64F /* Debug.xcconfig */,
 				4A5555412C8952E70008AF07 /* Release.xcconfig */,
 				4AAFDB6B2C494CFF008C6DAF /* dnd-11th-4-iOS */,
 				4AAFDB6A2C494CFF008C6DAF /* Products */,
@@ -804,6 +834,48 @@
 			path = Reactor;
 			sourceTree = "<group>";
 		};
+		FBF1F1262C8EF5730038A64F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4A1CB9402C7C7E51002DE4FE /* HomeResponse.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		FBF1F1272C8EF5810038A64F /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				FBF1F1222C8EF4620038A64F /* RecordRequest.swift */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
+		FBF1F1282C8EF5890038A64F /* RecordList */ = {
+			isa = PBXGroup;
+			children = (
+				FBF1F1202C8EF0CC0038A64F /* RecordListResponse.swift */,
+			);
+			path = RecordList;
+			sourceTree = "<group>";
+		};
+		FBF1F1292C8EF5900038A64F /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				FBF1F1372C9079F50038A64F /* MyPageRequest.swift */,
+				FBF1F1242C8EF5190038A64F /* MyPageResponse.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		FBF1F12A2C8EF5EE0038A64F /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FBF1F12B2C8EF5FC0038A64F /* LoginRequest.swift */,
+				FBF1F12D2C8EF6C70038A64F /* LoginResponse.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -931,11 +1003,13 @@
 			files = (
 				4A16E2EF2C60F0A700F48180 /* HomeMap_인천.swift in Sources */,
 				FB7AEDD92C74E72E00B95784 /* ServiceAcceptViewController.swift in Sources */,
+				FBF1F12E2C8EF6C70038A64F /* LoginResponse.swift in Sources */,
 				FBE0F5AE2C76315000C81F8A /* UIViewController+.swift in Sources */,
 				4A1CB9482C7C89B1002DE4FE /* MDError.swift in Sources */,
 				4A16E2F02C60F0A700F48180 /* HomeMap_경상북도.swift in Sources */,
 				4A16E2F12C60F0A700F48180 /* HomeMap_울산.swift in Sources */,
 				FB9B35A02C6F768500FB884E /* SplashViewController.swift in Sources */,
+				FBF1F1232C8EF4620038A64F /* RecordRequest.swift in Sources */,
 				4A16E2F22C60F0A700F48180 /* HomeMap_전라북도.swift in Sources */,
 				4A16E2F32C60F0A700F48180 /* HomeMap_광주.swift in Sources */,
 				FB808E642C63C6EE00E9E2E5 /* UIImage+.swift in Sources */,
@@ -944,8 +1018,10 @@
 				4AAFDBB22C4953C9008C6DAF /* Application.swift in Sources */,
 				4A5555342C84A7820008AF07 /* DetailRecordAppData.swift in Sources */,
 				4A5FFDB22C4FAE73002F5A77 /* HomeMap_충청남도.swift in Sources */,
+				FBF1F1382C9079F50038A64F /* MyPageRequest.swift in Sources */,
 				FB7AEDDB2C75AF0B00B95784 /* ServiceAcceptReactor.swift in Sources */,
 				4A5555402C8768070008AF07 /* APIEventLogger.swift in Sources */,
+				FBF1F1362C90797B0038A64F /* MyPageEndPoint.swift in Sources */,
 				4A5FFDC82C4FB0F1002F5A77 /* HomeMap_제주도.swift in Sources */,
 				4A1CB93A2C7C7DDA002DE4FE /* HTTPHeaderField.swift in Sources */,
 				4A1CB93D2C7C7E1A002DE4FE /* HomeEndPoint.swift in Sources */,
@@ -968,6 +1044,7 @@
 				4A16E2DE2C5CC3BA00F48180 /* MDToast.swift in Sources */,
 				4A16E2CD2C5A6B7E00F48180 /* TabBarViewController.swift in Sources */,
 				4AA414452C63B26000AB3CE8 /* RegionType.swift in Sources */,
+				FBF1F12C2C8EF5FC0038A64F /* LoginRequest.swift in Sources */,
 				4A16E2D32C5A70AC00F48180 /* MyPageViewController.swift in Sources */,
 				4A0944522C84807D00D745C5 /* DetailRecordReactor.swift in Sources */,
 				FB808E5C2C63998600E9E2E5 /* RecordListReactor.swift in Sources */,
@@ -992,20 +1069,25 @@
 				4A16E2F62C60F8DA00F48180 /* HomeMapReactor.swift in Sources */,
 				4A5FFDC22C4FB056002F5A77 /* HomeMap_부산.swift in Sources */,
 				4AB122252C6CAE7500A7337F /* RecordReactor.swift in Sources */,
+				FBF1F1342C9044E50038A64F /* LoginEndPoint.swift in Sources */,
 				FB9B35A52C6F99EE00FB884E /* ColorType.swift in Sources */,
 				4AAFDB6F2C494CFF008C6DAF /* SceneDelegate.swift in Sources */,
 				4A16E2E62C5D0F5D00F48180 /* MDPopUpView.swift in Sources */,
 				FB808E962C6B955B00E9E2E5 /* OnboardingView.swift in Sources */,
 				FB808E602C63A61F00E9E2E5 /* MenuAlertView.swift in Sources */,
+				FBF1F1302C903D770038A64F /* RecordListEndPoint.swift in Sources */,
 				FB808E662C64BD7500E9E2E5 /* RecordListHeaderView.swift in Sources */,
 				4A5FFDB42C4FAEB2002F5A77 /* HomeMap_강원도.swift in Sources */,
 				4A1CB94C2C7C9966002DE4FE /* Niltype.swift in Sources */,
 				4A1CB9432C7C7F63002DE4FE /* HomeService.swift in Sources */,
 				4A16E2D02C5A702000F48180 /* RecordListViewController.swift in Sources */,
 				4A5FFDA82C4FABBF002F5A77 /* HomeMap_경기도.swift in Sources */,
+				FBF1F1252C8EF5190038A64F /* MyPageResponse.swift in Sources */,
+				FBF1F1322C9041A10038A64F /* RecordEndPoint.swift in Sources */,
 				4A7101342C6883DB000765CD /* MapDeviceInset.swift in Sources */,
 				4A1CB94A2C7C8D81002DE4FE /* NetworkManager.swift in Sources */,
 				4A5FFDB62C4FAF12002F5A77 /* HomeMap_대전.swift in Sources */,
+				FBF1F1212C8EF0CC0038A64F /* RecordListResponse.swift in Sources */,
 				4A5FFDCC2C4FB236002F5A77 /* HomeMap_대구.swift in Sources */,
 				4AA4144B2C6466E700AB3CE8 /* MapModel.swift in Sources */,
 				4AAFDBB42C4953CD008C6DAF /* Color.swift in Sources */,
@@ -1035,7 +1117,7 @@
 /* Begin XCBuildConfiguration section */
 		4AAFDB7B2C494D00008C6DAF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A5555412C8952E70008AF07 /* Release.xcconfig */;
+			baseConfigurationReference = FBF1F1172C8EDB060038A64F /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -1099,6 +1181,7 @@
 		};
 		4AAFDB7C2C494D00008C6DAF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A5555412C8952E70008AF07 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -1148,6 +1231,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1157,6 +1241,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 42A37440E49DA42B64FA649E /* Pods-dnd-11th-4-iOS.debug.xcconfig */;
 			buildSettings = {
+				APP_BUNDLE_ID = com.record.mapddang;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "dnd-11th-4-iOS/dnd-11th-4-iOS.entitlements";
@@ -1167,7 +1252,9 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D5WYU8R9W8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "dnd-11th-4-iOS/Application/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "맵땅-DEV";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "맵땅에 사진을 추가하려면 사진 라이브러리 접근 권한이 필요합니다.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "\"맵땅 앱에서 사용자에게 최적화된 광고를 제공하기 위해 정보를 수집하려 합니다.\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1179,7 +1266,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.record.mapddang;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.record.mapddang-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "MapDDang Debug";
@@ -1193,6 +1280,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B2752E23310EECA8EBA4E6C2 /* Pods-dnd-11th-4-iOS.release.xcconfig */;
 			buildSettings = {
+				APP_BUNDLE_ID = com.record.mapddang;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "dnd-11th-4-iOS/dnd-11th-4-iOS.entitlements";
@@ -1203,7 +1291,9 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D5WYU8R9W8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "dnd-11th-4-iOS/Application/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "맵땅";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "맵땅에 사진을 추가하려면 사진 라이브러리 접근 권한이 필요합니다.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "\"맵땅 앱에서 사용자에게 최적화된 광고를 제공하기 위해 정보를 수집하려 합니다.\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
