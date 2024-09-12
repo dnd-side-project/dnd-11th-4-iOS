@@ -1291,7 +1291,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D5WYU8R9W8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "dnd-11th-4-iOS/Application/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "맵땅-DEV";
+				INFOPLIST_KEY_CFBundleDisplayName = "맵땅";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "맵땅에 사진을 추가하려면 사진 라이브러리 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "\"맵땅 앱에서 사용자에게 최적화된 광고를 제공하기 위해 정보를 수집하려 합니다.\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
