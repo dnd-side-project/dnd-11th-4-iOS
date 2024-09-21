@@ -20,31 +20,14 @@ final class HomeMapReactor: Reactor {
     
     enum Mutation {
         case setTotalMap(TotalMapModel)
-        case setSelectedMap(TotalMapModel)
+        case setSelectedMap(SelectedMapModel?)
         case setMapInset(TopAndLeadingInset?)
+        case setError(MDError)
     }
     
     struct State {
-        var totalMapState = TotalMapModel(selectedMap: nil, totalMapArray: [], visitedMapCount: "0/16")
-        var dummyState = [ColorWithOpacityModel(name: "서울", opacity: 1, colorType: .pink(3)),
-                          ColorWithOpacityModel(name: "경기도", opacity: 1, colorType: .orange(3)),
-                          ColorWithOpacityModel(name: "인천", opacity: 1, colorType: .blue(1)),
-                          ColorWithOpacityModel(name: "강원도", opacity: 1, colorType: .yellow(3)),
-                          ColorWithOpacityModel(name: "충청북도", opacity: 1, colorType: .blue(2)),
-                          ColorWithOpacityModel(name: "충청남도", opacity: 1, colorType: .pink(1)),
-                          ColorWithOpacityModel(name: "대전", opacity: 1, colorType: .blue(3)),
-                          ColorWithOpacityModel(name: "경상북도", opacity: 1, colorType: .purple(1)),
-                          ColorWithOpacityModel(name: "경상남도", opacity: 1, colorType: .blue(0)),
-                          ColorWithOpacityModel(name: "대구", opacity: 1, colorType: .purple(2)),
-                          ColorWithOpacityModel(name: "울산", opacity: 1, colorType: .blue(1)),
-                          ColorWithOpacityModel(name: "부산", opacity: 1, colorType: .yellow(0)),
-                          ColorWithOpacityModel(name: "전라북도", opacity: 1, colorType: .blue(1)),
-                          ColorWithOpacityModel(name: "전라남도", opacity: 1, colorType: .green(2)),
-                          ColorWithOpacityModel(name: "광주", opacity: 1, colorType: .blue(1)),
-                          ColorWithOpacityModel(name: "제주도", opacity: 1, colorType: .yellow(2))]
-        var type = MapDeviceInset.width375Height812
+        var totalMapState: TotalMapModel?
         var inset: TopAndLeadingInset?
-        var selectedMap: String?
     }
     
     init() {
@@ -54,7 +37,16 @@ final class HomeMapReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .viewWillAppear:
-            return Observable.just(Mutation.setTotalMap(prepareTotalMap()))
+            return HomeService.getHomeAPI()
+                .flatMap { result -> Observable<Mutation> in
+                    switch result {
+                    case .success(let response):
+                        return Observable.just(Mutation.setTotalMap(self.prepareTotalMap(response)))
+                    case .failure(let error):
+                        print("Error occurred: \(error)")
+                        return Observable.just(Mutation.setError(error)) // 에러 처리용 Mutation
+                    }
+                }
         case .mapAction(let type):
             return Observable.just(Mutation.setSelectedMap(prepareSelectedMap(type: type)))
         case .mapInset(let layout):
@@ -66,43 +58,33 @@ final class HomeMapReactor: Reactor {
         var newState = state
         switch mutation {
         case .setTotalMap(let model):
+            print("⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️", model)
             newState.totalMapState = model
         case .setSelectedMap(let specificModel):
-            newState.totalMapState = specificModel
+            newState.totalMapState?.selectedMap = specificModel
         case .setMapInset(let inset):
             newState.inset = inset
+        case .setError(let error):
+            print(error)
         }
         return newState
     }
 }
 
 extension HomeMapReactor {
-    func prepareTotalMap() -> TotalMapModel {
-        // 추후 여기서 서버 통신, 현재는 dummyResponse로 color 세팅
-        let mapArray = initialState.dummyState.map({ data in
-            MapModel(mapName: data.name, mapColor: data.colorType.color)
-        })
-        initialState.totalMapState = TotalMapModel(totalMapArray: mapArray, visitedMapCount: "0/16")
-        return initialState.totalMapState
-    }
-    
-    func prepareSelectedMap(type: RegionType) -> TotalMapModel {
-        var tempState = initialState.totalMapState
-        if let index = tempState.totalMapArray.firstIndex(where: { $0.mapName == type.rawValue }) {
-            tempState.totalMapArray[index] = MapModel(mapName: type.rawValue,
-                                                      mapColor: .mapSelect)
-            tempState.selectedMap = SelectedMapModel(selectedMapName: type.rawValue, isHidden: false)
-            initialState.selectedMap = type.rawValue
+    func prepareTotalMap(_ response: HomeResponse) -> TotalMapModel {
+        let mapArray = response.regions.map { region -> MapModel in
+            let colorType = OpacityColorType(response.selectedColor, region.opacity)
+            return MapModel(mapName: region.name, mapColor: colorType.color)
         }
-        return tempState
+        return TotalMapModel(totalMapArray: mapArray, visitedMapCount: "\(response.visitCount)/\(response.totalCount)")
     }
     
-    func prepareClearMap() -> TotalMapModel {
-        initialState.totalMapState.selectedMap = nil
-        return initialState.totalMapState
+    func prepareSelectedMap(type: RegionType) -> SelectedMapModel? {
+        type.rawValue == "외부" ? nil : SelectedMapModel(selectedMapName: type.rawValue, isHidden: false)
     }
     
     func prepareMapLayoutInset(inset: DeviceSize) -> TopAndLeadingInset {
-        return initialState.type.deviceInset(size: inset)
+        return MapDeviceInset.deviceInset(size: inset)
     }
 }
