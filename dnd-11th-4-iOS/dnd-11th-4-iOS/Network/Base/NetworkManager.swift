@@ -8,16 +8,24 @@
 import Foundation
 
 final class NetworkManager {
-    static func statusCodeErrorHandling(_ statusCode: Int) throws {
+    static func statusCodeErrorHandling(_ statusCode: Int) -> MDError {
         switch statusCode {
         case 204:
-            throw MDError.tokenError
+            return MDError.tokenError
         case 400..<500:
-            throw MDError.clientError
+            return MDError.clientError
         case 500...:
-            throw MDError.serverError
+            return MDError.serverError
         default:
-            return
+            return MDError.serverError
+        }
+    }
+    
+    static func handleError(_ error: Error) -> MDError {
+        if let mdError = error as? MDError {
+            return mdError
+        } else {
+            return MDError.castingError
         }
     }
 }

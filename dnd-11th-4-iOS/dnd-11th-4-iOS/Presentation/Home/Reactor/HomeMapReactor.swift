@@ -38,14 +38,14 @@ final class HomeMapReactor: Reactor {
         switch action {
         case .viewWillAppear:
             return HomeService.getHomeAPI()
-                .flatMap { result -> Observable<Mutation> in
-                    switch result {
-                    case .success(let response):
-                        return Observable.just(Mutation.setTotalMap(self.prepareTotalMap(response)))
-                    case .failure(let error):
-                        print("Error occurred: \(error)")
-                        return Observable.just(Mutation.setError(error)) // 에러 처리용 Mutation
-                    }
+                .map { response in
+                    // 성공적인 경우
+                    return Mutation.setTotalMap(self.prepareTotalMap(response))
+                }
+                .catch { error in
+                    // 에러 발생 시
+//                    NetworkManager.handleError(error)
+                    return Observable.just(Mutation.setError(NetworkManager.handleError(error)))
                 }
         case .mapAction(let type):
             return Observable.just(Mutation.setSelectedMap(prepareSelectedMap(type: type)))

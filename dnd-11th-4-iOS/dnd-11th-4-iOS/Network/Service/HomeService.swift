@@ -10,7 +10,7 @@ import Alamofire
 import RxSwift
 
 final class HomeService {
-    static func getHomeAPI() -> Observable<Result<HomeResponse, MDError>> {
+    static func getHomeAPI() -> Observable<HomeResponse> {
         return BaseRequest.request(HomeEndPoint.getHomeAPI)
     }
 }
