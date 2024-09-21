@@ -39,12 +39,9 @@ final class HomeMapReactor: Reactor {
         case .viewWillAppear:
             return HomeService.getHomeAPI()
                 .map { response in
-                    // 성공적인 경우
                     return Mutation.setTotalMap(self.prepareTotalMap(response))
                 }
                 .catch { error in
-                    // 에러 발생 시
-//                    NetworkManager.handleError(error)
                     return Observable.just(Mutation.setError(NetworkManager.handleError(error)))
                 }
         case .mapAction(let type):
@@ -58,7 +55,6 @@ final class HomeMapReactor: Reactor {
         var newState = state
         switch mutation {
         case .setTotalMap(let model):
-            print("⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️", model)
             newState.totalMapState = model
         case .setSelectedMap(let specificModel):
             newState.totalMapState?.selectedMap = specificModel
