@@ -10,8 +10,8 @@ import Alamofire
 import RxSwift
 
 final class BaseRequest {
-    static func request<T: Decodable>(_ endPoint: BaseEndpoint) -> Single<T> {
-        return Single.create { single in
+    static func request<T: Decodable>(_ endPoint: BaseEndpoint) -> Observable<Result<T, MDError>> {
+        return Observable.create { observer in
             let request = APIManager.session.request(endPoint)
                 .responseDecodable { (response: AFDataResponse<T>) in
                     switch response.result {
@@ -19,13 +19,15 @@ final class BaseRequest {
                         do {
                             guard let statusCode = response.response?.statusCode else { return }
                             try NetworkManager.statusCodeErrorHandling(statusCode)
-                            single(.success(result))
+                            observer.onNext(.success(result))
+                            observer.onCompleted()
                         } catch {
                             guard let error = error as? MDError else { return }
-                            single(.failure(error))
+                            observer.onNext(.failure(error))
+                            observer.onCompleted()
                         }
                     case .failure(_):
-                        single(.failure(MDError.serverError))
+                        observer.onError(MDError.serverError)
                     }
                 }
             return Disposables.create { request.cancel() }
