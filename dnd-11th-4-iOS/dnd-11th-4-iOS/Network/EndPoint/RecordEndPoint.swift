@@ -9,12 +9,13 @@ import Foundation
 import Alamofire
 
 enum RecordEndPoint {
-    case postRecordAPI(RecordRequest)
-    case updateRecordAPI(RecordId, photos: [String], updateRecordRequest: UpdateRecordRequest)
+    case postRecordAPI(request: RecordRequest, photos: [UIImage])
+    case updateRecordAPI(RecordId, photos: [UIImage], updateRecordRequest: UpdateRecordRequest)
     case deleteRecordAPI(RecordId)
 }
 
 extension RecordEndPoint: BaseEndpoint {
+    
     var baseURL: String {
         return Environment.baseURL
     }
@@ -42,8 +43,8 @@ extension RecordEndPoint: BaseEndpoint {
     
     var parameters: RequestParams {
         switch self {
-        case .postRecordAPI(let request):
-            return .body(request)
+        case .postRecordAPI:
+            return .none
         case .updateRecordAPI(let id, let photos, let updateRecordRequest):
             return .queryAndBody(query: id, body: updateRecordRequest)
         case .deleteRecordAPI(let id):
@@ -51,7 +52,32 @@ extension RecordEndPoint: BaseEndpoint {
         }
     }
     
+    var multipart: MultipartFormData? {
+        switch self {
+        case .postRecordAPI(let request, let photos):
+            let multipartFormData = MultipartFormData()
+            let requestData = request.toDictionary()
+            
+            for (key, value) in requestData {
+                multipartFormData.append("\(value)".data(using: .utf8) ?? Data(), withName: key)
+            }
+            
+            for photo in photos {
+                multipartFormData.append(photo.pngData() ?? Data(),
+                                         withName: "image",
+                                         fileName: "\(photo).png",
+                                         mimeType: "image/png")
+            }
+            return multipartFormData
+        default: return nil
+        }
+    }
+    
     var headers: HTTPHeaders? {
-        return .none
+        switch self {
+        case .postRecordAPI, .deleteRecordAPI, .updateRecordAPI:
+            return ["Content-Type": "multipart/form-data",
+                    "Authorization": "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJtZW1iZXJJZCI6MiwiaWF0IjoxNzI2OTIzOTAwLCJleHAiOjE3MjY5MjU3MDB9.FQngkXueyRb-7gDKt9qx4xqPDfPC7IiO6h05a2TJ7eE"]  
+        }
     }
 }

@@ -180,7 +180,8 @@ final class HomeMapViewController: UIViewController, View {
             .disposed(by: disposeBag)
         
         recordButton.rx.tap
-            .compactMap { reactor.initialState.selectedMap }
+            .withLatestFrom(reactor.state)
+            .compactMap { $0.totalMapState?.selectedMap?.selectedMapName }
             .asDriver(onErrorJustReturn: "서울")
             .drive(with: self) { owner, text in
                 let recordVC = RecordViewController(reactor: RecordReactor(),

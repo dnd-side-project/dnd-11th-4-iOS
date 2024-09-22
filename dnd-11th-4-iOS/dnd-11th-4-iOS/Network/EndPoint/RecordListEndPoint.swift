@@ -38,4 +38,8 @@ extension RecordListEndPoint: BaseEndpoint {
     var headers: HTTPHeaders? {
         return .none
     }
+    
+    var multipart: Alamofire.MultipartFormData? {
+        return nil
+    }
 }
