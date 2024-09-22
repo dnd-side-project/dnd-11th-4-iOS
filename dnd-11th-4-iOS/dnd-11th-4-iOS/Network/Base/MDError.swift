@@ -12,6 +12,7 @@ enum MDError: Error {
     case tokenError
     case clientError
     case serverError
+    case castingError
     
     var text: String {
         switch self {
@@ -21,6 +22,8 @@ enum MDError: Error {
             return "시스템 오류입니다. 다시 요청해 주세요."
         case .serverError:
             return "네트워크 오류입니다. 다시 요청해 주세요"
+        case .castingError:
+            return "타입 캐스팅 실패"
         }
     }
 }

@@ -56,7 +56,7 @@ enum MapDeviceInset {
         }
     }
     
-    func deviceInset(size: DeviceSize) -> TopAndLeadingInset {
+    static func deviceInset(size: DeviceSize) -> TopAndLeadingInset {
         switch (size.width, size.height) {
         case (430, 932):
             return MapDeviceInset.width430Height932.inset
