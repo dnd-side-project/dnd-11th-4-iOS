@@ -15,6 +15,25 @@ enum OpacityColorType: Codable {
     case blue(Int)
     case purple(Int)
     
+    init(_ colorString: String, _ opacity: Int) {
+        switch colorString.lowercased() {
+        case "pink":
+            self = .pink(opacity)
+        case "orange":
+            self = .orange(opacity)
+        case "yellow":
+            self = .yellow(opacity)
+        case "green":
+            self = .green(opacity)
+        case "blue":
+            self = .blue(opacity)
+        case "purple":
+            self = .purple(opacity)
+        default:
+            self = .pink(0)
+        }
+    }
+    
     var color: UIColor {
         switch self {
         case .pink(let opacity):
@@ -38,7 +57,7 @@ enum OpacityColorType: Codable {
             return .mapPink1
         case 2:
             return .mapPink2
-        case 3:
+        case 3...:
             return .mapPink3
         default:
             return .mapGray
@@ -51,7 +70,7 @@ enum OpacityColorType: Codable {
             return .mapOrange1
         case 2:
             return .mapOrange2
-        case 3:
+        case 3...:
             return .mapOrange3
         default:
             return .mapGray
@@ -64,7 +83,7 @@ enum OpacityColorType: Codable {
             return .mapYellow1
         case 2:
             return .mapYellow2
-        case 3:
+        case 3...:
             return .mapYellow3
         default:
             return .mapGray
@@ -77,7 +96,7 @@ enum OpacityColorType: Codable {
             return .mapGreen1
         case 2:
             return .mapGreen2
-        case 3:
+        case 3...:
             return .mapGreen3
         default:
             return .mapGray
@@ -90,7 +109,7 @@ enum OpacityColorType: Codable {
             return .mapBlue1
         case 2:
             return .mapBlue2
-        case 3:
+        case 3...:
             return .mapBlue3
         default:
             return .mapGray
@@ -103,7 +122,7 @@ enum OpacityColorType: Codable {
             return .mapPurple1
         case 2:
             return .mapPurple2
-        case 3:
+        case 3...:
             return .mapPurple3
         default:
             return .mapGray

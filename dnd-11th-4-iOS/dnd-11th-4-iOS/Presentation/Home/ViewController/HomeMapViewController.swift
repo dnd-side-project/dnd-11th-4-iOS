@@ -126,7 +126,7 @@ final class HomeMapViewController: UIViewController, View {
             }
             .disposed(by: disposeBag)
         
-        reactor.state.map{ $0.totalMapState }
+        reactor.state.compactMap { $0.totalMapState }
             .withUnretained(self)
             .subscribe { _, data in
                 for model in data.totalMapArray {
