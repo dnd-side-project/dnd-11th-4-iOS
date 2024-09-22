@@ -80,6 +80,7 @@
 		FB0BE4F12C57B5FD00C34C7B /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4ED2C57B5FD00C34C7B /* Pretendard-Bold.otf */; };
 		FB0BE4F22C57B5FD00C34C7B /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4EE2C57B5FD00C34C7B /* Pretendard-SemiBold.otf */; };
 		FB0BE4F32C57B5FD00C34C7B /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4EF2C57B5FD00C34C7B /* Pretendard-Regular.otf */; };
+		FB4972432CA03CCC0042E86B /* RecordListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4972422CA03CCC0042E86B /* RecordListService.swift */; };
 		FB7AEDD52C74A62900B95784 /* LoginReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7AEDD42C74A62900B95784 /* LoginReactor.swift */; };
 		FB7AEDD92C74E72E00B95784 /* ServiceAcceptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7AEDD82C74E72E00B95784 /* ServiceAcceptViewController.swift */; };
 		FB7AEDDB2C75AF0B00B95784 /* ServiceAcceptReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7AEDDA2C75AF0B00B95784 /* ServiceAcceptReactor.swift */; };
@@ -199,6 +200,7 @@
 		FB0BE4ED2C57B5FD00C34C7B /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		FB0BE4EE2C57B5FD00C34C7B /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		FB0BE4EF2C57B5FD00C34C7B /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		FB4972422CA03CCC0042E86B /* RecordListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListService.swift; sourceTree = "<group>"; };
 		FB7AEDD42C74A62900B95784 /* LoginReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReactor.swift; sourceTree = "<group>"; };
 		FB7AEDD82C74E72E00B95784 /* ServiceAcceptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAcceptViewController.swift; sourceTree = "<group>"; };
 		FB7AEDDA2C75AF0B00B95784 /* ServiceAcceptReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAcceptReactor.swift; sourceTree = "<group>"; };
@@ -418,6 +420,7 @@
 			isa = PBXGroup;
 			children = (
 				4A1CB9422C7C7F63002DE4FE /* HomeService.swift */,
+				FB4972422CA03CCC0042E86B /* RecordListService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1037,6 +1040,7 @@
 				FBE0F5B22C789FB700C81F8A /* MyPageCell.swift in Sources */,
 				4A1CB94E2C7E157C002DE4FE /* Empty.swift in Sources */,
 				4A5FFDA62C4FAA6A002F5A77 /* Constant.swift in Sources */,
+				FB4972432CA03CCC0042E86B /* RecordListService.swift in Sources */,
 				FB808E582C622DC600E9E2E5 /* RecordListCell.swift in Sources */,
 				FB808E542C5A72E500E9E2E5 /* MDNavigationBar.swift in Sources */,
 				FBAF7F932C7B555900D71216 /* AccountDeleteViewController.swift in Sources */,

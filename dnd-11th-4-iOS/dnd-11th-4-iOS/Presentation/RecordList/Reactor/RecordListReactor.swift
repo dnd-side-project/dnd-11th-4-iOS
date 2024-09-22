@@ -22,6 +22,7 @@ final class RecordListReactor: Reactor {
         case setRecords([RecordSection])
         case recordDeleted(Bool)
         case resetDeleteState
+        case setError(MDError)
     }
     
     struct State {
@@ -43,20 +44,14 @@ extension RecordListReactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .loadRecords:
-            let records = [
-                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드1", memo: "꾸르잼", date: "24.10.22"),
-                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드2", memo: "꾸르잼", date: "24.10.22"),
-                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드3", memo: "꾸르잼", date: "24.10.22"),
-                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드4", memo: "꾸르잼", date: "24.10.22"),
-                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드5", memo: "꾸르잼", date: "24.10.22"),
-                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드6", memo: "꾸르잼", date: "24.10.22"),
-                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드7", memo: "꾸르잼", date: "24.10.22"),
-                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드8", memo: "꾸르잼", date: "24.10.22"),
-                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드9", memo: "꾸르잼", date: "24.10.22"),
-                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드10", memo: "꾸르잼", date: "24.10.22")
-            ]
-            let section = RecordSection(header: "Records", items: records)
-            return Observable.just(Mutation.setRecords([section]))
+            return RecordListService.getRecordListAPI()
+                .map { response in
+                    let section = RecordSection(header: "Records", items: response.recordResponses)
+                    return Mutation.setRecords([section])
+                }
+                .catch { error in
+                    return Observable.just(Mutation.setError(NetworkManager.handleError(error)))
+                }
         case .deleteRecord(let indexPath):
             var sections = currentState.sections
             sections[indexPath.section].items.remove(at: indexPath.item)
@@ -77,6 +72,8 @@ extension RecordListReactor {
             newState.isRecordDeleted = isDeleted
         case .resetDeleteState:
             newState.isRecordDeleted = false
+        case .setError(let error):
+            print(error)
         }
         return newState
     }
@@ -90,7 +87,7 @@ struct RecordSection {
 }
 
 extension RecordSection: SectionModelType {
-    typealias Item = Test
+    typealias Item = RecordResponse
     
     init(original: RecordSection, items: [Item]) {
         self = original

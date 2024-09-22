@@ -9,15 +9,7 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
-
-/// 임시 데이터
-struct Test: Hashable {
-    let image: UIImage
-    let title: String
-    let memo: String
-    let date: String
-    let id: UUID = UUID()
-}
+import Kingfisher
 
 final class RecordListCell: UICollectionViewCell {
     let deleteButtonTapped = PublishSubject<Void>()
@@ -30,6 +22,7 @@ final class RecordListCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 4
+        imageView.image = Constant.Image.imageDetailEmpty
         return imageView
     }()
     private let titleLabel = MDLabel(attributedString: NSAttributedString.pretendardSB14("title"), textColor: .mapBlack)
@@ -139,11 +132,13 @@ final class RecordListCell: UICollectionViewCell {
             .disposed(by: disposeBag)
     }
     
-    func configure(with record: Test) {
-        titleLabel.attributedText = NSAttributedString.pretendardSB14(record.title)
-        memoLabel.attributedText = NSAttributedString.pretendardR14(record.memo)
-        dateLabel.attributedText = NSAttributedString.pretendardR12(record.date)
-        recordImage.image = record.image
+    func configure(with record: RecordResponse) {
+        titleLabel.attributedText = NSAttributedString.pretendardSB14(record.attractionName)
+        memoLabel.attributedText = NSAttributedString.pretendardR14(record.memo ?? "")
+        dateLabel.attributedText = NSAttributedString.pretendardR12(record.visitDate ?? "")
+        if let url = record.photoUrls?.first, let imageURL = URL(string: url) {
+            recordImage.kf.setImage(with: imageURL)
+        }
     }
     
     func didTapDeleteButton() {
