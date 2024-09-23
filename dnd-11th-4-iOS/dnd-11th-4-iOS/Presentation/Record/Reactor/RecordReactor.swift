@@ -18,12 +18,21 @@ enum RegionButtonType {
     case complete(Int)
 }
 
+struct RecordModel {
+    let type: RecordType
+    let region: String
+    let place: String?
+    let imageArray: [UIImage]?
+    let memo: String?
+    let date: String
+}
+
 final class RecordReactor: Reactor {
     
     var initialState: State
     
     enum Action {
-        case viewWillAppear(RecordType)
+        case viewWillAppear(RecordModel)
         case imageAddTapped([NSItemProvider])
         case regionTapped(String)
         case placeTapped(String)
@@ -33,13 +42,12 @@ final class RecordReactor: Reactor {
     }
     
     enum Mutation {
-        case setRecordData(DetailRecordAppData)
         case setImageArray([UIImage])
         case setRegionText(String)
         case setPlaceText(String)
         case setMemoText(String)
         case setDateText(String)
-        case setDeleteCell([UIImage])
+        case setDeleteCell(IndexPath)
     }
     
     struct State {
@@ -51,23 +59,28 @@ final class RecordReactor: Reactor {
         var placeText: String?
         var memoText: String? = ""
         var imageCount: Int = 0
+        var recordData: DetailRecordAppData?
+        var recordModel: RecordModel
         var completeButtonEnabled: Bool {
             return selectedRegion != nil && placeText != ""
         }
-        var recordData: DetailRecordAppData?
     }
     
-    init() {
-        self.initialState = State()
+    init(model: RecordModel) {
+        self.initialState = State(recordModel: model)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .viewWillAppear(let type):
-            return Observable.just(.setRecordData(prepareTypeData(type: type)))
+        case .viewWillAppear(let model):
+            return Observable.concat([
+                    Observable.just(.setRegionText(model.region)),
+                    Observable.just(.setPlaceText(prepareTrimText(model.place, 20))),
+                    Observable.just(.setMemoText(prepareTrimText(model.memo ?? "", 25))),
+                    Observable.just(.setDateText(prepareDateText(Date())))
+                ])
         case .imageAddTapped(let imageArray):
             return self.prepareImageArray(imageArray).map { array in
-                self.initialState.selectedArrayImage = array
                 return Mutation.setImageArray(array)
             }
         case .regionTapped(let regionText):
@@ -77,24 +90,22 @@ final class RecordReactor: Reactor {
         case .memoTapped(let memoText):
             return Observable.just(.setMemoText(prepareTrimText(memoText, 25)))
         case .dateTapped(let date):
+            print("뭐냐 ㅋㅋ", date)
             return Observable.just(.setDateText(prepareDateText(date)))
         case .deleteCellTapped(let indexPath):
-            return Observable.just(.setDeleteCell(prepareDeleteCell(indexPath)))
+            return Observable.just(.setDeleteCell(indexPath))
         }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
         switch mutation {
-        case .setRecordData(let data):
-            newState.selectedRegion = data.region
-            newState.placeText = data.place
-            newState.memoText = data.memo
-            newState.selectedDate = data.date
-            newState.selectedArrayImage = data.imageArray
-        case .setImageArray(let imageArray), .setDeleteCell(let imageArray):
+        case .setImageArray(let imageArray):
             newState.selectedArrayImage = imageArray
             newState.imageCount = imageArray.count
+        case .setDeleteCell(let indexPath):
+            newState.selectedArrayImage?.remove(at: indexPath.row)
+            newState.imageCount = newState.selectedArrayImage?.count ?? 0
         case .setRegionText(let regionText):
             newState.selectedRegion = regionText
         case .setPlaceText(let placeText):
@@ -130,33 +141,27 @@ extension RecordReactor {
         return Observable.zip(observables)
     }
     
-    private func prepareTrimText(_ text: String, _ count: Int) -> String {
+    private func prepareTrimText(_ text: String?, _ count: Int) -> String {
+        guard let text = text else { return "" }
         return text.count > count ? String(text.prefix(count)) : text
     }
     
     private func prepareDateText(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy년 MM월 dd일"
-        initialState.selectedDate = dateFormatter.string(from: date)
         return dateFormatter.string(from: date)
     }
     
-    private func prepareDeleteCell(_ indexPath: IndexPath)-> [UIImage] {
-        let row = indexPath.item
-        initialState.selectedArrayImage?.remove(at: row)
-        return initialState.selectedArrayImage ?? []
-    }
-    
     private func prepareTypeData(type: RecordType) -> DetailRecordAppData {
-        switch type {
-        case .write(let region):
-            initialState.recordData?.region = region
-        case .edit(let data):
-            if data.imageArray[0] == Constant.Image.imageDetailEmpty {
-                initialState.recordData = data
-                initialState.recordData?.imageArray = []
-            }
-        }
+//        switch type {
+//        case .write:
+//            initialState.recordData?.region = region
+//        case .edit:
+//            if data.imageArray[0] == Constant.Image.imageDetailEmpty {
+//                initialState.recordData = data
+//                initialState.recordData?.imageArray = []
+//            }
+//        }
         return initialState.recordData ?? DetailRecordAppData.empty
     }
 }

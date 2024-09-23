@@ -14,8 +14,8 @@ import PhotosUI
 import RxKeyboard
 
 enum RecordType {
-    case write(String)
-    case edit(DetailRecordAppData)
+    case write
+    case edit
 }
 
 final class RecordViewController: UIViewController, View {
@@ -133,11 +133,10 @@ final class RecordViewController: UIViewController, View {
         bindInput()
     }
     
-    init(reactor: RecordReactor, type: RecordType) {
+    init(reactor: RecordReactor) {
         super.init(nibName: nil, bundle: nil)
-        
         self.reactor = reactor
-        reactor.action.onNext(.viewWillAppear(type))
+        reactor.action.onNext(.viewWillAppear(reactor.currentState.recordModel))
     }
     
     required init?(coder: NSCoder) {
@@ -166,7 +165,7 @@ final class RecordViewController: UIViewController, View {
         
         regionCancelBarButton.rx.tap
             .bind(with: self, onNext: { owner, text in
-                owner.regionTextField.text = reactor.initialState.selectedRegion
+                owner.regionTextField.text = reactor.currentState.selectedRegion
                 owner.regionTextField.resignFirstResponder()
             })
             .disposed(by: disposeBag)
@@ -174,8 +173,7 @@ final class RecordViewController: UIViewController, View {
         regionCompleteBarButton.rx.tap
             .bind(with: self, onNext: { owner, text in
                 let row = owner.regionPickerView.selectedRow(inComponent: 0)
-                reactor.initialState.selectedRegion = reactor.initialState.regionArray[row]
-                owner.regionTextField.text = reactor.initialState.regionArray[row]
+                owner.regionTextField.text = reactor.currentState.regionArray[row]
                 owner.regionTextField.resignFirstResponder()
             })
             .disposed(by: disposeBag)
@@ -223,7 +221,7 @@ final class RecordViewController: UIViewController, View {
         
         dateComplteBarButton.rx.tap
             .bind(with: self, onNext: { owner, text in
-                owner.dateTextField.text = reactor.initialState.selectedDate
+                owner.dateTextField.text = reactor.currentState.selectedDate
                 owner.dateTextField.resignFirstResponder()
             })
             .disposed(by: disposeBag)
@@ -238,13 +236,13 @@ final class RecordViewController: UIViewController, View {
     }
     
     func bind(reactor: RecordReactor) {
-        Observable.just(reactor.initialState.regionArray)
+        Observable.just(reactor.currentState.regionArray)
             .bind(to: regionPickerView.rx.itemTitles) { _, item in
                 return item
             }
             .disposed(by: disposeBag)
         
-        reactor.state.map {$0.selectedRegion }
+        reactor.state.map { $0.selectedRegion }
             .asDriver(onErrorJustReturn: "잠시 후 다시 실행해 주세요")
             .drive(regionTextField.rx.text)
             .disposed(by: disposeBag)
@@ -301,7 +299,7 @@ final class RecordViewController: UIViewController, View {
         regionPickerView.rx.itemSelected
             .withUnretained(self)
             .map { owner, index in
-                return self.reactor?.initialState.regionArray[index.row]
+                return self.reactor?.currentState.regionArray[index.row]
             }
             .bind(to: regionTextField.rx.text)
             .disposed(by: disposeBag)
@@ -360,6 +358,7 @@ final class RecordViewController: UIViewController, View {
     
     private func setTextField() {
         regionTextField.tintColor = .clear
+        dateTextField.tintColor = .clear
         regionTextField.inputView = regionPickerView
         regionTextField.inputAccessoryView = regionToolbar
         dateTextField.inputView = datePicker
