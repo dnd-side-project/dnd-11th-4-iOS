@@ -31,4 +31,21 @@ enum ColorType {
             return "Onboarding_Purple"
         }
     }
+    
+    var serverName: String {
+        switch self {
+        case .pink:
+            return "PINK"
+        case .orange:
+            return "ORANGE"
+        case .yellow:
+            return "YELLOW"
+        case .green:
+            return "GREEN"
+        case .blue:
+            return "BLUE"
+        case .purple:
+            return "PURPLE"
+        }
+    }
 }
