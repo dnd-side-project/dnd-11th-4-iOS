@@ -130,7 +130,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             let _ = appleIDCredential.email
             if  let authorizationCode = appleIDCredential.authorizationCode,
                 let identityToken = appleIDCredential.identityToken,
-                let authString = String(data: authorizationCode, encoding: .utf8) {
+                let authString = String(data: authorizationCode, encoding: .utf8),
+                let appleTokenString = String(data: identityToken, encoding: .utf8) {
                 print("authString: \(authString)")
                 reactor?.action.onNext(.loginSuccess(authString))
             }

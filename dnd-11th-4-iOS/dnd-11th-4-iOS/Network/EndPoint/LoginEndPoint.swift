@@ -52,10 +52,6 @@ extension LoginEndPoint: BaseEndpoint {
     }
     
     var headers: HTTPHeaders? {
-        let accessToken = TokenManager.shared.getAccessToken() ?? ""
-        return [
-            "Content-Type": "application/json",
-            "Authorization": "Bearer \(accessToken)"
-        ]
+        return .default
     }
 }

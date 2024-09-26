@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 
 final class SplashViewController: UIViewController {
+    private let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    
     private let descriptionLabel: MDLabel = {
         let label = MDLabel(attributedString: NSAttributedString.pretendardSB16("방방곡곡 대한민국 도장깨기"), textColor: .mapWhite, alignment: .center)
         return label
@@ -27,7 +29,7 @@ final class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        navigateToViewController(viewController: LoginViewController(reactor: LoginReactor()), delay: 2.0)
+        setRootViewController()
     }
     
     // MARK: - Layout
@@ -56,6 +58,14 @@ final class SplashViewController: UIViewController {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(68)
             $0.centerX.equalToSuperview()
+        }
+    }
+    
+    private func setRootViewController() {
+        if appDelegate?.isLogin == true {
+            navigateToViewController(viewController: TabBarViewController())
+        } else {
+            navigateToViewController(viewController: LoginViewController(reactor: LoginReactor()), delay: 2.0)
         }
     }
 }
