@@ -83,6 +83,7 @@
 		FB4972432CA03CCC0042E86B /* RecordListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4972422CA03CCC0042E86B /* RecordListService.swift */; };
 		FB4972452CA2DE620042E86B /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4972442CA2DE620042E86B /* LoginService.swift */; };
 		FB4972472CA53CC20042E86B /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4972462CA53CC20042E86B /* TokenManager.swift */; };
+		FB4972492CA57FF10042E86B /* MyPageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4972482CA57FF10042E86B /* MyPageService.swift */; };
 		FB7AEDD52C74A62900B95784 /* LoginReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7AEDD42C74A62900B95784 /* LoginReactor.swift */; };
 		FB7AEDD92C74E72E00B95784 /* ServiceAcceptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7AEDD82C74E72E00B95784 /* ServiceAcceptViewController.swift */; };
 		FB7AEDDB2C75AF0B00B95784 /* ServiceAcceptReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7AEDDA2C75AF0B00B95784 /* ServiceAcceptReactor.swift */; };
@@ -205,6 +206,7 @@
 		FB4972422CA03CCC0042E86B /* RecordListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListService.swift; sourceTree = "<group>"; };
 		FB4972442CA2DE620042E86B /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		FB4972462CA53CC20042E86B /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
+		FB4972482CA57FF10042E86B /* MyPageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageService.swift; sourceTree = "<group>"; };
 		FB7AEDD42C74A62900B95784 /* LoginReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReactor.swift; sourceTree = "<group>"; };
 		FB7AEDD82C74E72E00B95784 /* ServiceAcceptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAcceptViewController.swift; sourceTree = "<group>"; };
 		FB7AEDDA2C75AF0B00B95784 /* ServiceAcceptReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAcceptReactor.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 				4A1CB9422C7C7F63002DE4FE /* HomeService.swift */,
 				FB4972422CA03CCC0042E86B /* RecordListService.swift */,
 				FB4972442CA2DE620042E86B /* LoginService.swift */,
+				FB4972482CA57FF10042E86B /* MyPageService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1032,6 +1035,7 @@
 				4A5555402C8768070008AF07 /* APIEventLogger.swift in Sources */,
 				FBF1F1362C90797B0038A64F /* MyPageEndPoint.swift in Sources */,
 				4A5FFDC82C4FB0F1002F5A77 /* HomeMap_제주도.swift in Sources */,
+				FB4972492CA57FF10042E86B /* MyPageService.swift in Sources */,
 				4A1CB93A2C7C7DDA002DE4FE /* HTTPHeaderField.swift in Sources */,
 				4A1CB93D2C7C7E1A002DE4FE /* HomeEndPoint.swift in Sources */,
 				4AAFDB712C494CFF008C6DAF /* HomeMapViewController.swift in Sources */,

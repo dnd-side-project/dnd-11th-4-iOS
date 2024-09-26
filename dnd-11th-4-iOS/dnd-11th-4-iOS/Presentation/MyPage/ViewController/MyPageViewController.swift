@@ -36,6 +36,7 @@ final class MyPageViewController: UIViewController {
     init(reactor: MyPageReactor) {
         super.init(nibName: nil, bundle: nil)
         self.reactor = reactor
+        reactor.action.onNext(.fetchUserName(0))
     }
     
     required init?(coder: NSCoder) {
@@ -88,6 +89,16 @@ extension MyPageViewController: View {
             .drive(tableView.rx.items(cellIdentifier: MyPageCell.identifier, cellType: MyPageCell.self)) { row, element, cell in
                 cell.configure(title: element.0, image: element.1)
             }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.userName }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: "다시 시도해주세요.")
+            .drive(onNext: { [weak self] userName in
+                guard let self = self else { return }
+                self.myPageView.setupNameLabel(userName)
+            })
             .disposed(by: disposeBag)
     }
 }
