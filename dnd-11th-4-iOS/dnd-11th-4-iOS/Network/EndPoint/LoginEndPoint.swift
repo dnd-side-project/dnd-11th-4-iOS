@@ -52,6 +52,9 @@ extension LoginEndPoint: BaseEndpoint {
     }
     
     var headers: HTTPHeaders? {
-        return .default
+        return [
+            "Content-Type": "application/json",
+            "accept": "application/json"
+        ]
     }
 }

@@ -55,8 +55,8 @@ final class OnboardingViewController: UIViewController {
     // MARK: - Bind
     
     private func bindActions() {
-        // 색상 선택 이벤트 전달
         onboardingView.colorSelected
+            .distinctUntilChanged()
             .withUnretained(self)
             .subscribe(onNext: { owner, color in
                 owner.reactor?.action.onNext(.selectColor(color))
@@ -64,11 +64,9 @@ final class OnboardingViewController: UIViewController {
             .disposed(by: disposeBag)
         
         onboardingView.selectButton.rx.tap
-            .asDriver()
-            .delay(.milliseconds(300))
-            .drive(onNext: { [weak self] in
-                guard let self = self else { return }
-                self.navigateToViewController(viewController: TabBarViewController())
+            .withUnretained(self)
+            .subscribe(onNext: { owner, _ in
+                owner.reactor?.action.onNext(.selectButtonTapped)
             })
             .disposed(by: disposeBag)
     }
@@ -83,6 +81,15 @@ extension OnboardingViewController: View {
             .drive(onNext: { [weak self] animationName in
                 guard let self = self else { return }
                 self.onboardingView.updateAnimationView(with: animationName)
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .filter { $0.isLoginSuccess }
+            .take(1)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.navigateToViewController(viewController: TabBarViewController())
             })
             .disposed(by: disposeBag)
     }
