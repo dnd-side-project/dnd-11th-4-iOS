@@ -83,4 +83,43 @@ cell.deleteButtonTappedSubject
 
 self.dispoesBag이 아니라 cell.disposeBag을 해 주어서 해당 스트림을 cell의 생명주기와 맞게 바꿔 주어서 해결할 수 있었습니다.
 
+<br/>
 
+### 2) API 호출 시 메모리 해제가 발생하여 네트워크 요청이 취소되는 이슈 해결
+
+초기에 onboarding 화면에서 색상선택 후 완료버튼을 누를 때 로그인 API 호출을 하고 다음 화면으로 넘어가도록 구현했습니다. 이 과정에서 서버통신 결과에 상관없이 다음 화면으로 넘어가도록 구현했기 때문에 온보딩 뷰컨트롤러가 화면에서 사라지면서 API호출이 취소되는 상황이 발생했습니다. Error log를 보면서 Alamofire의 error case 중 explicitlyCancelled에 대해 찾아보니, Observable이 구독된 후 너무 빨리 해제될 경우 네트워크 요청이 취소될 수 있다는 것을 알게 되었습니다.
+
+```swift
+🛰🛰🛰 NETWORK Reqeust LOG
+POST https://mapddangtest.site/login/oauth2/apple
+URL: https://mapddangtest.site/login/oauth2/apple
+Method: POST
+Headers: ["Accept": "application/json", "Content-Type": "application/json"]
+
+Authorization: 
+Body: {
+  "selectedColor" : "PINK",
+  "appleToken" : "c53002834f2854664b9a7021c23089293.0.prtwy.cq5uJkUZUAvgvqtBFciinA"
+}
+🛰🛰🛰 NETWORK Response LOG
+URL: https://mapddangtest.site/login/oauth2/apple
+Result: failure(Alamofire.AFError.explicitlyCancelled)
+StatusCode: 0
+Data:
+````
+
+온보딩 뷰 컨트롤러가 메모리에서 소멸되면서 Observable에 대한 구독이 해제되어 네트워크 요청이 완료되기 전에 취소되었고, 서버통신 결과에 상관없이 다음 화면으로 넘어가는 로직에 문제가 있다고 판단되어 정상적으로 API 통신에 성공했을 경우에만 다음 화면을 보여줄 수 있도록 로직을 수정했습니다.
+
+```swift
+🛰🛰🛰 NETWORK Reqeust LOG
+POST https://mapddangtest.site/login/oauth2/apple (200)
+URL: https://mapddangtest.site/login/oauth2/apple
+Method: POST
+Headers: ["Content-Type": "application/json", "Accept": "application/json"]
+
+Authorization: 
+Body: {
+  "selectedColor" : "PINK",
+  "appleToken" : "token"
+}
+````
