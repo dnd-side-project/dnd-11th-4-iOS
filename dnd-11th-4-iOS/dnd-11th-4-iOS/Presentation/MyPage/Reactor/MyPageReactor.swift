@@ -13,7 +13,7 @@ final class MyPageReactor: Reactor {
     var initialState: State
     
     enum Action {
-        case fetchUserName(Int)
+        case fetchUserName
         case selectItem(IndexPath)
     }
     
@@ -41,8 +41,8 @@ final class MyPageReactor: Reactor {
 extension MyPageReactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case let .fetchUserName(id):
-            return MyPageService.getMyPageAPI(with: id)
+        case .fetchUserName:
+            return MyPageService.getMyPageAPI()
                 .map { response in
                     return Mutation.setUserName(response.name)
                 }

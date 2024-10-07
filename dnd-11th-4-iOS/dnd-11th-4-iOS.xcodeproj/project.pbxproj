@@ -121,7 +121,6 @@
 		FBF1F1322C9041A10038A64F /* RecordEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F1312C9041A10038A64F /* RecordEndPoint.swift */; };
 		FBF1F1342C9044E50038A64F /* LoginEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F1332C9044E50038A64F /* LoginEndPoint.swift */; };
 		FBF1F1362C90797B0038A64F /* MyPageEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F1352C90797B0038A64F /* MyPageEndPoint.swift */; };
-		FBF1F1382C9079F50038A64F /* MyPageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF1F1372C9079F50038A64F /* MyPageRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -246,7 +245,6 @@
 		FBF1F1312C9041A10038A64F /* RecordEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordEndPoint.swift; sourceTree = "<group>"; };
 		FBF1F1332C9044E50038A64F /* LoginEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndPoint.swift; sourceTree = "<group>"; };
 		FBF1F1352C90797B0038A64F /* MyPageEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageEndPoint.swift; sourceTree = "<group>"; };
-		FBF1F1372C9079F50038A64F /* MyPageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageRequest.swift; sourceTree = "<group>"; };
 		FC6186EB1A512F7D1B5F90E0 /* Pods_dnd_11th_4_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dnd_11th_4_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -873,7 +871,6 @@
 		FBF1F1292C8EF5900038A64F /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
-				FBF1F1372C9079F50038A64F /* MyPageRequest.swift */,
 				FBF1F1242C8EF5190038A64F /* MyPageResponse.swift */,
 			);
 			path = MyPage;
@@ -1030,7 +1027,6 @@
 				4AAFDBB22C4953C9008C6DAF /* Application.swift in Sources */,
 				4A5555342C84A7820008AF07 /* DetailRecordAppData.swift in Sources */,
 				4A5FFDB22C4FAE73002F5A77 /* HomeMap_충청남도.swift in Sources */,
-				FBF1F1382C9079F50038A64F /* MyPageRequest.swift in Sources */,
 				FB7AEDDB2C75AF0B00B95784 /* ServiceAcceptReactor.swift in Sources */,
 				4A5555402C8768070008AF07 /* APIEventLogger.swift in Sources */,
 				FBF1F1362C90797B0038A64F /* MyPageEndPoint.swift in Sources */,

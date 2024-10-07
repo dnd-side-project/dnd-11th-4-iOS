@@ -36,7 +36,7 @@ final class MyPageViewController: UIViewController {
     init(reactor: MyPageReactor) {
         super.init(nibName: nil, bundle: nil)
         self.reactor = reactor
-        reactor.action.onNext(.fetchUserName(0))
+        reactor.action.onNext(.fetchUserName)
     }
     
     required init?(coder: NSCoder) {

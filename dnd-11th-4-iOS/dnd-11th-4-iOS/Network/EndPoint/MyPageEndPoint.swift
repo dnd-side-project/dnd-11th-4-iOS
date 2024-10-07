@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 enum MyPageEndPoint {
-    case getMyPageAPI(MyPageRequest)
+    case getMyPageAPI
 }
 
 extension MyPageEndPoint: BaseEndpoint {
@@ -26,10 +26,7 @@ extension MyPageEndPoint: BaseEndpoint {
     }
     
     var parameters: RequestParams {
-        switch self {
-        case .getMyPageAPI(let request):
-            return .query(request)
-        }
+        return .none
     }
     
     var headers: HTTPHeaders? {

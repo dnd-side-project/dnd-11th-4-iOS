@@ -10,8 +10,7 @@ import Alamofire
 import RxSwift
 
 final class MyPageService {
-    static func getMyPageAPI(with id: Int) -> Observable<MyPageResponse> {
-        let request = MyPageRequest(id: id)
-        return BaseRequest.request(MyPageEndPoint.getMyPageAPI(request))
+    static func getMyPageAPI() -> Observable<MyPageResponse> {
+        return BaseRequest.request(MyPageEndPoint.getMyPageAPI)
     }
 }
