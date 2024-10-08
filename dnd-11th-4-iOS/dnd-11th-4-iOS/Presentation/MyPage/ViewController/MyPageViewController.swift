@@ -71,7 +71,7 @@ final class MyPageViewController: UIViewController {
                     let detailVC = InquiryViewController()
                     self.navigationController?.pushViewController(detailVC, animated: true)
                 case "서비스 탈퇴":
-                    let popUpVC = AccountDeleteViewController()
+                    let popUpVC = AccountDeleteViewController(reactor: AccountDeleteReactor())
                     self.present(popUpVC, animated: true)
                 default:
                     return

@@ -18,4 +18,8 @@ final class LoginService {
     static func reIssueToken(request: RefreshTokenRequest) -> Observable<LoginResponse> {
         return BaseRequest.request(LoginEndPoint.reIssueTokenAPI(request))
     }
+    
+    static func revokeToken(request: WithdrawRequest) -> Observable<Empty> {
+        return BaseRequest.request(LoginEndPoint.withdrawAPI(request))
+    }
 }
