@@ -10,7 +10,6 @@ import AuthenticationServices
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    var isLogin: Bool = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
@@ -19,14 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             case .authorized:
                 // The Apple ID credential is valid.
                 print("해당 ID는 연동되어있습니다.")
-                self.isLogin = true
             case .revoked:
                 // The Apple ID credential is either revoked or was not found, so show the sign-in UI.
                 print("해당 ID는 연동되어있지않습니다.")
             case .notFound:
                 // The Apple ID credential is either was not found, so show the sign-in UI.
                 print("해당 ID를 찾을 수 없습니다.")
-                self.isLogin = true // 임시값
             default:
                 break
             }

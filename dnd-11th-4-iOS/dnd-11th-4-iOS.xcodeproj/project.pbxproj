@@ -103,6 +103,7 @@
 		FB808E942C6B93A000E9E2E5 /* Onboarding_Green.json in Resources */ = {isa = PBXBuildFile; fileRef = FB808E8E2C6B93A000E9E2E5 /* Onboarding_Green.json */; };
 		FB808E962C6B955B00E9E2E5 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E952C6B955B00E9E2E5 /* OnboardingView.swift */; };
 		FB808E982C6BAC6000E9E2E5 /* OnboardingReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB808E972C6BAC6000E9E2E5 /* OnboardingReactor.swift */; };
+		FB9069A52CB564790036C06A /* SplashReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9069A42CB564790036C06A /* SplashReactor.swift */; };
 		FB9B35A02C6F768500FB884E /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9B359F2C6F768500FB884E /* SplashViewController.swift */; };
 		FB9B35A52C6F99EE00FB884E /* ColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9B35A12C6F828500FB884E /* ColorType.swift */; };
 		FBAD5B012C737AF800DC0171 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAD5B002C737AF800DC0171 /* LoginViewController.swift */; };
@@ -225,6 +226,7 @@
 		FB808E8E2C6B93A000E9E2E5 /* Onboarding_Green.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding_Green.json; sourceTree = "<group>"; };
 		FB808E952C6B955B00E9E2E5 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		FB808E972C6BAC6000E9E2E5 /* OnboardingReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingReactor.swift; sourceTree = "<group>"; };
+		FB9069A42CB564790036C06A /* SplashReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashReactor.swift; sourceTree = "<group>"; };
 		FB9B359F2C6F768500FB884E /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		FB9B35A12C6F828500FB884E /* ColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorType.swift; sourceTree = "<group>"; };
 		FBAD5B002C737AF800DC0171 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -716,6 +718,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		FB9069A62CB575460036C06A /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+				FB9069A42CB564790036C06A /* SplashReactor.swift */,
+			);
+			path = Reactor;
+			sourceTree = "<group>";
+		};
 		FB9B35982C6F753D00FB884E /* Reactor */ = {
 			isa = PBXGroup;
 			children = (
@@ -762,6 +772,7 @@
 		FB9B359D2C6F763F00FB884E /* Splash */ = {
 			isa = PBXGroup;
 			children = (
+				FB9069A62CB575460036C06A /* Reactor */,
 				FB9B359E2C6F766D00FB884E /* ViewController */,
 			);
 			path = Splash;
@@ -1105,6 +1116,7 @@
 				4AA4144F2C64686900AB3CE8 /* ColorWithOpacityModel.swift in Sources */,
 				4A16E2EE2C60AD8F00F48180 /* OpacityColorType.swift in Sources */,
 				FB4972452CA2DE620042E86B /* LoginService.swift in Sources */,
+				FB9069A52CB564790036C06A /* SplashReactor.swift in Sources */,
 				4A5FFDC02C4FB027002F5A77 /* HomeMap_전라남도.swift in Sources */,
 				4A5FFDAE2C4FAD42002F5A77 /* DrawMapProtocol.swift in Sources */,
 				FB4972472CA53CC20042E86B /* TokenManager.swift in Sources */,
