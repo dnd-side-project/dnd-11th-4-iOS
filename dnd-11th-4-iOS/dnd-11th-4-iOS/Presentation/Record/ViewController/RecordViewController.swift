@@ -315,6 +315,7 @@ final class RecordViewController: UIViewController, View {
             .drive(with: self, onNext: { owner, _ in
                 owner.navigationController?.view.layer.add(CATransition().fadeType(), forKey: kCATransition)
                 owner.navigationController?.popViewController(animated: false)
+                owner.completeButtonTapped.onNext(())
             })
             .disposed(by: disposeBag)
         
