@@ -11,6 +11,7 @@
 
 ## 맵땅 이야기 보러 가기
 - **[맵땅 Trouble Shooting](#-trouble-shooting)** <br>
+- **[맵땅 고민 과정](#-고민-과정)** <br>
 - **[맵땅 프로젝트 소개](#-프로젝트-소개)** <br>
 
 <br/>
@@ -123,3 +124,48 @@ Body: {
   "appleToken" : "token"
 }
 ````
+
+<br/>
+
+# 🚀 고민 과정
+### 1) View 레이아웃 중첩 구조에 따른 터치 이벤트 이슈 고민 과정
+| | |
+|---|---|
+|<img width="280" alt="Untitled" src="https://github.com/user-attachments/assets/1607db2f-f4ec-4962-acbd-56b416eb33b5">|<img width="280" alt="Untitle3d" src="https://github.com/user-attachments/assets/86756bba-3305-4196-9316-6c808379c13b">|
+### 기록 리스트 화면에서 메뉴 뷰를 띄웠을때 밑에 셀의 범위와 겹치는 문제
+
+기록 리스트 화면에서 각 셀의 우측에 있는 버튼을 눌렀을 때 수정/삭제 버튼이 있는 메뉴뷰를 보여주도록 구현했습니다. 그런데 메뉴뷰의 레이아웃이 다음 셀의 영역과 중첩이 되면서 해당 부분의 버튼에 대한 터치 이벤트가 제대로 동작하지 않는 이슈가 있었습니다.
+
+뷰의 계층을 디버깅 해보니 메뉴뷰가 셀의 subview로 들어가 있어서 계층적으로 다음 셀의 상위에 위치할 수 없었습니다. 메뉴뷰의 z position을 조정하는 방법과 bringSubviewToFront() 메서드를 사용해도 해결되지 않은 이유도 이 문제 때문이었습니다. 또한, touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) 메서드로 확인 한 결과 삭제 버튼의 범위가 해당 셀의 범위를 벗어나서 touchevent 자체를 받지 못한다는 것을 알게되었습니다.
+
+이 문제를 해결하기 위해 메뉴뷰를 collectionView의 subview로 추가하는 방법도 고민해보았으나, 각각의 cell과 관련된 기능과 이벤트를 받는 뷰가 컬렉션뷰에 추가된다는 점이 어색하다고 생각했습니다.
+
+우선적으로 디자이너와 협의해 메뉴뷰의 레이아웃이 다음 셀과 중첩되지 않도록 수정해 진행했으며, 이 문제를 해결하기 위해 추가적인 공부가 필요할 것 같습니다.
+
+| | |
+|---|---|
+|<img width="280" alt="3" src="https://github.com/user-attachments/assets/bc4859ba-67dd-4247-84fd-4abd7e820d72">|<img width="280" alt="5" src="https://github.com/user-attachments/assets/239f873a-2d9e-4d41-a0e4-b78f8d0d3f3f">|
+
+<br/>
+
+# ⭐️ 프로젝트 소개
+
+## ⚒️ 개발 환경
+- iOS 15.0 +
+- Xcode 15.0
+
+<br/>
+
+## ✔️ 사용 기술 & 라이브러리
+- UIKit
+- RxSwift
+- Reactorkit
+- Alamofire
+- Kingfisher
+- Snapkit
+
+<br/>
+
+## 🗂️ Skills
+
+![아키텍쳐](https://github.com/user-attachments/assets/5dda0ade-30dd-4288-a05e-8f0e18019a31)
