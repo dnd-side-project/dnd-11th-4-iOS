@@ -221,16 +221,14 @@ final class RecordViewController: UIViewController, View {
         
         dateComplteBarButton.rx.tap
             .bind(with: self, onNext: { owner, text in
-                owner.dateTextField.text = reactor.currentState.selectedDate
+                owner.dateTextField.text = reactor.currentState.selectedAfterDate
                 owner.dateTextField.resignFirstResponder()
             })
             .disposed(by: disposeBag)
         
         completeButton.rx.tap
             .bind(with: self, onNext: { owner, text in
-                owner.navigationController?.view.layer.add(CATransition().fadeType(), forKey: kCATransition)
-                owner.navigationController?.popViewController(animated: false)
-                owner.completeButtonTapped.onNext(())
+                reactor.action.onNext(.completeButtonTapped)
             })
             .disposed(by: disposeBag)
     }
@@ -291,7 +289,7 @@ final class RecordViewController: UIViewController, View {
             .drive(memoTextLimitedLabel.rx.text)
             .disposed(by: disposeBag)
         
-        reactor.state.compactMap { $0.selectedDate }
+        reactor.state.compactMap { $0.selectedAfterDate }
             .asDriver(onErrorJustReturn: "2024년 08월 27일")
             .drive(dateTextField.rx.text)
             .disposed(by: disposeBag)
@@ -309,6 +307,14 @@ final class RecordViewController: UIViewController, View {
             .asDriver(onErrorJustReturn: false)
             .drive(with: self, onNext: { owner, state in
                 owner.setCompleteButtonUI(state)
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state.compactMap { $0.completedAPI }
+            .asDriver(onErrorJustReturn: false)
+            .drive(with: self, onNext: { owner, _ in
+                owner.navigationController?.view.layer.add(CATransition().fadeType(), forKey: kCATransition)
+                owner.navigationController?.popViewController(animated: false)
             })
             .disposed(by: disposeBag)
         

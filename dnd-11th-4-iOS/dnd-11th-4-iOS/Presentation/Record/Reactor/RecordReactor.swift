@@ -39,6 +39,7 @@ final class RecordReactor: Reactor {
         case memoTapped(String)
         case dateTapped(Date)
         case deleteCellTapped(IndexPath)
+        case completeButtonTapped
     }
     
     enum Mutation {
@@ -46,21 +47,26 @@ final class RecordReactor: Reactor {
         case setRegionText(String)
         case setPlaceText(String)
         case setMemoText(String)
-        case setDateText(String)
+        case setDateText(Date)
         case setDeleteCell(IndexPath)
+        case completeAPI(Bool)
+        case setError(MDError)
     }
     
     struct State {
         let regionArray = ["서울", "경기도", "인천", "강원도", "충청북도", "충청남도", "대전", "경상북도",
                            "경상남도", "대구", "울산", "부산", "전라북도", "전라남도", "광주", "제주도"]
-        var selectedRegion: String?
-        var selectedDate: String? = DateFormatter().string(from: Date())
-        var selectedArrayImage: [UIImage]?
-        var placeText: String?
-        var memoText: String? = ""
+        var selectedRegion = "서울"
+        var selectedBeforeDate = Date()
+        var selectedAfterDate = String()
+        var selectedServerDate = String()
+        var selectedArrayImage: [UIImage] = []
+        var placeText = ""
+        var memoText = ""
         var imageCount: Int = 0
         var recordData: DetailRecordAppData?
         var recordModel: RecordModel
+        var completedAPI: Bool?
         var completeButtonEnabled: Bool {
             return selectedRegion != nil && placeText != ""
         }
@@ -74,11 +80,11 @@ final class RecordReactor: Reactor {
         switch action {
         case .viewWillAppear(let model):
             return Observable.concat([
-                    Observable.just(.setRegionText(model.region)),
-                    Observable.just(.setPlaceText(prepareTrimText(model.place, 20))),
-                    Observable.just(.setMemoText(prepareTrimText(model.memo ?? "", 25))),
-                    Observable.just(.setDateText(prepareDateText(Date())))
-                ])
+                Observable.just(.setRegionText(model.region)),
+                Observable.just(.setPlaceText(prepareTrimText(model.place, 20))),
+                Observable.just(.setMemoText(prepareTrimText(model.memo ?? "", 25))),
+                Observable.just(.setDateText(currentState.selectedBeforeDate))
+            ])
         case .imageAddTapped(let imageArray):
             return self.prepareImageArray(imageArray).map { array in
                 return Mutation.setImageArray(array)
@@ -90,10 +96,21 @@ final class RecordReactor: Reactor {
         case .memoTapped(let memoText):
             return Observable.just(.setMemoText(prepareTrimText(memoText, 25)))
         case .dateTapped(let date):
-            print("뭐냐 ㅋㅋ", date)
-            return Observable.just(.setDateText(prepareDateText(date)))
+            return Observable.just(.setDateText(date))
         case .deleteCellTapped(let indexPath):
             return Observable.just(.setDeleteCell(indexPath))
+        case .completeButtonTapped:
+            return RecordService.postRecordAPI(request: RecordRequest(recordRequest: Record(region: currentState.selectedRegion,
+                                                                                            attractionName: currentState.placeText,
+                                                                                            memo: currentState.memoText,
+                                                                                            localDate: currentState.selectedServerDate)),
+                                                                      photos: RecordPhotos(photos: currentState.selectedArrayImage))
+                .map { response in
+                    return Mutation.completeAPI(true)
+                }
+                .catch { error in
+                    return Observable.just(Mutation.setError(NetworkManager.handleError(error)))
+                }
         }
     }
     
@@ -104,8 +121,8 @@ final class RecordReactor: Reactor {
             newState.selectedArrayImage = imageArray
             newState.imageCount = imageArray.count
         case .setDeleteCell(let indexPath):
-            newState.selectedArrayImage?.remove(at: indexPath.row)
-            newState.imageCount = newState.selectedArrayImage?.count ?? 0
+            newState.selectedArrayImage.remove(at: indexPath.row)
+            newState.imageCount = newState.selectedArrayImage.count
         case .setRegionText(let regionText):
             newState.selectedRegion = regionText
         case .setPlaceText(let placeText):
@@ -113,7 +130,12 @@ final class RecordReactor: Reactor {
         case .setMemoText(let memoText):
             newState.memoText = memoText
         case .setDateText(let dateText):
-            newState.selectedDate = dateText
+            newState.selectedServerDate = prepareServerDataText(dateText)
+            newState.selectedAfterDate = prepareClientDateText(dateText)
+        case .completeAPI(let state):
+            newState.completedAPI = state
+        case .setError(let error):
+            print(error)
         }
         return newState
     }
@@ -146,9 +168,15 @@ extension RecordReactor {
         return text.count > count ? String(text.prefix(count)) : text
     }
     
-    private func prepareDateText(_ date: Date) -> String {
+    private func prepareClientDateText(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        return dateFormatter.string(from: date)
+    }
+    
+    private func prepareServerDataText(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter.string(from: date)
     }
     

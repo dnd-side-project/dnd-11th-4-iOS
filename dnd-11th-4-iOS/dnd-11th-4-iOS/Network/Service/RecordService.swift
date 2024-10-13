@@ -10,7 +10,8 @@ import Alamofire
 import RxSwift
 
 final class RecordService {
-    static func getHomeAPI() -> Observable<HomeResponse> {
-        return BaseRequest.request(HomeEndPoint.getHomeAPI)
+    
+    static func postRecordAPI(request: RecordRequest, photos: RecordPhotos) -> Observable<Empty> {
+        return BaseRequest.multiPartRequest(RecordEndPoint.postRecordAPI(request: request, photos: photos))
     }
 }
