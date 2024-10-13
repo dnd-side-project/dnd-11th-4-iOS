@@ -214,7 +214,7 @@ final class RecordViewController: UIViewController, View {
         
         dateCancelBarButton.rx.tap
             .bind(with: self, onNext: { owner, text in
-                owner.dateTextField.text = nil
+                owner.dateTextField.text = reactor.currentState.selectedAfterDate
                 owner.dateTextField.resignFirstResponder()
             })
             .disposed(by: disposeBag)

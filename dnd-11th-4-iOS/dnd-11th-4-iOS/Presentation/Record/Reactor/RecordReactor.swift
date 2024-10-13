@@ -68,7 +68,7 @@ final class RecordReactor: Reactor {
         var recordModel: RecordModel
         var completedAPI: Bool?
         var completeButtonEnabled: Bool {
-            return selectedRegion != nil && placeText != ""
+            return selectedRegion != "" && placeText != ""
         }
     }
     
