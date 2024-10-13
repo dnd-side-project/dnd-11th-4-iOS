@@ -189,7 +189,7 @@ final class HomeMapViewController: UIViewController, View {
                                                                      place: nil,
                                                                      imageArray: nil,
                                                                      memo: nil,
-                                                                     date: "오늘날짜 ㅋㅋ"))
+                                                                     date: ""))
                 let recordVC = RecordViewController(reactor: recordReactor)
                 owner.navigationController?.pushViewController(recordVC, animated: true)
                 
