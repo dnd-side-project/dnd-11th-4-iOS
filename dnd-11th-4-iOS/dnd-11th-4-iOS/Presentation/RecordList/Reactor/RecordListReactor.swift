@@ -16,18 +16,21 @@ final class RecordListReactor: Reactor {
     enum Action {
         case loadRecords
         case deleteRecord(IndexPath)
+        case editRecord(IndexPath)
     }
     
     enum Mutation {
         case setRecords([RecordSection])
         case recordDeleted(Bool)
         case resetDeleteState
+        case setSelectedRecord(RecordResponse)
         case setError(MDError)
     }
     
     struct State {
         var sections: [RecordSection] = []
         var isRecordDeleted: Bool = false
+        var selectedRecord: RecordResponse?
         var detailRecords: [DetailRecordAppData] = [DetailRecordAppData(imageArray: [Constant.Image.imageDetailEmpty ?? UIImage()],
                                                                         region: "전라남도",
                                                                         place: "보성 녹차밭",
@@ -60,6 +63,9 @@ extension RecordListReactor {
                 Observable.just(Mutation.recordDeleted(true)),
                 Observable.just(Mutation.resetDeleteState)
             ])
+        case .editRecord(let indexPath):
+            let selectedRecord = currentState.sections[indexPath.section].items[indexPath.item]
+            return Observable.just(Mutation.setSelectedRecord(selectedRecord))
         }
     }
     
@@ -72,6 +78,8 @@ extension RecordListReactor {
             newState.isRecordDeleted = isDeleted
         case .resetDeleteState:
             newState.isRecordDeleted = false
+        case .setSelectedRecord(let record):
+            newState.selectedRecord = record
         case .setError(let error):
             print(error)
         }

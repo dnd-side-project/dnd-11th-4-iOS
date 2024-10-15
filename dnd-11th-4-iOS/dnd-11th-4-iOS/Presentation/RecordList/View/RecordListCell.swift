@@ -15,8 +15,8 @@ final class RecordListCell: UICollectionViewCell {
     let deleteButtonTapped = PublishSubject<Void>()
     let editButtonTapped = PublishSubject<Void>()
     var disposeBag = DisposeBag()
-    
     static let identifier = "RecordListCell"
+    
     private let recordImage: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
@@ -146,6 +146,15 @@ final class RecordListCell: UICollectionViewCell {
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: {
                 self.deleteButtonTapped.onNext(())
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func didTapEditButton() {
+        menuView.editButtonTapped
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: {
+                self.editButtonTapped.onNext(())
             })
             .disposed(by: disposeBag)
     }
