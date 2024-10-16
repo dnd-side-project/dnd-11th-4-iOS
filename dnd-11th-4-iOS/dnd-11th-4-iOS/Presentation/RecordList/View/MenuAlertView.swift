@@ -93,7 +93,12 @@ final class MenuAlertView: UIView {
     }
     
     func didTapEditButton() {
-        print("hit edit")
+        editButton.rx.tap
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: {
+                self.editButtonTapped.onNext(())
+            })
+            .disposed(by: disposeBag)
     }
     
     func didTapDeleteButton() {

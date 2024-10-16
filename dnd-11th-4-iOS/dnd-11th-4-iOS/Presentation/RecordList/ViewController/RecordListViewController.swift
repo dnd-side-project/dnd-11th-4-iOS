@@ -117,6 +117,14 @@ extension RecordListViewController: View {
                     })
                     .disposed(by: cell.disposeBag)
                 
+                cell.editButtonTapped
+                    .asDriver(onErrorDriveWith: .empty())
+                    .drive(onNext: { [weak self] in
+                        guard let self = self else { return }
+                        self.reactor?.action.onNext(.editRecord(indexPath))
+                    })
+                    .disposed(by: cell.disposeBag)
+                
                 return cell
             },
             configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
@@ -156,6 +164,15 @@ extension RecordListViewController: View {
             .asDriver(onErrorJustReturn: false)
             .drive(onNext: { _ in
                 MDToast.show(type: .delete)
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.selectedRecord }
+            .compactMap { $0 }
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] selectedRecord in
+                // edit 작업
             })
             .disposed(by: disposeBag)
     }

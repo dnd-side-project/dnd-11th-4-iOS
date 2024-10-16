@@ -56,7 +56,9 @@ extension LoginEndPoint: BaseEndpoint {
     }
     
     var headers: HTTPHeaders? {
-        return ["Content-Type": "application/json",
-                "Authorization": "Bearer " + "token"]
+        return [
+            "Content-Type": "application/json",
+            "accept": "application/json"
+        ]
     }
 }

@@ -7,8 +7,13 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import ReactorKit
 
 final class SplashViewController: UIViewController {
+    typealias Reactor = SplashReactor
+    var disposeBag: DisposeBag = DisposeBag()
+    
     private let descriptionLabel: MDLabel = {
         let label = MDLabel(attributedString: NSAttributedString.pretendardSB16("방방곡곡 대한민국 도장깨기"), textColor: .mapWhite, alignment: .center)
         return label
@@ -27,7 +32,16 @@ final class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        navigateToViewController(viewController: LoginViewController(reactor: LoginReactor()), delay: 2.0)
+        reactor?.action.onNext(.checkRefreshToken)
+    }
+    
+    init(reactor: SplashReactor) {
+        super.init(nibName: nil, bundle: nil)
+        self.reactor = reactor
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Layout
@@ -57,5 +71,39 @@ final class SplashViewController: UIViewController {
             $0.height.equalTo(68)
             $0.centerX.equalToSuperview()
         }
+    }
+    
+    private func navigateToHomeViewController() {
+        let homeViewController = TabBarViewController()
+        navigateToViewController(viewController: homeViewController)
+    }
+    
+    private func navigateToLoginViewController() {
+        let loginViewController = LoginViewController(reactor: LoginReactor())
+        navigateToViewController(viewController: loginViewController, delay: 2.0)
+    }
+}
+
+extension SplashViewController: View {
+    func bind(reactor: SplashReactor) {
+        reactor.state
+            .map { $0.isHomeNeeded }
+            .filter { $0 }
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.navigateToHomeViewController()
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.isLoginNeeded }
+            .filter { $0 }
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.navigateToLoginViewController()
+            })
+            .disposed(by: disposeBag)
     }
 }

@@ -34,6 +34,10 @@ final class MyPageView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setupNameLabel(_ text : String) {
+        nameLabel.attributedText = NSAttributedString.pretendardSB16(text)
+    }
+    
     // MARK: - Layout
     
     private func setupUI() {

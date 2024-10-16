@@ -9,6 +9,10 @@ import Foundation
 
 struct RecordListResponse: Decodable {
     let entireRecordCount: Int
+    let recordResponses: [RecordResponse]
+}
+
+struct RecordResponse: Decodable {
     let id: Int
     let region, attractionName: String
     let memo, visitDate: String?

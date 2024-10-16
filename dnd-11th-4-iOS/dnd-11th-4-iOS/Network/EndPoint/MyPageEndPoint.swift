@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 enum MyPageEndPoint {
-    case getMyPageAPI(MyPageRequest)
+    case getMyPageAPI
 }
 
 extension MyPageEndPoint: BaseEndpoint {
@@ -26,10 +26,7 @@ extension MyPageEndPoint: BaseEndpoint {
     }
     
     var parameters: RequestParams {
-        switch self {
-        case .getMyPageAPI(let request):
-            return .query(request)
-        }
+        return .none
     }
     
     var multipart: Alamofire.MultipartFormData? {
@@ -37,6 +34,12 @@ extension MyPageEndPoint: BaseEndpoint {
     }
     
     var headers: HTTPHeaders? {
-        return .none
+        guard let token = TokenManager.shared.getAccessToken() else {
+            return .none
+        }
+        return [
+        "accept": "application/json",
+        "Authorization": "Bearer \(token)"
+        ]
     }
 }

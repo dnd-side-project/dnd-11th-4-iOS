@@ -133,7 +133,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 let authString = String(data: authorizationCode, encoding: .utf8),
                 let appleTokenString = String(data: identityToken, encoding: .utf8) {
                 print("authString: \(authString)")
-                reactor?.action.onNext(.loginSuccess(appleTokenString))
+                reactor?.action.onNext(.loginSuccess(authString))
             }
             
         default:

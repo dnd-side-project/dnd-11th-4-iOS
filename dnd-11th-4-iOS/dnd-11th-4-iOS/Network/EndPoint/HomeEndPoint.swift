@@ -31,8 +31,14 @@ extension HomeEndPoint: BaseEndpoint {
     }
     
     var headers: HTTPHeaders? {
-        return ["Content-Type": "application/json",
-                "Authorization": "Bearer " + ""]
+        guard let token = TokenManager.shared.getAccessToken() else {
+            return .none
+        }
+      
+        return [
+        "accept": "application/json",
+        "Authorization": "Bearer \(token)"
+        ]
     }
     
     var multipart: Alamofire.MultipartFormData? {

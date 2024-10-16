@@ -16,17 +16,21 @@ final class RecordListReactor: Reactor {
     enum Action {
         case loadRecords
         case deleteRecord(IndexPath)
+        case editRecord(IndexPath)
     }
     
     enum Mutation {
         case setRecords([RecordSection])
         case recordDeleted(Bool)
         case resetDeleteState
+        case setSelectedRecord(RecordResponse)
+        case setError(MDError)
     }
     
     struct State {
         var sections: [RecordSection] = []
         var isRecordDeleted: Bool = false
+        var selectedRecord: RecordResponse?
         var detailRecords: [DetailRecordAppData] = [DetailRecordAppData(imageArray: [Constant.Image.imageDetailEmpty ?? UIImage()],
                                                                         region: "전라남도",
                                                                         place: "보성 녹차밭",
@@ -43,20 +47,14 @@ extension RecordListReactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .loadRecords:
-            let records = [
-                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드1", memo: "꾸르잼", date: "24.10.22"),
-                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드2", memo: "꾸르잼", date: "24.10.22"),
-                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드3", memo: "꾸르잼", date: "24.10.22"),
-                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드4", memo: "꾸르잼", date: "24.10.22"),
-                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드5", memo: "꾸르잼", date: "24.10.22"),
-                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드6", memo: "꾸르잼", date: "24.10.22"),
-                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드7", memo: "꾸르잼", date: "24.10.22"),
-                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드8", memo: "꾸르잼", date: "24.10.22"),
-                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드9", memo: "꾸르잼", date: "24.10.22"),
-                Test(image: UIImage(resource: .iconMap), title: "강릉 경주월드10", memo: "꾸르잼", date: "24.10.22")
-            ]
-            let section = RecordSection(header: "Records", items: records)
-            return Observable.just(Mutation.setRecords([section]))
+            return RecordListService.getRecordListAPI()
+                .map { response in
+                    let section = RecordSection(header: "Records", items: response.recordResponses)
+                    return Mutation.setRecords([section])
+                }
+                .catch { error in
+                    return Observable.just(Mutation.setError(NetworkManager.handleError(error)))
+                }
         case .deleteRecord(let indexPath):
             var sections = currentState.sections
             sections[indexPath.section].items.remove(at: indexPath.item)
@@ -65,6 +63,9 @@ extension RecordListReactor {
                 Observable.just(Mutation.recordDeleted(true)),
                 Observable.just(Mutation.resetDeleteState)
             ])
+        case .editRecord(let indexPath):
+            let selectedRecord = currentState.sections[indexPath.section].items[indexPath.item]
+            return Observable.just(Mutation.setSelectedRecord(selectedRecord))
         }
     }
     
@@ -77,6 +78,10 @@ extension RecordListReactor {
             newState.isRecordDeleted = isDeleted
         case .resetDeleteState:
             newState.isRecordDeleted = false
+        case .setSelectedRecord(let record):
+            newState.selectedRecord = record
+        case .setError(let error):
+            print(error)
         }
         return newState
     }
@@ -90,7 +95,7 @@ struct RecordSection {
 }
 
 extension RecordSection: SectionModelType {
-    typealias Item = Test
+    typealias Item = RecordResponse
     
     init(original: RecordSection, items: [Item]) {
         self = original

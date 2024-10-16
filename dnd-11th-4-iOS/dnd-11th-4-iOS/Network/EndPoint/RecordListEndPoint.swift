@@ -36,7 +36,13 @@ extension RecordListEndPoint: BaseEndpoint {
     }
     
     var headers: HTTPHeaders? {
-        return .none
+        guard let token = TokenManager.shared.getAccessToken() else {
+            return .none
+        }
+        return [
+        "accept": "application/json",
+        "Authorization": "Bearer \(token)"
+        ]
     }
     
     var multipart: Alamofire.MultipartFormData? {

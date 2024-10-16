@@ -37,6 +37,7 @@ extension LoginReactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case let .loginSuccess(token):
+            TokenManager.shared.setTemporaryToken(token)
             return .just(.setLoginSuccess(token))
             
         case let .loginFailure(error):
@@ -49,7 +50,6 @@ extension LoginReactor {
         switch mutation {
         case let .setLoginSuccess(token):
             newState.identityToken = token
-            
         case let .setError(error):
             newState.error = error
         }
