@@ -5,7 +5,7 @@
 //  Created by Allie on 9/9/24.
 //
 
-import Foundation
+import UIKit
 
 struct RecordRequest: Encodable {
     let recordRequest: Record
@@ -20,6 +20,9 @@ struct RecordId: Encodable {
 }
 
 struct Record: Encodable {
-    let region, attractionName: String
-    let memo, localDate: String?
+    let region, attractionName, memo, localDate: String
+}
+
+struct RecordPhotos {
+    let photos: [UIImage]
 }

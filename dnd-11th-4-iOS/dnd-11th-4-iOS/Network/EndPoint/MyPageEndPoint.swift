@@ -29,6 +29,10 @@ extension MyPageEndPoint: BaseEndpoint {
         return .none
     }
     
+    var multipart: Alamofire.MultipartFormData? {
+        return nil
+    }
+    
     var headers: HTTPHeaders? {
         guard let token = TokenManager.shared.getAccessToken() else {
             return .none

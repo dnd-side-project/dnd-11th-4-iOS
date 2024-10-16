@@ -12,6 +12,7 @@
 		4A09444E2C835B5400D745C5 /* DetailRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09444D2C835B5400D745C5 /* DetailRecordViewController.swift */; };
 		4A0944502C84756A00D745C5 /* DetailImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09444F2C84756A00D745C5 /* DetailImageCell.swift */; };
 		4A0944522C84807D00D745C5 /* DetailRecordReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0944512C84807D00D745C5 /* DetailRecordReactor.swift */; };
+		4A0DD7AE2CA0123A00D9807E /* RecordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0DD7AD2CA0123A00D9807E /* RecordService.swift */; };
 		4A16E2A42C5A4DE700F48180 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2A32C5A4DE700F48180 /* OnboardingViewController.swift */; };
 		4A16E2CD2C5A6B7E00F48180 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2CC2C5A6B7E00F48180 /* TabBarViewController.swift */; };
 		4A16E2D02C5A702000F48180 /* RecordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2CF2C5A702000F48180 /* RecordListViewController.swift */; };
@@ -132,6 +133,7 @@
 		4A09444D2C835B5400D745C5 /* DetailRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecordViewController.swift; sourceTree = "<group>"; };
 		4A09444F2C84756A00D745C5 /* DetailImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageCell.swift; sourceTree = "<group>"; };
 		4A0944512C84807D00D745C5 /* DetailRecordReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecordReactor.swift; sourceTree = "<group>"; };
+		4A0DD7AD2CA0123A00D9807E /* RecordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordService.swift; sourceTree = "<group>"; };
 		4A16E2A32C5A4DE700F48180 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		4A16E2CC2C5A6B7E00F48180 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		4A16E2CF2C5A702000F48180 /* RecordListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListViewController.swift; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 				FB4972422CA03CCC0042E86B /* RecordListService.swift */,
 				FB4972442CA2DE620042E86B /* LoginService.swift */,
 				FB4972482CA57FF10042E86B /* MyPageService.swift */,
+				4A0DD7AD2CA0123A00D9807E /* RecordService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1049,6 +1052,7 @@
 				FB4972492CA57FF10042E86B /* MyPageService.swift in Sources */,
 				4A1CB93A2C7C7DDA002DE4FE /* HTTPHeaderField.swift in Sources */,
 				4A1CB93D2C7C7E1A002DE4FE /* HomeEndPoint.swift in Sources */,
+				4A0DD7AE2CA0123A00D9807E /* RecordService.swift in Sources */,
 				4AAFDB712C494CFF008C6DAF /* HomeMapViewController.swift in Sources */,
 				4A55553C2C8767AD0008AF07 /* APIManager.swift in Sources */,
 				4A1CB9462C7C7FD8002DE4FE /* BaseRequest.swift in Sources */,

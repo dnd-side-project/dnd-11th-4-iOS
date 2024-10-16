@@ -74,7 +74,7 @@ final class HomeMapViewController: UIViewController, View {
         setDelegate()
         reactor?.action.onNext(.mapInset(DeviceSize(width: Constant.Screen.width,
                                                     height: Constant.Screen.height)))
-    }
+      }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -100,7 +100,7 @@ final class HomeMapViewController: UIViewController, View {
         let 인천Tap = 인천.rx.tapGesture().when(.recognized).map { _ in RegionType.인천 }
         let 강원도Tap = 강원도.rx.tapGesture().when(.recognized).map { _ in RegionType.강원도 }
         let 충청북도Tap = 충청북도.rx.tapGesture().when(.recognized).map { _ in RegionType.충청북도 }
-        let 충청남도Tap = 충청남도.rx.tapGesture().when(.recognized).map { _ in RegionType.충청남도 }
+        let 충청남도Tap = 충청남도.rx.tapGesture().when(.recognized).map { _ in RegionType.충남·세종 }
         let 대전Tap = 대전.rx.tapGesture().when(.recognized).map { _ in RegionType.대전 }
         let 경상북도Tap = 경상북도.rx.tapGesture().when(.recognized).map { _ in RegionType.경상북도 }
         let 경상남도Tap = 경상남도.rx.tapGesture().when(.recognized).map { _ in RegionType.경상남도 }
@@ -141,7 +141,7 @@ final class HomeMapViewController: UIViewController, View {
                         self.강원도.bindMapUI(color: model.mapColor)
                     case "충청북도":
                         self.충청북도.bindMapUI(color: model.mapColor)
-                    case "충청남도":
+                    case "충남·세종":
                         self.충청남도.bindMapUI(color: model.mapColor)
                     case "대전":
                         self.대전.bindMapUI(color: model.mapColor)
@@ -180,11 +180,17 @@ final class HomeMapViewController: UIViewController, View {
             .disposed(by: disposeBag)
         
         recordButton.rx.tap
-            .compactMap { reactor.initialState.totalMapState?.selectedMap?.selectedMapName }
+            .withLatestFrom(reactor.state)
+            .compactMap { $0.totalMapState?.selectedMap?.selectedMapName }
             .asDriver(onErrorJustReturn: "서울")
             .drive(with: self) { owner, text in
-                let recordVC = RecordViewController(reactor: RecordReactor(),
-                                                    type: .write(text))
+                let recordReactor = RecordReactor(model: RecordModel(type: .write,
+                                                                     region: text,
+                                                                     place: nil,
+                                                                     imageArray: nil,
+                                                                     memo: nil,
+                                                                     date: ""))
+                let recordVC = RecordViewController(reactor: recordReactor)
                 owner.navigationController?.pushViewController(recordVC, animated: true)
                 
                 recordVC.completeButtonTapped

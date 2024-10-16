@@ -50,7 +50,7 @@ final class MDToastView: UIView {
     private func setUI(type: ToastViewType) {
         switch type {
         case .onboarding:
-            self.detailText.attributedText = NSAttributedString(string: type.text)
+            self.detailText.attributedText = NSAttributedString.pretendardSB14(type.text)
             self.image = UIImageView(image: Constant.Image.iconCheckboxSelected)
             
             self.addSubviews(detailText, image)
@@ -64,7 +64,7 @@ final class MDToastView: UIView {
                 make.width.height.equalTo(74)
             }
         case .complete:
-            self.detailText.attributedText = NSAttributedString(string: type.text)
+            self.detailText.attributedText = NSAttributedString.pretendardSB14(type.text)
             self.image = UIImageView(image: Constant.Image.iconCheckboxSelected)
             
             self.addSubviews(detailText, image)

@@ -13,6 +13,7 @@ enum HomeEndPoint {
 }
 
 extension HomeEndPoint: BaseEndpoint {
+    
     var baseURL: String {
         return Environment.baseURL
     }
@@ -33,9 +34,14 @@ extension HomeEndPoint: BaseEndpoint {
         guard let token = TokenManager.shared.getAccessToken() else {
             return .none
         }
+      
         return [
         "accept": "application/json",
         "Authorization": "Bearer \(token)"
         ]
+    }
+    
+    var multipart: Alamofire.MultipartFormData? {
+        return nil
     }
 }

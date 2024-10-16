@@ -44,4 +44,8 @@ extension RecordListEndPoint: BaseEndpoint {
         "Authorization": "Bearer \(token)"
         ]
     }
+    
+    var multipart: Alamofire.MultipartFormData? {
+        return nil
+    }
 }

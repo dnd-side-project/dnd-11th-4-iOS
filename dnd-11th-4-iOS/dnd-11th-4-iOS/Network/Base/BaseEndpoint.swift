@@ -13,6 +13,7 @@ protocol BaseEndpoint: URLRequestConvertible {
     var path: String { get }
     var parameters: RequestParams { get }
     var headers: HTTPHeaders? { get }
+    var multipart: MultipartFormData? { get }
 }
 
 extension BaseEndpoint {
