@@ -32,6 +32,10 @@ extension MyPageEndPoint: BaseEndpoint {
         }
     }
     
+    var multipart: Alamofire.MultipartFormData? {
+        return nil
+    }
+    
     var headers: HTTPHeaders? {
         return .none
     }

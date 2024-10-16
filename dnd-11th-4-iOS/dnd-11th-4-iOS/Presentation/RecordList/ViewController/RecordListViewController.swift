@@ -171,8 +171,7 @@ extension RecordListViewController: UICollectionViewDelegate {
         detailRecordVC.editButtonSubject
             .asDriver(onErrorJustReturn: DetailRecordAppData.empty)
             .drive(with: self) { owner, data in
-                let recordVC = RecordViewController(reactor: RecordReactor(),
-                                                    type: .edit(data))
+                let recordVC = RecordViewController(reactor: RecordReactor(model: RecordModel(type: .edit, region: "서울", place: "장소", imageArray: nil, memo: "", date: "")))
                 owner.navigationController?.pushViewController(recordVC, animated: true)
             }
             .disposed(by: disposeBag)

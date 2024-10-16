@@ -13,6 +13,7 @@ enum HomeEndPoint {
 }
 
 extension HomeEndPoint: BaseEndpoint {
+    
     var baseURL: String {
         return Environment.baseURL
     }
@@ -30,6 +31,11 @@ extension HomeEndPoint: BaseEndpoint {
     }
     
     var headers: HTTPHeaders? {
-        return .none
+        return ["Content-Type": "application/json",
+                "Authorization": "Bearer " + ""]
+    }
+    
+    var multipart: Alamofire.MultipartFormData? {
+        return nil
     }
 }
