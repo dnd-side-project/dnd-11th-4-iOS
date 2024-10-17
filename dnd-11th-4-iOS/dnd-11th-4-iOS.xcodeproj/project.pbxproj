@@ -81,6 +81,7 @@
 		FB0BE4F12C57B5FD00C34C7B /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4ED2C57B5FD00C34C7B /* Pretendard-Bold.otf */; };
 		FB0BE4F22C57B5FD00C34C7B /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4EE2C57B5FD00C34C7B /* Pretendard-SemiBold.otf */; };
 		FB0BE4F32C57B5FD00C34C7B /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB0BE4EF2C57B5FD00C34C7B /* Pretendard-Regular.otf */; };
+		FB45D6482CC01CF9008A6705 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB45D6472CC01CF9008A6705 /* ServiceDetailViewController.swift */; };
 		FB4972432CA03CCC0042E86B /* RecordListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4972422CA03CCC0042E86B /* RecordListService.swift */; };
 		FB4972452CA2DE620042E86B /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4972442CA2DE620042E86B /* LoginService.swift */; };
 		FB4972472CA53CC20042E86B /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4972462CA53CC20042E86B /* TokenManager.swift */; };
@@ -206,6 +207,7 @@
 		FB0BE4ED2C57B5FD00C34C7B /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		FB0BE4EE2C57B5FD00C34C7B /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		FB0BE4EF2C57B5FD00C34C7B /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		FB45D6472CC01CF9008A6705 /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
 		FB4972422CA03CCC0042E86B /* RecordListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListService.swift; sourceTree = "<group>"; };
 		FB4972442CA2DE620042E86B /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		FB4972462CA53CC20042E86B /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
@@ -849,6 +851,7 @@
 			isa = PBXGroup;
 			children = (
 				FB7AEDD82C74E72E00B95784 /* ServiceAcceptViewController.swift */,
+				FB45D6472CC01CF9008A6705 /* ServiceDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1040,6 +1043,7 @@
 				4A16E2F22C60F0A700F48180 /* HomeMap_전라북도.swift in Sources */,
 				4A16E2F32C60F0A700F48180 /* HomeMap_광주.swift in Sources */,
 				FB808E642C63C6EE00E9E2E5 /* UIImage+.swift in Sources */,
+				FB45D6482CC01CF9008A6705 /* ServiceDetailViewController.swift in Sources */,
 				4AB122212C6C6F0B00A7337F /* MDTextField.swift in Sources */,
 				4A1CB9412C7C7E51002DE4FE /* HomeResponse.swift in Sources */,
 				4AAFDBB22C4953C9008C6DAF /* Application.swift in Sources */,

@@ -53,6 +53,12 @@ final class ServiceAcceptViewController: UIViewController {
         return button
     }()
     
+    private let forwardButton: MDButton = {
+        let button = MDButton(backgroundColor: .gray10)
+        button.setImage(image: Constant.Image.iconForward!)
+        return button
+    }()
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -88,7 +94,7 @@ final class ServiceAcceptViewController: UIViewController {
             $0.leading.equalTo(titleLabel.snp.leading)
         }
         
-        checkboxView.addSubviews(checkboxButton, checkLabel, agreeLabel)
+        checkboxView.addSubviews(checkboxButton, checkLabel, agreeLabel, forwardButton)
         checkboxView.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(12)
             $0.trailing.equalToSuperview().offset(-11)
@@ -115,6 +121,10 @@ final class ServiceAcceptViewController: UIViewController {
             $0.trailing.equalToSuperview().offset(-11)
             $0.bottom.equalToSuperview().offset(-37)
         }
+        forwardButton.snp.makeConstraints {
+            $0.centerY.equalTo(checkboxButton)
+            $0.trailing.equalToSuperview().offset(-10)
+        }
     }
     
     // MARK: - Bind
@@ -134,6 +144,15 @@ final class ServiceAcceptViewController: UIViewController {
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
                 self.navigateToViewController(viewController: OnboardingViewController(reactor: OnboardingReactor()))
+            })
+            .disposed(by: disposeBag)
+        
+        forwardButton.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                guard let self = self else { return }
+                let detailVC = ServiceDetailViewController()
+                self.navigationController?.pushViewController(detailVC, animated: true)
             })
             .disposed(by: disposeBag)
     }
