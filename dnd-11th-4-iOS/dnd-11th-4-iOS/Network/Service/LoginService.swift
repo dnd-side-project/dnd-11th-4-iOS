@@ -11,7 +11,7 @@ import RxSwift
 
 final class LoginService {
     static func appleLogin(token: String, color: String) -> Observable<LoginResponse> {
-        let request = LoginRequest(appleToken: token, selectedColor: color)
+        let request = LoginRequest(authorizationCode: token, selectedColor: color)
         return BaseRequest.request(LoginEndPoint.appleLoginAPI(request))
     }
     

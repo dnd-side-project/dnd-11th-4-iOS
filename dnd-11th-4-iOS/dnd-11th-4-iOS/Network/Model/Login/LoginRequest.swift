@@ -8,7 +8,7 @@
 import Foundation
 
 struct LoginRequest: Encodable {
-    let appleToken: String
+    let authorizationCode: String
     let selectedColor: String
 }
 
