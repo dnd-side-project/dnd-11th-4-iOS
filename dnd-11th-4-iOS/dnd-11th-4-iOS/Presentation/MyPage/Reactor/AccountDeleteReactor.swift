@@ -38,7 +38,7 @@ extension AccountDeleteReactor {
             guard let appleRefreshToken = TokenManager.shared.getAppleRefreshToken() else {
                 return Observable.just(Mutation.setError(MDError.tokenError))
             }
-            let request = WithdrawRequest(refreshToken: appleRefreshToken)
+            let request = WithdrawRequest(appleRefreshToken: appleRefreshToken)
             return LoginService.revokeToken(request: request)
                 .flatMap { _ -> Observable<Mutation> in
                     TokenManager.shared.clearTokens()
