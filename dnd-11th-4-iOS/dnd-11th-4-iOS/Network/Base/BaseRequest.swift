@@ -10,10 +10,11 @@ import Alamofire
 import RxSwift
 
 final class BaseRequest {
+    
     static func request<T: Decodable>(_ endPoint: BaseEndpoint) -> Observable<T> {
         return Observable.create { observer in
             let request = APIManager.session.request(endPoint)
-                .responseDecodable { (response: AFDataResponse<T>) in
+                .responseDecodable(of: T.self, emptyResponseCodes: [200]) { (response: AFDataResponse) in
                     switch response.result {
                     case .success(let result):
                             observer.onNext(result)
