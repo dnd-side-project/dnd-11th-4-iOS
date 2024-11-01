@@ -15,7 +15,7 @@ final class LoginService {
         return BaseRequest.request(LoginEndPoint.appleLoginAPI(request))
     }
     
-    static func reIssueToken(request: RefreshTokenRequest) -> Observable<LoginResponse> {
+    static func reIssueToken(request: RefreshTokenRequest) -> Observable<reissueResponse> {
         return BaseRequest.request(LoginEndPoint.reIssueTokenAPI(request))
     }
     

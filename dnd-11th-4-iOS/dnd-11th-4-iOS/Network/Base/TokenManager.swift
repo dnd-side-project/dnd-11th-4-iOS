@@ -11,6 +11,7 @@ final class TokenManager {
     private enum Keys {
         static let accessToken = "accessToken"
         static let refreshToken = "refreshToken"
+        static let appleRefreshToken = "appleRefreshToken"
     }
     
     static let shared = TokenManager()
@@ -32,6 +33,13 @@ final class TokenManager {
         UserDefaults.standard.set(refreshToken, forKey: Keys.refreshToken)
         temporaryToken = nil
     }
+    
+    func saveTokensWithAppleRefreshToken(accessToken: String, refreshToken: String, appleRefreshToken: String) {
+        UserDefaults.standard.set(accessToken, forKey: Keys.accessToken)
+        UserDefaults.standard.set(refreshToken, forKey: Keys.refreshToken)
+        UserDefaults.standard.set(appleRefreshToken, forKey: Keys.appleRefreshToken)
+        temporaryToken = nil
+    }
 
     func getAccessToken() -> String? {
         return UserDefaults.standard.string(forKey: Keys.accessToken)
@@ -40,9 +48,14 @@ final class TokenManager {
     func getRefreshToken() -> String? {
         return UserDefaults.standard.string(forKey: Keys.refreshToken)
     }
+    
+    func getAppleRefreshToken() -> String? {
+        return UserDefaults.standard.string(forKey: Keys.appleRefreshToken)
+    }
 
     func clearTokens() {
         UserDefaults.standard.removeObject(forKey: Keys.accessToken)
         UserDefaults.standard.removeObject(forKey: Keys.refreshToken)
+        UserDefaults.standard.removeObject(forKey: Keys.appleRefreshToken)
     }
 }

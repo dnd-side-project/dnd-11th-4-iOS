@@ -35,10 +35,10 @@ extension AccountDeleteReactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .deleteAccount:
-            guard let refreshToken = TokenManager.shared.getRefreshToken() else {
+            guard let appleRefreshToken = TokenManager.shared.getAppleRefreshToken() else {
                 return Observable.just(Mutation.setError(MDError.tokenError))
             }
-            let request = WithdrawRequest(authorizationCode: refreshToken)
+            let request = WithdrawRequest(refreshToken: appleRefreshToken)
             return LoginService.revokeToken(request: request)
                 .flatMap { _ -> Observable<Mutation> in
                     TokenManager.shared.clearTokens()

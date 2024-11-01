@@ -17,5 +17,6 @@ struct RefreshTokenRequest: Encodable {
 }
 
 struct WithdrawRequest: Encodable {
-    let authorizationCode: String
+    //TODO: appleRefreshToken으로 변경
+    let refreshToken: String
 }

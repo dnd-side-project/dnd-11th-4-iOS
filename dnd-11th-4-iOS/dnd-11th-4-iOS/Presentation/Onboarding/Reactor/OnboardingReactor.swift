@@ -20,7 +20,7 @@ final class OnboardingReactor: Reactor {
     enum Mutation {
         case setAnimation(String)
         case setSelectedColor(ColorType)
-        case setLoginSuccess(accessToken: String, refreshToken: String)
+        case setLoginSuccess(accessToken: String, refreshToken: String, appleRefreshToken: String)
         case setError(MDError)
     }
     
@@ -52,7 +52,9 @@ extension OnboardingReactor {
             
             let apiRequest = LoginService.appleLogin(token: token, color: color.serverName)
                 .map { response in
-                    return Mutation.setLoginSuccess(accessToken: response.accessToken, refreshToken: response.refreshToken)
+                    return Mutation.setLoginSuccess(accessToken: response.accessToken,
+                                                    refreshToken: response.refreshToken,
+                                                    appleRefreshToken: response.appleRefreshToken)
                 }
                 .catch { error in
                     let handledError = NetworkManager.handleError(error)
@@ -70,9 +72,11 @@ extension OnboardingReactor {
             newState.selectedAnimation = animationName
         case .setSelectedColor(let color):
             newState.selectedColor = color
-        case .setLoginSuccess(let accessToken, let refreshToken):
+        case .setLoginSuccess(let accessToken, let refreshToken, let appleToken):
             newState.isLoginSuccess = true
-            TokenManager.shared.saveTokens(accessToken: accessToken, refreshToken: refreshToken)
+            TokenManager.shared.saveTokensWithAppleRefreshToken(accessToken: accessToken,
+                                                         refreshToken: refreshToken,
+                                                         appleRefreshToken: appleToken)
         case .setError(let error):
             newState.error = error
         }
