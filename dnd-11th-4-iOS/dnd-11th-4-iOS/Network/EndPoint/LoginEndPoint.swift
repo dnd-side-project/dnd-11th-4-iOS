@@ -56,9 +56,20 @@ extension LoginEndPoint: BaseEndpoint {
     }
     
     var headers: HTTPHeaders? {
-        return [
-            "Content-Type": "application/json",
-            "accept": "application/json"
-        ]
+        switch self {
+        case .appleLoginAPI, .reIssueTokenAPI:
+            return [
+                "Content-Type": "application/json",
+                "accept": "application/json"
+            ]
+        case .withdrawAPI:
+            guard let token = TokenManager.shared.getAccessToken() else {
+                return .none
+            }
+            return [
+            "accept": "application/json",
+            "Authorization": "Bearer \(token)"
+            ]
+        }
     }
 }

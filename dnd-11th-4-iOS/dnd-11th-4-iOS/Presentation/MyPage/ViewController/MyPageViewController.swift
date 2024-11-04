@@ -33,10 +33,15 @@ final class MyPageViewController: UIViewController {
         bindActions()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        reactor?.action.onNext(.fetchUserName)
+    }
+    
     init(reactor: MyPageReactor) {
         super.init(nibName: nil, bundle: nil)
         self.reactor = reactor
-        reactor.action.onNext(.fetchUserName)
+//        reactor.action.onNext(.fetchUserName)
     }
     
     required init?(coder: NSCoder) {

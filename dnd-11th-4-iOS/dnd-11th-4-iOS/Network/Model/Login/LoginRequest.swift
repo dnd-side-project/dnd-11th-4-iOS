@@ -8,7 +8,7 @@
 import Foundation
 
 struct LoginRequest: Encodable {
-    let appleToken: String
+    let authorizationCode: String
     let selectedColor: String
 }
 
@@ -17,5 +17,5 @@ struct RefreshTokenRequest: Encodable {
 }
 
 struct WithdrawRequest: Encodable {
-    let authorizationCode: String
+    let appleRefreshToken: String
 }

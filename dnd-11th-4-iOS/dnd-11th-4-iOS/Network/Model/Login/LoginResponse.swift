@@ -10,4 +10,10 @@ import Foundation
 struct LoginResponse: Decodable {
     let accessToken: String
     let refreshToken: String
+    let appleRefreshToken: String
+}
+
+struct reissueResponse: Decodable {
+    let accessToken: String
+    let refreshToken: String
 }

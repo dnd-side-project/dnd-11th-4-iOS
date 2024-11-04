@@ -11,11 +11,11 @@ import RxSwift
 
 final class LoginService {
     static func appleLogin(token: String, color: String) -> Observable<LoginResponse> {
-        let request = LoginRequest(appleToken: token, selectedColor: color)
+        let request = LoginRequest(authorizationCode: token, selectedColor: color)
         return BaseRequest.request(LoginEndPoint.appleLoginAPI(request))
     }
     
-    static func reIssueToken(request: RefreshTokenRequest) -> Observable<LoginResponse> {
+    static func reIssueToken(request: RefreshTokenRequest) -> Observable<reissueResponse> {
         return BaseRequest.request(LoginEndPoint.reIssueTokenAPI(request))
     }
     

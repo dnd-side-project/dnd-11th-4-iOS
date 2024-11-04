@@ -44,10 +44,14 @@ final class RecordListViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        reactor?.action.onNext(.loadRecords)
+    }
+    
     init(reactor: RecordListReactor) {
         super.init(nibName: nil, bundle: nil)
         self.reactor = reactor
-        reactor.action.onNext(.loadRecords)
     }
     
     required init?(coder: NSCoder) {
