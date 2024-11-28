@@ -19,12 +19,11 @@ enum RegionButtonType {
 }
 
 struct RecordModel {
-    let type: RecordType
     let region: String
     let place: String?
-    let imageArray: [UIImage]?
+    let imageArray: [String]?
     let memo: String?
-    let date: String
+    let date: String?
 }
 
 final class RecordReactor: Reactor {

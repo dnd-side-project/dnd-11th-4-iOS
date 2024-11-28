@@ -31,11 +31,6 @@ final class RecordListReactor: Reactor {
         var sections: [RecordSection] = []
         var isRecordDeleted: Bool = false
         var selectedRecord: RecordResponse?
-        var detailRecords: [DetailRecordAppData] = [DetailRecordAppData(imageArray: [Constant.Image.imageDetailEmpty ?? UIImage()],
-                                                                        region: "전라남도",
-                                                                        place: "보성 녹차밭",
-                                                                        memo: "녹차좋아",
-                                                                        date: "24.10.22")]
     }
     
     init() {
