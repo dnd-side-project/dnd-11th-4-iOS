@@ -103,12 +103,15 @@ final class DetailRecordViewController: UIViewController, View {
             }
             .disposed(by: disposeBag)
         
-        reactor.state.compactMap { $0.detailRecordData?.photoUrls }
+        reactor.state
+            .map { $0.detailRecordData?.photoUrls ?? ["empty"] }
             .bind(to: detailImageCollectionView.rx.items) { (collectionView, row, element) in
                 let indexPath = IndexPath(row: row, section: 0)
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailImageCell.identifier, for: indexPath) as! DetailImageCell
-                guard let url = URL(string: element) else { return UICollectionViewCell() }
-                cell.detailImageView.kf.setImage(with: url)
+                if element != "empty" {
+                    guard let url = URL(string: element) else { return UICollectionViewCell() }
+                    cell.detailImageView.kf.setImage(with: url)
+                }
                 return cell
             }
             .disposed(by: disposeBag)
