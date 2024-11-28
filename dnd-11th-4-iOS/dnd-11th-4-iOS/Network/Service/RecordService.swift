@@ -10,8 +10,15 @@ import Alamofire
 import RxSwift
 
 final class RecordService {
-    
     static func postRecordAPI(request: RecordRequest, photos: RecordPhotos) -> Observable<Empty> {
         return BaseRequest.multiPartRequest(RecordEndPoint.postRecordAPI(request: request, photos: photos))
+    }
+    
+    static func updateRecordAPI(request: RecordRequest, photos: RecordPhotos, id: RecordId) -> Observable<Empty> {
+        return BaseRequest.multiPartRequest(RecordEndPoint.updateRecordAPI(request: request, photos: photos, id: id))
+    }
+    
+    static func deleteRecordAPI(id: Int) -> Observable<Empty> {
+        return BaseRequest.request(RecordEndPoint.deleteRecordAPI(RecordId(id: id)))
     }
 }

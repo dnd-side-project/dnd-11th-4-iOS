@@ -30,6 +30,9 @@
 		4A16E2F22C60F0A700F48180 /* HomeMap_전라북도.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDB92C4FAF75002F5A77 /* HomeMap_전라북도.swift */; };
 		4A16E2F32C60F0A700F48180 /* HomeMap_광주.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5FFDCD2C4FB399002F5A77 /* HomeMap_광주.swift */; };
 		4A16E2F62C60F8DA00F48180 /* HomeMapReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A16E2F52C60F8DA00F48180 /* HomeMapReactor.swift */; };
+		4A188F542CC1397F001799DE /* EditRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A188F532CC1397F001799DE /* EditRecordViewController.swift */; };
+		4A188F582CC13F98001799DE /* EditRecordReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A188F572CC13F98001799DE /* EditRecordReactor.swift */; };
+		4A188F5B2CC140CD001799DE /* EditRecordAppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A188F5A2CC140CD001799DE /* EditRecordAppData.swift */; };
 		4A1CB9382C7C7033002DE4FE /* BaseEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1CB9372C7C7033002DE4FE /* BaseEndpoint.swift */; };
 		4A1CB93A2C7C7DDA002DE4FE /* HTTPHeaderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1CB9392C7C7DDA002DE4FE /* HTTPHeaderField.swift */; };
 		4A1CB93D2C7C7E1A002DE4FE /* HomeEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1CB93C2C7C7E1A002DE4FE /* HomeEndPoint.swift */; };
@@ -146,6 +149,9 @@
 		4A16E2E52C5D0F5D00F48180 /* MDPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDPopUpView.swift; sourceTree = "<group>"; };
 		4A16E2ED2C60AD8F00F48180 /* OpacityColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpacityColorType.swift; sourceTree = "<group>"; };
 		4A16E2F52C60F8DA00F48180 /* HomeMapReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapReactor.swift; sourceTree = "<group>"; };
+		4A188F532CC1397F001799DE /* EditRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordViewController.swift; sourceTree = "<group>"; };
+		4A188F572CC13F98001799DE /* EditRecordReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordReactor.swift; sourceTree = "<group>"; };
+		4A188F5A2CC140CD001799DE /* EditRecordAppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordAppData.swift; sourceTree = "<group>"; };
 		4A1CB9372C7C7033002DE4FE /* BaseEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEndpoint.swift; sourceTree = "<group>"; };
 		4A1CB9392C7C7DDA002DE4FE /* HTTPHeaderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaderField.swift; sourceTree = "<group>"; };
 		4A1CB93C2C7C7E1A002DE4FE /* HomeEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEndPoint.swift; sourceTree = "<group>"; };
@@ -410,6 +416,40 @@
 			path = PopUp;
 			sourceTree = "<group>";
 		};
+		4A188F522CC1396C001799DE /* EditRecord */ = {
+			isa = PBXGroup;
+			children = (
+				4A188F592CC14000001799DE /* Model */,
+				4A188F562CC13F86001799DE /* Reactor */,
+				4A188F552CC13F7F001799DE /* ViewController */,
+			);
+			path = EditRecord;
+			sourceTree = "<group>";
+		};
+		4A188F552CC13F7F001799DE /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4A188F532CC1397F001799DE /* EditRecordViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		4A188F562CC13F86001799DE /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+				4A188F572CC13F98001799DE /* EditRecordReactor.swift */,
+			);
+			path = Reactor;
+			sourceTree = "<group>";
+		};
+		4A188F592CC14000001799DE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4A188F5A2CC140CD001799DE /* EditRecordAppData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		4A1CB9362C7C7017002DE4FE /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -569,6 +609,7 @@
 		4AAFDBA82C495290008C6DAF /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				4A188F522CC1396C001799DE /* EditRecord */,
 				4A09444C2C835B4800D745C5 /* DetailRecord */,
 				4AB1221D2C6BB3D600A7337F /* Record */,
 				FBE0F5AA2C75F14A00C81F8A /* ServiceAccept */,
@@ -1093,9 +1134,11 @@
 				4AAFDB6D2C494CFF008C6DAF /* AppDelegate.swift in Sources */,
 				4AAFDBB02C4953C0008C6DAF /* Network.swift in Sources */,
 				4A0944492C80CF3900D745C5 /* RecordCancelPopUpViewController.swift in Sources */,
+				4A188F5B2CC140CD001799DE /* EditRecordAppData.swift in Sources */,
 				4AB1221F2C6BB3DF00A7337F /* RecordViewController.swift in Sources */,
 				4A09444E2C835B5400D745C5 /* DetailRecordViewController.swift in Sources */,
 				4A16E2F62C60F8DA00F48180 /* HomeMapReactor.swift in Sources */,
+				4A188F582CC13F98001799DE /* EditRecordReactor.swift in Sources */,
 				4A5FFDC22C4FB056002F5A77 /* HomeMap_부산.swift in Sources */,
 				4AB122252C6CAE7500A7337F /* RecordReactor.swift in Sources */,
 				FBF1F1342C9044E50038A64F /* LoginEndPoint.swift in Sources */,
@@ -1104,6 +1147,7 @@
 				4A16E2E62C5D0F5D00F48180 /* MDPopUpView.swift in Sources */,
 				FB808E962C6B955B00E9E2E5 /* OnboardingView.swift in Sources */,
 				FB808E602C63A61F00E9E2E5 /* MenuAlertView.swift in Sources */,
+				4A188F542CC1397F001799DE /* EditRecordViewController.swift in Sources */,
 				FBF1F1302C903D770038A64F /* RecordListEndPoint.swift in Sources */,
 				FB808E662C64BD7500E9E2E5 /* RecordListHeaderView.swift in Sources */,
 				4A5FFDB42C4FAEB2002F5A77 /* HomeMap_강원도.swift in Sources */,
@@ -1302,9 +1346,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "MapDDang Debug";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1341,9 +1387,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "MapDDang Release";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
