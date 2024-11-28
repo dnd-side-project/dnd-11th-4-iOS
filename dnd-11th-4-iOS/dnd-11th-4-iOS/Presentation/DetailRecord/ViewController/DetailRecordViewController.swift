@@ -35,7 +35,7 @@ final class DetailRecordViewController: UIViewController, View {
     }()
     private let detailImageCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: Constant.Screen.width-86, height: 430)
+        layout.itemSize = CGSize(width: Constant.Screen.width-84, height: 430)
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         layout.scrollDirection = .horizontal
