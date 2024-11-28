@@ -177,26 +177,31 @@ extension RecordListViewController: View {
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] selectedRecord in
                 // edit 작업
+                let editReactor = EditRecordReactor(model: RecordResponse(id: selectedRecord.id, region: selectedRecord.region, attractionName: selectedRecord.attractionName, memo: selectedRecord.memo, visitDate: selectedRecord.visitDate, photoUrls: selectedRecord.photoUrls))
+                let editVC = EditRecordViewController(reactor: editReactor)
+                self?.navigationController?.pushViewController(editVC, animated: true)
             })
             .disposed(by: disposeBag)
-    }
-}
-
-extension RecordListViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let reactor = reactor else { return }
-        let selectedItem = reactor.initialState.detailRecords[0]
-        let detailRecordVC = DetailRecordViewController(reactor: DetailRecordReactor(),
-                                                        data: selectedItem)
-        detailRecordVC.modalPresentationStyle = .overFullScreen
-        detailRecordVC.editButtonSubject
-            .asDriver(onErrorJustReturn: DetailRecordAppData.empty)
-            .drive(with: self) { owner, data in
-                let recordVC = RecordViewController(reactor: RecordReactor(model: RecordModel(type: .edit, region: "서울", place: "장소", imageArray: nil, memo: "", date: "")))
-                owner.navigationController?.pushViewController(recordVC, animated: true)
-            }
+        
+        recordListView.rx.itemSelected
+            .asDriver()
+            .drive(onNext: { [weak self] indexPath in
+                guard let self = self else { return }
+                let selectedItem = reactor.currentState.sections[indexPath.section].items[indexPath.item]
+                let detailReator = DetailRecordReactor(model: selectedItem)
+                let detailRecordVC = DetailRecordViewController(reactor: detailReator)
+                detailRecordVC.modalPresentationStyle = .overFullScreen
+                detailRecordVC.editButtonSubject
+                    .asDriver(onErrorJustReturn: RecordResponse.empty)
+                    .drive(onNext: { data in
+                        let editRecordReactor = EditRecordReactor(model: selectedItem)
+                        let editRecordVC = EditRecordViewController(reactor: editRecordReactor)
+                        self.navigationController?.pushViewController(editRecordVC, animated: true)
+                    })
+                    .disposed(by: detailRecordVC.disposeBag)
+                self.present(detailRecordVC, animated: true)
+            })
             .disposed(by: disposeBag)
-        self.present(detailRecordVC, animated: true)
     }
 }
 
