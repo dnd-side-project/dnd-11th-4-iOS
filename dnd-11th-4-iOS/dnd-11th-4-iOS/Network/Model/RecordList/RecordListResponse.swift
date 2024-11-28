@@ -18,3 +18,7 @@ struct RecordResponse: Decodable {
     let memo, visitDate: String?
     let photoUrls: [String]?
 }
+
+extension RecordResponse {
+    static let empty = RecordResponse(id: 0, region: "", attractionName: "", memo: "", visitDate: nil, photoUrls: [""])
+}

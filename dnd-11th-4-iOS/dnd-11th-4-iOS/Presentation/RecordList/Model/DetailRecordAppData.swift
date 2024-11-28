@@ -8,7 +8,8 @@
 import UIKit
 
 struct DetailRecordAppData {
-    var imageArray: [UIImage]
+    var id: Int
+    var imageArray: [String]
     var region: String
     let place: String?
     let memo: String?
@@ -17,6 +18,6 @@ struct DetailRecordAppData {
 }
 
 extension DetailRecordAppData {
-    static let empty = DetailRecordAppData(imageArray: [],
+    static let empty = DetailRecordAppData(id: 0, imageArray: [],
                                            region: "서울", place: "전라남도", memo: nil, date: nil)
 }
