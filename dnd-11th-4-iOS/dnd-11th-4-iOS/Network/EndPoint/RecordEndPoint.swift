@@ -22,8 +22,8 @@ extension RecordEndPoint: BaseEndpoint {
     
     var path: String {
         switch self {
-        case .updateRecordAPI, .deleteRecordAPI:
-            return "/maps/history"
+        case .deleteRecordAPI(let id), .updateRecordAPI(_, _, let id):
+            return "/maps/history/\(id.id)"
         case .postRecordAPI:
             return "/maps/record"
         }
@@ -42,10 +42,8 @@ extension RecordEndPoint: BaseEndpoint {
     
     var parameters: RequestParams {
         switch self {
-        case .postRecordAPI:
+        case .postRecordAPI, .updateRecordAPI, .deleteRecordAPI:
             return .none
-        case .deleteRecordAPI(let id), .updateRecordAPI(_, _, let id):
-            return .query(id)
         }
     }
     
@@ -99,7 +97,7 @@ extension RecordEndPoint: BaseEndpoint {
                     "Authorization": "Bearer \(token)"]
         case .deleteRecordAPI:
             return [
-                "accept": "application/json",
+                "Content-Type": "application/json",
                 "Authorization": "Bearer \(token)"
             ]
         }
