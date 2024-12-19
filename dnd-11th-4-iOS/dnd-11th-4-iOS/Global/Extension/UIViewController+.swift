@@ -11,6 +11,7 @@ extension UIViewController {
     func navigateToViewController(viewController: UIViewController, animated: Bool = true, delay: TimeInterval? = nil) {
         let transition = {
             let rootViewController = UINavigationController(rootViewController: viewController)
+            rootViewController.isNavigationBarHidden = true
             if let window = UIApplication.shared.connectedScenes.first as? UIWindowScene {
                 window.windows.first?.rootViewController = rootViewController
                 
