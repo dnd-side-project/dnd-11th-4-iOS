@@ -51,13 +51,20 @@ extension RecordListReactor {
                     return Observable.just(Mutation.setError(NetworkManager.handleError(error)))
                 }
         case .deleteRecord(let indexPath):
-            var sections = currentState.sections
-            sections[indexPath.section].items.remove(at: indexPath.item)
-            return Observable.concat([
-                Observable.just(Mutation.setRecords(sections)),
-                Observable.just(Mutation.recordDeleted(true)),
-                Observable.just(Mutation.resetDeleteState)
-            ])
+                    let selectedRecord = currentState.sections[indexPath.section].items[indexPath.item]
+                    return RecordListService.deleteRecordAPI(with: selectedRecord.id)
+                        .flatMap { response in
+                            var sections = self.currentState.sections
+                            sections[indexPath.section].items.remove(at: indexPath.item)
+                            return Observable.concat([
+                                Observable.just(Mutation.setRecords(sections)),
+                                Observable.just(Mutation.recordDeleted(true)),
+                                Observable.just(Mutation.resetDeleteState)
+                            ])
+                        }
+                        .catch { error in
+                            return Observable.just(Mutation.setError(NetworkManager.handleError(error)))
+                        }
         case .editRecord(let indexPath):
             let selectedRecord = currentState.sections[indexPath.section].items[indexPath.item]
             return Observable.just(Mutation.setSelectedRecord(selectedRecord))

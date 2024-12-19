@@ -41,6 +41,7 @@ final class EditRecordReactor: Reactor {
         case setDeleteCell(IndexPath)
         case completeAPI(Bool)
         case setError(MDError)
+//        case failImageUpload
     }
     
     struct State {
@@ -175,7 +176,7 @@ extension EditRecordReactor {
     
     func prepareUrlImageArray(_ urls: [String]?) -> Observable<[UIImage]> {
         guard let urls = urls, !urls.isEmpty else {
-            return Observable.just([])  // 빈 배열 반환
+            return Observable.just([])
         }
         
         // 각 URL에 대해 비동기적으로 이미지를 다운로드하여 배열로 반환
