@@ -38,6 +38,7 @@ final class MenuAlertView: UIView {
         super.init(frame: frame)
         setupUI()
         setupAppearance()
+        didTapEditButton()
         didTapDeleteButton()
     }
     

@@ -180,6 +180,13 @@ extension RecordListViewController: View {
                 let editReactor = EditRecordReactor(model: RecordResponse(id: selectedRecord.id, region: selectedRecord.region, attractionName: selectedRecord.attractionName, memo: selectedRecord.memo, visitDate: selectedRecord.visitDate, photoUrls: selectedRecord.photoUrls))
                 let editVC = EditRecordViewController(reactor: editReactor)
                 self?.navigationController?.pushViewController(editVC, animated: true)
+                editVC.completeButtonTapped
+                    .asDriver(onErrorJustReturn: ())
+                    .drive(onNext: { [weak self] _ in
+                        MDToast.show(type: .complete)
+                        self?.navigationController?.popViewController(animated: true)
+                    })
+                    .disposed(by: editVC.disposeBag)
             })
             .disposed(by: disposeBag)
         
