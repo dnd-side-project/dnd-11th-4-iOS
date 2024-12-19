@@ -77,7 +77,6 @@ final class EditRecordReactor: Reactor {
                 prepareUrlImageArray(currentState.recordModel.photoUrls).map { array in
                     Mutation.setImageArray(array)
                 }
-                //                Observable.just(.setDateText(currentState.recordModel.date))
             ])
         case .imageAddTapped(let imageArray):
             return self.prepareImageArray(imageArray).map { array in
@@ -178,20 +177,32 @@ extension EditRecordReactor {
         guard let urls = urls, !urls.isEmpty else {
             return Observable.just([])  // 빈 배열 반환
         }
-
+        
         // 각 URL에 대해 비동기적으로 이미지를 다운로드하여 배열로 반환
         return Observable.from(urls)
             .flatMap { url -> Observable<UIImage> in
                 return Observable.create { observer in
-                    guard let url = URL(string: url),
-                          let data = try? Data(contentsOf: url),
-                          let image = UIImage(data: data) else {
+                    guard let url = URL(string: url) else {
                         observer.onCompleted()
                         return Disposables.create()
                     }
-                    observer.onNext(image)
-                    observer.onCompleted()
-                    return Disposables.create()
+                    
+                    let task = URLSession.shared.dataTask(with: url) { data, _, error in
+                        if let error = error {
+                            print(error)
+                            return
+                        }
+                        
+                        if let data = data, let image = UIImage(data: data) {
+                            observer.onNext(image)
+                        }
+                        observer.onCompleted()
+                    }
+                    task.resume()
+                    
+                    return Disposables.create {
+                        task.cancel()
+                    }
                 }
             }
             .toArray()
