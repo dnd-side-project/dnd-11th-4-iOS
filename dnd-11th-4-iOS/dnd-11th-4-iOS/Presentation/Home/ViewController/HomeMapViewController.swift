@@ -184,8 +184,7 @@ final class HomeMapViewController: UIViewController, View {
             .compactMap { $0.totalMapState?.selectedMap?.selectedMapName }
             .asDriver(onErrorJustReturn: "서울")
             .drive(with: self) { owner, text in
-                let recordReactor = RecordReactor(model: RecordModel(type: .write,
-                                                                     region: text,
+                let recordReactor = RecordReactor(model: RecordModel(region: text,
                                                                      place: nil,
                                                                      imageArray: nil,
                                                                      memo: nil,

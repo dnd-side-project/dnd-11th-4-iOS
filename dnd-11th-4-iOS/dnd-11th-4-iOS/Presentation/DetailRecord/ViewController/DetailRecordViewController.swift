@@ -15,7 +15,7 @@ final class DetailRecordViewController: UIViewController, View {
     
     var disposeBag = DisposeBag()
     typealias Reactor = DetailRecordReactor
-    var editButtonSubject = PublishSubject<DetailRecordAppData>()
+    var editButtonSubject = PublishSubject<RecordResponse>()
     
     private let dimmedView: UIView = {
         let view = UIView()
@@ -35,7 +35,7 @@ final class DetailRecordViewController: UIViewController, View {
     }()
     private let detailImageCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: Constant.Screen.width-86, height: 430)
+        layout.itemSize = CGSize(width: Constant.Screen.width-84, height: 430)
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         layout.scrollDirection = .horizontal
@@ -67,10 +67,10 @@ final class DetailRecordViewController: UIViewController, View {
         setLayout()
     }
     
-    init(reactor: DetailRecordReactor, data: DetailRecordAppData) {
+    init(reactor: DetailRecordReactor) {
         super.init(nibName: nil, bundle: nil)
         self.reactor = reactor
-        self.reactor?.action.onNext(.detailRecord(data))
+        self.reactor?.action.onNext(.detailRecord)
     }
     
     required init?(coder: NSCoder) {
@@ -79,9 +79,8 @@ final class DetailRecordViewController: UIViewController, View {
     
     func bind(reactor: DetailRecordReactor) {
         editButton.rx.tap
-            .flatMap { reactor.state }
-            .compactMap { $0.detailRecordData }
-            .asDriver(onErrorJustReturn: DetailRecordAppData.empty)
+            .compactMap { reactor.currentState.detailRecordData }
+            .asDriver(onErrorJustReturn: RecordResponse.empty)
             .drive(with: self) { owner, data in
                 owner.dismiss(animated: true)
                 owner.editButtonSubject.onNext(data)
@@ -91,6 +90,7 @@ final class DetailRecordViewController: UIViewController, View {
         deleteButton.rx.tap
             .asDriver()
             .drive(with: self) { owner, _ in
+                reactor.action.onNext(.deleteRecord)
                 // 삭제 API 호출 후, 화면 전환
                 owner.dismiss(animated: true)
             }
@@ -103,16 +103,20 @@ final class DetailRecordViewController: UIViewController, View {
             }
             .disposed(by: disposeBag)
         
-        reactor.state.compactMap { $0.detailRecordData?.imageArray }
+        reactor.state
+            .map { $0.detailRecordData?.photoUrls ?? ["empty"] }
             .bind(to: detailImageCollectionView.rx.items) { (collectionView, row, element) in
                 let indexPath = IndexPath(row: row, section: 0)
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailImageCell.identifier, for: indexPath) as! DetailImageCell
-                cell.detailImageView.image = element
+                if element != "empty" {
+                    guard let url = URL(string: element) else { return UICollectionViewCell() }
+                    cell.detailImageView.kf.setImage(with: url)
+                }
                 return cell
             }
             .disposed(by: disposeBag)
         
-        reactor.state.compactMap { $0.detailRecordData?.imageArray.count }
+        reactor.state.compactMap { $0.detailRecordData?.photoUrls?.count }
             .asDriver(onErrorJustReturn: 1)
             .drive(imagePageControl.rx.numberOfPages)
             .disposed(by: disposeBag)
@@ -127,7 +131,7 @@ final class DetailRecordViewController: UIViewController, View {
             .bind(to: imagePageControl.rx.currentPage)
             .disposed(by: disposeBag)
         
-        reactor.state.compactMap { $0.detailRecordData?.place }
+        reactor.state.compactMap { $0.detailRecordData?.attractionName }
             .map { NSAttributedString.pretendardSB12($0) }
             .asDriver(onErrorJustReturn: NSAttributedString(string: "보성 녹차밭"))
             .drive(regionAndPlaceLabel.rx.attributedText)
@@ -139,7 +143,7 @@ final class DetailRecordViewController: UIViewController, View {
             .drive(memoLabel.rx.attributedText)
             .disposed(by: disposeBag)
         
-        reactor.state.compactMap { $0.detailRecordData?.date }
+        reactor.state.compactMap { $0.detailRecordData?.visitDate }
             .map { NSAttributedString.pretendardR12($0) }
             .asDriver(onErrorJustReturn: NSAttributedString(string: "24.10.22"))
             .drive(dateLabel.rx.attributedText)

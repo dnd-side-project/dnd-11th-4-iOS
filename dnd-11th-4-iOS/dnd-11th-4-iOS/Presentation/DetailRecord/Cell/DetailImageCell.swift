@@ -19,10 +19,9 @@ final class DetailImageCell: UICollectionViewCell {
     let detailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = Constant.Image.imageDetailEmpty
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 12
-        imageView.backgroundColor = .errorRed
         return imageView
     }()
     

@@ -13,4 +13,9 @@ final class RecordListService {
     static func getRecordListAPI() -> Observable<RecordListResponse> {
         return BaseRequest.request(RecordListEndPoint.getRecordListAPI(cursorNo: 0, displayPerPage: 10))
     }
+    
+    static func deleteRecordAPI(with id: Int) -> Observable<RecordListResponse> {
+        let recordId = RecordId(id: id)
+        return BaseRequest.request(RecordEndPoint.deleteRecordAPI(recordId))
+    }
 }

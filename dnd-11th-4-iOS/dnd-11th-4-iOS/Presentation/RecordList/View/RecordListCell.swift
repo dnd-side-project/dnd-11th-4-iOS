@@ -54,6 +54,7 @@ final class RecordListCell: UICollectionViewCell {
         setupUI()
         showMenu()
         didTapDeleteButton()
+        didTapEditButton()
     }
     
     override func prepareForReuse() {
@@ -62,6 +63,7 @@ final class RecordListCell: UICollectionViewCell {
         disposeBag = DisposeBag()
         showMenu()
         didTapDeleteButton()
+        didTapEditButton()
     }
     
     required init?(coder: NSCoder) {

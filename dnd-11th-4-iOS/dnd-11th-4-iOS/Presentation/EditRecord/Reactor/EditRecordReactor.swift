@@ -1,24 +1,15 @@
 //
-//  RecordReactor.swift
+//  EditRecordReactor.swift
 //  dnd-11th-4-iOS
 //
-//  Created by 황찬미 on 8/14/24.
+//  Created by 황찬미 on 10/17/24.
 //
 
-import Foundation
 import ReactorKit
+import Kingfisher
 
-enum DateButtonType {
-    case cancel
-    case complete
-}
-
-enum RegionButtonType {
-    case cancel
-    case complete(Int)
-}
-
-struct RecordModel {
+struct EditRecordModel {
+    let id: Int
     let region: String
     let place: String?
     let imageArray: [String]?
@@ -26,12 +17,12 @@ struct RecordModel {
     let date: String?
 }
 
-final class RecordReactor: Reactor {
+final class EditRecordReactor: Reactor {
     
     var initialState: State
     
     enum Action {
-        case viewWillAppear(RecordModel)
+        case viewWillAppear
         case imageAddTapped([NSItemProvider])
         case regionTapped(String)
         case placeTapped(String)
@@ -50,6 +41,7 @@ final class RecordReactor: Reactor {
         case setDeleteCell(IndexPath)
         case completeAPI(Bool)
         case setError(MDError)
+//        case failImageUpload
     }
     
     struct State {
@@ -63,26 +55,28 @@ final class RecordReactor: Reactor {
         var placeText = ""
         var memoText = ""
         var imageCount: Int = 0
-        var recordData: DetailRecordAppData?
-        var recordModel: RecordModel
+        var recordModel: RecordResponse
         var completedAPI: Bool?
         var completeButtonEnabled: Bool {
             return selectedRegion != "" && placeText != ""
         }
     }
     
-    init(model: RecordModel) {
+    init(model: RecordResponse) {
         self.initialState = State(recordModel: model)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .viewWillAppear(let model):
+        case .viewWillAppear:
             return Observable.concat([
-                Observable.just(.setRegionText(model.region)),
-                Observable.just(.setPlaceText(prepareTrimText(model.place, 20))),
-                Observable.just(.setMemoText(prepareTrimText(model.memo ?? "", 25))),
-                Observable.just(.setDateText(currentState.selectedBeforeDate))
+                Observable.just(.setRegionText(currentState.recordModel.region)),
+                Observable.just(.setPlaceText(prepareTrimText(currentState.recordModel.attractionName, 20))),
+                Observable.just(.setMemoText(prepareTrimText(currentState.recordModel.memo ?? "", 25))),
+                Observable.just(.setDateText(Date())),
+                prepareUrlImageArray(currentState.recordModel.photoUrls).map { array in
+                    Mutation.setImageArray(array)
+                }
             ])
         case .imageAddTapped(let imageArray):
             return self.prepareImageArray(imageArray).map { array in
@@ -99,17 +93,18 @@ final class RecordReactor: Reactor {
         case .deleteCellTapped(let indexPath):
             return Observable.just(.setDeleteCell(indexPath))
         case .completeButtonTapped:
-            return RecordService.postRecordAPI(request: RecordRequest(recordRequest: Record(region: currentState.selectedRegion,
-                                                                                            attractionName: currentState.placeText,
-                                                                                            memo: currentState.memoText,
-                                                                                            localDate: currentState.selectedServerDate)),
-                                                                      photos: RecordPhotos(photos: currentState.selectedArrayImage))
-                .map { response in
-                    return Mutation.completeAPI(true)
-                }
-                .catch { error in
-                    return Observable.just(Mutation.setError(NetworkManager.handleError(error)))
-                }
+            return RecordService.updateRecordAPI(request: RecordRequest(recordRequest: Record(region: currentState.recordModel.region,
+                                                                                              attractionName: currentState.recordModel.attractionName,
+                                                                                              memo: currentState.recordModel.memo ?? "",
+                                                                                              localDate: currentState.recordModel.visitDate ?? "")),
+                                                 photos: RecordPhotos(photos: currentState.selectedArrayImage),
+                                                 id: RecordId(id: currentState.recordModel.id))
+            .map { response in
+                return Mutation.completeAPI(true)
+            }
+            .catch { error in
+                return Observable.just(Mutation.setError(NetworkManager.handleError(error)))
+            }
         }
     }
     
@@ -140,7 +135,7 @@ final class RecordReactor: Reactor {
     }
 }
 
-extension RecordReactor {
+extension EditRecordReactor {
     private func prepareImageArray(_ itemProviders: [NSItemProvider]) -> Observable<[UIImage]> {
         let observables = itemProviders.compactMap { itemProvider -> Observable<UIImage> in
             guard itemProvider.canLoadObject(ofClass: UIImage.self) else {
@@ -179,16 +174,39 @@ extension RecordReactor {
         return dateFormatter.string(from: date)
     }
     
-    private func prepareTypeData(type: RecordType) -> DetailRecordAppData {
-//        switch type {
-//        case .write:
-//            initialState.recordData?.region = region
-//        case .edit:
-//            if data.imageArray[0] == Constant.Image.imageDetailEmpty {
-//                initialState.recordData = data
-//                initialState.recordData?.imageArray = []
-//            }
-//        }
-        return initialState.recordData ?? DetailRecordAppData.empty
+    func prepareUrlImageArray(_ urls: [String]?) -> Observable<[UIImage]> {
+        guard let urls = urls, !urls.isEmpty else {
+            return Observable.just([])
+        }
+        
+        // 각 URL에 대해 비동기적으로 이미지를 다운로드하여 배열로 반환
+        return Observable.from(urls)
+            .flatMap { url -> Observable<UIImage> in
+                return Observable.create { observer in
+                    guard let url = URL(string: url) else {
+                        observer.onCompleted()
+                        return Disposables.create()
+                    }
+                    
+                    let task = URLSession.shared.dataTask(with: url) { data, _, error in
+                        if let error = error {
+                            print(error)
+                            return
+                        }
+                        
+                        if let data = data, let image = UIImage(data: data) {
+                            observer.onNext(image)
+                        }
+                        observer.onCompleted()
+                    }
+                    task.resume()
+                    
+                    return Disposables.create {
+                        task.cancel()
+                    }
+                }
+            }
+            .toArray()
+            .asObservable()
     }
 }

@@ -31,11 +31,6 @@ final class RecordListReactor: Reactor {
         var sections: [RecordSection] = []
         var isRecordDeleted: Bool = false
         var selectedRecord: RecordResponse?
-        var detailRecords: [DetailRecordAppData] = [DetailRecordAppData(imageArray: [Constant.Image.imageDetailEmpty ?? UIImage()],
-                                                                        region: "전라남도",
-                                                                        place: "보성 녹차밭",
-                                                                        memo: "녹차좋아",
-                                                                        date: "24.10.22")]
     }
     
     init() {
@@ -56,13 +51,20 @@ extension RecordListReactor {
                     return Observable.just(Mutation.setError(NetworkManager.handleError(error)))
                 }
         case .deleteRecord(let indexPath):
-            var sections = currentState.sections
-            sections[indexPath.section].items.remove(at: indexPath.item)
-            return Observable.concat([
-                Observable.just(Mutation.setRecords(sections)),
-                Observable.just(Mutation.recordDeleted(true)),
-                Observable.just(Mutation.resetDeleteState)
-            ])
+                    let selectedRecord = currentState.sections[indexPath.section].items[indexPath.item]
+                    return RecordListService.deleteRecordAPI(with: selectedRecord.id)
+                        .flatMap { response in
+                            var sections = self.currentState.sections
+                            sections[indexPath.section].items.remove(at: indexPath.item)
+                            return Observable.concat([
+                                Observable.just(Mutation.setRecords(sections)),
+                                Observable.just(Mutation.recordDeleted(true)),
+                                Observable.just(Mutation.resetDeleteState)
+                            ])
+                        }
+                        .catch { error in
+                            return Observable.just(Mutation.setError(NetworkManager.handleError(error)))
+                        }
         case .editRecord(let indexPath):
             let selectedRecord = currentState.sections[indexPath.section].items[indexPath.item]
             return Observable.just(Mutation.setSelectedRecord(selectedRecord))
