@@ -50,7 +50,6 @@ final class ServiceAcceptViewController: UIViewController {
         let button = MDButton(backgroundColor: .clear, cornerRadius: 0)
         button.setImage(image: Constant.Image.iconForward!)
         button.imageView?.tintColor = .gray60
-        //        button.isUserInteractionEnabled = false
         return button
     }()
     
