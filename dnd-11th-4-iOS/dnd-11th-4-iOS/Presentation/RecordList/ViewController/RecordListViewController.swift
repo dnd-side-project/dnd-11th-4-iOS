@@ -42,6 +42,7 @@ final class RecordListViewController: UIViewController {
         super.viewWillAppear(animated)
         
         self.tabBarController?.tabBar.isHidden = false
+        reactor?.action.onNext(.loadRecords)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -76,7 +77,6 @@ final class RecordListViewController: UIViewController {
             $0.top.equalTo(navigationBar.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
-        emptyRecordView.isHidden = true
         
         view.addSubview(recordListView)
         recordListView.snp.makeConstraints {
