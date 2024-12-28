@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 enum NavigationBarType {
-    case list, add, inquiry
+    case list, add, inquiry, service
     
     var text: String {
         switch self {
@@ -19,6 +19,8 @@ enum NavigationBarType {
             return "기록 추가"
         case .inquiry:
             return "1:1 문의"
+        case .service:
+            return "개인정보처리방침"
         }
     }
 }
@@ -48,7 +50,7 @@ final class MDNavigationBar: UIView {
             detailText.snp.makeConstraints {
                 $0.center.equalToSuperview()
             }
-        case .add, .inquiry:
+        case .add, .inquiry, .service:
             self.detailText.attributedText = NSAttributedString.pretendardB16(type.text)
             
             self.addSubviews(backButton, detailText)
