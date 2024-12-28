@@ -55,7 +55,6 @@ final class EditRecordReactor: Reactor {
         var placeText = ""
         var memoText = ""
         var imageCount: Int = 0
-        var recordData: RecordResponse?
         var recordModel: RecordResponse
         var completedAPI: Bool?
         var completeButtonEnabled: Bool {
@@ -94,11 +93,12 @@ final class EditRecordReactor: Reactor {
         case .deleteCellTapped(let indexPath):
             return Observable.just(.setDeleteCell(indexPath))
         case .completeButtonTapped:
-            return RecordService.updateRecordAPI(request: RecordRequest(recordRequest: Record(region: currentState.selectedRegion,
-                                                                                              attractionName: currentState.placeText,
-                                                                                              memo: currentState.memoText,
-                                                                                              localDate: currentState.selectedServerDate)),
-                                                 photos: RecordPhotos(photos: currentState.selectedArrayImage), id: RecordId(id: currentState.recordModel.id))
+            return RecordService.updateRecordAPI(request: RecordRequest(recordRequest: Record(region: currentState.recordModel.region,
+                                                                                              attractionName: currentState.recordModel.attractionName,
+                                                                                              memo: currentState.recordModel.memo ?? "",
+                                                                                              localDate: currentState.recordModel.visitDate ?? "")),
+                                                 photos: RecordPhotos(photos: currentState.selectedArrayImage),
+                                                 id: RecordId(id: currentState.recordModel.id))
             .map { response in
                 return Mutation.completeAPI(true)
             }
