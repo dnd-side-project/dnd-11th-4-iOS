@@ -125,7 +125,22 @@ extension RecordListViewController: View {
                     .asDriver(onErrorDriveWith: .empty())
                     .drive(onNext: { [weak self] in
                         guard let self = self else { return }
-                        self.reactor?.action.onNext(.editRecord(indexPath))
+                        let state = reactor.currentState.sections[indexPath.section].items[indexPath.item]
+                        let editReactor = EditRecordReactor(model: RecordResponse(id: state.id,
+                                                                                  region: state.region,
+                                                                                  attractionName: state.attractionName,
+                                                                                  memo: state.memo,
+                                                                                  visitDate: state.visitDate,
+                                                                                  photoUrls: state.photoUrls))
+                        let editVC = EditRecordViewController(reactor: editReactor)
+                        self.navigationController?.pushViewController(editVC, animated: true)
+                        editVC.completeButtonTapped
+                            .asDriver(onErrorJustReturn: ())
+                            .drive(onNext: { [weak self] _ in
+                                MDToast.show(type: .complete)
+                                self?.navigationController?.popViewController(animated: true)
+                            })
+                            .disposed(by: editVC.disposeBag)
                     })
                     .disposed(by: cell.disposeBag)
                 
@@ -177,6 +192,9 @@ extension RecordListViewController: View {
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] selectedRecord in
                 // edit 작업
+                // 뒤로 가기 버튼 누르면 재귀적으로 호출되는 현상 수정
+                // 기록 갱신 안되는 것
+                // 이미지 추가할때 3장 넘을때 안된다고 알려주기
                 let editReactor = EditRecordReactor(model: RecordResponse(id: selectedRecord.id, region: selectedRecord.region, attractionName: selectedRecord.attractionName, memo: selectedRecord.memo, visitDate: selectedRecord.visitDate, photoUrls: selectedRecord.photoUrls))
                 let editVC = EditRecordViewController(reactor: editReactor)
                 self?.navigationController?.pushViewController(editVC, animated: true)
