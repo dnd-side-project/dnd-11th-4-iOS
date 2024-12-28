@@ -46,6 +46,13 @@ final class ServiceAcceptViewController: UIViewController {
     
     private let agreeLabel = MDLabel(attributedString: NSAttributedString.pretendardM14("개인정보 수집이용 동의"), textColor: .black2)
     
+    private let detailButton: MDButton = {
+        let button = MDButton(backgroundColor: .clear, cornerRadius: 0)
+        button.setImage(image: Constant.Image.iconForward!)
+        button.imageView?.tintColor = .gray60
+        return button
+    }()
+    
     private let agreeButton: MDButton = {
         let button = MDButton(backgroundColor: .gray40)
         button.setText(attributedString: NSAttributedString.pretendardB16("동의합니다"), color: .gray60)
@@ -88,7 +95,7 @@ final class ServiceAcceptViewController: UIViewController {
             $0.leading.equalTo(titleLabel.snp.leading)
         }
         
-        checkboxView.addSubviews(checkboxButton, checkLabel, agreeLabel)
+        checkboxView.addSubviews(checkboxButton, checkLabel, agreeLabel, detailButton)
         checkboxView.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(12)
             $0.trailing.equalToSuperview().offset(-11)
@@ -107,6 +114,10 @@ final class ServiceAcceptViewController: UIViewController {
         agreeLabel.snp.makeConstraints {
             $0.centerY.equalTo(checkboxButton)
             $0.leading.equalTo(checkLabel.snp.trailing).offset(4)
+        }
+        detailButton.snp.makeConstraints {
+            $0.centerY.equalTo(checkboxButton)
+            $0.trailing.equalToSuperview().offset(-10)
         }
         
         agreeButton.snp.makeConstraints {
@@ -134,6 +145,16 @@ final class ServiceAcceptViewController: UIViewController {
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
                 self.navigateToViewController(viewController: OnboardingViewController(reactor: OnboardingReactor()))
+            })
+            .disposed(by: disposeBag)
+        
+        detailButton.rx.tap
+            .asDriver()
+            .delay(.milliseconds(300))
+            .drive(onNext: { [weak self] in
+                guard let self = self else { return }
+                let detailVC = ServiceDetailViewController()
+                self.navigationController?.pushViewController(detailVC, animated: true)
             })
             .disposed(by: disposeBag)
     }
