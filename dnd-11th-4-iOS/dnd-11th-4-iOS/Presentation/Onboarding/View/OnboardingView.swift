@@ -108,7 +108,7 @@ final class OnboardingView: UIView {
         mapAnimationView.snp.makeConstraints {
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(352)
+            $0.height.equalToSuperview().multipliedBy(0.4)
         }
         
         colorStackView.snp.makeConstraints {
